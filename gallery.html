@@ -961,6 +961,62 @@
             }
         }
 
+
+
+        /* LINKS DIRETOS PARA CADA FASE DA GALERIA */
+
+        .gallery-phase-direct-link {
+            position: relative;
+
+            display: inline-flex;
+            align-items: baseline;
+            gap: 7px;
+
+            width: fit-content;
+
+            text-decoration: none;
+            cursor: pointer;
+
+            transition:
+                color 220ms ease,
+                transform 220ms ease;
+        }
+
+        .gallery-phase-direct-link::after {
+            content: "";
+            position: absolute;
+            right: 0;
+            bottom: -5px;
+            left: 0;
+
+            height: 1px;
+
+            background: var(--blue-light);
+
+            transform: scaleX(0);
+            transform-origin: right;
+
+            transition:
+                transform 240ms ease;
+        }
+
+        .gallery-phase-direct-link:hover,
+        .gallery-phase-direct-link:focus-visible {
+            color: #ffffff;
+            transform: translateY(-1px);
+        }
+
+        .gallery-phase-direct-link:hover::after,
+        .gallery-phase-direct-link:focus-visible::after {
+            transform: scaleX(1);
+            transform-origin: left;
+        }
+
+        .gallery-phase-direct-link:focus-visible {
+            outline: 2px solid var(--blue-light);
+            outline-offset: 6px;
+        }
+
 </style>
 </head>
 <body id="top">
@@ -990,7 +1046,7 @@
                 </p>
 </div>
 </section>
-<section aria-label="Hidden Waters visual gallery" class="content-width gallery-phases"><section aria-labelledby="gallery-phase-01-title" class="gallery-phase" id="gallery-phase-01"><header class="gallery-phase-header"><div><p class="gallery-phase-number">Phase 01</p><h2 class="gallery-phase-title" id="gallery-phase-01-title">Historical Research</h2></div><span aria-hidden="true" class="gallery-phase-line"></span></header><div class="gallery-phase-grid gallery-phase-grid--feature-left"><button class="gallery-card gallery-card gallery-card--feature" data-title="Convent Reconstruction" type="button">
+<section aria-label="Hidden Waters visual gallery" class="content-width gallery-phases"><section aria-labelledby="gallery-phase-01-title" class="gallery-phase" id="gallery-phase-01"><header class="gallery-phase-header"><div><a aria-label="Direct link to Phase 01" class="gallery-phase-number gallery-phase-direct-link" href="#gallery-phase-01">Phase 01<span aria-hidden="true">↗</span></a><h2 class="gallery-phase-title" id="gallery-phase-01-title">Historical Research</h2></div><span aria-hidden="true" class="gallery-phase-line"></span></header><div class="gallery-phase-grid gallery-phase-grid--feature-left"><button class="gallery-card gallery-card gallery-card--feature" data-title="Convent Reconstruction" type="button">
 <span class="gallery-media">
 <span class="gallery-placeholder gallery-placeholder--light">
                             Image 01
@@ -1017,7 +1073,7 @@
 <span class="gallery-card-title">
                         Water System
                     </span>
-</button></div></section><section aria-labelledby="gallery-phase-02-title" class="gallery-phase" id="gallery-phase-02"><header class="gallery-phase-header"><div><p class="gallery-phase-number">Phase 02</p><h2 class="gallery-phase-title" id="gallery-phase-02-title">Digital Reconstruction</h2></div><span aria-hidden="true" class="gallery-phase-line"></span></header><div class="gallery-phase-grid gallery-phase-grid--feature-right"><button class="gallery-card gallery-card gallery-card--feature" data-title="Underground Gallery" type="button">
+</button></div></section><section aria-labelledby="gallery-phase-02-title" class="gallery-phase" id="gallery-phase-02"><header class="gallery-phase-header"><div><a aria-label="Direct link to Phase 02" class="gallery-phase-number gallery-phase-direct-link" href="#gallery-phase-02">Phase 02<span aria-hidden="true">↗</span></a><h2 class="gallery-phase-title" id="gallery-phase-02-title">Digital Reconstruction</h2></div><span aria-hidden="true" class="gallery-phase-line"></span></header><div class="gallery-phase-grid gallery-phase-grid--feature-right"><button class="gallery-card gallery-card gallery-card--feature" data-title="Underground Gallery" type="button">
 <span class="gallery-media">
 <span class="gallery-placeholder gallery-placeholder--light">
                             Image 04
@@ -1044,7 +1100,7 @@
 <span class="gallery-card-title">
                         Landscape Study
                     </span>
-</button></div></section><section aria-labelledby="gallery-phase-03-title" class="gallery-phase" id="gallery-phase-03"><header class="gallery-phase-header"><div><p class="gallery-phase-number">Phase 03</p><h2 class="gallery-phase-title" id="gallery-phase-03-title">Interactive Experience</h2></div><span aria-hidden="true" class="gallery-phase-line"></span></header><div class="gallery-phase-grid gallery-phase-grid--feature-left"><button class="gallery-card gallery-card gallery-card--feature" data-title="Archive and Research" type="button">
+</button></div></section><section aria-labelledby="gallery-phase-03-title" class="gallery-phase" id="gallery-phase-03"><header class="gallery-phase-header"><div><a aria-label="Direct link to Phase 03" class="gallery-phase-number gallery-phase-direct-link" href="#gallery-phase-03">Phase 03<span aria-hidden="true">↗</span></a><h2 class="gallery-phase-title" id="gallery-phase-03-title">Interactive Experience</h2></div><span aria-hidden="true" class="gallery-phase-line"></span></header><div class="gallery-phase-grid gallery-phase-grid--feature-left"><button class="gallery-card gallery-card gallery-card--feature" data-title="Archive and Research" type="button">
 <span class="gallery-media">
 <span class="gallery-placeholder">
                             Image 07
@@ -1195,7 +1251,6 @@
             );
         })();
     </script>
-
 <script>
         (() => {
             const cards = [
