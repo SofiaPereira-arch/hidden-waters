@@ -2012,6 +2012,104 @@
             }
         }
 
+
+        /* STEELFISH REGULAR — TÍTULOS DE IMAGENS E VÍDEOS */
+
+        @font-face {
+            font-family: "Steelfish Regular";
+            src: url("assets/fonts/steelfish-rg.otf") format("opentype");
+            font-style: normal;
+            font-weight: 400;
+            font-display: swap;
+        }
+
+        .visualizer-title,
+        .experience-image-title {
+            font-family:
+                "Steelfish Regular",
+                "Arial Narrow",
+                sans-serif;
+
+            font-size: clamp(1.65rem, 2.1vw, 2.35rem);
+            font-style: normal;
+            font-weight: 400;
+            letter-spacing: 0.035em;
+            text-transform: uppercase;
+            line-height: 1;
+        }
+
+        .experience-image-title {
+            position: absolute;
+            z-index: 4;
+            right: 30px;
+            bottom: 26px;
+            left: 30px;
+
+            color: #ffffff;
+
+            opacity: 0;
+            transform: translateY(12px);
+            pointer-events: none;
+
+            transition:
+                opacity 320ms ease,
+                transform 320ms ease;
+        }
+
+        .experience-image::after {
+            content: "";
+            position: absolute;
+            z-index: 1;
+            inset: 0;
+
+            background:
+                linear-gradient(
+                    to top,
+                    rgba(0, 0, 0, 0.68) 0%,
+                    rgba(0, 0, 0, 0.18) 45%,
+                    rgba(0, 0, 0, 0) 75%
+                );
+
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 320ms ease;
+        }
+
+        .experience-image:hover::after,
+        .experience-image:focus-within::after {
+            opacity: 1;
+        }
+
+        .experience-image:hover .experience-image-title,
+        .experience-image:focus-within .experience-image-title {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        @media (hover: none) {
+            .experience-image::after {
+                opacity: 0.52;
+            }
+
+            .experience-image-title {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @media (max-width: 520px) {
+            .visualizer-title,
+            .experience-image-title {
+                font-size: 1.55rem;
+            }
+
+            .experience-image-title {
+                right: 20px;
+                bottom: 18px;
+                left: 20px;
+            }
+        }
+
     </style>
 </head>
 
@@ -2268,6 +2366,10 @@
                     <div class="experience-image-placeholder">
                         Experience image
                     </div>
+
+                    <span class="experience-image-title">
+                        Hidden Waters Experience
+                    </span>
                 </div>
 
             </div>
