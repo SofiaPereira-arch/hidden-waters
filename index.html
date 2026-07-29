@@ -1451,30 +1451,38 @@
         }
 
 
-        /* HOVER DE ÁGUA — TEXTURA ANIMADA TRANSPARENTE */
+        /* HOVER DE ÁGUA SUAVE — GIF TRANSLÚCIDO */
 
         .visualizer-item::before {
             content: "";
             position: absolute;
             z-index: 2;
-            inset: -4%;
+            inset: -3%;
 
             background:
-                url("assets/media/water-caustics.webp")
+                url("assets/media/soft-water.gif")
                 center / cover
                 no-repeat;
 
             opacity: 0;
             mix-blend-mode: screen;
-            pointer-events: none;
+            filter:
+                saturate(0.55)
+                brightness(1.08)
+                contrast(0.92);
 
-            transform: scale(1.08);
-            transition: opacity 320ms ease;
+            pointer-events: none;
+            transform: scale(1.05);
+
+            transition:
+                opacity 420ms ease,
+                transform 700ms ease;
         }
 
         .visualizer-item:hover::before,
         .visualizer-item:focus-visible::before {
-            opacity: 0.58;
+            opacity: 0.24;
+            transform: scale(1.08);
         }
 
         .visualizer-item:hover .visualizer-media,
@@ -1484,11 +1492,11 @@
         .visualizer-item:focus-visible img,
         .visualizer-item:focus-visible video {
             filter:
-                blur(3px)
-                brightness(0.48)
-                saturate(0.82);
+                blur(2.5px)
+                brightness(0.52)
+                saturate(0.88);
 
-            transform: scale(1.06);
+            transform: scale(1.055);
         }
 
         .visualizer-title,
