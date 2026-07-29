@@ -1104,6 +1104,106 @@
             }
         }
 
+
+        /* MARGENS UNIFICADAS E LINK DIRETO */
+
+        :root {
+            --content-width: 1100px;
+            --content-gutter: 128px;
+        }
+
+        .hero .container {
+            width: min(
+                var(--content-width),
+                calc(100% - var(--content-gutter))
+            );
+            margin-right: auto;
+            margin-left: auto;
+        }
+
+        .experience-inner {
+            flex: 0 1 var(--content-width);
+            width: 100%;
+            max-width: calc(100% - var(--content-gutter));
+            margin-right: auto;
+            margin-left: auto;
+        }
+
+        .footer-content {
+            width: min(
+                var(--content-width),
+                calc(100% - var(--content-gutter))
+            );
+            margin-right: auto;
+            margin-left: auto;
+        }
+
+        .experience-topline {
+            display: flex;
+            justify-content: space-between;
+            align-items: baseline;
+            gap: 28px;
+            margin-bottom: 12px;
+        }
+
+        .experience-topline .experience-kicker {
+            margin: 0;
+        }
+
+        .experience-permalink {
+            position: relative;
+            flex: 0 0 auto;
+
+            color: #8a8a8a;
+
+            font-family: "Bebas Neue", sans-serif;
+            font-size: 0.95rem;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+
+            transition: color 200ms ease;
+        }
+
+        .experience-permalink::after {
+            content: "";
+            position: absolute;
+            right: 0;
+            bottom: -4px;
+            left: 0;
+
+            height: 1px;
+            background: var(--blue-light);
+
+            transform: scaleX(0);
+            transform-origin: right;
+            transition: transform 220ms ease;
+        }
+
+        .experience-permalink:hover {
+            color: #262626;
+        }
+
+        .experience-permalink:hover::after {
+            transform: scaleX(1);
+            transform-origin: left;
+        }
+
+        @media (max-width: 900px) {
+            :root {
+                --content-gutter: 36px;
+            }
+
+            .experience-topline {
+                align-items: flex-start;
+                flex-direction: column;
+                gap: 8px;
+            }
+
+            .experience-permalink {
+                font-size: 0.9rem;
+            }
+        }
+
     </style>
 </head>
 
@@ -1289,9 +1389,21 @@
             <div class="experience-inner">
 
                 <header class="experience-heading">
-                    <p class="experience-kicker">
-                        The experience
-                    </p>
+
+                    <div class="experience-topline">
+                        <p class="experience-kicker">
+                            The experience
+                        </p>
+
+                        <a
+                            class="experience-permalink"
+                            href="https://sofiapereira-arch.github.io/hidden-waters/#experience"
+                            aria-label="Open the direct link to this section"
+                        >
+                            Direct link to this section
+                            <span aria-hidden="true">↗</span>
+                        </a>
+                    </div>
 
                     <h2
                         class="experience-title"
