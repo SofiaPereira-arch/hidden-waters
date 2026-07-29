@@ -1318,6 +1318,138 @@
             }
         }
 
+
+        /* TEMA ESCURO — INSPIRADO NO MENU PRINCIPAL */
+
+        :root {
+            --background: #050505;
+            --text: #f2f2f2;
+            --grey: #9c9c9c;
+            --grey-dark: #b8b8b8;
+
+            --blue-dark: #8fb3ba;
+            --blue-light: #739da6;
+
+            --line: rgba(255, 255, 255, 0.11);
+            --header-background: rgba(5, 5, 5, 0.78);
+        }
+
+        body {
+            background: var(--background);
+            color: var(--text);
+        }
+
+        .site-header {
+            background: var(--header-background);
+            border-bottom-color: var(--line);
+        }
+
+        .main-nav {
+            color: #f0f0f0;
+        }
+
+        .main-nav a::after {
+            background: var(--blue-light);
+        }
+
+        .nav-separator {
+            background: var(--blue-light);
+        }
+
+        .hero h1,
+        .experience-title {
+            color: #e8e8e8;
+        }
+
+        .hero-subtitle {
+            color: #8f8f8f;
+        }
+
+        .visualizer-placeholder {
+            color: #b8d0d5;
+            background:
+                linear-gradient(
+                    145deg,
+                    #182326,
+                    #2e4449
+                );
+        }
+
+        .visualizer-placeholder--video {
+            color: #ffffff;
+            background:
+                linear-gradient(
+                    145deg,
+                    #101a1d,
+                    #315b68
+                );
+        }
+
+        .visualizer-item {
+            background: #172124;
+        }
+
+        .experience-kicker {
+            color: var(--blue-light);
+        }
+
+        .experience-copy {
+            color: #b8b8b8;
+        }
+
+        .experience-download {
+            color: #111111;
+            background: #f1f1f1;
+            border-color: #f1f1f1;
+        }
+
+        .experience-download:hover {
+            color: #f1f1f1;
+            background: transparent;
+        }
+
+        .experience-image {
+            background:
+                linear-gradient(
+                    145deg,
+                    #182326,
+                    #2e4449
+                );
+        }
+
+        .experience-image-placeholder {
+            color: #b8d0d5;
+        }
+
+        .experience-permalink {
+            color: #9a9a9a;
+        }
+
+        .experience-permalink:hover {
+            color: #ffffff;
+        }
+
+        .site-footer {
+            border-top-color: var(--line);
+        }
+
+        .footer-content {
+            color: #8f8f8f;
+        }
+
+        .visualizer-item:focus-visible {
+            outline-color: var(--blue-light);
+        }
+
+        .brand-symbol {
+            border-color: #f2f2f2;
+        }
+
+        ::selection {
+            color: #050505;
+            background: #9fc0c6;
+        }
+
     </style>
 </head>
 
