@@ -1,0 +1,486 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <meta
+        name="description"
+        content="Hidden Waters — A Journey Through the Hydraulic System of Alferrara"
+    >
+
+    <title>Hidden Waters</title>
+
+    <style>
+        :root {
+            --background: #f4f2ec;
+            --text: #202425;
+            --blue-dark: #315b68;
+            --blue-light: #83a9b0;
+            --line: rgba(32, 36, 37, 0.22);
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            margin: 0;
+            background: var(--background);
+            color: var(--text);
+            font-family: Arial, Helvetica, sans-serif;
+            line-height: 1.6;
+        }
+
+        a {
+            color: inherit;
+            text-decoration: none;
+        }
+
+        img,
+        video {
+            display: block;
+            width: 100%;
+        }
+
+        .container {
+            width: min(1200px, calc(100% - 48px));
+            margin: 0 auto;
+        }
+
+        /* Cabeçalho */
+
+        .site-header {
+            padding: 32px 0 20px;
+        }
+
+        .main-nav {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 20px;
+
+            color: var(--blue-dark);
+            font-size: 0.8rem;
+            font-weight: 600;
+            letter-spacing: 0.18em;
+            text-transform: uppercase;
+        }
+
+        .main-nav a {
+            position: relative;
+        }
+
+        .main-nav a::after {
+            content: "";
+            position: absolute;
+            left: 0;
+            bottom: -5px;
+
+            width: 100%;
+            height: 1px;
+
+            background: var(--blue-dark);
+            transform: scaleX(0);
+            transform-origin: right;
+            transition: transform 250ms ease;
+        }
+
+        .main-nav a:hover::after {
+            transform: scaleX(1);
+            transform-origin: left;
+        }
+
+        .nav-separator {
+            width: 6px;
+            height: 6px;
+            background: var(--blue-light);
+        }
+
+        /* Título */
+
+        .hero {
+            padding: 42px 0 58px;
+            text-align: center;
+        }
+
+        .hero h1 {
+            margin: 0;
+
+            color: var(--blue-dark);
+            font-family: Georgia, "Times New Roman", serif;
+            font-size: clamp(3rem, 8vw, 7rem);
+            font-weight: 400;
+            letter-spacing: -0.05em;
+            line-height: 0.95;
+        }
+
+        .hero p {
+            max-width: 530px;
+            margin: 24px auto 0;
+
+            font-family: Georgia, "Times New Roman", serif;
+            font-size: clamp(1rem, 2vw, 1.35rem);
+            font-style: italic;
+            line-height: 1.4;
+        }
+
+        /* Imagens e vídeo */
+
+        .media-section {
+            padding: 0 0 100px;
+        }
+
+        .media-strip {
+            display: grid;
+            grid-template-columns: 0.85fr 1.35fr 0.85fr;
+            gap: 18px;
+
+            padding: 22px 0;
+            border-top: 1px solid var(--line);
+            border-bottom: 1px solid var(--line);
+        }
+
+        .media-card {
+            position: relative;
+            min-height: 340px;
+            overflow: hidden;
+            background: #d8dfdd;
+        }
+
+        .media-card::after {
+            content: "";
+            position: absolute;
+            inset: 0;
+
+            background:
+                linear-gradient(
+                    to top,
+                    rgba(24, 43, 48, 0.28),
+                    transparent 55%
+                );
+        }
+
+        .media-placeholder {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+
+            width: 100%;
+            height: 100%;
+            min-height: 340px;
+
+            color: var(--blue-dark);
+            background:
+                linear-gradient(
+                    145deg,
+                    #dce4e1,
+                    #b7cbd0
+                );
+
+            font-size: 0.72rem;
+            font-weight: 600;
+            letter-spacing: 0.16em;
+            text-transform: uppercase;
+        }
+
+        .video-placeholder {
+            background:
+                linear-gradient(
+                    145deg,
+                    #9eb8bd,
+                    #315b68
+                );
+
+            color: white;
+        }
+
+        .play-button {
+            position: absolute;
+            z-index: 2;
+            top: 50%;
+            left: 50%;
+
+            display: flex;
+            justify-content: center;
+            align-items: center;
+
+            width: 70px;
+            height: 70px;
+            padding-left: 5px;
+
+            border: 1px solid rgba(255, 255, 255, 0.8);
+            border-radius: 50%;
+
+            color: white;
+            font-size: 1.4rem;
+
+            transform: translate(-50%, -50%);
+            transition:
+                background-color 200ms ease,
+                transform 200ms ease;
+        }
+
+        .media-card:hover .play-button {
+            background: rgba(255, 255, 255, 0.15);
+            transform: translate(-50%, -50%) scale(1.06);
+        }
+
+        /* Experiência e About */
+
+        .experience {
+            display: grid;
+            grid-template-columns: minmax(0, 1fr) minmax(280px, 0.7fr);
+            gap: clamp(40px, 8vw, 110px);
+            align-items: start;
+
+            padding: 0 0 100px;
+        }
+
+        .section-label {
+            margin-bottom: 16px;
+            color: var(--blue-light);
+
+            font-size: 0.72rem;
+            font-weight: 700;
+            letter-spacing: 0.18em;
+            text-transform: uppercase;
+        }
+
+        .experience h2 {
+            max-width: 650px;
+            margin: 0 0 24px;
+
+            color: var(--blue-dark);
+            font-family: Georgia, "Times New Roman", serif;
+            font-size: clamp(2.2rem, 5vw, 4.8rem);
+            font-weight: 400;
+            line-height: 1;
+        }
+
+        .experience-text {
+            max-width: 620px;
+            margin: 0 0 38px;
+            font-size: 1rem;
+        }
+
+        .download-button {
+            display: inline-flex;
+            align-items: center;
+            gap: 18px;
+
+            padding: 15px 20px;
+            border: 1px solid var(--blue-dark);
+
+            color: var(--background);
+            background: var(--blue-dark);
+
+            font-size: 0.75rem;
+            font-weight: 700;
+            letter-spacing: 0.14em;
+            text-transform: uppercase;
+
+            transition:
+                color 200ms ease,
+                background-color 200ms ease;
+        }
+
+        .download-button:hover {
+            color: var(--blue-dark);
+            background: transparent;
+        }
+
+        .project-image {
+            min-height: 430px;
+            overflow: hidden;
+            background: #c4d2d1;
+        }
+
+        .project-image .media-placeholder {
+            min-height: 430px;
+        }
+
+        /* Rodapé */
+
+        .site-footer {
+            padding: 30px 0 42px;
+            border-top: 1px solid var(--line);
+        }
+
+        .footer-content {
+            display: flex;
+            justify-content: space-between;
+            gap: 24px;
+
+            color: rgba(32, 36, 37, 0.7);
+            font-size: 0.75rem;
+            letter-spacing: 0.05em;
+        }
+
+        /* Telemóvel */
+
+        @media (max-width: 760px) {
+            .container {
+                width: min(100% - 28px, 1200px);
+            }
+
+            .site-header {
+                padding-top: 22px;
+            }
+
+            .hero {
+                padding: 42px 0;
+            }
+
+            .media-strip {
+                grid-template-columns: 1fr;
+            }
+
+            .media-card,
+            .media-placeholder {
+                min-height: 270px;
+            }
+
+            .experience {
+                grid-template-columns: 1fr;
+                padding-bottom: 70px;
+            }
+
+            .project-image,
+            .project-image .media-placeholder {
+                min-height: 330px;
+            }
+
+            .footer-content {
+                flex-direction: column;
+                gap: 7px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <header class="site-header">
+        <div class="container">
+            <nav class="main-nav" aria-label="Main navigation">
+                <a href="gallery.html">Gallery</a>
+
+                <span
+                    class="nav-separator"
+                    aria-hidden="true"
+                ></span>
+
+                <a href="process.html">Process</a>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+
+        <section class="hero">
+            <div class="container">
+                <h1>Hidden Waters</h1>
+
+                <p>
+                    A Journey Through the Hydraulic System
+                    of Alferrara
+                </p>
+            </div>
+        </section>
+
+        <section class="media-section">
+            <div class="container">
+                <div class="media-strip">
+
+                    <article class="media-card">
+                        <div class="media-placeholder">
+                            Main image
+                        </div>
+                    </article>
+
+                    <article class="media-card">
+                        <div class="media-placeholder video-placeholder">
+                            Main video
+                        </div>
+
+                        <span
+                            class="play-button"
+                            aria-hidden="true"
+                        >
+                            ▶
+                        </span>
+                    </article>
+
+                    <article class="media-card">
+                        <div class="media-placeholder">
+                            Main image
+                        </div>
+                    </article>
+
+                </div>
+            </div>
+        </section>
+
+        <section class="container experience" id="about">
+
+            <div>
+                <div class="section-label">
+                    The experience
+                </div>
+
+                <h2>
+                    Exploring the hidden hydraulic landscape
+                </h2>
+
+                <p class="experience-text">
+                    Hidden Waters is an immersive digital reconstruction
+                    of the hydraulic system associated with the Convent
+                    of Capuchos de Alferrara. The project combines
+                    historical research, architectural reconstruction
+                    and an interactive experience developed in
+                    Unreal Engine.
+                </p>
+
+                <a
+                    class="download-button"
+                    href="#"
+                    aria-label="Download Hidden Waters experience"
+                >
+                    Download experience
+                    <span aria-hidden="true">↓</span>
+                </a>
+            </div>
+
+            <div class="project-image">
+                <div class="media-placeholder">
+                    Experience image
+                </div>
+            </div>
+
+        </section>
+
+    </main>
+
+    <footer class="site-footer">
+        <div class="container footer-content">
+            <span>
+                Hidden Waters
+            </span>
+
+            <span>
+                Thesis companion website · 2026
+            </span>
+        </div>
+    </footer>
+
+</body>
+</html>
