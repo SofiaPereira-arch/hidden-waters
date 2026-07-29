@@ -2110,6 +2110,71 @@
             }
         }
 
+
+        /* LOGÓTIPO CENTRAL NO CABEÇALHO */
+
+        .simple-main-nav {
+            gap: 30px;
+        }
+
+        .header-logo-link {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+
+            width: 42px;
+            height: 52px;
+            flex: 0 0 42px;
+
+            opacity: 0.94;
+
+            transition:
+                opacity 220ms ease,
+                transform 260ms ease;
+        }
+
+        .header-logo-link::after {
+            display: none;
+        }
+
+        .header-logo-image {
+            display: block;
+
+            width: auto;
+            height: 40px;
+            max-width: 38px;
+
+            object-fit: contain;
+        }
+
+        .header-logo-link:hover,
+        .header-logo-link:focus-visible {
+            opacity: 1;
+            transform: scale(1.07);
+        }
+
+        .header-logo-link:focus-visible {
+            outline: 2px solid var(--blue-light);
+            outline-offset: 5px;
+        }
+
+        @media (max-width: 520px) {
+            .simple-main-nav {
+                gap: 21px;
+            }
+
+            .header-logo-link {
+                width: 36px;
+                height: 46px;
+                flex-basis: 36px;
+            }
+
+            .header-logo-image {
+                height: 34px;
+                max-width: 33px;
+            }
+        }
+
     </style>
 </head>
 
@@ -2124,10 +2189,17 @@
             >
                 <a href="gallery.html">Gallery</a>
 
-                <span
-                    class="nav-separator"
-                    aria-hidden="true"
-                ></span>
+                <a
+                    class="header-logo-link"
+                    href="#top"
+                    aria-label="Return to the Hidden Waters homepage"
+                >
+                    <img
+                        class="header-logo-image"
+                        src="assets/images/hidden-waters-logo-white.png"
+                        alt=""
+                    >
+                </a>
 
                 <a href="process.html">Process</a>
             </nav>
