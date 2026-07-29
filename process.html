@@ -1402,6 +1402,38 @@
             }
         }
 
+
+        /* TÍTULOS DOS VÍDEOS — MAIS PRÓXIMOS E ALINHADOS COM AS CURVAS */
+
+        .media-title {
+            top: calc(100% + 8px);
+        }
+
+        /*
+        O recuo corresponde aproximadamente ao raio dos cantos do vídeo.
+        */
+
+        .phase--right .media-title {
+            right: auto;
+            left: 24px;
+            text-align: left;
+        }
+
+        .phase--left .media-title {
+            right: 24px;
+            left: auto;
+            text-align: right;
+        }
+
+        @media (max-width: 900px) {
+            .phase--right .media-title,
+            .phase--left .media-title {
+                right: auto;
+                left: 20px;
+                text-align: left;
+            }
+        }
+
     </style>
 </head>
 
