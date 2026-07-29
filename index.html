@@ -1,30 +1,16 @@
 <!DOCTYPE html>
+
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-
-    <meta
-        name="viewport"
-        content="width=device-width, initial-scale=1.0"
-    >
-
-    <meta
-        name="description"
-        content="Hidden Waters — A Journey Through the Hydraulic System of Alferrara"
-    >
-
-    <title>Hidden Waters</title>
-
-    <!-- Bebas Neue -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-
-    <link
-        href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:wght@300;400;500;600&display=swap"
-        rel="stylesheet"
-    >
-
-    <style>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<meta content="Hidden Waters — A Journey Through the Hydraulic System of Alferrara" name="description"/>
+<title>Hidden Waters</title>
+<!-- Bebas Neue -->
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&amp;family=Inter:wght@300;400;500;600&amp;display=swap" rel="stylesheet"/>
+<style>
         @font-face {
             font-family: "Steelfish";
             src: url("assets/fonts/steelfish-rg-it.otf") format("opentype");
@@ -2191,244 +2177,149 @@
             }
         }
 
-    </style>
+    
+
+        /* FAIXA INICIAL NÃO CLICÁVEL + SUBTÍTULO AZUL */
+
+        .hero-subtitle {
+            color: var(--blue-light);
+        }
+
+        .visualizer-item {
+            cursor: default;
+            user-select: none;
+        }
+
+        /*
+        O símbolo de play continua apenas como elemento gráfico.
+        */
+        .visualizer-play {
+            pointer-events: none;
+        }
+
+</style>
 </head>
-
 <body id="top">
-
-    <header class="site-header">
-        <div class="container header-content">
-
-            <nav
-                class="main-nav simple-main-nav"
-                aria-label="Main navigation"
-            >
-                <a href="gallery.html">Gallery</a>
-
-                <a
-                    class="header-logo-link"
-                    href="#top"
-                    aria-label="Return to the Hidden Waters homepage"
-                >
-                    <img
-                        class="header-logo-image"
-                        src="assets/images/hidden-waters-logo-white.png"
-                        alt=""
-                    >
-                </a>
-
-                <a href="process.html">Process</a>
-            </nav>
-
-        </div>
-    </header>
-
-    <main>
-        
-        <div class="intro-screen">
-        <section class="hero">
-            <div class="container">
-
-                <h1>
+<header class="site-header">
+<div class="container header-content">
+<nav aria-label="Main navigation" class="main-nav simple-main-nav">
+<a href="gallery.html">Gallery</a>
+<a aria-label="Return to the Hidden Waters homepage" class="header-logo-link" href="#top">
+<img alt="" class="header-logo-image" src="assets/images/hidden-waters-logo-white.png"/>
+</a>
+<a href="process.html">Process</a>
+</nav>
+</div>
+</header>
+<main>
+<div class="intro-screen">
+<section class="hero">
+<div class="container">
+<h1>
                     Hidden Waters
                 </h1>
-
-                <p class="hero-subtitle">
+<p class="hero-subtitle">
                     A Journey Through the Hydraulic System of Alferrara
                 </p>
-
-            </div>
-        </section>
-
-        <section
-            class="visualizer-section"
-            aria-label="Preview of photographs and videos from the project"
-        >
-            <div class="visualizer-viewport">
-                <div class="visualizer-track">
-
-                    <div class="visualizer-group">
-
-                        <a
-                            class="visualizer-item"
-                            href="gallery.html"
-                            style="--item-ratio: 0.72;"
-                            aria-label="Open the project gallery"
-                        >
-                            <div class="visualizer-placeholder visualizer-media">
+</div>
+</section>
+<section aria-label="Preview of photographs and videos from the project" class="visualizer-section">
+<div class="visualizer-viewport">
+<div class="visualizer-track">
+<div class="visualizer-group">
+<div class="visualizer-item" style="--item-ratio: 0.72;">
+<div class="visualizer-placeholder visualizer-media">
                                 Gallery image 01
                             </div>
-                        
-                            <span class="visualizer-title">
+<span class="visualizer-title">
                                 Gallery Image 01
                             </span>
-                        </a>
-
-                        <a
-                            class="visualizer-item"
-                            href="process.html"
-                            style="--item-ratio: 1.78;"
-                            aria-label="Open the process page"
-                        >
-                            <div class="visualizer-placeholder visualizer-placeholder--video visualizer-media">
+</div>
+<div class="visualizer-item" style="--item-ratio: 1.78;">
+<div class="visualizer-placeholder visualizer-placeholder--video visualizer-media">
                                 Process video 01
                             </div>
-
-                            <span
-                                class="visualizer-play"
-                                aria-hidden="true"
-                            >
+<span aria-hidden="true" class="visualizer-play">
                                 ▶
                             </span>
-                        
-                            <span class="visualizer-title">
+<span class="visualizer-title">
                                 Process Video 01
                             </span>
-                        </a>
-
-                        <a
-                            class="visualizer-item"
-                            href="gallery.html"
-                            style="--item-ratio: 1;"
-                            aria-label="Open the project gallery"
-                        >
-                            <div class="visualizer-placeholder visualizer-media">
+</div>
+<div class="visualizer-item" style="--item-ratio: 1;">
+<div class="visualizer-placeholder visualizer-media">
                                 Gallery image 02
                             </div>
-                        
-                            <span class="visualizer-title">
+<span class="visualizer-title">
                                 Gallery Image 02
                             </span>
-                        </a>
-
-                        <a
-                            class="visualizer-item"
-                            href="gallery.html"
-                            style="--item-ratio: 1.48;"
-                            aria-label="Open the project gallery"
-                        >
-                            <div class="visualizer-placeholder visualizer-media">
+</div>
+<div class="visualizer-item" style="--item-ratio: 1.48;">
+<div class="visualizer-placeholder visualizer-media">
                                 Gallery image 03
                             </div>
-                        
-                            <span class="visualizer-title">
+<span class="visualizer-title">
                                 Gallery Image 03
                             </span>
-                        </a>
-
-                        <a
-                            class="visualizer-item"
-                            href="process.html"
-                            style="--item-ratio: 0.82;"
-                            aria-label="Open the process page"
-                        >
-                            <div class="visualizer-placeholder visualizer-placeholder--video visualizer-media">
+</div>
+<div class="visualizer-item" style="--item-ratio: 0.82;">
+<div class="visualizer-placeholder visualizer-placeholder--video visualizer-media">
                                 Process video 02
                             </div>
-
-                            <span
-                                class="visualizer-play"
-                                aria-hidden="true"
-                            >
+<span aria-hidden="true" class="visualizer-play">
                                 ▶
                             </span>
-                        
-                            <span class="visualizer-title">
+<span class="visualizer-title">
                                 Process Video 02
                             </span>
-                        </a>
-
-                        <a
-                            class="visualizer-item"
-                            href="gallery.html"
-                            style="--item-ratio: 1.9;"
-                            aria-label="Open the project gallery"
-                        >
-                            <div class="visualizer-placeholder visualizer-media">
+</div>
+<div class="visualizer-item" style="--item-ratio: 1.9;">
+<div class="visualizer-placeholder visualizer-media">
                                 Gallery image 04
                             </div>
-                        
-                            <span class="visualizer-title">
+<span class="visualizer-title">
                                 Gallery Image 04
                             </span>
-                        </a>
-
-                        <a
-                            class="visualizer-item"
-                            href="process.html"
-                            style="--item-ratio: 1.6;"
-                            aria-label="Open the process page"
-                        >
-                            <div class="visualizer-placeholder visualizer-placeholder--video visualizer-media">
+</div>
+<div class="visualizer-item" style="--item-ratio: 1.6;">
+<div class="visualizer-placeholder visualizer-placeholder--video visualizer-media">
                                 Experience video
                             </div>
-
-                            <span
-                                class="visualizer-play"
-                                aria-hidden="true"
-                            >
+<span aria-hidden="true" class="visualizer-play">
                                 ▶
                             </span>
-                        
-                            <span class="visualizer-title">
+<span class="visualizer-title">
                                 Experience Video
                             </span>
-                        </a>
-
-                        <a
-                            class="visualizer-item"
-                            href="gallery.html"
-                            style="--item-ratio: 0.68;"
-                            aria-label="Open the project gallery"
-                        >
-                            <div class="visualizer-placeholder visualizer-media">
+</div>
+<div class="visualizer-item" style="--item-ratio: 0.68;">
+<div class="visualizer-placeholder visualizer-media">
                                 Gallery image 05
                             </div>
-                        
-                            <span class="visualizer-title">
+<span class="visualizer-title">
                                 Gallery Image 05
                             </span>
-                        </a>
-
-                    </div>
-
-                </div>
-            </div>
-        </section>
-
-        </div>
-        
-        <section
-            class="experience-page"
-            id="experience"
-            aria-labelledby="experience-title"
-        >
-            <div class="experience-inner">
-
-                <header class="experience-heading">
-
-                    <div class="experience-topline">
-                        <a
-                            class="experience-kicker experience-kicker-link"
-                            href="https://sofiapereira-arch.github.io/hidden-waters/#experience"
-                            aria-label="Open the direct link to the experience section"
-                        >
+</div>
+</div>
+</div>
+</div>
+</section>
+</div>
+<section aria-labelledby="experience-title" class="experience-page" id="experience">
+<div class="experience-inner">
+<header class="experience-heading">
+<div class="experience-topline">
+<a aria-label="Open the direct link to the experience section" class="experience-kicker experience-kicker-link" href="https://sofiapereira-arch.github.io/hidden-waters/#experience">
                             The experience
                             <span aria-hidden="true">↗</span>
-                        </a>
-                    </div>
-
-                    <h2
-                        class="experience-title"
-                        id="experience-title"
-                    >
+</a>
+</div>
+<h2 class="experience-title" id="experience-title">
                         Exploring the hidden hydraulic landscape
                     </h2>
-                </header>
-
-                <div class="experience-meta">
-
-                    <p class="experience-copy">
+</header>
+<div class="experience-meta">
+<p class="experience-copy">
                         Hidden Waters is an immersive digital reconstruction
                         of the hydraulic system associated with the Convent
                         of Capuchos de Alferrara. The project combines
@@ -2436,50 +2327,33 @@
                         and an interactive experience developed in
                         Unreal Engine.
                     </p>
-
-                    <a
-                        class="experience-download"
-                        href="https://github.com/SofiaPereira-arch/hidden-waters/releases"
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        aria-label="Open the Hidden Waters download page"
-                    >
+<a aria-label="Open the Hidden Waters download page" class="experience-download" href="https://github.com/SofiaPereira-arch/hidden-waters/releases" rel="noopener noreferrer" target="_blank">
                         Download experience
                         <span aria-hidden="true">↓</span>
-                    </a>
-
-                </div>
-
-                <div class="experience-image">
-                    <div class="experience-image-placeholder">
+</a>
+</div>
+<div class="experience-image">
+<div class="experience-image-placeholder">
                         Experience image
                     </div>
-
-                    <span class="experience-image-title">
+<span class="experience-image-title">
                         Hidden Waters Experience
                     </span>
-                </div>
-
-            </div>
-        </section>
-
-    </main>
-
-    <footer class="site-footer">
-        <div class="container footer-content">
-
-            <span>
+</div>
+</div>
+</section>
+</main>
+<footer class="site-footer">
+<div class="container footer-content">
+<span>
                 Hidden Waters
             </span>
-
-            <span>
+<span>
                 Thesis companion website · 2026
             </span>
-
-        </div>
-    </footer>
-
-    <script>
+</div>
+</footer>
+<script>
         (() => {
             const viewport = document.querySelector(".visualizer-viewport");
             const track = document.querySelector(".visualizer-track");
@@ -2612,9 +2486,7 @@
             window.requestAnimationFrame(animate);
         })();
     </script>
-
-
-    <script>
+<script>
         (() => {
             const items = [
                 ...document.querySelectorAll(
@@ -2711,6 +2583,5 @@
             });
         })();
     </script>
-
 </body>
 </html>
