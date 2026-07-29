@@ -1131,6 +1131,70 @@
             }
         }
 
+
+        /* GOTA VIRADA PARA CIMA E INTERRUPÇÃO DA LINHA */
+
+        .phase-marker {
+            /*
+            Fundo sólido para esconder completamente a linha no interior.
+            A rotação de 135 graus coloca a ponta da gota para cima.
+            */
+            background: var(--background);
+            border: 2px solid var(--blue-light);
+
+            box-shadow:
+                0 0 0 11px var(--background);
+
+            transform: rotate(135deg);
+        }
+
+        .phase:hover .phase-marker,
+        .phase:focus-within .phase-marker {
+            background: var(--background);
+            border-color: #d3eff4;
+
+            box-shadow:
+                0 0 0 11px var(--background);
+
+            transform:
+                rotate(135deg)
+                scale(1.10);
+        }
+
+        /*
+        As ondas continuam circulares e sem herdar visualmente
+        a orientação da gota.
+        */
+
+        .phase-marker::before,
+        .phase-marker::after {
+            transform:
+                translate(-50%, -50%)
+                rotate(-135deg)
+                scale(1);
+        }
+
+        @keyframes water-ripple {
+            0% {
+                opacity: 0.66;
+
+                transform:
+                    translate(-50%, -50%)
+                    rotate(-135deg)
+                    scale(1);
+            }
+
+            75%,
+            100% {
+                opacity: 0;
+
+                transform:
+                    translate(-50%, -50%)
+                    rotate(-135deg)
+                    scale(4.1);
+            }
+        }
+
     </style>
 </head>
 
