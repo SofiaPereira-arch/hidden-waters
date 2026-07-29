@@ -521,6 +521,64 @@
                 gap: 7px;
             }
         }
+    
+            /* AJUSTES DA ABERTURA DO SITE */
+        
+        .hero .container {
+            width: min(1180px, calc(100% - 96px));
+            margin: 0 auto;
+        }
+        
+        .hero {
+            padding:
+                clamp(70px, 8vh, 105px)
+                0
+                clamp(70px, 7vh, 90px);
+        }
+        
+        .hero h1 {
+            color: #262626;
+        
+            font-size: clamp(4.8rem, 9vw, 9.5rem);
+        }
+        
+        .hero-subtitle {
+            max-width: 1000px;
+        
+            font-size: clamp(2.2rem, 4.2vw, 4.6rem);
+        }
+        
+        .media-section {
+            padding:
+                0
+                0
+                clamp(75px, 8vh, 105px);
+        }
+        
+        .media-strip {
+            gap: 30px;
+        }
+        
+        /* Ajustes para ecrãs mais pequenos */
+        
+        @media (max-width: 900px) {
+            .hero .container {
+                width: min(100% - 36px, 1180px);
+            }
+        
+            .hero {
+                padding: 70px 0 55px;
+            }
+        
+            .media-section {
+                padding-bottom: 55px;
+            }
+        
+            .media-strip {
+                gap: 20px;
+            }
+        }
+    
     </style>
 </head>
 
