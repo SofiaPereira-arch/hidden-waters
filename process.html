@@ -1,0 +1,932 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <meta
+        name="description"
+        content="The research, reconstruction and development process behind Hidden Waters."
+    >
+
+    <title>Process · Hidden Waters</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    <link
+        href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:wght@300;400;500;600&display=swap"
+        rel="stylesheet"
+    >
+
+    <style>
+        @font-face {
+            font-family: "Steelfish";
+            src: url("assets/fonts/steelfish-rg.otf") format("opentype");
+            font-style: normal;
+            font-weight: 400;
+            font-display: swap;
+        }
+
+        @font-face {
+            font-family: "Steelfish";
+            src: url("assets/fonts/steelfish-rg-it.otf") format("opentype");
+            font-style: italic;
+            font-weight: 400;
+            font-display: swap;
+        }
+
+        :root {
+            --background: #050505;
+            --text: #f2f2f2;
+            --muted: #a9a9a9;
+            --blue: #739da6;
+            --blue-light: #8fb3ba;
+            --line: rgba(255, 255, 255, 0.15);
+            --header-background: rgba(5, 5, 5, 0.78);
+
+            /* As mesmas margens da página principal */
+            --content-width: 1100px;
+            --content-gutter: 128px;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+            scroll-padding-top: 96px;
+        }
+
+        body {
+            margin: 0;
+            color: var(--text);
+            background: var(--background);
+
+            font-family: "Inter", Arial, sans-serif;
+            line-height: 1.65;
+        }
+
+        a {
+            color: inherit;
+            text-decoration: none;
+        }
+
+        img,
+        video {
+            display: block;
+            width: 100%;
+        }
+
+        ::selection {
+            color: #050505;
+            background: #9fc0c6;
+        }
+
+        .content-width {
+            width: min(
+                var(--content-width),
+                calc(100% - var(--content-gutter))
+            );
+            margin-right: auto;
+            margin-left: auto;
+        }
+
+        /*
+        CABEÇALHO
+        */
+
+        .site-header {
+            position: fixed;
+            z-index: 1000;
+            top: 0;
+            right: 0;
+            left: 0;
+
+            height: 76px;
+
+            background: var(--header-background);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.10);
+
+            backdrop-filter: blur(18px) saturate(145%);
+            -webkit-backdrop-filter: blur(18px) saturate(145%);
+        }
+
+        .header-content {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100%;
+        }
+
+        .main-nav {
+            display: flex;
+            align-items: center;
+            gap: 30px;
+
+            font-family: "Bebas Neue", sans-serif;
+            font-size: 1.28rem;
+            letter-spacing: 0.12em;
+            line-height: 1;
+        }
+
+        .main-nav > a:not(.header-logo-link) {
+            position: relative;
+
+            transition:
+                color 220ms ease,
+                transform 220ms ease;
+        }
+
+        .main-nav > a:not(.header-logo-link)::after {
+            content: "";
+            position: absolute;
+            right: 0;
+            bottom: -7px;
+            left: 0;
+
+            height: 1px;
+            background: var(--blue-light);
+
+            transform: scaleX(0);
+            transform-origin: right;
+            transition: transform 240ms ease;
+        }
+
+        .main-nav > a:hover,
+        .main-nav > a:focus-visible {
+            color: var(--blue-light);
+        }
+
+        .main-nav > a:not(.header-logo-link):hover,
+        .main-nav > a:not(.header-logo-link):focus-visible {
+            transform: translateY(-1px);
+        }
+
+        .main-nav > a:not(.header-logo-link):hover::after,
+        .main-nav > a:not(.header-logo-link):focus-visible::after,
+        .main-nav > a[aria-current="page"]::after {
+            transform: scaleX(1);
+            transform-origin: left;
+        }
+
+        .header-logo-link {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+
+            width: 42px;
+            height: 52px;
+            flex: 0 0 42px;
+
+            opacity: 0.94;
+
+            transition:
+                opacity 220ms ease,
+                transform 260ms ease;
+        }
+
+        .header-logo-link:hover,
+        .header-logo-link:focus-visible {
+            opacity: 1;
+            transform: scale(1.07);
+        }
+
+        .header-logo-image {
+            width: auto;
+            height: 40px;
+            max-width: 38px;
+            object-fit: contain;
+        }
+
+        /*
+        INTRODUÇÃO
+        */
+
+        main {
+            padding-top: 76px;
+        }
+
+        .process-hero {
+            padding:
+                clamp(76px, 10vh, 130px)
+                0
+                clamp(74px, 10vh, 128px);
+        }
+
+        .process-kicker {
+            margin: 0 0 14px;
+
+            color: var(--blue-light);
+
+            font-family: "Steelfish", "Arial Narrow", sans-serif;
+            font-size: 1.35rem;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+        }
+
+        .process-title {
+            margin: 0;
+
+            color: #eeeeee;
+
+            font-family: "Bebas Neue", sans-serif;
+            font-size: clamp(5.4rem, 10vw, 10rem);
+            font-weight: 400;
+            letter-spacing: 0.01em;
+            line-height: 0.82;
+        }
+
+        .process-introduction {
+            max-width: 690px;
+            margin: 38px 0 0;
+
+            color: var(--muted);
+            font-size: clamp(0.95rem, 1.15vw, 1.06rem);
+        }
+
+        /*
+        LINHA DO PROCESSO
+        */
+
+        .process-timeline {
+            position: relative;
+            padding-bottom: clamp(100px, 13vh, 170px);
+        }
+
+        .timeline-line {
+            position: absolute;
+            z-index: 0;
+            top: 22px;
+            bottom: 50px;
+            left: 50%;
+
+            width: 1px;
+
+            background:
+                linear-gradient(
+                    to bottom,
+                    transparent 0,
+                    var(--line) 4%,
+                    var(--line) 96%,
+                    transparent 100%
+                );
+
+            transform: translateX(-50%);
+        }
+
+        .phase {
+            position: relative;
+            z-index: 1;
+
+            display: grid;
+            grid-template-columns: minmax(0, 1fr) 68px minmax(0, 1fr);
+            align-items: center;
+
+            min-height: 540px;
+            margin-bottom: clamp(76px, 12vh, 145px);
+
+            scroll-margin-top: 105px;
+        }
+
+        .phase:last-child {
+            margin-bottom: 0;
+        }
+
+        .phase-marker {
+            grid-column: 2;
+
+            display: flex;
+            justify-content: center;
+            align-items: center;
+
+            width: 15px;
+            height: 15px;
+            justify-self: center;
+
+            background: var(--background);
+            border: 2px solid var(--blue-light);
+            border-radius: 50%;
+
+            box-shadow: 0 0 0 8px var(--background);
+        }
+
+        .phase-copy {
+            max-width: 440px;
+        }
+
+        .phase--right .phase-copy {
+            grid-column: 1;
+            grid-row: 1;
+            justify-self: start;
+            padding-right: 28px;
+        }
+
+        .phase--right .phase-media {
+            grid-column: 3;
+            grid-row: 1;
+            justify-self: end;
+        }
+
+        .phase--left .phase-media {
+            grid-column: 1;
+            grid-row: 1;
+            justify-self: start;
+        }
+
+        .phase--left .phase-copy {
+            grid-column: 3;
+            grid-row: 1;
+            justify-self: end;
+            padding-left: 28px;
+        }
+
+        .phase-label {
+            display: inline-flex;
+            align-items: baseline;
+            gap: 10px;
+
+            margin-bottom: 16px;
+
+            color: var(--blue-light);
+
+            font-family: "Steelfish", "Arial Narrow", sans-serif;
+            font-size: 1.35rem;
+            letter-spacing: 0.07em;
+            text-transform: uppercase;
+        }
+
+        .phase-label::after {
+            content: "↗";
+            font-size: 0.85em;
+            opacity: 0.70;
+
+            transition:
+                opacity 200ms ease,
+                transform 200ms ease;
+        }
+
+        .phase-label:hover::after {
+            opacity: 1;
+            transform: translate(2px, -2px);
+        }
+
+        .phase-title {
+            margin: 0 0 24px;
+
+            color: #eeeeee;
+
+            font-family: "Bebas Neue", sans-serif;
+            font-size: clamp(3rem, 5vw, 5.3rem);
+            font-weight: 400;
+            line-height: 0.88;
+        }
+
+        .phase-description {
+            margin: 0;
+
+            color: var(--muted);
+            font-size: 0.96rem;
+            line-height: 1.78;
+        }
+
+        /*
+        CARTÕES DE VÍDEO
+        */
+
+        .phase-media {
+            position: relative;
+
+            width: min(100%, 470px);
+            aspect-ratio: 16 / 10;
+
+            overflow: hidden;
+
+            background:
+                linear-gradient(
+                    145deg,
+                    #182326,
+                    #2e4449
+                );
+
+            border-radius: 24px;
+        }
+
+        .phase-media-placeholder {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+
+            width: 100%;
+            height: 100%;
+
+            color: #a8c5ca;
+
+            font-family: "Steelfish", "Arial Narrow", sans-serif;
+            font-size: 1.18rem;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+
+            transition:
+                filter 400ms ease,
+                transform 550ms ease;
+        }
+
+        .phase-media::after {
+            content: "";
+            position: absolute;
+            inset: 0;
+
+            background:
+                linear-gradient(
+                    to top,
+                    rgba(0, 0, 0, 0.60),
+                    rgba(0, 0, 0, 0.04) 65%
+                );
+
+            opacity: 0.32;
+            pointer-events: none;
+            transition: opacity 300ms ease;
+        }
+
+        .phase-media:hover::after {
+            opacity: 0.60;
+        }
+
+        .phase-media:hover .phase-media-placeholder {
+            filter: blur(2px) brightness(0.76);
+            transform: scale(1.035);
+        }
+
+        .play-button {
+            position: absolute;
+            z-index: 3;
+            top: 50%;
+            left: 50%;
+
+            display: flex;
+            justify-content: center;
+            align-items: center;
+
+            width: 68px;
+            height: 68px;
+            padding-left: 4px;
+
+            color: #ffffff;
+            border: 1px solid rgba(255, 255, 255, 0.82);
+            border-radius: 50%;
+
+            font-size: 1.18rem;
+
+            transform: translate(-50%, -50%);
+
+            transition:
+                background-color 220ms ease,
+                transform 220ms ease;
+        }
+
+        .phase-media:hover .play-button {
+            background: rgba(255, 255, 255, 0.12);
+            transform: translate(-50%, -50%) scale(1.07);
+        }
+
+        .media-title {
+            position: absolute;
+            z-index: 3;
+            right: 25px;
+            bottom: 22px;
+            left: 25px;
+
+            color: #ffffff;
+
+            font-family: "Steelfish", "Arial Narrow", sans-serif;
+            font-size: clamp(1.2rem, 1.4vw, 1.55rem);
+            letter-spacing: 0.045em;
+            text-transform: uppercase;
+        }
+
+        /*
+        QR / LINKS DIRETOS
+        */
+
+        .direct-links-note {
+            padding: 0 0 90px;
+        }
+
+        .direct-links-box {
+            padding: 30px 32px;
+
+            color: var(--muted);
+            background: rgba(255, 255, 255, 0.035);
+            border: 1px solid var(--line);
+            border-radius: 20px;
+        }
+
+        .direct-links-box strong {
+            display: block;
+            margin-bottom: 8px;
+
+            color: #eeeeee;
+
+            font-family: "Steelfish", "Arial Narrow", sans-serif;
+            font-size: 1.35rem;
+            font-weight: 400;
+            letter-spacing: 0.06em;
+            text-transform: uppercase;
+        }
+
+        /*
+        RODAPÉ
+        */
+
+        .site-footer {
+            padding: 34px 0 44px;
+            border-top: 1px solid rgba(255, 255, 255, 0.10);
+        }
+
+        .footer-content {
+            display: flex;
+            justify-content: space-between;
+            gap: 24px;
+
+            color: #818181;
+            font-size: 0.75rem;
+            letter-spacing: 0.04em;
+        }
+
+        /*
+        RESPONSIVO
+        */
+
+        @media (max-width: 900px) {
+            :root {
+                --content-gutter: 36px;
+            }
+
+            .process-hero {
+                padding: 72px 0 82px;
+            }
+
+            .timeline-line {
+                left: 15px;
+                transform: none;
+            }
+
+            .phase {
+                grid-template-columns: 31px minmax(0, 1fr);
+                gap: 25px;
+
+                min-height: auto;
+                margin-bottom: 100px;
+            }
+
+            .phase-marker {
+                grid-column: 1;
+                grid-row: 1;
+                align-self: start;
+                margin-top: 8px;
+            }
+
+            .phase--right .phase-copy,
+            .phase--left .phase-copy {
+                grid-column: 2;
+                grid-row: 1;
+
+                justify-self: stretch;
+                max-width: none;
+                padding: 0;
+            }
+
+            .phase--right .phase-media,
+            .phase--left .phase-media {
+                grid-column: 2;
+                grid-row: 2;
+
+                justify-self: stretch;
+                width: 100%;
+                max-width: none;
+                margin-top: 34px;
+            }
+        }
+
+        @media (max-width: 520px) {
+            .site-header {
+                height: 68px;
+            }
+
+            main {
+                padding-top: 68px;
+            }
+
+            .main-nav {
+                gap: 21px;
+                font-size: 1.12rem;
+            }
+
+            .header-logo-link {
+                width: 36px;
+                height: 46px;
+                flex-basis: 36px;
+            }
+
+            .header-logo-image {
+                height: 34px;
+                max-width: 33px;
+            }
+
+            .process-title {
+                font-size: clamp(4.4rem, 20vw, 6.2rem);
+            }
+
+            .process-introduction {
+                margin-top: 28px;
+            }
+
+            .phase {
+                grid-template-columns: 25px minmax(0, 1fr);
+                gap: 18px;
+            }
+
+            .timeline-line {
+                left: 12px;
+            }
+
+            .phase-title {
+                font-size: clamp(3rem, 15vw, 4.4rem);
+            }
+
+            .phase-media {
+                border-radius: 18px;
+            }
+
+            .footer-content {
+                flex-direction: column;
+                gap: 7px;
+            }
+        }
+    </style>
+</head>
+
+<body id="top">
+
+    <header class="site-header">
+        <div class="content-width header-content">
+
+            <nav
+                class="main-nav"
+                aria-label="Main navigation"
+            >
+                <a href="gallery.html">Gallery</a>
+
+                <a
+                    class="header-logo-link"
+                    href="index.html"
+                    aria-label="Return to the Hidden Waters homepage"
+                >
+                    <img
+                        class="header-logo-image"
+                        src="assets/images/hidden-waters-logo-white.png"
+                        alt=""
+                    >
+                </a>
+
+                <a
+                    href="process.html"
+                    aria-current="page"
+                >
+                    Process
+                </a>
+            </nav>
+
+        </div>
+    </header>
+
+    <main>
+
+        <section class="process-hero">
+            <div class="content-width">
+
+                <p class="process-kicker">
+                    Hidden Waters
+                </p>
+
+                <h1 class="process-title">
+                    Process
+                </h1>
+
+                <p class="process-introduction">
+                    From historical investigation to digital reconstruction
+                    and interactive development, the project was structured
+                    through three complementary phases.
+                </p>
+
+            </div>
+        </section>
+
+        <section
+            class="content-width process-timeline"
+            aria-label="Hidden Waters development phases"
+        >
+            <div
+                class="timeline-line"
+                aria-hidden="true"
+            ></div>
+
+            <!-- PHASE 01 -->
+            <article
+                class="phase phase--right"
+                id="phase-01-research"
+            >
+                <div class="phase-copy">
+
+                    <a
+                        class="phase-label"
+                        href="#phase-01-research"
+                        aria-label="Direct link to Phase 01"
+                    >
+                        Phase 01
+                    </a>
+
+                    <h2 class="phase-title">
+                        Historical Research
+                    </h2>
+
+                    <p class="phase-description">
+                        Collection and interpretation of historical sources,
+                        architectural records, interviews and comparable
+                        hydraulic systems. This phase established the basis
+                        for reconstructing elements that are no longer
+                        accessible or fully documented.
+                    </p>
+
+                </div>
+
+                <span
+                    class="phase-marker"
+                    aria-hidden="true"
+                ></span>
+
+                <a
+                    class="phase-media"
+                    href="#"
+                    aria-label="Play the historical research video"
+                >
+                    <div class="phase-media-placeholder">
+                        Phase 01 video
+                    </div>
+
+                    <span
+                        class="play-button"
+                        aria-hidden="true"
+                    >
+                        ▶
+                    </span>
+
+                    <span class="media-title">
+                        Historical Research
+                    </span>
+                </a>
+            </article>
+
+            <!-- PHASE 02 -->
+            <article
+                class="phase phase--left"
+                id="phase-02-reconstruction"
+            >
+                <a
+                    class="phase-media"
+                    href="#"
+                    aria-label="Play the digital reconstruction video"
+                >
+                    <div class="phase-media-placeholder">
+                        Phase 02 video
+                    </div>
+
+                    <span
+                        class="play-button"
+                        aria-hidden="true"
+                    >
+                        ▶
+                    </span>
+
+                    <span class="media-title">
+                        Digital Reconstruction
+                    </span>
+                </a>
+
+                <span
+                    class="phase-marker"
+                    aria-hidden="true"
+                ></span>
+
+                <div class="phase-copy">
+
+                    <a
+                        class="phase-label"
+                        href="#phase-02-reconstruction"
+                        aria-label="Direct link to Phase 02"
+                    >
+                        Phase 02
+                    </a>
+
+                    <h2 class="phase-title">
+                        Digital Reconstruction
+                    </h2>
+
+                    <p class="phase-description">
+                        Architectural modelling, terrain integration and
+                        reconstruction of the hydraulic route using the
+                        evidence gathered during the research phase.
+                        Revit, image documentation and comparative analysis
+                        informed the geometry transferred into Unreal Engine.
+                    </p>
+
+                </div>
+            </article>
+
+            <!-- PHASE 03 -->
+            <article
+                class="phase phase--right"
+                id="phase-03-interactive-experience"
+            >
+                <div class="phase-copy">
+
+                    <a
+                        class="phase-label"
+                        href="#phase-03-interactive-experience"
+                        aria-label="Direct link to Phase 03"
+                    >
+                        Phase 03
+                    </a>
+
+                    <h2 class="phase-title">
+                        Interactive Experience
+                    </h2>
+
+                    <p class="phase-description">
+                        Development of the first-person experience, archive,
+                        interaction systems, photography, weather, time,
+                        navigation and visual atmosphere. This final phase
+                        brought the research and reconstruction together
+                        in an explorable environment.
+                    </p>
+
+                </div>
+
+                <span
+                    class="phase-marker"
+                    aria-hidden="true"
+                ></span>
+
+                <a
+                    class="phase-media"
+                    href="#"
+                    aria-label="Play the interactive experience video"
+                >
+                    <div class="phase-media-placeholder">
+                        Phase 03 video
+                    </div>
+
+                    <span
+                        class="play-button"
+                        aria-hidden="true"
+                    >
+                        ▶
+                    </span>
+
+                    <span class="media-title">
+                        Interactive Experience
+                    </span>
+                </a>
+            </article>
+
+        </section>
+
+        <section class="content-width direct-links-note">
+            <div class="direct-links-box">
+                <strong>
+                    Direct links prepared for the written thesis
+                </strong>
+
+                Each phase has its own permanent section address, allowing
+                QR codes in the dissertation to open the website directly
+                at the corresponding video.
+            </div>
+        </section>
+
+    </main>
+
+    <footer class="site-footer">
+        <div class="content-width footer-content">
+            <span>Hidden Waters</span>
+            <span>Thesis companion website · 2026</span>
+        </div>
+    </footer>
+
+</body>
+</html>
