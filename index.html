@@ -175,8 +175,16 @@
         TÍTULO PRINCIPAL
         */
 
+        .intro-screen {
+            display: flex;
+            flex-direction: column;
+
+            min-height: calc(100svh - 76px);
+        }
+        
         .hero {
-            padding: clamp(80px, 10vw, 150px) 0 80px;
+            flex: 0 0 auto;
+            padding: clamp(55px, 7vh, 95px) 0 38px;
         }
 
         .hero h1 {
@@ -193,14 +201,20 @@
 
         .hero-subtitle {
             max-width: 1250px;
-            margin: 26px 0 0;
-
-            color: var(--grey);
-
-            font-family: "Bebas Neue", sans-serif;
-            font-size: clamp(2.7rem, 6vw, 6.5rem);
-            font-weight: 400;
-            letter-spacing: 0.01em;
+            margin: 25px 0 0;
+        
+            color: #c8c8c8;
+        
+            font-family:
+                "Steelfish",
+                "Arial Narrow",
+                "Bebas Neue",
+                sans-serif;
+        
+            font-size: clamp(2.5rem, 5.2vw, 5.8rem);
+            font-style: italic;
+            font-weight: 300;
+            letter-spacing: 0.015em;
             line-height: 0.9;
         }
 
@@ -209,21 +223,38 @@
         */
 
         .media-section {
-            padding-bottom: 130px;
+            display: flex;
+            flex: 1;
+        
+            min-height: 340px;
+            padding: 0 0 22px;
+        }
+
+        .media-full {
+            display: flex;
+
+            width: 100%;
+            padding: 0;
         }
 
         .media-strip {
             display: grid;
-            grid-template-columns: 0.8fr 1.55fr 0.8fr;
-            gap: 24px;
+            flex: 1;
+        
+            grid-template-columns: 0.75fr 1.5fr 0.75fr;
+            gap: 18px;
+        
+            width: 100%;
+            min-height: 340px;
         }
 
         .media-card {
             position: relative;
-
-            min-height: 430px;
+        
+            height: 100%;
+            min-height: 0;
             overflow: hidden;
-
+        
             background: #e5e5e5;
             border-radius: 24px;
         }
@@ -241,8 +272,10 @@
 
             width: 100%;
             height: 100%;
-            min-height: 430px;
+            min-height: 100%;
 
+            border-radius: 24px;
+            
             color: var(--blue-dark);
 
             background:
@@ -310,6 +343,7 @@
             gap: clamp(50px, 8vw, 130px);
             align-items: center;
 
+            padding-top: 120px;
             padding-bottom: 140px;
         }
 
@@ -519,7 +553,8 @@
     </header>
 
     <main>
-
+        
+        <div class="intro-screen">
         <section class="hero">
             <div class="container">
 
@@ -535,7 +570,7 @@
         </section>
 
         <section class="media-section">
-            <div class="container">
+            <div class="media-full">
 
                 <div class="media-strip">
 
@@ -570,7 +605,9 @@
 
             </div>
         </section>
-
+        
+        </div>
+        
         <section
             class="container experience"
             id="about"
