@@ -1371,6 +1371,37 @@
             }
         }
 
+
+        /* ESPAÇAMENTO SUPERIOR IGUAL AO DA HOME */
+
+        .process-hero {
+            padding-top: clamp(54px, 7vh, 96px);
+        }
+
+        @media (max-height: 850px) and (min-width: 901px) {
+            .process-hero {
+                padding-top: clamp(38px, 5vh, 64px);
+            }
+        }
+
+        @media (max-height: 700px) and (min-width: 901px) {
+            .process-hero {
+                padding-top: 28px;
+            }
+        }
+
+        @media (max-width: 900px) {
+            .process-hero {
+                padding-top: 68px;
+            }
+        }
+
+        @media (max-width: 520px) {
+            .process-hero {
+                padding-top: 52px;
+            }
+        }
+
     </style>
 </head>
 
