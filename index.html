@@ -1513,6 +1513,45 @@
             }
         }
 
+
+        /* AJUSTE SUAVE DO EFEITO DE ÁGUA */
+
+        .water-ripple-video {
+            opacity: 0;
+
+            mix-blend-mode: screen;
+
+            filter:
+                blur(1.4px)
+                brightness(0.78)
+                contrast(0.82);
+
+            transform: scale(1.07);
+
+            transition:
+                opacity 480ms ease,
+                transform 850ms ease;
+        }
+
+        .visualizer-item.is-water-ripple .water-ripple-video {
+            opacity: 0.17;
+            transform: scale(1.09);
+        }
+
+        .visualizer-item:hover .visualizer-media,
+        .visualizer-item:hover img,
+        .visualizer-item:hover video:not(.water-ripple-video),
+        .visualizer-item:focus-visible .visualizer-media,
+        .visualizer-item:focus-visible img,
+        .visualizer-item:focus-visible video:not(.water-ripple-video) {
+            filter:
+                blur(3px)
+                brightness(0.52)
+                saturate(0.86);
+
+            transform: scale(1.05);
+        }
+
     </style>
 </head>
 
