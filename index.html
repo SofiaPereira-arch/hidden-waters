@@ -1552,6 +1552,105 @@
             transform: scale(1.05);
         }
 
+
+        /* FADE OUT COM DESFOQUE NAS LATERAIS DA FAIXA */
+
+        .visualizer-viewport {
+            position: relative;
+            isolation: isolate;
+        }
+
+        .visualizer-viewport::before,
+        .visualizer-viewport::after {
+            content: "";
+            position: absolute;
+            z-index: 8;
+            top: 0;
+            bottom: 0;
+
+            width: clamp(70px, 8vw, 150px);
+
+            pointer-events: none;
+
+            backdrop-filter: blur(8px);
+            -webkit-backdrop-filter: blur(8px);
+        }
+
+        .visualizer-viewport::before {
+            left: 0;
+
+            background:
+                linear-gradient(
+                    to right,
+                    rgba(5, 5, 5, 0.98) 0%,
+                    rgba(5, 5, 5, 0.82) 28%,
+                    rgba(5, 5, 5, 0.34) 68%,
+                    rgba(5, 5, 5, 0) 100%
+                );
+
+            -webkit-mask-image:
+                linear-gradient(
+                    to right,
+                    black 0%,
+                    rgba(0, 0, 0, 0.82) 55%,
+                    transparent 100%
+                );
+
+            mask-image:
+                linear-gradient(
+                    to right,
+                    black 0%,
+                    rgba(0, 0, 0, 0.82) 55%,
+                    transparent 100%
+                );
+        }
+
+        .visualizer-viewport::after {
+            right: 0;
+
+            background:
+                linear-gradient(
+                    to left,
+                    rgba(5, 5, 5, 0.98) 0%,
+                    rgba(5, 5, 5, 0.82) 28%,
+                    rgba(5, 5, 5, 0.34) 68%,
+                    rgba(5, 5, 5, 0) 100%
+                );
+
+            -webkit-mask-image:
+                linear-gradient(
+                    to left,
+                    black 0%,
+                    rgba(0, 0, 0, 0.82) 55%,
+                    transparent 100%
+                );
+
+            mask-image:
+                linear-gradient(
+                    to left,
+                    black 0%,
+                    rgba(0, 0, 0, 0.82) 55%,
+                    transparent 100%
+                );
+        }
+
+        @media (max-width: 900px) {
+            .visualizer-viewport::before,
+            .visualizer-viewport::after {
+                width: clamp(42px, 10vw, 90px);
+
+                backdrop-filter: blur(6px);
+                -webkit-backdrop-filter: blur(6px);
+            }
+        }
+
+        @media (max-width: 520px) {
+            .visualizer-viewport::before,
+            .visualizer-viewport::after {
+                width: 48px;
+            }
+        }
+
     </style>
 </head>
 
