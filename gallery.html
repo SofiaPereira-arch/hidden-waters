@@ -1,29 +1,15 @@
 <!DOCTYPE html>
+
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-
-    <meta
-        name="viewport"
-        content="width=device-width, initial-scale=1.0"
-    >
-
-    <meta
-        name="description"
-        content="Artbook and visual gallery for the Hidden Waters thesis project."
-    >
-
-    <title>Artbook · Hidden Waters</title>
-
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-
-    <link
-        href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:wght@300;400;500;600&display=swap"
-        rel="stylesheet"
-    >
-
-    <style>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<meta content="Artbook and visual gallery for the Hidden Waters thesis project." name="description"/>
+<title>Artbook · Hidden Waters</title>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&amp;family=Inter:wght@300;400;500;600&amp;display=swap" rel="stylesheet"/>
+<style>
         @font-face {
             font-family: "Steelfish";
             src: url("assets/fonts/steelfish-rg.otf") format("opentype");
@@ -722,258 +708,236 @@
                 animation-iteration-count: 1 !important;
             }
         }
-    </style>
+    
+
+        /* GALERIA ORGANIZADA POR FASES */
+
+        .gallery-phases {
+            padding-bottom: clamp(100px, 13vh, 170px);
+        }
+
+        .gallery-phase {
+            margin-bottom: clamp(110px, 15vh, 185px);
+            scroll-margin-top: 104px;
+        }
+
+        .gallery-phase:last-child {
+            margin-bottom: 0;
+        }
+
+        .gallery-phase-header {
+            display: grid;
+            grid-template-columns: auto minmax(90px, 1fr);
+            align-items: end;
+            gap: 30px;
+
+            margin-bottom: 36px;
+        }
+
+        .gallery-phase-number {
+            margin: 0 0 5px;
+
+            color: var(--blue-light);
+
+            font-family: "Steelfish", "Arial Narrow", sans-serif;
+            font-size: 1.08rem;
+            letter-spacing: 0.10em;
+            line-height: 1;
+            text-transform: uppercase;
+        }
+
+        .gallery-phase-title {
+            margin: 0;
+
+            color: #eeeeee;
+
+            font-family: "Bebas Neue", sans-serif;
+            font-size: clamp(2.35rem, 3.8vw, 4rem);
+            font-weight: 400;
+            letter-spacing: 0.015em;
+            line-height: 0.92;
+        }
+
+        .gallery-phase-line {
+            display: block;
+
+            height: 1px;
+            margin-bottom: 7px;
+
+            background:
+                linear-gradient(
+                    to right,
+                    rgba(143, 179, 186, 0.52),
+                    rgba(143, 179, 186, 0.05)
+                );
+        }
+
+        .gallery-phase-grid {
+            display: grid;
+            grid-template-columns: repeat(2, minmax(0, 1fr));
+            align-items: start;
+            gap: var(--gallery-gap);
+        }
+
+        /*
+        As duas colunas começam exatamente na mesma linha.
+        */
+
+        .gallery-column--right {
+            padding-top: 0;
+        }
+
+        @media (max-width: 650px) {
+            .gallery-phase {
+                margin-bottom: 92px;
+            }
+
+            .gallery-phase-header {
+                grid-template-columns: 1fr;
+                gap: 16px;
+                margin-bottom: 26px;
+            }
+
+            .gallery-phase-line {
+                width: 100%;
+                margin: 0;
+            }
+
+            .gallery-phase-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+</style>
 </head>
-
 <body id="top">
-
-    <header class="site-header">
-        <div class="content-width header-content">
-
-            <nav
-                class="main-nav"
-                aria-label="Main navigation"
-            >
-                <a
-                    href="gallery.html"
-                    aria-current="page"
-                >
+<header class="site-header">
+<div class="content-width header-content">
+<nav aria-label="Main navigation" class="main-nav">
+<a aria-current="page" href="gallery.html">
                     Gallery
                 </a>
-
-                <a
-                    class="header-logo-link"
-                    href="index.html"
-                    aria-label="Return to the Hidden Waters homepage"
-                >
-                    <img
-                        class="header-logo-image"
-                        src="assets/images/hidden-waters-logo-white.png"
-                        alt=""
-                    >
-                </a>
-
-                <a href="process.html">
+<a aria-label="Return to the Hidden Waters homepage" class="header-logo-link" href="index.html">
+<img alt="" class="header-logo-image" src="assets/images/hidden-waters-logo-white.png"/>
+</a>
+<a href="process.html">
                     Process
                 </a>
-            </nav>
-
-        </div>
-    </header>
-
-    <main>
-
-        <section class="gallery-hero">
-            <div class="content-width">
-
-                <h1 class="gallery-title">
-                    Artbook
-                </h1>
-
-                <p class="gallery-introduction">
+</nav>
+</div>
+</header>
+<main>
+<section class="gallery-hero">
+<div class="content-width">
+<h1 class="gallery-title">Gallery</h1>
+<p class="gallery-introduction">
                     A visual record of the architectural reconstruction,
                     environmental studies and development of the Hidden Waters
                     experience.
                 </p>
-
-            </div>
-        </section>
-
-        <section
-            class="content-width artbook"
-            aria-label="Hidden Waters visual gallery"
-        >
-
-            <div class="gallery-column">
-
-                <button
-                    class="gallery-card gallery-card--portrait"
-                    type="button"
-                    data-title="Convent Reconstruction"
-                >
-                    <span class="gallery-media">
-                        <span class="gallery-placeholder gallery-placeholder--light">
+</div>
+</section>
+<section aria-label="Hidden Waters visual gallery" class="content-width gallery-phases"><section aria-labelledby="gallery-phase-01-title" class="gallery-phase" id="gallery-phase-01"><header class="gallery-phase-header"><div><p class="gallery-phase-number">Phase 01</p><h2 class="gallery-phase-title" id="gallery-phase-01-title">Historical Research</h2></div><span aria-hidden="true" class="gallery-phase-line"></span></header><div class="gallery-phase-grid"><div class="gallery-column"><button class="gallery-card gallery-card--portrait" data-title="Convent Reconstruction" type="button">
+<span class="gallery-media">
+<span class="gallery-placeholder gallery-placeholder--light">
                             Image 01
                         </span>
-                    </span>
-
-                    <span class="gallery-card-title">
+</span>
+<span class="gallery-card-title">
                         Convent Reconstruction
                     </span>
-                </button>
-
-                <button
-                    class="gallery-card gallery-card--square"
-                    type="button"
-                    data-title="Hydraulic Detail"
-                >
-                    <span class="gallery-media">
-                        <span class="gallery-placeholder">
+</button><button class="gallery-card gallery-card--square" data-title="Hydraulic Detail" type="button">
+<span class="gallery-media">
+<span class="gallery-placeholder">
                             Image 03
                         </span>
-                    </span>
-
-                    <span class="gallery-card-title">
+</span>
+<span class="gallery-card-title">
                         Hydraulic Detail
                     </span>
-                </button>
-
-                <button
-                    class="gallery-card gallery-card--wide"
-                    type="button"
-                    data-title="Landscape Study"
-                >
-                    <span class="gallery-media">
-                        <span class="gallery-placeholder gallery-placeholder--light">
-                            Image 05
-                        </span>
-                    </span>
-
-                    <span class="gallery-card-title">
-                        Landscape Study
-                    </span>
-                </button>
-
-                <button
-                    class="gallery-card gallery-card--portrait"
-                    type="button"
-                    data-title="Archive and Research"
-                >
-                    <span class="gallery-media">
-                        <span class="gallery-placeholder">
-                            Image 07
-                        </span>
-                    </span>
-
-                    <span class="gallery-card-title">
-                        Archive and Research
-                    </span>
-                </button>
-
-                <button
-                    class="gallery-card gallery-card--landscape"
-                    type="button"
-                    data-title="Atmosphere Study"
-                >
-                    <span class="gallery-media">
-                        <span class="gallery-placeholder gallery-placeholder--light">
-                            Image 09
-                        </span>
-                    </span>
-
-                    <span class="gallery-card-title">
-                        Atmosphere Study
-                    </span>
-                </button>
-
-            </div>
-
-            <div class="gallery-column gallery-column--right">
-
-                <button
-                    class="gallery-card gallery-card--landscape"
-                    type="button"
-                    data-title="Water System"
-                >
-                    <span class="gallery-media">
-                        <span class="gallery-placeholder">
+</button></div><div class="gallery-column"><button class="gallery-card gallery-card--landscape" data-title="Water System" type="button">
+<span class="gallery-media">
+<span class="gallery-placeholder">
                             Image 02
                         </span>
-                    </span>
-
-                    <span class="gallery-card-title">
+</span>
+<span class="gallery-card-title">
                         Water System
                     </span>
-                </button>
-
-                <button
-                    class="gallery-card gallery-card--tall"
-                    type="button"
-                    data-title="Underground Gallery"
-                >
-                    <span class="gallery-media">
-                        <span class="gallery-placeholder gallery-placeholder--light">
+</button></div></div></section><section aria-labelledby="gallery-phase-02-title" class="gallery-phase" id="gallery-phase-02"><header class="gallery-phase-header"><div><p class="gallery-phase-number">Phase 02</p><h2 class="gallery-phase-title" id="gallery-phase-02-title">Digital Reconstruction</h2></div><span aria-hidden="true" class="gallery-phase-line"></span></header><div class="gallery-phase-grid"><div class="gallery-column"><button class="gallery-card gallery-card--tall" data-title="Underground Gallery" type="button">
+<span class="gallery-media">
+<span class="gallery-placeholder gallery-placeholder--light">
                             Image 04
                         </span>
-                    </span>
-
-                    <span class="gallery-card-title">
+</span>
+<span class="gallery-card-title">
                         Underground Gallery
                     </span>
-                </button>
-
-                <button
-                    class="gallery-card gallery-card--portrait"
-                    type="button"
-                    data-title="Interactive Archive"
-                >
-                    <span class="gallery-media">
-                        <span class="gallery-placeholder">
+</button><button class="gallery-card gallery-card--portrait" data-title="Interactive Archive" type="button">
+<span class="gallery-media">
+<span class="gallery-placeholder">
                             Image 06
                         </span>
-                    </span>
-
-                    <span class="gallery-card-title">
+</span>
+<span class="gallery-card-title">
                         Interactive Archive
                     </span>
-                </button>
-
-                <button
-                    class="gallery-card gallery-card--tall"
-                    type="button"
-                    data-title="Final Experience"
-                >
-                    <span class="gallery-media">
-                        <span class="gallery-placeholder gallery-placeholder--light">
+</button></div><div class="gallery-column"><button class="gallery-card gallery-card--wide" data-title="Landscape Study" type="button">
+<span class="gallery-media">
+<span class="gallery-placeholder gallery-placeholder--light">
+                            Image 05
+                        </span>
+</span>
+<span class="gallery-card-title">
+                        Landscape Study
+                    </span>
+</button></div></div></section><section aria-labelledby="gallery-phase-03-title" class="gallery-phase" id="gallery-phase-03"><header class="gallery-phase-header"><div><p class="gallery-phase-number">Phase 03</p><h2 class="gallery-phase-title" id="gallery-phase-03-title">Interactive Experience</h2></div><span aria-hidden="true" class="gallery-phase-line"></span></header><div class="gallery-phase-grid"><div class="gallery-column"><button class="gallery-card gallery-card--portrait" data-title="Archive and Research" type="button">
+<span class="gallery-media">
+<span class="gallery-placeholder">
+                            Image 07
+                        </span>
+</span>
+<span class="gallery-card-title">
+                        Archive and Research
+                    </span>
+</button><button class="gallery-card gallery-card--landscape" data-title="Atmosphere Study" type="button">
+<span class="gallery-media">
+<span class="gallery-placeholder gallery-placeholder--light">
+                            Image 09
+                        </span>
+</span>
+<span class="gallery-card-title">
+                        Atmosphere Study
+                    </span>
+</button></div><div class="gallery-column"><button class="gallery-card gallery-card--tall" data-title="Final Experience" type="button">
+<span class="gallery-media">
+<span class="gallery-placeholder gallery-placeholder--light">
                             Image 08
                         </span>
-                    </span>
-
-                    <span class="gallery-card-title">
+</span>
+<span class="gallery-card-title">
                         Final Experience
                     </span>
-                </button>
-
-            </div>
-
-        </section>
-
-    </main>
-
-    <footer class="site-footer">
-        <div class="content-width footer-content">
-            <span>Hidden Waters</span>
-            <span>Thesis companion website · 2026</span>
-        </div>
-    </footer>
-
-    <div
-        class="lightbox"
-        role="dialog"
-        aria-modal="true"
-        aria-hidden="true"
-        aria-label="Expanded gallery image"
-    >
-        <div class="lightbox-dialog">
-
-            <button
-                class="lightbox-close"
-                type="button"
-                aria-label="Close image"
-            >
+</button></div></div></section></section>
+</main>
+<footer class="site-footer">
+<div class="content-width footer-content">
+<span>Hidden Waters</span>
+<span>Thesis companion website · 2026</span>
+</div>
+</footer>
+<div aria-hidden="true" aria-label="Expanded gallery image" aria-modal="true" class="lightbox" role="dialog">
+<div class="lightbox-dialog">
+<button aria-label="Close image" class="lightbox-close" type="button">
                 ×
             </button>
-
-            <div class="lightbox-media">
-                <div class="lightbox-placeholder"></div>
-            </div>
-
-            <div class="lightbox-caption"></div>
-
-        </div>
-    </div>
-
-    <script>
+<div class="lightbox-media">
+<div class="lightbox-placeholder"></div>
+</div>
+<div class="lightbox-caption"></div>
+</div>
+</div>
+<script>
         (() => {
             const cards = [
                 ...document.querySelectorAll(".gallery-card")
@@ -1078,6 +1042,5 @@
             );
         })();
     </script>
-
 </body>
 </html>
