@@ -1,15 +1,16 @@
 <!DOCTYPE html>
-
 <html lang="en">
 <head>
-<meta charset="utf-8"/>
-<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
-<meta content="Artbook and visual gallery for the Hidden Waters thesis project." name="description"/>
-<title>Artbook · Hidden Waters</title>
-<link href="https://fonts.googleapis.com" rel="preconnect"/>
-<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
-<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&amp;family=Inter:wght@300;400;500;600&amp;display=swap" rel="stylesheet"/>
-<style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Visual gallery for the Hidden Waters thesis project.">
+    <title>Gallery · Hidden Waters</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+
+    <style>
         @font-face {
             font-family: "Steelfish";
             src: url("assets/fonts/steelfish-rg.otf") format("opentype");
@@ -30,17 +31,13 @@
             --background: #050505;
             --text: #f2f2f2;
             --muted: #a6a6a6;
-
             --blue: #739da6;
             --blue-light: #8fb3ba;
-
             --line: rgba(255, 255, 255, 0.11);
             --header-background: rgba(5, 5, 5, 0.78);
-
-            /* Mesmas margens da Home e da página Process */
             --content-width: 1100px;
             --content-gutter: 128px;
-
+            --header-height: 76px;
             --gallery-gap: 28px;
             --card-radius: 24px;
         }
@@ -51,7 +48,7 @@
 
         html {
             scroll-behavior: smooth;
-            scroll-padding-top: 96px;
+            scroll-padding-top: 104px;
         }
 
         body {
@@ -61,7 +58,7 @@
             background: var(--background);
 
             font-family: "Inter", Arial, sans-serif;
-            line-height: 1.6;
+            line-height: 1.65;
         }
 
         button,
@@ -77,14 +74,10 @@
             font: inherit;
         }
 
-        img {
+        img,
+        video {
             display: block;
             width: 100%;
-        }
-
-        ::selection {
-            color: #050505;
-            background: #9fc0c6;
         }
 
         .content-width {
@@ -93,22 +86,17 @@
                 calc(100% - var(--content-gutter))
             );
 
-            margin-right: auto;
-            margin-left: auto;
+            margin-inline: auto;
         }
 
-        /*
-        CABEÇALHO
-        */
+        /* HEADER */
 
         .site-header {
             position: fixed;
             z-index: 1000;
-            top: 0;
-            right: 0;
-            left: 0;
+            inset: 0 0 auto;
 
-            height: 76px;
+            height: var(--header-height);
 
             background: var(--header-background);
             border-bottom: 1px solid var(--line);
@@ -129,8 +117,6 @@
             display: flex;
             align-items: center;
             gap: 30px;
-
-            color: #f1f1f1;
 
             font-family: "Bebas Neue", sans-serif;
             font-size: 1.28rem;
@@ -202,8 +188,6 @@
         }
 
         .header-logo-image {
-            display: block;
-
             width: auto;
             height: 40px;
             max-width: 38px;
@@ -211,19 +195,17 @@
             object-fit: contain;
         }
 
-        /*
-        TÍTULO
-        */
-
         main {
-            padding-top: 76px;
+            padding-top: var(--header-height);
         }
+
+        /* HERO */
 
         .gallery-hero {
             padding:
                 clamp(55px, 7vh, 95px)
                 0
-                clamp(58px, 7vh, 86px);
+                clamp(82px, 10vh, 120px);
         }
 
         .gallery-title {
@@ -239,42 +221,140 @@
         }
 
         .gallery-introduction {
-            max-width: 620px;
-            margin: 34px 0 0;
+            max-width: 640px;
+            margin: 38px 0 0;
 
             color: var(--muted);
+
             font-size: 0.98rem;
             line-height: 1.78;
         }
 
-        /*
-        ARTBOOK / MASONRY
-        */
+        /* PHASES */
 
-        .artbook {
+        .gallery-phases {
+            padding-bottom:
+                clamp(105px, 13vh, 170px);
+        }
+
+        .gallery-phase {
+            margin-bottom:
+                clamp(110px, 15vh, 185px);
+
+            scroll-margin-top: 104px;
+        }
+
+        .gallery-phase:last-child {
+            margin-bottom: 0;
+        }
+
+        .gallery-phase-header {
             display: grid;
-            grid-template-columns: repeat(2, minmax(0, 1fr));
-            align-items: start;
-            gap: var(--gallery-gap);
+            grid-template-columns:
+                auto
+                minmax(90px, 1fr);
+            align-items: end;
+            gap: 30px;
 
-            padding-bottom: clamp(100px, 13vh, 170px);
+            margin-bottom: 36px;
         }
 
-        .gallery-column {
-            display: flex;
-            flex-direction: column;
-            gap: var(--gallery-gap);
+        .gallery-phase-direct-link {
+            position: relative;
+
+            display: inline-flex;
+            align-items: baseline;
+            gap: 7px;
+
+            width: fit-content;
+            margin: 0 0 5px;
+
+            color: var(--blue-light);
+
+            font-family: "Steelfish", "Arial Narrow", sans-serif;
+            font-size: 1.08rem;
+            letter-spacing: 0.1em;
+            line-height: 1;
+            text-transform: uppercase;
+
+            transition:
+                color 220ms ease,
+                transform 220ms ease;
         }
 
-        .gallery-column--right {
-            padding-top: 66px;
+        .gallery-phase-direct-link::after {
+            content: "";
+            position: absolute;
+            right: 0;
+            bottom: -5px;
+            left: 0;
+
+            height: 1px;
+
+            background: var(--blue-light);
+
+            transform: scaleX(0);
+            transform-origin: right;
+
+            transition: transform 240ms ease;
+        }
+
+        .gallery-phase-direct-link:hover,
+        .gallery-phase-direct-link:focus-visible {
+            color: #ffffff;
+            transform: translateY(-1px);
+        }
+
+        .gallery-phase-direct-link:hover::after,
+        .gallery-phase-direct-link:focus-visible::after {
+            transform: scaleX(1);
+            transform-origin: left;
+        }
+
+        .gallery-phase-title {
+            margin: 0;
+
+            color: #eeeeee;
+
+            font-family: "Bebas Neue", sans-serif;
+            font-size: clamp(2.35rem, 3.8vw, 4rem);
+            font-weight: 400;
+            letter-spacing: 0.015em;
+            line-height: 0.92;
+        }
+
+        .gallery-phase-line {
+            display: block;
+
+            height: 1px;
+            margin-bottom: 7px;
+
+            background:
+                linear-gradient(
+                    to right,
+                    rgba(143, 179, 186, 0.52),
+                    rgba(143, 179, 186, 0.05)
+                );
+        }
+
+        /* FILLED GRID */
+
+        .gallery-phase-grid {
+            display: grid;
+            grid-template-columns:
+                repeat(2, minmax(0, 1fr));
+            grid-template-rows:
+                repeat(2, clamp(270px, 26vw, 390px));
+            gap: var(--gallery-gap);
         }
 
         .gallery-card {
             position: relative;
 
             display: block;
+
             width: 100%;
+            height: 100%;
             padding: 0;
 
             overflow: hidden;
@@ -287,7 +367,6 @@
 
             cursor: zoom-in;
             text-align: left;
-
             isolation: isolate;
 
             transition:
@@ -295,11 +374,43 @@
                 box-shadow 420ms ease;
         }
 
+        .gallery-phase-grid--feature-left .gallery-card--feature {
+            grid-column: 1;
+            grid-row: 1 / span 2;
+        }
+
+        .gallery-phase-grid--feature-left .gallery-card--stack-top {
+            grid-column: 2;
+            grid-row: 1;
+        }
+
+        .gallery-phase-grid--feature-left .gallery-card--stack-bottom {
+            grid-column: 2;
+            grid-row: 2;
+        }
+
+        .gallery-phase-grid--feature-right .gallery-card--feature {
+            grid-column: 2;
+            grid-row: 1 / span 2;
+        }
+
+        .gallery-phase-grid--feature-right .gallery-card--stack-top {
+            grid-column: 1;
+            grid-row: 1;
+        }
+
+        .gallery-phase-grid--feature-right .gallery-card--stack-bottom {
+            grid-column: 1;
+            grid-row: 2;
+        }
+
         .gallery-card:hover,
         .gallery-card:focus-visible {
             z-index: 10;
 
-            transform: translateY(-5px) scale(1.018);
+            transform:
+                translateY(-5px)
+                scale(1.018);
 
             box-shadow:
                 0 26px 68px rgba(0, 0, 0, 0.44),
@@ -311,61 +422,31 @@
             outline-offset: 6px;
         }
 
-        .gallery-card--portrait {
-            aspect-ratio: 4 / 5;
-        }
-
-        .gallery-card--tall {
-            aspect-ratio: 3 / 5;
-        }
-
-        .gallery-card--square {
-            aspect-ratio: 1 / 1;
-        }
-
-        .gallery-card--landscape {
-            aspect-ratio: 16 / 9;
-        }
-
-        .gallery-card--wide {
-            aspect-ratio: 7 / 4;
-        }
-
-        .gallery-media,
-        .gallery-media img {
-            width: 100%;
-            height: 100%;
-        }
-
         .gallery-media {
             position: absolute;
+            z-index: 0;
             inset: 0;
 
             overflow: hidden;
             border-radius: inherit;
         }
 
+        .gallery-placeholder,
         .gallery-media img {
+            width: 100%;
+            height: 100%;
+
             object-fit: cover;
 
             transition:
-                transform 700ms cubic-bezier(0.22, 1, 0.36, 1),
-                filter 420ms ease;
+                transform 700ms ease,
+                filter 480ms ease;
         }
-
-        /*
-        Placeholders temporários.
-        Mais tarde podes substituir cada .gallery-placeholder por:
-        <img src="assets/images/nome-da-imagem.jpg" alt="Descrição">
-        */
 
         .gallery-placeholder {
             display: flex;
             justify-content: center;
             align-items: center;
-
-            width: 100%;
-            height: 100%;
 
             color: rgba(179, 208, 214, 0.82);
 
@@ -385,10 +466,6 @@
             font-size: 1.15rem;
             letter-spacing: 0.08em;
             text-transform: uppercase;
-
-            transition:
-                transform 700ms cubic-bezier(0.22, 1, 0.36, 1),
-                filter 420ms ease;
         }
 
         .gallery-placeholder--light {
@@ -402,13 +479,6 @@
                 );
         }
 
-        .gallery-card:hover .gallery-media img,
-        .gallery-card:focus-visible .gallery-media img,
-        .gallery-card:hover .gallery-placeholder,
-        .gallery-card:focus-visible .gallery-placeholder {
-            transform: scale(1.055);
-        }
-
         .gallery-card::after {
             content: "";
             position: absolute;
@@ -418,9 +488,9 @@
             background:
                 linear-gradient(
                     to top,
-                    rgba(0, 0, 0, 0.70) 0%,
-                    rgba(0, 0, 0, 0.12) 44%,
-                    transparent 72%
+                    rgba(0, 0, 0, 0.58) 0%,
+                    rgba(0, 0, 0, 0.1) 42%,
+                    transparent 70%
                 );
 
             opacity: 0;
@@ -434,9 +504,21 @@
             opacity: 1;
         }
 
+        .gallery-card:hover .gallery-placeholder,
+        .gallery-card:focus-visible .gallery-placeholder,
+        .gallery-card:hover .gallery-media img,
+        .gallery-card:focus-visible .gallery-media img {
+            filter:
+                blur(3px)
+                brightness(0.52)
+                saturate(0.86);
+
+            transform: scale(1.05);
+        }
+
         .gallery-card-title {
             position: absolute;
-            z-index: 3;
+            z-index: 4;
             right: 24px;
             bottom: 21px;
             left: 24px;
@@ -445,7 +527,6 @@
 
             font-family: "Steelfish", "Arial Narrow", sans-serif;
             font-size: clamp(1.25rem, 1.45vw, 1.65rem);
-            font-weight: 400;
             letter-spacing: 0.045em;
             line-height: 1;
             text-transform: uppercase;
@@ -465,9 +546,41 @@
             transform: translateY(0);
         }
 
-        /*
-        LIGHTBOX
-        */
+        .water-ripple-video {
+            position: absolute;
+            z-index: 2;
+            inset: -3%;
+
+            display: block;
+
+            width: 106%;
+            height: 106%;
+
+            object-fit: cover;
+            border-radius: inherit;
+
+            opacity: 0;
+            mix-blend-mode: screen;
+
+            filter:
+                blur(1.4px)
+                brightness(0.78)
+                contrast(0.82);
+
+            pointer-events: none;
+            transform: scale(1.07);
+
+            transition:
+                opacity 480ms ease,
+                transform 850ms ease;
+        }
+
+        .gallery-card.is-water-ripple .water-ripple-video {
+            opacity: 0.17;
+            transform: scale(1.09);
+        }
+
+        /* LIGHTBOX */
 
         .lightbox {
             position: fixed;
@@ -479,7 +592,7 @@
 
             padding: 38px;
 
-            background: rgba(0, 0, 0, 0.90);
+            background: rgba(0, 0, 0, 0.9);
 
             opacity: 0;
             visibility: hidden;
@@ -531,6 +644,7 @@
         .lightbox-media img {
             width: 100%;
             height: 100%;
+
             object-fit: contain;
         }
 
@@ -597,28 +711,51 @@
             transform: scale(1.06);
         }
 
-        /*
-        RODAPÉ
-        */
+        /* FOOTER */
 
         .site-footer {
-            padding: 34px 0 44px;
+            padding: 35px 0 45px;
             border-top: 1px solid var(--line);
         }
 
         .footer-content {
             display: flex;
             justify-content: space-between;
+            align-items: center;
             gap: 24px;
 
             color: #818181;
+
             font-size: 0.75rem;
             letter-spacing: 0.04em;
         }
 
-        /*
-        RESPONSIVO
-        */
+        .footer-institution {
+            display: flex;
+            align-items: center;
+            gap: 18px;
+        }
+
+        .footer-ist-logo {
+            display: block;
+
+            width: auto;
+            height: 27px;
+
+            opacity: 0.78;
+            object-fit: contain;
+
+            transition:
+                opacity 220ms ease,
+                transform 220ms ease;
+        }
+
+        .footer-ist-logo:hover {
+            opacity: 1;
+            transform: translateY(-1px);
+        }
+
+        /* RESPONSIVE */
 
         @media (max-width: 900px) {
             :root {
@@ -626,19 +763,37 @@
                 --gallery-gap: 20px;
                 --card-radius: 20px;
             }
-
-            .gallery-column--right {
-                padding-top: 44px;
-            }
         }
 
         @media (max-width: 650px) {
-            .artbook {
+            .gallery-phase-header {
                 grid-template-columns: 1fr;
+                gap: 16px;
+
+                margin-bottom: 26px;
             }
 
-            .gallery-column--right {
-                padding-top: 0;
+            .gallery-phase-line {
+                width: 100%;
+                margin: 0;
+            }
+
+            .gallery-phase-grid {
+                grid-template-columns: 1fr;
+                grid-template-rows: none;
+            }
+
+            .gallery-phase-grid .gallery-card {
+                grid-column: 1 !important;
+                grid-row: auto !important;
+
+                min-height: 320px;
+                aspect-ratio: 4 / 5;
+            }
+
+            .gallery-phase-grid .gallery-card--stack-top,
+            .gallery-phase-grid .gallery-card--stack-bottom {
+                aspect-ratio: 16 / 10;
             }
 
             .gallery-card-title {
@@ -652,12 +807,8 @@
         }
 
         @media (max-width: 520px) {
-            .site-header {
-                height: 68px;
-            }
-
-            main {
-                padding-top: 68px;
+            :root {
+                --header-height: 68px;
             }
 
             .main-nav {
@@ -676,276 +827,22 @@
                 max-width: 33px;
             }
 
-            .gallery-title {
-                font-size: clamp(4.8rem, 22vw, 7rem);
-            }
-
-            .gallery-introduction {
-                margin-top: 26px;
-            }
-
             .lightbox {
                 padding: 16px;
             }
 
-            .lightbox-dialog {
-                border-radius: 19px;
-            }
-
             .footer-content {
                 flex-direction: column;
-                gap: 7px;
-            }
-        }
-
-        @media (prefers-reduced-motion: reduce) {
-            *,
-            *::before,
-            *::after {
-                scroll-behavior: auto !important;
-                transition-duration: 0.01ms !important;
-                animation-duration: 0.01ms !important;
-                animation-iteration-count: 1 !important;
-            }
-        }
-    
-
-        /* GALERIA ORGANIZADA POR FASES */
-
-        .gallery-phases {
-            padding-bottom: clamp(100px, 13vh, 170px);
-        }
-
-        .gallery-phase {
-            margin-bottom: clamp(110px, 15vh, 185px);
-            scroll-margin-top: 104px;
-        }
-
-        .gallery-phase:last-child {
-            margin-bottom: 0;
-        }
-
-        .gallery-phase-header {
-            display: grid;
-            grid-template-columns: auto minmax(90px, 1fr);
-            align-items: end;
-            gap: 30px;
-
-            margin-bottom: 36px;
-        }
-
-        .gallery-phase-number {
-            margin: 0 0 5px;
-
-            color: var(--blue-light);
-
-            font-family: "Steelfish", "Arial Narrow", sans-serif;
-            font-size: 1.08rem;
-            letter-spacing: 0.10em;
-            line-height: 1;
-            text-transform: uppercase;
-        }
-
-        .gallery-phase-title {
-            margin: 0;
-
-            color: #eeeeee;
-
-            font-family: "Bebas Neue", sans-serif;
-            font-size: clamp(2.35rem, 3.8vw, 4rem);
-            font-weight: 400;
-            letter-spacing: 0.015em;
-            line-height: 0.92;
-        }
-
-        .gallery-phase-line {
-            display: block;
-
-            height: 1px;
-            margin-bottom: 7px;
-
-            background:
-                linear-gradient(
-                    to right,
-                    rgba(143, 179, 186, 0.52),
-                    rgba(143, 179, 186, 0.05)
-                );
-        }
-
-        .gallery-phase-grid {
-            display: grid;
-            grid-template-columns: repeat(2, minmax(0, 1fr));
-            align-items: start;
-            gap: var(--gallery-gap);
-        }
-
-        /*
-        As duas colunas começam exatamente na mesma linha.
-        */
-
-        .gallery-column--right {
-            padding-top: 0;
-        }
-
-        @media (max-width: 650px) {
-            .gallery-phase {
-                margin-bottom: 92px;
+                align-items: flex-start;
             }
 
-            .gallery-phase-header {
-                grid-template-columns: 1fr;
-                gap: 16px;
-                margin-bottom: 26px;
+            .footer-institution {
+                align-items: flex-start;
+                gap: 14px;
             }
 
-            .gallery-phase-line {
-                width: 100%;
-                margin: 0;
-            }
-
-            .gallery-phase-grid {
-                grid-template-columns: 1fr;
-            }
-        }
-
-
-
-        /* GALERIA — BLOCOS COMPLETOS POR FASE */
-
-        .gallery-phase-grid {
-            display: grid;
-            grid-template-columns: repeat(2, minmax(0, 1fr));
-            grid-template-rows:
-                repeat(2, clamp(270px, 26vw, 390px));
-            gap: var(--gallery-gap);
-        }
-
-        .gallery-phase-grid .gallery-card {
-            width: 100%;
-            height: 100%;
-            aspect-ratio: auto;
-        }
-
-        .gallery-phase-grid--feature-left .gallery-card--feature {
-            grid-column: 1;
-            grid-row: 1 / span 2;
-        }
-
-        .gallery-phase-grid--feature-left .gallery-card--stack-top {
-            grid-column: 2;
-            grid-row: 1;
-        }
-
-        .gallery-phase-grid--feature-left .gallery-card--stack-bottom {
-            grid-column: 2;
-            grid-row: 2;
-        }
-
-        .gallery-phase-grid--feature-right .gallery-card--feature {
-            grid-column: 2;
-            grid-row: 1 / span 2;
-        }
-
-        .gallery-phase-grid--feature-right .gallery-card--stack-top {
-            grid-column: 1;
-            grid-row: 1;
-        }
-
-        .gallery-phase-grid--feature-right .gallery-card--stack-bottom {
-            grid-column: 1;
-            grid-row: 2;
-        }
-
-        /*
-        HOVER DE ÁGUA SUAVE — IGUAL À HOME
-        */
-
-        .gallery-card {
-            isolation: isolate;
-        }
-
-        .gallery-media {
-            z-index: 0;
-        }
-
-        .gallery-card::after {
-            z-index: 1;
-
-            background:
-                linear-gradient(
-                    to top,
-                    rgba(0, 0, 0, 0.58) 0%,
-                    rgba(0, 0, 0, 0.10) 42%,
-                    transparent 70%
-                );
-        }
-
-        .water-ripple-video {
-            position: absolute;
-            z-index: 2;
-            inset: -3%;
-
-            display: block;
-            width: 106%;
-            height: 106%;
-
-            object-fit: cover;
-            border-radius: inherit;
-
-            opacity: 0;
-            mix-blend-mode: screen;
-
-            filter:
-                blur(1.4px)
-                brightness(0.78)
-                contrast(0.82);
-
-            pointer-events: none;
-            transform: scale(1.07);
-
-            transition:
-                opacity 480ms ease,
-                transform 850ms ease;
-        }
-
-        .gallery-card.is-water-ripple .water-ripple-video {
-            opacity: 0.17;
-            transform: scale(1.09);
-        }
-
-        .gallery-card:hover .gallery-placeholder,
-        .gallery-card:focus-visible .gallery-placeholder,
-        .gallery-card:hover .gallery-media img,
-        .gallery-card:focus-visible .gallery-media img {
-            filter:
-                blur(3px)
-                brightness(0.52)
-                saturate(0.86);
-
-            transform: scale(1.05);
-        }
-
-        .gallery-card-title {
-            z-index: 4;
-        }
-
-        @media (max-width: 650px) {
-            .gallery-phase-grid {
-                grid-template-columns: 1fr;
-                grid-template-rows: none;
-            }
-
-            .gallery-phase-grid .gallery-card {
-                grid-column: 1 !important;
-                grid-row: auto !important;
-
-                min-height: 320px;
-                aspect-ratio: 4 / 5;
-            }
-
-            .gallery-phase-grid .gallery-card--stack-top,
-            .gallery-phase-grid .gallery-card--stack-bottom {
-                aspect-ratio: 16 / 10;
+            .footer-ist-logo {
+                height: 25px;
             }
         }
 
@@ -956,200 +853,399 @@
         }
 
         @media (prefers-reduced-motion: reduce) {
+            *,
+            *::before,
+            *::after {
+                scroll-behavior: auto !important;
+                animation-duration: 0.01ms !important;
+                animation-iteration-count: 1 !important;
+                transition-duration: 0.01ms !important;
+            }
+
             .water-ripple-video {
                 display: none;
             }
         }
-
-
-
-        /* LINKS DIRETOS PARA CADA FASE DA GALERIA */
-
-        .gallery-phase-direct-link {
-            position: relative;
-
-            display: inline-flex;
-            align-items: baseline;
-            gap: 7px;
-
-            width: fit-content;
-
-            text-decoration: none;
-            cursor: pointer;
-
-            transition:
-                color 220ms ease,
-                transform 220ms ease;
-        }
-
-        .gallery-phase-direct-link::after {
-            content: "";
-            position: absolute;
-            right: 0;
-            bottom: -5px;
-            left: 0;
-
-            height: 1px;
-
-            background: var(--blue-light);
-
-            transform: scaleX(0);
-            transform-origin: right;
-
-            transition:
-                transform 240ms ease;
-        }
-
-        .gallery-phase-direct-link:hover,
-        .gallery-phase-direct-link:focus-visible {
-            color: #ffffff;
-            transform: translateY(-1px);
-        }
-
-        .gallery-phase-direct-link:hover::after,
-        .gallery-phase-direct-link:focus-visible::after {
-            transform: scaleX(1);
-            transform-origin: left;
-        }
-
-        .gallery-phase-direct-link:focus-visible {
-            outline: 2px solid var(--blue-light);
-            outline-offset: 6px;
-        }
-
-</style>
+    </style>
 </head>
+
 <body id="top">
-<header class="site-header">
-<div class="content-width header-content">
-<nav aria-label="Main navigation" class="main-nav">
-<a aria-current="page" href="gallery.html">
+
+    <header class="site-header">
+        <div class="content-width header-content">
+
+            <nav
+                class="main-nav"
+                aria-label="Main navigation"
+            >
+                <a
+                    href="gallery.html"
+                    aria-current="page"
+                >
                     Gallery
                 </a>
-<a aria-label="Return to the Hidden Waters homepage" class="header-logo-link" href="index.html">
-<img alt="" class="header-logo-image" src="assets/images/hidden-waters-logo-white.png"/>
-</a>
-<a href="process.html">
+
+                <a
+                    class="header-logo-link"
+                    href="index.html"
+                    aria-label="Return to the Hidden Waters homepage"
+                >
+                    <img
+                        class="header-logo-image"
+                        src="assets/images/hidden-waters-logo-white.png"
+                        alt=""
+                    >
+                </a>
+
+                <a href="process.html">
                     Process
                 </a>
-</nav>
-</div>
-</header>
-<main>
-<section class="gallery-hero">
-<div class="content-width">
-<h1 class="gallery-title">Gallery</h1>
-<p class="gallery-introduction">
+            </nav>
+
+        </div>
+    </header>
+
+    <main>
+
+        <section class="gallery-hero">
+            <div class="content-width">
+
+                <h1 class="gallery-title">
+                    Gallery
+                </h1>
+
+                <p class="gallery-introduction">
                     A visual record of the architectural reconstruction,
-                    environmental studies and development of the Hidden Waters
-                    experience.
+                    environmental studies and development of the
+                    Hidden Waters experience.
                 </p>
-</div>
-</section>
-<section aria-label="Hidden Waters visual gallery" class="content-width gallery-phases"><section aria-labelledby="gallery-phase-01-title" class="gallery-phase" id="gallery-phase-01"><header class="gallery-phase-header"><div><a aria-label="Direct link to Phase 01" class="gallery-phase-number gallery-phase-direct-link" href="#gallery-phase-01">Phase 01<span aria-hidden="true">↗</span></a><h2 class="gallery-phase-title" id="gallery-phase-01-title">Historical Research</h2></div><span aria-hidden="true" class="gallery-phase-line"></span></header><div class="gallery-phase-grid gallery-phase-grid--feature-left"><button class="gallery-card gallery-card gallery-card--feature" data-title="Convent Reconstruction" type="button">
-<span class="gallery-media">
-<span class="gallery-placeholder gallery-placeholder--light">
-                            Image 01
+
+            </div>
+        </section>
+
+        <section
+            class="content-width gallery-phases"
+            aria-label="Hidden Waters visual gallery"
+        >
+
+            <section
+                class="gallery-phase"
+                id="gallery-phase-01"
+                aria-labelledby="gallery-phase-01-title"
+            >
+                <header class="gallery-phase-header">
+
+                    <div>
+
+                        <a
+                            class="gallery-phase-direct-link"
+                            href="#gallery-phase-01"
+                        >
+                            Phase 01
+                            <span aria-hidden="true">↗</span>
+                        </a>
+
+                        <h2
+                            class="gallery-phase-title"
+                            id="gallery-phase-01-title"
+                        >
+                            Historical Research
+                        </h2>
+
+                    </div>
+
+                    <span
+                        class="gallery-phase-line"
+                        aria-hidden="true"
+                    ></span>
+
+                </header>
+
+                <div class="gallery-phase-grid gallery-phase-grid--feature-left">
+
+                    <button
+                        class="gallery-card gallery-card--feature"
+                        type="button"
+                        data-title="Historical Sources"
+                    >
+                        <span class="gallery-media">
+                            <span class="gallery-placeholder gallery-placeholder--light">
+                                Image 01
+                            </span>
                         </span>
-</span>
-<span class="gallery-card-title">
-                        Convent Reconstruction
-                    </span>
-</button><button class="gallery-card gallery-card gallery-card--stack-top" data-title="Hydraulic Detail" type="button">
-<span class="gallery-media">
-<span class="gallery-placeholder">
-                            Image 03
+
+                        <span class="gallery-card-title">
+                            Historical Sources
                         </span>
-</span>
-<span class="gallery-card-title">
-                        Hydraulic Detail
-                    </span>
-</button><button class="gallery-card gallery-card gallery-card--stack-bottom" data-title="Water System" type="button">
-<span class="gallery-media">
-<span class="gallery-placeholder">
-                            Image 02
+                    </button>
+
+                    <button
+                        class="gallery-card gallery-card--stack-top"
+                        type="button"
+                        data-title="Comparative Research"
+                    >
+                        <span class="gallery-media">
+                            <span class="gallery-placeholder">
+                                Image 02
+                            </span>
                         </span>
-</span>
-<span class="gallery-card-title">
-                        Water System
-                    </span>
-</button></div></section><section aria-labelledby="gallery-phase-02-title" class="gallery-phase" id="gallery-phase-02"><header class="gallery-phase-header"><div><a aria-label="Direct link to Phase 02" class="gallery-phase-number gallery-phase-direct-link" href="#gallery-phase-02">Phase 02<span aria-hidden="true">↗</span></a><h2 class="gallery-phase-title" id="gallery-phase-02-title">Digital Reconstruction</h2></div><span aria-hidden="true" class="gallery-phase-line"></span></header><div class="gallery-phase-grid gallery-phase-grid--feature-right"><button class="gallery-card gallery-card gallery-card--feature" data-title="Underground Gallery" type="button">
-<span class="gallery-media">
-<span class="gallery-placeholder gallery-placeholder--light">
-                            Image 04
+
+                        <span class="gallery-card-title">
+                            Comparative Research
                         </span>
-</span>
-<span class="gallery-card-title">
-                        Underground Gallery
-                    </span>
-</button><button class="gallery-card gallery-card gallery-card--stack-top" data-title="Interactive Archive" type="button">
-<span class="gallery-media">
-<span class="gallery-placeholder">
-                            Image 06
+                    </button>
+
+                    <button
+                        class="gallery-card gallery-card--stack-bottom"
+                        type="button"
+                        data-title="Hydraulic Records"
+                    >
+                        <span class="gallery-media">
+                            <span class="gallery-placeholder">
+                                Image 03
+                            </span>
                         </span>
-</span>
-<span class="gallery-card-title">
-                        Interactive Archive
-                    </span>
-</button><button class="gallery-card gallery-card gallery-card--stack-bottom" data-title="Landscape Study" type="button">
-<span class="gallery-media">
-<span class="gallery-placeholder gallery-placeholder--light">
-                            Image 05
+
+                        <span class="gallery-card-title">
+                            Hydraulic Records
                         </span>
-</span>
-<span class="gallery-card-title">
-                        Landscape Study
-                    </span>
-</button></div></section><section aria-labelledby="gallery-phase-03-title" class="gallery-phase" id="gallery-phase-03"><header class="gallery-phase-header"><div><a aria-label="Direct link to Phase 03" class="gallery-phase-number gallery-phase-direct-link" href="#gallery-phase-03">Phase 03<span aria-hidden="true">↗</span></a><h2 class="gallery-phase-title" id="gallery-phase-03-title">Interactive Experience</h2></div><span aria-hidden="true" class="gallery-phase-line"></span></header><div class="gallery-phase-grid gallery-phase-grid--feature-left"><button class="gallery-card gallery-card gallery-card--feature" data-title="Archive and Research" type="button">
-<span class="gallery-media">
-<span class="gallery-placeholder">
-                            Image 07
+                    </button>
+
+                </div>
+            </section>
+
+            <section
+                class="gallery-phase"
+                id="gallery-phase-02"
+                aria-labelledby="gallery-phase-02-title"
+            >
+                <header class="gallery-phase-header">
+
+                    <div>
+
+                        <a
+                            class="gallery-phase-direct-link"
+                            href="#gallery-phase-02"
+                        >
+                            Phase 02
+                            <span aria-hidden="true">↗</span>
+                        </a>
+
+                        <h2
+                            class="gallery-phase-title"
+                            id="gallery-phase-02-title"
+                        >
+                            Digital Reconstruction
+                        </h2>
+
+                    </div>
+
+                    <span
+                        class="gallery-phase-line"
+                        aria-hidden="true"
+                    ></span>
+
+                </header>
+
+                <div class="gallery-phase-grid gallery-phase-grid--feature-right">
+
+                    <button
+                        class="gallery-card gallery-card--feature"
+                        type="button"
+                        data-title="Architectural Model"
+                    >
+                        <span class="gallery-media">
+                            <span class="gallery-placeholder gallery-placeholder--light">
+                                Image 04
+                            </span>
                         </span>
-</span>
-<span class="gallery-card-title">
-                        Archive and Research
-                    </span>
-</button><button class="gallery-card gallery-card gallery-card--stack-top" data-title="Atmosphere Study" type="button">
-<span class="gallery-media">
-<span class="gallery-placeholder gallery-placeholder--light">
-                            Image 09
+
+                        <span class="gallery-card-title">
+                            Architectural Model
                         </span>
-</span>
-<span class="gallery-card-title">
-                        Atmosphere Study
-                    </span>
-</button><button class="gallery-card gallery-card gallery-card--stack-bottom" data-title="Final Experience" type="button">
-<span class="gallery-media">
-<span class="gallery-placeholder gallery-placeholder--light">
-                            Image 08
+                    </button>
+
+                    <button
+                        class="gallery-card gallery-card--stack-top"
+                        type="button"
+                        data-title="Landscape Reconstruction"
+                    >
+                        <span class="gallery-media">
+                            <span class="gallery-placeholder">
+                                Image 05
+                            </span>
                         </span>
-</span>
-<span class="gallery-card-title">
-                        Final Experience
-                    </span>
-</button></div></section></section>
-</main>
-<footer class="site-footer">
-<div class="content-width footer-content">
-<span>Hidden Waters</span>
-<span>Thesis companion website · 2026</span>
-</div>
-</footer>
-<div aria-hidden="true" aria-label="Expanded gallery image" aria-modal="true" class="lightbox" role="dialog">
-<div class="lightbox-dialog">
-<button aria-label="Close image" class="lightbox-close" type="button">
+
+                        <span class="gallery-card-title">
+                            Landscape Reconstruction
+                        </span>
+                    </button>
+
+                    <button
+                        class="gallery-card gallery-card--stack-bottom"
+                        type="button"
+                        data-title="Hydraulic System"
+                    >
+                        <span class="gallery-media">
+                            <span class="gallery-placeholder">
+                                Image 06
+                            </span>
+                        </span>
+
+                        <span class="gallery-card-title">
+                            Hydraulic System
+                        </span>
+                    </button>
+
+                </div>
+            </section>
+
+            <section
+                class="gallery-phase"
+                id="gallery-phase-03"
+                aria-labelledby="gallery-phase-03-title"
+            >
+                <header class="gallery-phase-header">
+
+                    <div>
+
+                        <a
+                            class="gallery-phase-direct-link"
+                            href="#gallery-phase-03"
+                        >
+                            Phase 03
+                            <span aria-hidden="true">↗</span>
+                        </a>
+
+                        <h2
+                            class="gallery-phase-title"
+                            id="gallery-phase-03-title"
+                        >
+                            Interactive Experience
+                        </h2>
+
+                    </div>
+
+                    <span
+                        class="gallery-phase-line"
+                        aria-hidden="true"
+                    ></span>
+
+                </header>
+
+                <div class="gallery-phase-grid gallery-phase-grid--feature-left">
+
+                    <button
+                        class="gallery-card gallery-card--feature"
+                        type="button"
+                        data-title="Final Experience"
+                    >
+                        <span class="gallery-media">
+                            <span class="gallery-placeholder gallery-placeholder--light">
+                                Image 07
+                            </span>
+                        </span>
+
+                        <span class="gallery-card-title">
+                            Final Experience
+                        </span>
+                    </button>
+
+                    <button
+                        class="gallery-card gallery-card--stack-top"
+                        type="button"
+                        data-title="Atmosphere Study"
+                    >
+                        <span class="gallery-media">
+                            <span class="gallery-placeholder">
+                                Image 08
+                            </span>
+                        </span>
+
+                        <span class="gallery-card-title">
+                            Atmosphere Study
+                        </span>
+                    </button>
+
+                    <button
+                        class="gallery-card gallery-card--stack-bottom"
+                        type="button"
+                        data-title="Interactive Archive"
+                    >
+                        <span class="gallery-media">
+                            <span class="gallery-placeholder">
+                                Image 09
+                            </span>
+                        </span>
+
+                        <span class="gallery-card-title">
+                            Interactive Archive
+                        </span>
+                    </button>
+
+                </div>
+            </section>
+
+        </section>
+
+    </main>
+
+    <footer class="site-footer">
+        <div class="content-width footer-content">
+
+            <span>
+                Hidden Waters
+            </span>
+
+            <div class="footer-institution">
+
+                <span>
+                    Thesis companion website · 2026
+                </span>
+
+                <img
+                    class="footer-ist-logo"
+                    src="assets/images/ist-logo-white.png"
+                    alt="Instituto Superior Técnico"
+                >
+
+            </div>
+
+        </div>
+    </footer>
+
+    <div
+        class="lightbox"
+        role="dialog"
+        aria-modal="true"
+        aria-hidden="true"
+        aria-label="Expanded gallery image"
+    >
+        <div class="lightbox-dialog">
+
+            <button
+                class="lightbox-close"
+                type="button"
+                aria-label="Close image"
+            >
                 ×
             </button>
-<div class="lightbox-media">
-<div class="lightbox-placeholder"></div>
-</div>
-<div class="lightbox-caption"></div>
-</div>
-</div>
-<script>
+
+            <div class="lightbox-media">
+                <div class="lightbox-placeholder"></div>
+            </div>
+
+            <div class="lightbox-caption"></div>
+
+        </div>
+    </div>
+
+    <script>
         (() => {
             const cards = [
-                ...document.querySelectorAll(".gallery-card")
+                ...document.querySelectorAll(
+                    ".gallery-card"
+                )
             ];
 
             const lightbox =
@@ -1159,13 +1255,19 @@
                 document.querySelector(".lightbox-media");
 
             const lightboxPlaceholder =
-                document.querySelector(".lightbox-placeholder");
+                document.querySelector(
+                    ".lightbox-placeholder"
+                );
 
             const lightboxCaption =
-                document.querySelector(".lightbox-caption");
+                document.querySelector(
+                    ".lightbox-caption"
+                );
 
             const closeButton =
-                document.querySelector(".lightbox-close");
+                document.querySelector(
+                    ".lightbox-close"
+                );
 
             let lastFocusedCard = null;
 
@@ -1173,44 +1275,72 @@
                 lastFocusedCard = card;
 
                 const title =
-                    card.dataset.title || "Gallery image";
+                    card.dataset.title ||
+                    "Gallery image";
 
                 const image =
                     card.querySelector("img");
 
                 lightboxMedia
                     .querySelectorAll("img")
-                    .forEach((element) => element.remove());
+                    .forEach((element) => {
+                        element.remove();
+                    });
 
                 if (image) {
                     const expandedImage =
                         document.createElement("img");
 
-                    expandedImage.src = image.src;
-                    expandedImage.alt = image.alt;
+                    expandedImage.src =
+                        image.src;
 
-                    lightboxMedia.prepend(expandedImage);
-                    lightboxPlaceholder.hidden = true;
+                    expandedImage.alt =
+                        image.alt;
+
+                    lightboxMedia.prepend(
+                        expandedImage
+                    );
+
+                    lightboxPlaceholder.hidden =
+                        true;
                 } else {
-                    lightboxPlaceholder.hidden = false;
-                    lightboxPlaceholder.textContent = title;
+                    lightboxPlaceholder.hidden =
+                        false;
+
+                    lightboxPlaceholder.textContent =
+                        title;
                 }
 
-                lightboxCaption.textContent = title;
+                lightboxCaption.textContent =
+                    title;
 
-                lightbox.classList.add("is-open");
-                lightbox.setAttribute("aria-hidden", "false");
+                lightbox.classList.add(
+                    "is-open"
+                );
 
-                document.body.style.overflow = "hidden";
+                lightbox.setAttribute(
+                    "aria-hidden",
+                    "false"
+                );
+
+                document.body.style.overflow =
+                    "hidden";
 
                 closeButton.focus();
             }
 
             function closeLightbox() {
-                lightbox.classList.remove("is-open");
-                lightbox.setAttribute("aria-hidden", "true");
+                lightbox.classList.remove(
+                    "is-open"
+                );
 
-                document.body.style.overflow = "";
+                lightbox.setAttribute(
+                    "aria-hidden",
+                    "true"
+                );
+
+                document.body.style.overflow =
+                    "";
 
                 if (lastFocusedCard) {
                     lastFocusedCard.focus();
@@ -1232,7 +1362,9 @@
             lightbox.addEventListener(
                 "click",
                 (event) => {
-                    if (event.target === lightbox) {
+                    if (
+                        event.target === lightbox
+                    ) {
                         closeLightbox();
                     }
                 }
@@ -1243,56 +1375,74 @@
                 (event) => {
                     if (
                         event.key === "Escape" &&
-                        lightbox.classList.contains("is-open")
+                        lightbox.classList.contains(
+                            "is-open"
+                        )
                     ) {
                         closeLightbox();
                     }
                 }
             );
         })();
-    </script>
-<script>
+
         (() => {
             const cards = [
-                ...document.querySelectorAll(".gallery-card")
+                ...document.querySelectorAll(
+                    ".gallery-card"
+                )
             ];
 
             if (!cards.length) {
                 return;
             }
 
-            const waterVideo = document.createElement("video");
+            const waterVideo =
+                document.createElement("video");
 
-            waterVideo.className = "water-ripple-video";
-            waterVideo.src = "assets/media/water-ripple-overlay.mp4";
+            waterVideo.className =
+                "water-ripple-video";
+
+            waterVideo.src =
+                "assets/media/water-ripple-overlay.mp4";
+
             waterVideo.muted = true;
             waterVideo.loop = true;
             waterVideo.autoplay = true;
             waterVideo.playsInline = true;
             waterVideo.preload = "auto";
-            waterVideo.setAttribute("aria-hidden", "true");
-            waterVideo.setAttribute("tabindex", "-1");
+
+            waterVideo.setAttribute(
+                "aria-hidden",
+                "true"
+            );
 
             let activeCard = null;
             let hideTimer = null;
 
             function activate(card) {
-                window.clearTimeout(hideTimer);
+                clearTimeout(hideTimer);
 
-                if (activeCard && activeCard !== card) {
-                    activeCard.classList.remove("is-water-ripple");
+                if (
+                    activeCard &&
+                    activeCard !== card
+                ) {
+                    activeCard.classList.remove(
+                        "is-water-ripple"
+                    );
                 }
 
                 activeCard = card;
-                activeCard.appendChild(waterVideo);
-                activeCard.classList.add("is-water-ripple");
 
-                const playAttempt = waterVideo.play();
+                card.appendChild(waterVideo);
 
-                if (
-                    playAttempt &&
-                    typeof playAttempt.catch === "function"
-                ) {
+                card.classList.add(
+                    "is-water-ripple"
+                );
+
+                const playAttempt =
+                    waterVideo.play();
+
+                if (playAttempt?.catch) {
                     playAttempt.catch(() => {});
                 }
             }
@@ -1302,17 +1452,20 @@
                     return;
                 }
 
-                card.classList.remove("is-water-ripple");
+                card.classList.remove(
+                    "is-water-ripple"
+                );
 
-                hideTimer = window.setTimeout(() => {
-                    if (
-                        activeCard === card &&
-                        waterVideo.parentElement === card
-                    ) {
-                        waterVideo.remove();
-                        activeCard = null;
-                    }
-                }, 480);
+                hideTimer =
+                    setTimeout(() => {
+                        if (
+                            activeCard === card &&
+                            waterVideo.parentElement === card
+                        ) {
+                            waterVideo.remove();
+                            activeCard = null;
+                        }
+                    }, 480);
             }
 
             cards.forEach((card) => {
@@ -1338,5 +1491,6 @@
             });
         })();
     </script>
+
 </body>
 </html>
