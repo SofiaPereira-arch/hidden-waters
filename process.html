@@ -1195,6 +1195,182 @@
             }
         }
 
+
+        /* VÍDEOS — AMPLIAÇÃO EXTRA, SEM ESCURECIMENTO, TÍTULO EXTERIOR */
+
+        .phase-media {
+            /*
+            O conteúdo pode ultrapassar o cartão para o título aparecer
+            por baixo. Os elementos visuais mantêm os cantos arredondados.
+            */
+            overflow: visible;
+            z-index: 5;
+
+            transition:
+                transform 540ms cubic-bezier(0.22, 1, 0.36, 1),
+                box-shadow 420ms ease;
+        }
+
+        .phase-media-placeholder,
+        .phase-media > img,
+        .phase-media > video {
+            border-radius: inherit;
+            overflow: hidden;
+        }
+
+        /*
+        Retira totalmente a camada que escurecia o vídeo.
+        */
+        .phase-media::after,
+        .phase-media:hover::after,
+        .phase-media:focus-visible::after {
+            display: none;
+            opacity: 0;
+            background: none;
+        }
+
+        /*
+        Sem blur, sem redução de brilho e sem alteração da imagem.
+        */
+        .phase-media-placeholder,
+        .phase-media:hover .phase-media-placeholder,
+        .phase-media:focus-visible .phase-media-placeholder,
+        .phase-media > img,
+        .phase-media:hover > img,
+        .phase-media:focus-visible > img,
+        .phase-media > video,
+        .phase-media:hover > video,
+        .phase-media:focus-visible > video {
+            filter: none;
+        }
+
+        /*
+        O vídeo cresce a partir do lado da linha:
+        - cartões à direita crescem para a direita;
+        - cartões à esquerda crescem para a esquerda.
+        */
+        .phase--right .phase-media {
+            transform-origin: left center;
+        }
+
+        .phase--left .phase-media {
+            transform-origin: right center;
+        }
+
+        .phase-media:hover,
+        .phase-media:focus-visible {
+            z-index: 30;
+
+            transform: scale(1.55);
+
+            box-shadow:
+                0 34px 90px rgba(0, 0, 0, 0.58);
+        }
+
+        /*
+        O título fica fora do vídeo, por baixo e do lado da linha central.
+        */
+        .media-title {
+            top: calc(100% + 20px);
+            bottom: auto;
+
+            width: max-content;
+            max-width: 100%;
+
+            padding: 0;
+
+            color: #f2f2f2;
+
+            opacity: 0;
+            transform: translateY(-8px);
+
+            pointer-events: none;
+
+            transition:
+                opacity 280ms ease,
+                transform 320ms ease;
+        }
+
+        .phase--right .media-title {
+            right: auto;
+            left: 0;
+            text-align: left;
+        }
+
+        .phase--left .media-title {
+            right: 0;
+            left: auto;
+            text-align: right;
+        }
+
+        .phase-media:hover .media-title,
+        .phase-media:focus-visible .media-title {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /*
+        Mantém o botão de reprodução simples e legível.
+        */
+        .phase-media:hover .play-button,
+        .phase-media:focus-visible .play-button {
+            background: transparent;
+
+            transform:
+                translate(-50%, -50%)
+                scale(1.05);
+        }
+
+        @media (max-width: 1350px) and (min-width: 901px) {
+            .phase-media:hover,
+            .phase-media:focus-visible {
+                transform: scale(1.35);
+            }
+        }
+
+        @media (max-width: 900px) {
+            .phase--right .phase-media,
+            .phase--left .phase-media {
+                transform-origin: center;
+            }
+
+            .phase-media:hover,
+            .phase-media:focus-visible {
+                transform: scale(1.07);
+            }
+
+            .phase--right .media-title,
+            .phase--left .media-title {
+                right: auto;
+                left: 0;
+                text-align: left;
+            }
+        }
+
+        @media (hover: none) {
+            .phase-media:hover {
+                transform: none;
+            }
+
+            .media-title {
+                position: static;
+                display: block;
+
+                width: auto;
+                margin-top: 16px;
+
+                opacity: 1;
+                transform: none;
+            }
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+            .phase-media,
+            .media-title {
+                transition: none;
+            }
+        }
+
     </style>
 </head>
 
