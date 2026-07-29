@@ -909,11 +909,12 @@
 
         .experience-inner {
             display: grid;
-            flex: 1;
+            flex: 0 1 1180px;
             grid-template-rows: auto auto minmax(240px, 1fr);
             gap: clamp(26px, 4vh, 50px);
 
-            width: min(1180px, calc(100% - 96px));
+            width: 100%;
+            max-width: calc(100% - 96px);
             margin: 0 auto;
         }
 
@@ -1060,10 +1061,12 @@
             }
 
             .experience-inner {
+                flex-basis: auto;
                 grid-template-rows: auto auto auto;
                 gap: 34px;
 
-                width: min(100% - 36px, 1180px);
+                width: 100%;
+                max-width: calc(100% - 36px);
             }
 
             .experience-title {
