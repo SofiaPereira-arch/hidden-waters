@@ -1204,6 +1204,120 @@
             }
         }
 
+
+        /* EFEITO HOVER — DESFOQUE E TÍTULO */
+
+        .visualizer-item::after {
+            content: "";
+            position: absolute;
+            z-index: 1;
+            inset: 0;
+
+            background:
+                linear-gradient(
+                    to top,
+                    rgba(0, 0, 0, 0.72) 0%,
+                    rgba(0, 0, 0, 0.20) 48%,
+                    rgba(0, 0, 0, 0.04) 100%
+                );
+
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 320ms ease;
+        }
+
+        .visualizer-title {
+            position: absolute;
+            z-index: 3;
+            right: 28px;
+            bottom: 24px;
+            left: 28px;
+
+            color: #ffffff;
+
+            font-family: "Inter", Arial, sans-serif;
+            font-size: clamp(1rem, 1.4vw, 1.35rem);
+            font-weight: 400;
+            line-height: 1.2;
+
+            opacity: 0;
+            transform: translateY(12px);
+            pointer-events: none;
+
+            transition:
+                opacity 320ms ease,
+                transform 320ms ease;
+        }
+
+        .visualizer-item .visualizer-media,
+        .visualizer-item img,
+        .visualizer-item video {
+            transition:
+                filter 420ms ease,
+                transform 520ms ease;
+        }
+
+        .visualizer-item:hover::after,
+        .visualizer-item:focus-visible::after {
+            opacity: 1;
+        }
+
+        .visualizer-item:hover .visualizer-media,
+        .visualizer-item:hover img,
+        .visualizer-item:hover video,
+        .visualizer-item:focus-visible .visualizer-media,
+        .visualizer-item:focus-visible img,
+        .visualizer-item:focus-visible video {
+            filter: blur(7px);
+            transform: scale(1.055);
+        }
+
+        .visualizer-item:hover .visualizer-title,
+        .visualizer-item:focus-visible .visualizer-title {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .visualizer-item:hover .visualizer-play,
+        .visualizer-item:focus-visible .visualizer-play {
+            opacity: 0.25;
+        }
+
+        .visualizer-item:focus-visible {
+            outline: 2px solid var(--blue-light);
+            outline-offset: 4px;
+        }
+
+        @media (hover: none) {
+            .visualizer-item::after {
+                opacity: 0.58;
+            }
+
+            .visualizer-title {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @media (max-width: 520px) {
+            .visualizer-title {
+                right: 20px;
+                bottom: 18px;
+                left: 20px;
+                font-size: 1rem;
+            }
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+            .visualizer-title,
+            .visualizer-item::after,
+            .visualizer-item .visualizer-media,
+            .visualizer-item img,
+            .visualizer-item video {
+                transition: none;
+            }
+        }
+
     </style>
 </head>
 
@@ -1273,6 +1387,10 @@
                             <div class="visualizer-placeholder visualizer-media">
                                 Gallery image 01
                             </div>
+                        
+                            <span class="visualizer-title">
+                                Gallery Image 01
+                            </span>
                         </a>
 
                         <a
@@ -1291,6 +1409,10 @@
                             >
                                 ▶
                             </span>
+                        
+                            <span class="visualizer-title">
+                                Process Video 01
+                            </span>
                         </a>
 
                         <a
@@ -1302,6 +1424,10 @@
                             <div class="visualizer-placeholder visualizer-media">
                                 Gallery image 02
                             </div>
+                        
+                            <span class="visualizer-title">
+                                Gallery Image 02
+                            </span>
                         </a>
 
                         <a
@@ -1313,6 +1439,10 @@
                             <div class="visualizer-placeholder visualizer-media">
                                 Gallery image 03
                             </div>
+                        
+                            <span class="visualizer-title">
+                                Gallery Image 03
+                            </span>
                         </a>
 
                         <a
@@ -1331,6 +1461,10 @@
                             >
                                 ▶
                             </span>
+                        
+                            <span class="visualizer-title">
+                                Process Video 02
+                            </span>
                         </a>
 
                         <a
@@ -1342,6 +1476,10 @@
                             <div class="visualizer-placeholder visualizer-media">
                                 Gallery image 04
                             </div>
+                        
+                            <span class="visualizer-title">
+                                Gallery Image 04
+                            </span>
                         </a>
 
                         <a
@@ -1360,6 +1498,10 @@
                             >
                                 ▶
                             </span>
+                        
+                            <span class="visualizer-title">
+                                Experience Video
+                            </span>
                         </a>
 
                         <a
@@ -1371,6 +1513,10 @@
                             <div class="visualizer-placeholder visualizer-media">
                                 Gallery image 05
                             </div>
+                        
+                            <span class="visualizer-title">
+                                Gallery Image 05
+                            </span>
                         </a>
 
                     </div>
