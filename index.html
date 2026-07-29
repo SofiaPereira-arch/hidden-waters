@@ -579,6 +579,150 @@
             }
         }
     
+        /* CARROSSEL DA ABERTURA */
+
+        .media-carousel {
+            position: relative;
+            width: 100%;
+            overflow: hidden;
+            padding-bottom: 48px;
+        }
+
+        .media-carousel-track {
+            display: flex;
+            width: 100%;
+            transition: transform 700ms cubic-bezier(0.22, 1, 0.36, 1);
+            will-change: transform;
+        }
+
+        .carousel-slide {
+            flex: 0 0 100%;
+            width: 100%;
+        }
+
+        .carousel-control {
+            position: absolute;
+            z-index: 5;
+            top: calc(50% - 24px);
+
+            display: flex;
+            justify-content: center;
+            align-items: center;
+
+            width: 52px;
+            height: 52px;
+            padding: 0;
+
+            color: #262626;
+            background: rgba(255, 255, 255, 0.78);
+            border: 1px solid rgba(17, 17, 17, 0.12);
+            border-radius: 50%;
+
+            font-size: 1.45rem;
+            line-height: 1;
+            cursor: pointer;
+
+            opacity: 0;
+            transform: translateY(-50%);
+            backdrop-filter: blur(14px);
+            -webkit-backdrop-filter: blur(14px);
+
+            transition:
+                opacity 220ms ease,
+                background-color 220ms ease,
+                transform 220ms ease;
+        }
+
+        .media-carousel:hover .carousel-control,
+        .media-carousel:focus-within .carousel-control {
+            opacity: 1;
+        }
+
+        .carousel-control:hover {
+            background: rgba(255, 255, 255, 0.96);
+            transform: translateY(-50%) scale(1.06);
+        }
+
+        .carousel-control:focus-visible {
+            opacity: 1;
+            outline: 2px solid var(--blue-light);
+            outline-offset: 3px;
+        }
+
+        .carousel-control--prev {
+            left: 26px;
+        }
+
+        .carousel-control--next {
+            right: 26px;
+        }
+
+        .carousel-dots {
+            position: absolute;
+            right: 0;
+            bottom: 10px;
+            left: 0;
+
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .carousel-dot {
+            width: 8px;
+            height: 8px;
+            padding: 0;
+
+            background: #d5d5d5;
+            border: 0;
+            border-radius: 50%;
+
+            cursor: pointer;
+            transition:
+                width 220ms ease,
+                background-color 220ms ease,
+                border-radius 220ms ease;
+        }
+
+        .carousel-dot.is-active {
+            width: 28px;
+            background: var(--blue-light);
+            border-radius: 999px;
+        }
+
+        .carousel-dot:focus-visible {
+            outline: 2px solid var(--blue-light);
+            outline-offset: 3px;
+        }
+
+        @media (max-width: 900px) {
+            .media-carousel {
+                padding-bottom: 42px;
+            }
+
+            .carousel-control {
+                top: calc(50% - 21px);
+                width: 44px;
+                height: 44px;
+                opacity: 1;
+            }
+
+            .carousel-control--prev {
+                left: 12px;
+            }
+
+            .carousel-control--next {
+                right: 12px;
+            }
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+            .media-carousel-track {
+                transition: none;
+            }
+        }
+
     </style>
 </head>
 
@@ -633,40 +777,136 @@
         <section class="media-section">
             <div class="media-full">
 
-                <div class="media-strip">
+                <div
+                    class="media-carousel"
+                    id="introCarousel"
+                    aria-label="Featured project media"
+                >
+                    <div class="media-carousel-track">
 
-                    <article class="media-card">
-                        <div class="media-placeholder">
-                            Main image
+                        <!-- CONJUNTO 1 -->
+                        <div class="carousel-slide">
+                            <div class="media-strip">
+
+                                <article class="media-card">
+                                    <div class="media-placeholder">
+                                        Main image 01
+                                    </div>
+                                </article>
+
+                                <article class="media-card">
+                                    <div class="media-placeholder video-placeholder">
+                                        Main video 01
+                                    </div>
+
+                                    <span
+                                        class="play-button"
+                                        aria-hidden="true"
+                                    >
+                                        ▶
+                                    </span>
+                                </article>
+
+                                <article class="media-card">
+                                    <div class="media-placeholder">
+                                        Main image 02
+                                    </div>
+                                </article>
+
+                            </div>
                         </div>
-                    </article>
 
-                    <article class="media-card">
+                        <!-- CONJUNTO 2 -->
+                        <div class="carousel-slide">
+                            <div class="media-strip">
 
-                        <div class="media-placeholder video-placeholder">
-                            Main video
+                                <article class="media-card">
+                                    <div class="media-placeholder video-placeholder">
+                                        Process video
+                                    </div>
+
+                                    <span
+                                        class="play-button"
+                                        aria-hidden="true"
+                                    >
+                                        ▶
+                                    </span>
+                                </article>
+
+                                <article class="media-card">
+                                    <div class="media-placeholder">
+                                        Reconstruction image
+                                    </div>
+                                </article>
+
+                                <article class="media-card">
+                                    <div class="media-placeholder">
+                                        Research image
+                                    </div>
+                                </article>
+
+                            </div>
                         </div>
 
-                        <span
-                            class="play-button"
-                            aria-hidden="true"
-                        >
-                            ▶
-                        </span>
+                        <!-- CONJUNTO 3 -->
+                        <div class="carousel-slide">
+                            <div class="media-strip">
 
-                    </article>
+                                <article class="media-card">
+                                    <div class="media-placeholder">
+                                        Environment image
+                                    </div>
+                                </article>
 
-                    <article class="media-card">
-                        <div class="media-placeholder">
-                            Main image
+                                <article class="media-card">
+                                    <div class="media-placeholder video-placeholder">
+                                        Experience video
+                                    </div>
+
+                                    <span
+                                        class="play-button"
+                                        aria-hidden="true"
+                                    >
+                                        ▶
+                                    </span>
+                                </article>
+
+                                <article class="media-card">
+                                    <div class="media-placeholder">
+                                        Detail image
+                                    </div>
+                                </article>
+
+                            </div>
                         </div>
-                    </article>
 
+                    </div>
+
+                    <button
+                        class="carousel-control carousel-control--prev"
+                        type="button"
+                        aria-label="Previous media group"
+                    >
+                        ←
+                    </button>
+
+                    <button
+                        class="carousel-control carousel-control--next"
+                        type="button"
+                        aria-label="Next media group"
+                    >
+                        →
+                    </button>
+
+                    <div
+                        class="carousel-dots"
+                        aria-label="Choose media group"
+                    ></div>
                 </div>
 
             </div>
         </section>
-        
+
         </div>
         
         <section
@@ -727,6 +967,116 @@
 
         </div>
     </footer>
+
+    <script>
+        (() => {
+            const carousel = document.querySelector("#introCarousel");
+
+            if (!carousel) {
+                return;
+            }
+
+            const track = carousel.querySelector(".media-carousel-track");
+            const slides = [...carousel.querySelectorAll(".carousel-slide")];
+            const previousButton = carousel.querySelector(".carousel-control--prev");
+            const nextButton = carousel.querySelector(".carousel-control--next");
+            const dotsContainer = carousel.querySelector(".carousel-dots");
+
+            const AUTOPLAY_DELAY = 6000;
+            let currentIndex = 0;
+            let autoplayTimer = null;
+
+            const dots = slides.map((_, index) => {
+                const dot = document.createElement("button");
+
+                dot.className = "carousel-dot";
+                dot.type = "button";
+                dot.setAttribute("aria-label", `Show media group ${index + 1}`);
+
+                dot.addEventListener("click", () => {
+                    showSlide(index);
+                    restartAutoplay();
+                });
+
+                dotsContainer.appendChild(dot);
+                return dot;
+            });
+
+            function showSlide(index) {
+                currentIndex = (index + slides.length) % slides.length;
+                track.style.transform = `translateX(-${currentIndex * 100}%)`;
+
+                dots.forEach((dot, dotIndex) => {
+                    const isActive = dotIndex === currentIndex;
+
+                    dot.classList.toggle("is-active", isActive);
+                    dot.setAttribute("aria-current", isActive ? "true" : "false");
+                });
+            }
+
+            function stopAutoplay() {
+                if (autoplayTimer !== null) {
+                    window.clearInterval(autoplayTimer);
+                    autoplayTimer = null;
+                }
+            }
+
+            function startAutoplay() {
+                stopAutoplay();
+
+                if (
+                    slides.length > 1 &&
+                    !window.matchMedia("(prefers-reduced-motion: reduce)").matches
+                ) {
+                    autoplayTimer = window.setInterval(() => {
+                        showSlide(currentIndex + 1);
+                    }, AUTOPLAY_DELAY);
+                }
+            }
+
+            function restartAutoplay() {
+                startAutoplay();
+            }
+
+            previousButton.addEventListener("click", () => {
+                showSlide(currentIndex - 1);
+                restartAutoplay();
+            });
+
+            nextButton.addEventListener("click", () => {
+                showSlide(currentIndex + 1);
+                restartAutoplay();
+            });
+
+            carousel.addEventListener("mouseenter", stopAutoplay);
+            carousel.addEventListener("mouseleave", startAutoplay);
+            carousel.addEventListener("focusin", stopAutoplay);
+            carousel.addEventListener("focusout", startAutoplay);
+
+            carousel.addEventListener("keydown", (event) => {
+                if (event.key === "ArrowLeft") {
+                    showSlide(currentIndex - 1);
+                    restartAutoplay();
+                }
+
+                if (event.key === "ArrowRight") {
+                    showSlide(currentIndex + 1);
+                    restartAutoplay();
+                }
+            });
+
+            document.addEventListener("visibilitychange", () => {
+                if (document.hidden) {
+                    stopAutoplay();
+                } else {
+                    startAutoplay();
+                }
+            });
+
+            showSlide(0);
+            startAutoplay();
+        })();
+    </script>
 
 </body>
 </html>
