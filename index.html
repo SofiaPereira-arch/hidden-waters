@@ -1,16 +1,24 @@
 <!DOCTYPE html>
-
 <html lang="en">
 <head>
-<meta charset="utf-8"/>
-<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
-<meta content="Hidden Waters — A Journey Through the Hydraulic System of Alferrara" name="description"/>
-<title>Hidden Waters</title>
-<!-- Bebas Neue -->
-<link href="https://fonts.googleapis.com" rel="preconnect"/>
-<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
-<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&amp;family=Inter:wght@300;400;500;600&amp;display=swap" rel="stylesheet"/>
-<style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Hidden Waters — A Journey Through the Hydraulic System of Alferrara">
+    <title>Hidden Waters</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+
+    <style>
+        @font-face {
+            font-family: "Steelfish";
+            src: url("assets/fonts/steelfish-rg.otf") format("opentype");
+            font-style: normal;
+            font-weight: 400;
+            font-display: swap;
+        }
+
         @font-face {
             font-family: "Steelfish";
             src: url("assets/fonts/steelfish-rg-it.otf") format("opentype");
@@ -18,18 +26,18 @@
             font-weight: 400;
             font-display: swap;
         }
-        
+
         :root {
-            --background: #ffffff;
-            --text: #111111;
-            --grey: #b5b5b5;
-            --grey-dark: #6f6f6f;
-
-            --blue-dark: #315b68;
-            --blue-light: #83a9b0;
-
-            --line: rgba(17, 17, 17, 0.1);
-            --header-background: rgba(255, 255, 255, 0.74);
+            --background: #050505;
+            --text: #f2f2f2;
+            --muted: #a6a6a6;
+            --blue: #739da6;
+            --blue-light: #8fb3ba;
+            --line: rgba(255, 255, 255, 0.11);
+            --header-background: rgba(5, 5, 5, 0.78);
+            --content-width: 1100px;
+            --content-gutter: 128px;
+            --header-height: 76px;
         }
 
         * {
@@ -38,15 +46,16 @@
 
         html {
             scroll-behavior: smooth;
+            scroll-padding-top: 96px;
         }
 
         body {
             margin: 0;
-            background: var(--background);
+            overflow-x: hidden;
             color: var(--text);
-
+            background: var(--background);
             font-family: "Inter", Arial, sans-serif;
-            line-height: 1.6;
+            line-height: 1.65;
         }
 
         a {
@@ -60,23 +69,23 @@
             width: 100%;
         }
 
-        .container {
-            width: min(1400px, calc(100% - 64px));
-            margin: 0 auto;
+        .content-width {
+            width: min(
+                var(--content-width),
+                calc(100% - var(--content-gutter))
+            );
+
+            margin-inline: auto;
         }
 
-        /*
-        CABEÇALHO FIXO E FOSCO
-        */
+        /* HEADER */
 
         .site-header {
             position: fixed;
             z-index: 1000;
-            top: 0;
-            right: 0;
-            left: 0;
+            inset: 0 0 auto;
 
-            height: 76px;
+            height: var(--header-height);
 
             background: var(--header-background);
             border-bottom: 1px solid var(--line);
@@ -89,1850 +98,14 @@
             display: flex;
             justify-content: center;
             align-items: center;
-        
+
             height: 100%;
-        }
-
-        .brand {
-            display: none;
-            align-items: center;
-            gap: 12px;
-
-            font-family: "Bebas Neue", sans-serif;
-            font-size: 1.35rem;
-            letter-spacing: 0.08em;
-        }
-
-        .brand-symbol {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-
-            width: 38px;
-            height: 38px;
-
-            border: 1px solid var(--text);
-            border-radius: 50%;
-
-            font-size: 0.95rem;
-            letter-spacing: 0.04em;
         }
 
         .main-nav {
             display: flex;
             align-items: center;
-            gap: 38px;
-
-            font-family: "Bebas Neue", sans-serif;
-            font-size: 1.05rem;
-            letter-spacing: 0.1em;
-        }
-
-        .main-nav a {
-            position: relative;
-        }
-
-        .main-nav a::after {
-            content: "";
-
-            position: absolute;
-            right: 0;
-            bottom: -5px;
-            left: 0;
-
-            height: 1px;
-
-            background: var(--blue-dark);
-
-            transform: scaleX(0);
-            transform-origin: right;
-            transition: transform 250ms ease;
-        }
-
-        .main-nav a:hover::after {
-            transform: scaleX(1);
-            transform-origin: left;
-        }
-
-        .nav-separator {
-            width: 6px;
-            height: 6px;
-
-            background: #83a9b0;
-        }
-
-        main {
-            padding-top: 76px;
-        }
-
-        /*
-        TÍTULO PRINCIPAL
-        */
-
-        .intro-screen {
-            display: flex;
-            flex-direction: column;
-
-            min-height: calc(100svh - 76px);
-        }
-        
-        .hero {
-            flex: 0 0 auto;
-            padding: clamp(55px, 7vh, 95px) 0 38px;
-        }
-
-        .hero h1 {
-            margin: 0;
-
-            color: var(--text);
-
-            font-family: "Bebas Neue", sans-serif;
-            font-size: clamp(5rem, 11vw, 11rem);
-            font-weight: 400;
-            letter-spacing: 0.01em;
-            line-height: 0.8;
-        }
-
-        .hero-subtitle {
-            max-width: 1250px;
-            margin: 22px 0 0;
-        
-            color: #d2d2d2;
-        
-            font-family: "Steelfish", "Arial Narrow", sans-serif;
-            font-size: clamp(2.4rem, 4.7vw, 5.2rem);
-            font-style: italic;
-            font-weight: 400;
-            letter-spacing: 0.025em;
-            line-height: 0.92;
-        }
-
-        /*
-        IMAGENS E VÍDEO PRINCIPAIS
-        */
-
-        .media-section {
-            display: flex;
-            flex: 1;
-        
-            min-height: 340px;
-            padding: 0 0 22px;
-        }
-
-        .media-full {
-            display: flex;
-
-            width: 100%;
-            padding: 0;
-        }
-
-        .media-strip {
-            display: grid;
-            flex: 1;
-        
-            grid-template-columns: 0.75fr 1.5fr 0.75fr;
-            gap: 18px;
-        
-            width: 100%;
-            min-height: 340px;
-        }
-
-        .media-card {
-            position: relative;
-        
-            height: 100%;
-            min-height: 0;
-            overflow: hidden;
-        
-            background: #e5e5e5;
-            border-radius: 24px;
-        }
-
-        .media-card .media-placeholder {
-            border-radius: 24px;
-        }
-
-
-
-        .media-placeholder {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-
-            width: 100%;
-            height: 100%;
-            min-height: 100%;
-
-            border-radius: 24px;
-            
-            color: var(--blue-dark);
-
-            background:
-                linear-gradient(
-                    145deg,
-                    #e2eaeb,
-                    #afc2c6
-                );
-
-            font-family: "Bebas Neue", sans-serif;
-            font-size: 1rem;
-            letter-spacing: 0.12em;
-        }
-
-        .video-placeholder {
-            color: white;
-
-            background:
-                linear-gradient(
-                    145deg,
-                    #8eabb1,
-                    #315b68
-                );
-        }
-
-        .play-button {
-            position: absolute;
-            z-index: 2;
-            top: 50%;
-            left: 50%;
-
-            display: flex;
-            justify-content: center;
-            align-items: center;
-
-            width: 76px;
-            height: 76px;
-            padding-left: 5px;
-
-            border: 1px solid rgba(255, 255, 255, 0.9);
-            border-radius: 50%;
-
-            color: white;
-            font-size: 1.4rem;
-
-            transform: translate(-50%, -50%);
-
-            transition:
-                background-color 200ms ease,
-                transform 200ms ease;
-        }
-
-        .media-card:hover .play-button {
-            background: rgba(255, 255, 255, 0.16);
-            transform: translate(-50%, -50%) scale(1.06);
-        }
-
-        /*
-        EXPERIÊNCIA
-        */
-
-        .experience {
-            display: grid;
-            grid-template-columns: minmax(0, 1.15fr) minmax(320px, 0.85fr);
-            gap: clamp(50px, 8vw, 130px);
-            align-items: center;
-
-            padding-top: 120px;
-            padding-bottom: 140px;
-        }
-
-        .section-label {
-            margin-bottom: 17px;
-
-            color: var(--blue-light);
-
-            font-family: "Bebas Neue", sans-serif;
-            font-size: 1rem;
-            letter-spacing: 0.15em;
-        }
-
-        .experience h2 {
-            max-width: 760px;
-            margin: 0 0 30px;
-
-            color: var(--text);
-
-            font-family: "Bebas Neue", sans-serif;
-            font-size: clamp(3.7rem, 7vw, 7.8rem);
-            font-weight: 400;
-            letter-spacing: 0.01em;
-            line-height: 0.85;
-        }
-
-        .experience-text {
-            max-width: 680px;
-            margin: 0 0 40px;
-
-            color: var(--grey-dark);
-            font-size: 0.95rem;
-            line-height: 1.75;
-        }
-
-        .download-button {
-            display: inline-flex;
-            align-items: center;
-            gap: 20px;
-
-            padding: 16px 23px;
-
-            color: white;
-            background: var(--text);
-            border: 1px solid var(--text);
-            border-radius: 100px;
-
-            font-family: "Bebas Neue", sans-serif;
-            font-size: 1rem;
-            letter-spacing: 0.1em;
-
-            transition:
-                color 200ms ease,
-                background-color 200ms ease,
-                transform 200ms ease;
-        }
-
-        .download-button:hover {
-            color: var(--text);
-            background: transparent;
-            transform: translateY(-2px);
-        }
-
-        .project-image {
-            min-height: 520px;
-            overflow: hidden;
-        
-            background: #d8e2e3;
-            border-radius: 24px;
-        }
-        
-        .project-image .media-placeholder {
-            min-height: 520px;
-            border-radius: 24px;
-        }
-
-        /*
-        RODAPÉ
-        */
-
-        .site-footer {
-            padding: 35px 0 45px;
-            border-top: 1px solid var(--line);
-        }
-
-        .footer-content {
-            display: flex;
-            justify-content: space-between;
-            gap: 24px;
-
-            color: var(--grey-dark);
-
-            font-size: 0.75rem;
-            letter-spacing: 0.04em;
-        }
-
-        /*
-        TABLET E TELEMÓVEL
-        */
-
-        @media (max-width: 900px) {
-            .container {
-                width: min(100% - 36px, 1400px);
-            }
-
-            .brand span:last-child {
-                display: none;
-            }
-
-            .main-nav {
-                gap: 25px;
-            }
-
-            .hero {
-                padding-top: 90px;
-            }
-
-            .media-strip {
-                grid-template-columns: 1fr;
-            }
-
-            .media-card,
-            .media-placeholder {
-                min-height: 360px;
-            }
-
-            .experience {
-                grid-template-columns: 1fr;
-                padding-bottom: 90px;
-            }
-
-            .project-image,
-            .project-image .media-placeholder {
-                min-height: 420px;
-            }
-        }
-
-        @media (max-width: 520px) {
-            .site-header {
-                height: 68px;
-            }
-
-            main {
-                padding-top: 68px;
-            }
-
-            .brand-symbol {
-                width: 34px;
-                height: 34px;
-            }
-
-            .main-nav {
-                gap: 18px;
-                font-size: 0.95rem;
-            }
-
-            .hero {
-                padding: 70px 0 55px;
-            }
-
-            .media-section {
-                padding-bottom: 85px;
-            }
-
-            .media-card,
-            .media-placeholder {
-                min-height: 290px;
-            }
-
-            .footer-content {
-                flex-direction: column;
-                gap: 7px;
-            }
-        }
-    
-            /* AJUSTES DA ABERTURA DO SITE */
-        
-        .hero .container {
-            width: min(1180px, calc(100% - 96px));
-            margin: 0 auto;
-        }
-        
-        .hero {
-            padding:
-                clamp(70px, 8vh, 105px)
-                0
-                clamp(70px, 7vh, 90px);
-        }
-        
-        .hero h1 {
-            color: #262626;
-        
-            font-size: clamp(4.8rem, 9vw, 9.5rem);
-        }
-        
-        .hero-subtitle {
-            max-width: 1000px;
-        
-            font-size: clamp(2.2rem, 4.2vw, 4.6rem);
-        }
-        
-        .media-section {
-            padding:
-                0
-                0
-                clamp(75px, 8vh, 105px);
-        }
-        
-        .media-strip {
             gap: 30px;
-        }
-        
-        /* Ajustes para ecrãs mais pequenos */
-        
-        @media (max-width: 900px) {
-            .hero .container {
-                width: min(100% - 36px, 1180px);
-            }
-        
-            .hero {
-                padding: 70px 0 55px;
-            }
-        
-            .media-section {
-                padding-bottom: 55px;
-            }
-        
-            .media-strip {
-                gap: 20px;
-            }
-        }
-    
-        /* VISUALIZADOR CONTÍNUO DE IMAGENS E VÍDEOS */
-
-        .visualizer-section {
-            display: flex;
-            flex: 1;
-            width: 100%;
-            min-height: 340px;
-            padding: 0 0 clamp(75px, 8vh, 105px);
-            overflow: hidden;
-        }
-
-        .visualizer-viewport {
-            position: relative;
-            width: 100%;
-            overflow: hidden;
-        }
-
-        .visualizer-track {
-            display: flex;
-            align-items: stretch;
-            gap: 30px;
-            width: max-content;
-            height: 100%;
-            will-change: transform;
-        }
-
-        .visualizer-group {
-            display: flex;
-            align-items: stretch;
-            gap: 30px;
-            height: 100%;
-        }
-
-        .visualizer-item {
-            position: relative;
-            flex: 0 0 auto;
-
-            height: clamp(350px, 47vh, 560px);
-            aspect-ratio: var(--item-ratio, 1.5);
-
-            overflow: hidden;
-            background: #e7edef;
-            border-radius: 24px;
-
-            color: inherit;
-            text-decoration: none;
-        }
-
-        .visualizer-media,
-        .visualizer-item img,
-        .visualizer-item video {
-            display: block;
-            width: 100%;
-            height: 100%;
-
-            object-fit: cover;
-            transition: transform 500ms ease;
-        }
-
-        .visualizer-item:hover .visualizer-media,
-        .visualizer-item:hover img,
-        .visualizer-item:hover video {
-            transform: scale(1.025);
-        }
-
-        .visualizer-placeholder {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-
-            width: 100%;
-            height: 100%;
-
-            color: var(--blue-dark);
-            background:
-                linear-gradient(
-                    145deg,
-                    #e2eaeb,
-                    #afc2c6
-                );
-
-            font-family: "Bebas Neue", sans-serif;
-            font-size: 1rem;
-            letter-spacing: 0.12em;
-            text-align: center;
-        }
-
-        .visualizer-placeholder--video {
-            color: #ffffff;
-            background:
-                linear-gradient(
-                    145deg,
-                    #8eabb1,
-                    #315b68
-                );
-        }
-
-        .visualizer-play {
-            position: absolute;
-            z-index: 2;
-            top: 50%;
-            left: 50%;
-
-            display: flex;
-            justify-content: center;
-            align-items: center;
-
-            width: 72px;
-            height: 72px;
-            padding-left: 4px;
-
-            color: #ffffff;
-            border: 1px solid rgba(255, 255, 255, 0.9);
-            border-radius: 50%;
-
-            font-size: 1.25rem;
-            pointer-events: none;
-            transform: translate(-50%, -50%);
-        }
-
-        @media (max-width: 900px) {
-            .visualizer-track,
-            .visualizer-group {
-                gap: 20px;
-            }
-
-            .visualizer-item {
-                height: clamp(280px, 41vh, 430px);
-                border-radius: 20px;
-            }
-
-            .visualizer-section {
-                padding-bottom: 55px;
-            }
-        }
-
-        @media (max-width: 520px) {
-            .visualizer-track,
-            .visualizer-group {
-                gap: 14px;
-            }
-
-            .visualizer-item {
-                height: 290px;
-                border-radius: 18px;
-            }
-
-            .visualizer-play {
-                width: 58px;
-                height: 58px;
-            }
-        }
-
-        @media (prefers-reduced-motion: reduce) {
-            .visualizer-track {
-                transform: none !important;
-            }
-
-            .visualizer-viewport {
-                overflow-x: auto;
-                scrollbar-width: thin;
-            }
-        }
-
-
-        /* ABERTURA RESPONSIVA — FAIXA CENTRADA NO ESPAÇO DISPONÍVEL */
-
-        .intro-screen {
-            display: grid;
-            grid-template-rows: auto minmax(0, 1fr);
-
-            min-height: calc(100svh - 76px);
-            min-height: calc(100dvh - 76px);
-        }
-
-        .hero {
-            padding:
-                clamp(54px, 7vh, 96px)
-                0
-                clamp(34px, 4.5vh, 64px);
-        }
-
-        .visualizer-section {
-            display: flex;
-            align-items: center;
-
-            min-height: 0;
-            padding:
-                clamp(18px, 2.8vh, 38px)
-                0
-                clamp(30px, 4.5vh, 64px);
-        }
-
-        .visualizer-viewport {
-            display: flex;
-            align-items: center;
-
-            width: 100%;
-            min-height: 0;
-        }
-
-        .visualizer-track,
-        .visualizer-group {
-            align-items: center;
-        }
-
-        .visualizer-item {
-            height: clamp(
-                285px,
-                min(47dvh, calc(100dvh - 410px)),
-                560px
-            );
-        }
-
-        /*
-        Ecrãs mais baixos ou mais largos:
-        reduzimos o bloco do título e a altura da faixa para manter
-        tudo visível sem alterar a composição.
-        */
-
-        @media (max-height: 850px) and (min-width: 901px) {
-            .hero {
-                padding:
-                    clamp(38px, 5vh, 64px)
-                    0
-                    clamp(22px, 3vh, 38px);
-            }
-
-            .hero h1 {
-                font-size: clamp(4.4rem, 7.5vw, 8rem);
-            }
-
-            .hero-subtitle {
-                font-size: clamp(2rem, 3.5vw, 3.8rem);
-            }
-
-            .visualizer-section {
-                padding:
-                    clamp(12px, 2vh, 24px)
-                    0
-                    clamp(20px, 3vh, 38px);
-            }
-
-            .visualizer-item {
-                height: clamp(
-                    245px,
-                    min(42dvh, calc(100dvh - 340px)),
-                    430px
-                );
-            }
-        }
-
-        @media (max-height: 700px) and (min-width: 901px) {
-            .hero {
-                padding: 28px 0 18px;
-            }
-
-            .hero h1 {
-                font-size: clamp(4rem, 6.8vw, 6.8rem);
-            }
-
-            .hero-subtitle {
-                margin-top: 14px;
-                font-size: clamp(1.8rem, 3vw, 3rem);
-            }
-
-            .visualizer-section {
-                padding: 10px 0 20px;
-            }
-
-            .visualizer-item {
-                height: clamp(
-                    220px,
-                    min(38dvh, calc(100dvh - 285px)),
-                    340px
-                );
-            }
-        }
-
-        @media (max-width: 900px) {
-            .intro-screen {
-                min-height: auto;
-            }
-
-            .hero {
-                padding: 68px 0 44px;
-            }
-
-            .visualizer-section {
-                padding: 18px 0 54px;
-            }
-
-            .visualizer-item {
-                height: clamp(280px, 42dvh, 430px);
-            }
-        }
-
-        @media (max-width: 520px) {
-            .hero {
-                padding: 52px 0 34px;
-            }
-
-            .visualizer-section {
-                padding: 12px 0 44px;
-            }
-
-            .visualizer-item {
-                height: clamp(250px, 38dvh, 320px);
-            }
-        }
-
-
-        /* SEGUNDA PÁGINA — EXPERIÊNCIA E DOWNLOAD */
-
-        .experience-page {
-            display: flex;
-
-            min-height: calc(100svh - 76px);
-            min-height: calc(100dvh - 76px);
-
-            padding:
-                clamp(54px, 7vh, 90px)
-                0
-                clamp(44px, 6vh, 76px);
-
-            scroll-margin-top: 76px;
-        }
-
-        .experience-inner {
-            display: grid;
-            flex: 0 1 1180px;
-            grid-template-rows: auto auto minmax(240px, 1fr);
-            gap: clamp(26px, 4vh, 50px);
-
-            width: 100%;
-            max-width: calc(100% - 96px);
-            margin: 0 auto;
-        }
-
-        .experience-heading {
-            align-self: start;
-        }
-
-        .experience-kicker {
-            margin: 0 0 12px;
-
-            color: var(--blue-light);
-
-            font-family: "Bebas Neue", sans-serif;
-            font-size: 1rem;
-            letter-spacing: 0.15em;
-            text-transform: uppercase;
-        }
-
-        .experience-title {
-            max-width: 1120px;
-            margin: 0;
-
-            color: #262626;
-
-            font-family: "Bebas Neue", sans-serif;
-            font-size: clamp(4.4rem, 8.2vw, 8.8rem);
-            font-weight: 400;
-            letter-spacing: 0.01em;
-            line-height: 0.84;
-        }
-
-        .experience-meta {
-            display: grid;
-            grid-template-columns: minmax(0, 1fr) auto;
-            gap: clamp(48px, 8vw, 120px);
-            align-items: end;
-        }
-
-        .experience-copy {
-            max-width: 760px;
-            margin: 0;
-
-            color: var(--grey-dark);
-            font-size: clamp(0.92rem, 1.1vw, 1.05rem);
-            line-height: 1.75;
-        }
-
-        .experience-download {
-            display: inline-flex;
-            justify-content: center;
-            align-items: center;
-            gap: 20px;
-
-            min-width: 220px;
-            padding: 16px 24px;
-
-            color: #ffffff;
-            background: #262626;
-            border: 1px solid #262626;
-            border-radius: 999px;
-
-            font-family: "Bebas Neue", sans-serif;
-            font-size: 1rem;
-            letter-spacing: 0.1em;
-            white-space: nowrap;
-
-            transition:
-                color 200ms ease,
-                background-color 200ms ease,
-                transform 200ms ease;
-        }
-
-        .experience-download:hover {
-            color: #262626;
-            background: transparent;
-            transform: translateY(-2px);
-        }
-
-        .experience-image {
-            position: relative;
-
-            width: 100%;
-            min-height: 240px;
-            height: 100%;
-            overflow: hidden;
-
-            background:
-                linear-gradient(
-                    145deg,
-                    #e2eaeb,
-                    #afc2c6
-                );
-
-            border-radius: 24px;
-        }
-
-        .experience-image img,
-        .experience-image video {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-        }
-
-        .experience-image-placeholder {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-
-            width: 100%;
-            height: 100%;
-            min-height: 240px;
-
-            color: var(--blue-dark);
-
-            font-family: "Bebas Neue", sans-serif;
-            font-size: 1rem;
-            letter-spacing: 0.12em;
-        }
-
-        @media (max-height: 850px) and (min-width: 901px) {
-            .experience-page {
-                padding: 38px 0 44px;
-            }
-
-            .experience-inner {
-                gap: 24px;
-            }
-
-            .experience-title {
-                font-size: clamp(4rem, 7vw, 7.2rem);
-            }
-
-            .experience-image,
-            .experience-image-placeholder {
-                min-height: 210px;
-            }
-        }
-
-        @media (max-width: 900px) {
-            .experience-page {
-                min-height: auto;
-                padding: 70px 0;
-                scroll-margin-top: 68px;
-            }
-
-            .experience-inner {
-                flex-basis: auto;
-                grid-template-rows: auto auto auto;
-                gap: 34px;
-
-                width: 100%;
-                max-width: calc(100% - 36px);
-            }
-
-            .experience-title {
-                font-size: clamp(4rem, 12vw, 7rem);
-            }
-
-            .experience-meta {
-                grid-template-columns: 1fr;
-                gap: 26px;
-            }
-
-            .experience-download {
-                justify-self: start;
-            }
-
-            .experience-image,
-            .experience-image-placeholder {
-                min-height: 360px;
-            }
-        }
-
-        @media (max-width: 520px) {
-            .experience-page {
-                padding: 52px 0 58px;
-            }
-
-            .experience-title {
-                font-size: clamp(3.5rem, 15vw, 5.4rem);
-            }
-
-            .experience-image,
-            .experience-image-placeholder {
-                min-height: 280px;
-                border-radius: 18px;
-            }
-        }
-
-
-        /* MARGENS UNIFICADAS E LINK DIRETO */
-
-        :root {
-            --content-width: 1100px;
-            --content-gutter: 128px;
-        }
-
-        .hero .container {
-            width: min(
-                var(--content-width),
-                calc(100% - var(--content-gutter))
-            );
-            margin-right: auto;
-            margin-left: auto;
-        }
-
-        .experience-inner {
-            flex: 0 1 var(--content-width);
-            width: 100%;
-            max-width: calc(100% - var(--content-gutter));
-            margin-right: auto;
-            margin-left: auto;
-        }
-
-        .footer-content {
-            width: min(
-                var(--content-width),
-                calc(100% - var(--content-gutter))
-            );
-            margin-right: auto;
-            margin-left: auto;
-        }
-
-        .experience-topline {
-            display: flex;
-            justify-content: space-between;
-            align-items: baseline;
-            gap: 28px;
-            margin-bottom: 12px;
-        }
-
-        .experience-topline .experience-kicker {
-            margin: 0;
-        }
-
-        .experience-permalink {
-            position: relative;
-            flex: 0 0 auto;
-
-            color: #8a8a8a;
-
-            font-family: "Bebas Neue", sans-serif;
-            font-size: 0.95rem;
-            letter-spacing: 0.1em;
-            text-transform: uppercase;
-
-            transition: color 200ms ease;
-        }
-
-        .experience-permalink::after {
-            content: "";
-            position: absolute;
-            right: 0;
-            bottom: -4px;
-            left: 0;
-
-            height: 1px;
-            background: var(--blue-light);
-
-            transform: scaleX(0);
-            transform-origin: right;
-            transition: transform 220ms ease;
-        }
-
-        .experience-permalink:hover {
-            color: #262626;
-        }
-
-        .experience-permalink:hover::after {
-            transform: scaleX(1);
-            transform-origin: left;
-        }
-
-        @media (max-width: 900px) {
-            :root {
-                --content-gutter: 36px;
-            }
-
-            .experience-topline {
-                align-items: flex-start;
-                flex-direction: column;
-                gap: 8px;
-            }
-
-            .experience-permalink {
-                font-size: 0.9rem;
-            }
-        }
-
-
-        /* EFEITO HOVER — DESFOQUE E TÍTULO */
-
-        .visualizer-item::after {
-            content: "";
-            position: absolute;
-            z-index: 1;
-            inset: 0;
-
-            background:
-                linear-gradient(
-                    to top,
-                    rgba(0, 0, 0, 0.72) 0%,
-                    rgba(0, 0, 0, 0.20) 48%,
-                    rgba(0, 0, 0, 0.04) 100%
-                );
-
-            opacity: 0;
-            pointer-events: none;
-            transition: opacity 320ms ease;
-        }
-
-        .visualizer-title {
-            position: absolute;
-            z-index: 3;
-            right: 28px;
-            bottom: 24px;
-            left: 28px;
-
-            color: #ffffff;
-
-            font-family: "Inter", Arial, sans-serif;
-            font-size: clamp(1rem, 1.4vw, 1.35rem);
-            font-weight: 400;
-            line-height: 1.2;
-
-            opacity: 0;
-            transform: translateY(12px);
-            pointer-events: none;
-
-            transition:
-                opacity 320ms ease,
-                transform 320ms ease;
-        }
-
-        .visualizer-item .visualizer-media,
-        .visualizer-item img,
-        .visualizer-item video {
-            transition:
-                filter 420ms ease,
-                transform 520ms ease;
-        }
-
-        .visualizer-item:hover::after,
-        .visualizer-item:focus-visible::after {
-            opacity: 1;
-        }
-
-        .visualizer-item:hover .visualizer-media,
-        .visualizer-item:hover img,
-        .visualizer-item:hover video,
-        .visualizer-item:focus-visible .visualizer-media,
-        .visualizer-item:focus-visible img,
-        .visualizer-item:focus-visible video {
-            filter: blur(7px);
-            transform: scale(1.055);
-        }
-
-        .visualizer-item:hover .visualizer-title,
-        .visualizer-item:focus-visible .visualizer-title {
-            opacity: 1;
-            transform: translateY(0);
-        }
-
-        .visualizer-item:hover .visualizer-play,
-        .visualizer-item:focus-visible .visualizer-play {
-            opacity: 0.25;
-        }
-
-        .visualizer-item:focus-visible {
-            outline: 2px solid var(--blue-light);
-            outline-offset: 4px;
-        }
-
-        @media (hover: none) {
-            .visualizer-item::after {
-                opacity: 0.58;
-            }
-
-            .visualizer-title {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-
-        @media (max-width: 520px) {
-            .visualizer-title {
-                right: 20px;
-                bottom: 18px;
-                left: 20px;
-                font-size: 1rem;
-            }
-        }
-
-        @media (prefers-reduced-motion: reduce) {
-            .visualizer-title,
-            .visualizer-item::after,
-            .visualizer-item .visualizer-media,
-            .visualizer-item img,
-            .visualizer-item video {
-                transition: none;
-            }
-        }
-
-
-        /* TEMA ESCURO — INSPIRADO NO MENU PRINCIPAL */
-
-        :root {
-            --background: #050505;
-            --text: #f2f2f2;
-            --grey: #9c9c9c;
-            --grey-dark: #b8b8b8;
-
-            --blue-dark: #8fb3ba;
-            --blue-light: #739da6;
-
-            --line: rgba(255, 255, 255, 0.11);
-            --header-background: rgba(5, 5, 5, 0.78);
-        }
-
-        body {
-            background: var(--background);
-            color: var(--text);
-        }
-
-        .site-header {
-            background: var(--header-background);
-            border-bottom-color: var(--line);
-        }
-
-        .main-nav {
-            color: #f0f0f0;
-        }
-
-        .main-nav a::after {
-            background: var(--blue-light);
-        }
-
-        .nav-separator {
-            background: var(--blue-light);
-        }
-
-        .hero h1,
-        .experience-title {
-            color: #e8e8e8;
-        }
-
-        .hero-subtitle {
-            color: #8f8f8f;
-        }
-
-        .visualizer-placeholder {
-            color: #b8d0d5;
-            background:
-                linear-gradient(
-                    145deg,
-                    #182326,
-                    #2e4449
-                );
-        }
-
-        .visualizer-placeholder--video {
-            color: #ffffff;
-            background:
-                linear-gradient(
-                    145deg,
-                    #101a1d,
-                    #315b68
-                );
-        }
-
-        .visualizer-item {
-            background: #172124;
-        }
-
-        .experience-kicker {
-            color: var(--blue-light);
-        }
-
-        .experience-copy {
-            color: #b8b8b8;
-        }
-
-        .experience-download {
-            color: #111111;
-            background: #f1f1f1;
-            border-color: #f1f1f1;
-        }
-
-        .experience-download:hover {
-            color: #f1f1f1;
-            background: transparent;
-        }
-
-        .experience-image {
-            background:
-                linear-gradient(
-                    145deg,
-                    #182326,
-                    #2e4449
-                );
-        }
-
-        .experience-image-placeholder {
-            color: #b8d0d5;
-        }
-
-        .experience-permalink {
-            color: #9a9a9a;
-        }
-
-        .experience-permalink:hover {
-            color: #ffffff;
-        }
-
-        .site-footer {
-            border-top-color: var(--line);
-        }
-
-        .footer-content {
-            color: #8f8f8f;
-        }
-
-        .visualizer-item:focus-visible {
-            outline-color: var(--blue-light);
-        }
-
-        .brand-symbol {
-            border-color: #f2f2f2;
-        }
-
-        ::selection {
-            color: #050505;
-            background: #9fc0c6;
-        }
-
-
-        /* HOVER DE ÁGUA — VÍDEO DE REFLEXOS */
-
-        .water-ripple-video {
-            position: absolute;
-            z-index: 2;
-            inset: -3%;
-
-            display: block;
-            width: 106%;
-            height: 106%;
-
-            object-fit: cover;
-            opacity: 0;
-            mix-blend-mode: screen;
-            filter:
-                brightness(0.92)
-                contrast(1.18);
-
-            pointer-events: none;
-            transform: scale(1.03);
-
-            transition:
-                opacity 360ms ease,
-                transform 650ms ease;
-        }
-
-        .visualizer-item.is-water-ripple .water-ripple-video {
-            opacity: 0.42;
-            transform: scale(1.06);
-        }
-
-        .visualizer-item:hover .visualizer-media,
-        .visualizer-item:hover img,
-        .visualizer-item:hover video:not(.water-ripple-video),
-        .visualizer-item:focus-visible .visualizer-media,
-        .visualizer-item:focus-visible img,
-        .visualizer-item:focus-visible video:not(.water-ripple-video) {
-            filter:
-                blur(2.5px)
-                brightness(0.46)
-                saturate(0.82);
-
-            transform: scale(1.055);
-        }
-
-        .visualizer-title,
-        .visualizer-play {
-            z-index: 4;
-        }
-
-        @media (hover: none) {
-            .water-ripple-video {
-                display: none;
-            }
-        }
-
-        @media (prefers-reduced-motion: reduce) {
-            .water-ripple-video {
-                display: none;
-            }
-        }
-
-
-        /* AJUSTE SUAVE DO EFEITO DE ÁGUA */
-
-        .water-ripple-video {
-            opacity: 0;
-
-            mix-blend-mode: screen;
-
-            filter:
-                blur(1.4px)
-                brightness(0.78)
-                contrast(0.82);
-
-            transform: scale(1.07);
-
-            transition:
-                opacity 480ms ease,
-                transform 850ms ease;
-        }
-
-        .visualizer-item.is-water-ripple .water-ripple-video {
-            opacity: 0.17;
-            transform: scale(1.09);
-        }
-
-        .visualizer-item:hover .visualizer-media,
-        .visualizer-item:hover img,
-        .visualizer-item:hover video:not(.water-ripple-video),
-        .visualizer-item:focus-visible .visualizer-media,
-        .visualizer-item:focus-visible img,
-        .visualizer-item:focus-visible video:not(.water-ripple-video) {
-            filter:
-                blur(3px)
-                brightness(0.52)
-                saturate(0.86);
-
-            transform: scale(1.05);
-        }
-
-
-        /* FADE OUT COM DESFOQUE NAS LATERAIS DA FAIXA */
-
-        .visualizer-viewport {
-            position: relative;
-            isolation: isolate;
-        }
-
-        .visualizer-viewport::before,
-        .visualizer-viewport::after {
-            content: "";
-            position: absolute;
-            z-index: 8;
-            top: 0;
-            bottom: 0;
-
-            width: clamp(70px, 8vw, 150px);
-
-            pointer-events: none;
-
-            backdrop-filter: blur(8px);
-            -webkit-backdrop-filter: blur(8px);
-        }
-
-        .visualizer-viewport::before {
-            left: 0;
-
-            background:
-                linear-gradient(
-                    to right,
-                    rgba(5, 5, 5, 0.98) 0%,
-                    rgba(5, 5, 5, 0.82) 28%,
-                    rgba(5, 5, 5, 0.34) 68%,
-                    rgba(5, 5, 5, 0) 100%
-                );
-
-            -webkit-mask-image:
-                linear-gradient(
-                    to right,
-                    black 0%,
-                    rgba(0, 0, 0, 0.82) 55%,
-                    transparent 100%
-                );
-
-            mask-image:
-                linear-gradient(
-                    to right,
-                    black 0%,
-                    rgba(0, 0, 0, 0.82) 55%,
-                    transparent 100%
-                );
-        }
-
-        .visualizer-viewport::after {
-            right: 0;
-
-            background:
-                linear-gradient(
-                    to left,
-                    rgba(5, 5, 5, 0.98) 0%,
-                    rgba(5, 5, 5, 0.82) 28%,
-                    rgba(5, 5, 5, 0.34) 68%,
-                    rgba(5, 5, 5, 0) 100%
-                );
-
-            -webkit-mask-image:
-                linear-gradient(
-                    to left,
-                    black 0%,
-                    rgba(0, 0, 0, 0.82) 55%,
-                    transparent 100%
-                );
-
-            mask-image:
-                linear-gradient(
-                    to left,
-                    black 0%,
-                    rgba(0, 0, 0, 0.82) 55%,
-                    transparent 100%
-                );
-        }
-
-        @media (max-width: 900px) {
-            .visualizer-viewport::before,
-            .visualizer-viewport::after {
-                width: clamp(42px, 10vw, 90px);
-
-                backdrop-filter: blur(6px);
-                -webkit-backdrop-filter: blur(6px);
-            }
-        }
-
-        @media (max-width: 520px) {
-            .visualizer-viewport::before,
-            .visualizer-viewport::after {
-                width: 48px;
-            }
-        }
-
-
-        /* AJUSTES FINAIS — CONTRASTE, LINK E ÁGUA */
-
-        .hero-subtitle {
-            color: #f1f1f1;
-        }
-
-        /*
-        Fade lateral mais transparente:
-        mantém o blur, mas revela melhor as imagens nas pontas.
-        */
-
-        .visualizer-viewport::before,
-        .visualizer-viewport::after {
-            backdrop-filter: blur(5px);
-            -webkit-backdrop-filter: blur(5px);
-        }
-
-        .visualizer-viewport::before {
-            background:
-                linear-gradient(
-                    to right,
-                    rgba(5, 5, 5, 0.68) 0%,
-                    rgba(5, 5, 5, 0.38) 32%,
-                    rgba(5, 5, 5, 0.12) 70%,
-                    rgba(5, 5, 5, 0) 100%
-                );
-        }
-
-        .visualizer-viewport::after {
-            background:
-                linear-gradient(
-                    to left,
-                    rgba(5, 5, 5, 0.68) 0%,
-                    rgba(5, 5, 5, 0.38) 32%,
-                    rgba(5, 5, 5, 0.12) 70%,
-                    rgba(5, 5, 5, 0) 100%
-                );
-        }
-
-        /*
-        "The Experience" passa a ser o link direto.
-        */
-
-        .experience-topline {
-            justify-content: flex-start;
-        }
-
-        .experience-kicker-link {
-            position: relative;
-            display: inline-flex;
-            align-items: center;
-            gap: 8px;
-
-            width: fit-content;
-            text-decoration: none;
-            cursor: pointer;
-
-            transition: color 220ms ease;
-        }
-
-        .experience-kicker-link::after {
-            content: "";
-            position: absolute;
-            right: 0;
-            bottom: -5px;
-            left: 0;
-
-            height: 1px;
-            background: var(--blue-light);
-
-            transform: scaleX(0);
-            transform-origin: right;
-            transition: transform 220ms ease;
-        }
-
-        .experience-kicker-link:hover {
-            color: #ffffff;
-        }
-
-        .experience-kicker-link:hover::after,
-        .experience-kicker-link:focus-visible::after {
-            transform: scaleX(1);
-            transform-origin: left;
-        }
-
-        .experience-kicker-link:focus-visible {
-            outline: 2px solid var(--blue-light);
-            outline-offset: 5px;
-        }
-
-        /*
-        O mesmo efeito de água passa a funcionar na imagem final.
-        */
-
-        .experience-image .water-ripple-video {
-            border-radius: inherit;
-        }
-
-        .experience-image.is-water-ripple .water-ripple-video {
-            opacity: 0.17;
-            transform: scale(1.09);
-        }
-
-        .experience-image-placeholder,
-        .experience-image img,
-        .experience-image video:not(.water-ripple-video) {
-            transition:
-                filter 480ms ease,
-                transform 700ms ease;
-        }
-
-        .experience-image:hover .experience-image-placeholder,
-        .experience-image:hover img,
-        .experience-image:hover video:not(.water-ripple-video),
-        .experience-image:focus-within .experience-image-placeholder,
-        .experience-image:focus-within img,
-        .experience-image:focus-within video:not(.water-ripple-video) {
-            filter:
-                blur(3px)
-                brightness(0.52)
-                saturate(0.86);
-
-            transform: scale(1.05);
-        }
-
-        @media (max-width: 900px) {
-            .visualizer-viewport::before,
-            .visualizer-viewport::after {
-                backdrop-filter: blur(4px);
-                -webkit-backdrop-filter: blur(4px);
-            }
-        }
-
-
-        /* CABEÇALHO G — LOGÓTIPO — P */
-
-        .header-content {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            height: 100%;
-        }
-
-        .symbol-navigation {
-            display: grid;
-            grid-template-columns: 120px 52px 120px;
-            justify-content: center;
-            align-items: center;
-            column-gap: 28px;
-
-            height: 100%;
-        }
-
-        .expanding-nav-link {
-            display: inline-flex;
-            align-items: baseline;
-
-            width: fit-content;
-            min-width: 1ch;
-
-            color: #f0f0f0;
-
-            font-family: "Bebas Neue", sans-serif;
-            font-size: 1.15rem;
-            letter-spacing: 0.1em;
-            line-height: 1;
-
-            white-space: nowrap;
-            overflow: hidden;
-
-            transition:
-                color 220ms ease,
-                transform 220ms ease;
-        }
-
-        .expanding-nav-link:first-child {
-            justify-self: end;
-        }
-
-        .expanding-nav-link:last-child {
-            justify-self: start;
-        }
-
-        .nav-initial {
-            display: inline-block;
-        }
-
-        .nav-rest {
-            display: inline-block;
-
-            max-width: 0;
-            opacity: 0;
-            overflow: hidden;
-
-            transform: translateX(-5px);
-
-            transition:
-                max-width 360ms cubic-bezier(0.22, 1, 0.36, 1),
-                opacity 220ms ease,
-                transform 360ms cubic-bezier(0.22, 1, 0.36, 1);
-        }
-
-        .expanding-nav-link:hover .nav-rest,
-        .expanding-nav-link:focus-visible .nav-rest {
-            max-width: 90px;
-            opacity: 1;
-            transform: translateX(0);
-        }
-
-        .expanding-nav-link:hover,
-        .expanding-nav-link:focus-visible {
-            color: var(--blue-light);
-            transform: translateY(-1px);
-        }
-
-        .expanding-nav-link:focus-visible,
-        .header-logo:focus-visible {
-            outline: 2px solid var(--blue-light);
-            outline-offset: 6px;
-        }
-
-        .header-logo {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-
-            width: 52px;
-            height: 52px;
-
-            color: #f1f1f1;
-
-            transition:
-                transform 260ms ease,
-                color 220ms ease;
-        }
-
-        .header-logo:hover {
-            color: var(--blue-light);
-            transform: scale(1.06);
-        }
-
-        .temporary-logo-mark {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-
-            width: 34px;
-            height: 34px;
-
-            border: 1px solid currentColor;
-            border-radius: 50%;
-
-            font-family: "Bebas Neue", sans-serif;
-            font-size: 0.85rem;
-            letter-spacing: 0.04em;
-        }
-
-        @media (max-width: 520px) {
-            .symbol-navigation {
-                grid-template-columns: 92px 44px 92px;
-                column-gap: 18px;
-            }
-
-            .header-logo {
-                width: 44px;
-                height: 44px;
-            }
-
-            .temporary-logo-mark {
-                width: 31px;
-                height: 31px;
-                font-size: 0.78rem;
-            }
-
-            .expanding-nav-link {
-                font-size: 1.05rem;
-            }
-        }
-
-
-        /* CABEÇALHO SIMPLES — TEXTO MAIOR */
-
-        .header-content {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            height: 100%;
-        }
-
-        .simple-main-nav {
-            display: flex;
-            align-items: center;
-            gap: 34px;
-
-            color: #f1f1f1;
 
             font-family: "Bebas Neue", sans-serif;
             font-size: 1.28rem;
@@ -1940,13 +113,7 @@
             line-height: 1;
         }
 
-        .simple-main-nav .nav-separator {
-            width: 6px;
-            height: 6px;
-            background: var(--blue-light);
-        }
-
-        .simple-main-nav a {
+        .main-nav > a:not(.header-logo-link) {
             position: relative;
 
             transition:
@@ -1954,7 +121,7 @@
                 transform 220ms ease;
         }
 
-        .simple-main-nav a::after {
+        .main-nav > a:not(.header-logo-link)::after {
             content: "";
             position: absolute;
             right: 0;
@@ -1966,141 +133,24 @@
 
             transform: scaleX(0);
             transform-origin: right;
+
             transition: transform 240ms ease;
         }
 
-        .simple-main-nav a:hover,
-        .simple-main-nav a:focus-visible {
+        .main-nav > a:hover,
+        .main-nav > a:focus-visible {
             color: var(--blue-light);
+        }
+
+        .main-nav > a:not(.header-logo-link):hover,
+        .main-nav > a:not(.header-logo-link):focus-visible {
             transform: translateY(-1px);
         }
 
-        .simple-main-nav a:hover::after,
-        .simple-main-nav a:focus-visible::after {
+        .main-nav > a:not(.header-logo-link):hover::after,
+        .main-nav > a:not(.header-logo-link):focus-visible::after {
             transform: scaleX(1);
             transform-origin: left;
-        }
-
-        .simple-main-nav a:focus-visible {
-            outline: 2px solid var(--blue-light);
-            outline-offset: 7px;
-        }
-
-        @media (max-width: 520px) {
-            .simple-main-nav {
-                gap: 24px;
-                font-size: 1.12rem;
-            }
-
-            .simple-main-nav .nav-separator {
-                width: 5px;
-                height: 5px;
-            }
-        }
-
-
-        /* STEELFISH REGULAR — TÍTULOS DE IMAGENS E VÍDEOS */
-
-        @font-face {
-            font-family: "Steelfish Regular";
-            src: url("assets/fonts/steelfish-rg.otf") format("opentype");
-            font-style: normal;
-            font-weight: 400;
-            font-display: swap;
-        }
-
-        .visualizer-title,
-        .experience-image-title {
-            font-family:
-                "Steelfish Regular",
-                "Arial Narrow",
-                sans-serif;
-
-            font-size: clamp(1.65rem, 2.1vw, 2.35rem);
-            font-style: normal;
-            font-weight: 400;
-            letter-spacing: 0.035em;
-            text-transform: uppercase;
-            line-height: 1;
-        }
-
-        .experience-image-title {
-            position: absolute;
-            z-index: 4;
-            right: 30px;
-            bottom: 26px;
-            left: 30px;
-
-            color: #ffffff;
-
-            opacity: 0;
-            transform: translateY(12px);
-            pointer-events: none;
-
-            transition:
-                opacity 320ms ease,
-                transform 320ms ease;
-        }
-
-        .experience-image::after {
-            content: "";
-            position: absolute;
-            z-index: 1;
-            inset: 0;
-
-            background:
-                linear-gradient(
-                    to top,
-                    rgba(0, 0, 0, 0.68) 0%,
-                    rgba(0, 0, 0, 0.18) 45%,
-                    rgba(0, 0, 0, 0) 75%
-                );
-
-            opacity: 0;
-            pointer-events: none;
-            transition: opacity 320ms ease;
-        }
-
-        .experience-image:hover::after,
-        .experience-image:focus-within::after {
-            opacity: 1;
-        }
-
-        .experience-image:hover .experience-image-title,
-        .experience-image:focus-within .experience-image-title {
-            opacity: 1;
-            transform: translateY(0);
-        }
-
-        @media (hover: none) {
-            .experience-image::after {
-                opacity: 0.52;
-            }
-
-            .experience-image-title {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-
-        @media (max-width: 520px) {
-            .visualizer-title,
-            .experience-image-title {
-                font-size: 1.55rem;
-            }
-
-            .experience-image-title {
-                right: 20px;
-                bottom: 18px;
-                left: 20px;
-            }
-        }
-
-
-        /* LOGÓTIPO CENTRAL NO CABEÇALHO */
-
-        .simple-main-nav {
-            gap: 30px;
         }
 
         .header-logo-link {
@@ -2119,13 +169,13 @@
                 transform 260ms ease;
         }
 
-        .header-logo-link::after {
-            display: none;
+        .header-logo-link:hover,
+        .header-logo-link:focus-visible {
+            opacity: 1;
+            transform: scale(1.07);
         }
 
         .header-logo-image {
-            display: block;
-
             width: auto;
             height: 40px;
             max-width: 38px;
@@ -2133,20 +183,517 @@
             object-fit: contain;
         }
 
-        .header-logo-link:hover,
-        .header-logo-link:focus-visible {
-            opacity: 1;
-            transform: scale(1.07);
+        main {
+            padding-top: var(--header-height);
         }
 
-        .header-logo-link:focus-visible {
-            outline: 2px solid var(--blue-light);
-            outline-offset: 5px;
+        /* HERO */
+
+        .intro-screen {
+            display: flex;
+            flex-direction: column;
+
+            min-height: calc(100svh - var(--header-height));
+        }
+
+        .hero {
+            flex: 0 0 auto;
+
+            padding:
+                clamp(55px, 7vh, 95px)
+                0
+                48px;
+        }
+
+        .hero-title {
+            margin: 0;
+
+            color: #eeeeee;
+
+            font-family: "Bebas Neue", sans-serif;
+            font-size: clamp(5rem, 11vw, 11rem);
+            font-weight: 400;
+            letter-spacing: 0.01em;
+            line-height: 0.8;
+        }
+
+        .hero-subtitle {
+            max-width: 880px;
+            margin: 24px 0 0;
+
+            color: var(--blue-light);
+
+            font-family: "Steelfish", "Arial Narrow", sans-serif;
+            font-size: clamp(2.4rem, 4.7vw, 5.2rem);
+            font-style: italic;
+            font-weight: 400;
+            letter-spacing: 0.025em;
+            line-height: 0.92;
+        }
+
+        /* MOVING STRIP */
+
+        .visualizer-section {
+            display: flex;
+            flex: 1;
+            align-items: center;
+
+            padding: 12px 0 36px;
+        }
+
+        .visualizer-viewport {
+            position: relative;
+
+            width: 100%;
+            height: clamp(350px, 46vh, 540px);
+
+            overflow: hidden;
+            isolation: isolate;
+        }
+
+        .visualizer-track {
+            display: flex;
+            gap: 20px;
+
+            width: max-content;
+            height: 100%;
+
+            will-change: transform;
+        }
+
+        .visualizer-group {
+            display: flex;
+            gap: 20px;
+
+            height: 100%;
+        }
+
+        .visualizer-item {
+            position: relative;
+
+            flex: 0 0 auto;
+
+            height: 100%;
+            aspect-ratio: var(--ratio);
+
+            overflow: hidden;
+
+            background: #20353a;
+            border-radius: 24px;
+
+            cursor: default;
+            user-select: none;
+            isolation: isolate;
+        }
+
+        .visualizer-placeholder {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+
+            width: 100%;
+            height: 100%;
+
+            color: #a9c2c7;
+
+            background:
+                linear-gradient(
+                    145deg,
+                    #18282c,
+                    #2b454b
+                );
+
+            font-family: "Steelfish", "Arial Narrow", sans-serif;
+            font-size: 1.05rem;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+
+            transition:
+                filter 480ms ease,
+                transform 700ms ease;
+        }
+
+        .visualizer-placeholder--light {
+            color: #43636b;
+
+            background:
+                linear-gradient(
+                    145deg,
+                    #d3e0e2,
+                    #9bb4ba
+                );
+        }
+
+        .visualizer-play {
+            position: absolute;
+            z-index: 4;
+            top: 50%;
+            left: 50%;
+
+            display: flex;
+            justify-content: center;
+            align-items: center;
+
+            width: 70px;
+            height: 70px;
+            padding-left: 4px;
+
+            color: #ffffff;
+            border: 1px solid rgba(255, 255, 255, 0.8);
+            border-radius: 50%;
+
+            transform: translate(-50%, -50%);
+            pointer-events: none;
+        }
+
+        .visualizer-title {
+            position: absolute;
+            z-index: 4;
+            right: 24px;
+            bottom: 22px;
+            left: 24px;
+
+            color: #ffffff;
+
+            font-family: "Steelfish", "Arial Narrow", sans-serif;
+            font-size: clamp(1.25rem, 1.45vw, 1.65rem);
+            letter-spacing: 0.04em;
+            line-height: 1;
+            text-transform: uppercase;
+
+            opacity: 0;
+            transform: translateY(12px);
+            pointer-events: none;
+
+            transition:
+                opacity 300ms ease,
+                transform 300ms ease;
+        }
+
+        .visualizer-item:hover .visualizer-title {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .visualizer-item:hover .visualizer-placeholder {
+            filter:
+                blur(3px)
+                brightness(0.52)
+                saturate(0.86);
+
+            transform: scale(1.05);
+        }
+
+        .water-ripple-video {
+            position: absolute;
+            z-index: 2;
+            inset: -3%;
+
+            display: block;
+
+            width: 106%;
+            height: 106%;
+
+            object-fit: cover;
+            border-radius: inherit;
+
+            opacity: 0;
+            mix-blend-mode: screen;
+
+            filter:
+                blur(1.4px)
+                brightness(0.78)
+                contrast(0.82);
+
+            pointer-events: none;
+            transform: scale(1.07);
+
+            transition:
+                opacity 480ms ease,
+                transform 850ms ease;
+        }
+
+        .is-water-ripple .water-ripple-video {
+            opacity: 0.17;
+            transform: scale(1.09);
+        }
+
+        .visualizer-viewport::before,
+        .visualizer-viewport::after {
+            content: "";
+            position: absolute;
+            z-index: 8;
+            top: 0;
+            bottom: 0;
+
+            width: clamp(65px, 8vw, 145px);
+
+            pointer-events: none;
+
+            backdrop-filter: blur(5px);
+            -webkit-backdrop-filter: blur(5px);
+        }
+
+        .visualizer-viewport::before {
+            left: 0;
+
+            background:
+                linear-gradient(
+                    to right,
+                    rgba(5, 5, 5, 0.68) 0%,
+                    rgba(5, 5, 5, 0.38) 32%,
+                    rgba(5, 5, 5, 0.12) 70%,
+                    transparent 100%
+                );
+        }
+
+        .visualizer-viewport::after {
+            right: 0;
+
+            background:
+                linear-gradient(
+                    to left,
+                    rgba(5, 5, 5, 0.68) 0%,
+                    rgba(5, 5, 5, 0.38) 32%,
+                    rgba(5, 5, 5, 0.12) 70%,
+                    transparent 100%
+                );
+        }
+
+        /* EXPERIENCE */
+
+        .experience-page {
+            min-height: 100svh;
+
+            padding:
+                clamp(105px, 13vh, 155px)
+                0
+                clamp(95px, 12vh, 145px);
+        }
+
+        .experience-inner {
+            width: min(
+                var(--content-width),
+                calc(100% - var(--content-gutter))
+            );
+
+            margin-inline: auto;
+        }
+
+        .experience-kicker {
+            display: inline-flex;
+            align-items: baseline;
+            gap: 7px;
+
+            width: fit-content;
+            margin-bottom: 18px;
+
+            color: var(--blue-light);
+
+            font-family: "Steelfish", "Arial Narrow", sans-serif;
+            font-size: 1.2rem;
+            letter-spacing: 0.09em;
+            text-transform: uppercase;
+        }
+
+        .experience-title {
+            max-width: 990px;
+            margin: 0;
+
+            color: #eeeeee;
+
+            font-family: "Bebas Neue", sans-serif;
+            font-size: clamp(4.2rem, 8vw, 8.7rem);
+            font-weight: 400;
+            line-height: 0.86;
+        }
+
+        .experience-meta {
+            display: grid;
+            grid-template-columns: minmax(0, 1fr) auto;
+            gap: 50px;
+            align-items: center;
+
+            margin: 52px 0;
+        }
+
+        .experience-copy {
+            max-width: 690px;
+            margin: 0;
+
+            color: var(--muted);
+
+            font-size: 0.96rem;
+            line-height: 1.78;
+        }
+
+        .experience-download {
+            display: inline-flex;
+            align-items: center;
+            gap: 20px;
+
+            padding: 16px 24px;
+
+            color: #050505;
+            background: #f2f2f2;
+            border-radius: 999px;
+
+            font-family: "Bebas Neue", sans-serif;
+            font-size: 1rem;
+            letter-spacing: 0.1em;
+
+            transition:
+                transform 220ms ease,
+                background-color 220ms ease;
+        }
+
+        .experience-download:hover {
+            background: var(--blue-light);
+            transform: translateY(-2px);
+        }
+
+        .experience-image {
+            position: relative;
+
+            min-height: clamp(470px, 62vh, 760px);
+
+            overflow: hidden;
+
+            background: #20353a;
+            border-radius: 24px;
+
+            isolation: isolate;
+        }
+
+        .experience-image-placeholder {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+
+            width: 100%;
+            height: 100%;
+            min-height: inherit;
+
+            color: #a9c2c7;
+
+            background:
+                linear-gradient(
+                    145deg,
+                    #18282c,
+                    #2b454b
+                );
+
+            font-family: "Steelfish", "Arial Narrow", sans-serif;
+            font-size: 1.15rem;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+
+            transition:
+                filter 480ms ease,
+                transform 700ms ease;
+        }
+
+        .experience-image-title {
+            position: absolute;
+            z-index: 4;
+            right: 28px;
+            bottom: 24px;
+            left: 28px;
+
+            color: #ffffff;
+
+            font-family: "Steelfish", "Arial Narrow", sans-serif;
+            font-size: clamp(1.25rem, 1.45vw, 1.65rem);
+            letter-spacing: 0.04em;
+            text-transform: uppercase;
+
+            opacity: 0;
+            transform: translateY(12px);
+
+            transition:
+                opacity 300ms ease,
+                transform 300ms ease;
+        }
+
+        .experience-image:hover .experience-image-title {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .experience-image:hover .experience-image-placeholder {
+            filter:
+                blur(3px)
+                brightness(0.52)
+                saturate(0.86);
+
+            transform: scale(1.05);
+        }
+
+        /* FOOTER */
+
+        .site-footer {
+            padding: 35px 0 45px;
+            border-top: 1px solid var(--line);
+        }
+
+        .footer-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 24px;
+
+            color: #818181;
+
+            font-size: 0.75rem;
+            letter-spacing: 0.04em;
+        }
+
+        .footer-institution {
+            display: flex;
+            align-items: center;
+            gap: 18px;
+        }
+
+        .footer-ist-logo {
+            display: block;
+
+            width: auto;
+            height: 27px;
+
+            opacity: 0.78;
+            object-fit: contain;
+
+            transition:
+                opacity 220ms ease,
+                transform 220ms ease;
+        }
+
+        .footer-ist-logo:hover {
+            opacity: 1;
+            transform: translateY(-1px);
+        }
+
+        /* RESPONSIVE */
+
+        @media (max-width: 900px) {
+            :root {
+                --content-gutter: 36px;
+            }
+
+            .experience-meta {
+                grid-template-columns: 1fr;
+                gap: 30px;
+            }
         }
 
         @media (max-width: 520px) {
-            .simple-main-nav {
+            :root {
+                --header-height: 68px;
+            }
+
+            .main-nav {
                 gap: 21px;
+                font-size: 1.12rem;
             }
 
             .header-logo-link {
@@ -2159,167 +706,244 @@
                 height: 34px;
                 max-width: 33px;
             }
-        }
 
+            .hero {
+                padding-top: 45px;
+            }
 
-        /* TÍTULOS DE IMAGENS E VÍDEOS — TAMANHO REDUZIDO */
+            .visualizer-viewport {
+                height: 330px;
+            }
 
-        .visualizer-title,
-        .experience-image-title {
-            font-size: clamp(1.25rem, 1.45vw, 1.65rem);
-            letter-spacing: 0.04em;
-        }
+            .footer-content {
+                flex-direction: column;
+                align-items: flex-start;
+            }
 
-        @media (max-width: 520px) {
-            .visualizer-title,
-            .experience-image-title {
-                font-size: 1.2rem;
+            .footer-institution {
+                align-items: flex-start;
+                gap: 14px;
+            }
+
+            .footer-ist-logo {
+                height: 25px;
             }
         }
 
-    
+        @media (hover: none) {
+            .water-ripple-video {
+                display: none;
+            }
 
-        /* FAIXA INICIAL NÃO CLICÁVEL + SUBTÍTULO AZUL */
-
-        .hero-subtitle {
-            color: var(--blue-light);
+            .visualizer-title,
+            .experience-image-title {
+                opacity: 1;
+                transform: none;
+            }
         }
 
-        .visualizer-item {
-            cursor: default;
-            user-select: none;
-        }
+        @media (prefers-reduced-motion: reduce) {
+            *,
+            *::before,
+            *::after {
+                scroll-behavior: auto !important;
+                animation-duration: 0.01ms !important;
+                animation-iteration-count: 1 !important;
+                transition-duration: 0.01ms !important;
+            }
 
-        /*
-        O símbolo de play continua apenas como elemento gráfico.
-        */
-        .visualizer-play {
-            pointer-events: none;
+            .water-ripple-video {
+                display: none;
+            }
         }
-
-</style>
+    </style>
 </head>
+
 <body id="top">
-<header class="site-header">
-<div class="container header-content">
-<nav aria-label="Main navigation" class="main-nav simple-main-nav">
-<a href="gallery.html">Gallery</a>
-<a aria-label="Return to the Hidden Waters homepage" class="header-logo-link" href="#top">
-<img alt="" class="header-logo-image" src="assets/images/hidden-waters-logo-white.png"/>
-</a>
-<a href="process.html">Process</a>
-</nav>
-</div>
-</header>
-<main>
-<div class="intro-screen">
-<section class="hero">
-<div class="container">
-<h1>
+
+    <header class="site-header">
+        <div class="content-width header-content">
+
+            <nav
+                class="main-nav"
+                aria-label="Main navigation"
+            >
+                <a href="gallery.html">
+                    Gallery
+                </a>
+
+                <a
+                    class="header-logo-link"
+                    href="#top"
+                    aria-label="Return to the Hidden Waters homepage"
+                >
+                    <img
+                        class="header-logo-image"
+                        src="assets/images/hidden-waters-logo-white.png"
+                        alt=""
+                    >
+                </a>
+
+                <a href="process.html">
+                    Process
+                </a>
+            </nav>
+
+        </div>
+    </header>
+
+    <main>
+
+        <section class="intro-screen">
+
+            <div class="content-width hero">
+
+                <h1 class="hero-title">
                     Hidden Waters
                 </h1>
-<p class="hero-subtitle">
+
+                <p class="hero-subtitle">
                     A Journey Through the Hydraulic System of Alferrara
                 </p>
-</div>
-</section>
-<section aria-label="Preview of photographs and videos from the project" class="visualizer-section">
-<div class="visualizer-viewport">
-<div class="visualizer-track">
-<div class="visualizer-group">
-<div class="visualizer-item" style="--item-ratio: 0.72;">
-<div class="visualizer-placeholder visualizer-media">
-                                Gallery image 01
+
+            </div>
+
+            <section
+                class="visualizer-section"
+                aria-label="Project visual preview"
+            >
+                <div class="visualizer-viewport">
+
+                    <div class="visualizer-track">
+
+                        <div class="visualizer-group">
+
+                            <div
+                                class="visualizer-item"
+                                style="--ratio: 0.72;"
+                            >
+                                <div class="visualizer-placeholder visualizer-placeholder--light">
+                                    Gallery image 01
+                                </div>
+
+                                <span class="visualizer-title">
+                                    Gallery Image 01
+                                </span>
                             </div>
-<span class="visualizer-title">
-                                Gallery Image 01
-                            </span>
-</div>
-<div class="visualizer-item" style="--item-ratio: 1.78;">
-<div class="visualizer-placeholder visualizer-placeholder--video visualizer-media">
-                                Process video 01
+
+                            <div
+                                class="visualizer-item"
+                                style="--ratio: 1.55;"
+                            >
+                                <div class="visualizer-placeholder">
+                                    Process video 01
+                                </div>
+
+                                <span
+                                    class="visualizer-play"
+                                    aria-hidden="true"
+                                >
+                                    ▶
+                                </span>
+
+                                <span class="visualizer-title">
+                                    Process Video 01
+                                </span>
                             </div>
-<span aria-hidden="true" class="visualizer-play">
-                                ▶
-                            </span>
-<span class="visualizer-title">
-                                Process Video 01
-                            </span>
-</div>
-<div class="visualizer-item" style="--item-ratio: 1;">
-<div class="visualizer-placeholder visualizer-media">
-                                Gallery image 02
+
+                            <div
+                                class="visualizer-item"
+                                style="--ratio: 1.05;"
+                            >
+                                <div class="visualizer-placeholder visualizer-placeholder--light">
+                                    Gallery image 02
+                                </div>
+
+                                <span class="visualizer-title">
+                                    Gallery Image 02
+                                </span>
                             </div>
-<span class="visualizer-title">
-                                Gallery Image 02
-                            </span>
-</div>
-<div class="visualizer-item" style="--item-ratio: 1.48;">
-<div class="visualizer-placeholder visualizer-media">
-                                Gallery image 03
+
+                            <div
+                                class="visualizer-item"
+                                style="--ratio: 1.45;"
+                            >
+                                <div class="visualizer-placeholder">
+                                    Gallery image 03
+                                </div>
+
+                                <span class="visualizer-title">
+                                    Gallery Image 03
+                                </span>
                             </div>
-<span class="visualizer-title">
-                                Gallery Image 03
-                            </span>
-</div>
-<div class="visualizer-item" style="--item-ratio: 0.82;">
-<div class="visualizer-placeholder visualizer-placeholder--video visualizer-media">
-                                Process video 02
+
+                            <div
+                                class="visualizer-item"
+                                style="--ratio: 0.78;"
+                            >
+                                <div class="visualizer-placeholder visualizer-placeholder--light">
+                                    Gallery image 04
+                                </div>
+
+                                <span class="visualizer-title">
+                                    Gallery Image 04
+                                </span>
                             </div>
-<span aria-hidden="true" class="visualizer-play">
-                                ▶
-                            </span>
-<span class="visualizer-title">
-                                Process Video 02
-                            </span>
-</div>
-<div class="visualizer-item" style="--item-ratio: 1.9;">
-<div class="visualizer-placeholder visualizer-media">
-                                Gallery image 04
+
+                            <div
+                                class="visualizer-item"
+                                style="--ratio: 1.5;"
+                            >
+                                <div class="visualizer-placeholder">
+                                    Experience video
+                                </div>
+
+                                <span
+                                    class="visualizer-play"
+                                    aria-hidden="true"
+                                >
+                                    ▶
+                                </span>
+
+                                <span class="visualizer-title">
+                                    Experience Video
+                                </span>
                             </div>
-<span class="visualizer-title">
-                                Gallery Image 04
-                            </span>
-</div>
-<div class="visualizer-item" style="--item-ratio: 1.6;">
-<div class="visualizer-placeholder visualizer-placeholder--video visualizer-media">
-                                Experience video
-                            </div>
-<span aria-hidden="true" class="visualizer-play">
-                                ▶
-                            </span>
-<span class="visualizer-title">
-                                Experience Video
-                            </span>
-</div>
-<div class="visualizer-item" style="--item-ratio: 0.68;">
-<div class="visualizer-placeholder visualizer-media">
-                                Gallery image 05
-                            </div>
-<span class="visualizer-title">
-                                Gallery Image 05
-                            </span>
-</div>
-</div>
-</div>
-</div>
-</section>
-</div>
-<section aria-labelledby="experience-title" class="experience-page" id="experience">
-<div class="experience-inner">
-<header class="experience-heading">
-<div class="experience-topline">
-<a aria-label="Open the direct link to the experience section" class="experience-kicker experience-kicker-link" href="https://sofiapereira-arch.github.io/hidden-waters/#experience">
-                            The experience
-                            <span aria-hidden="true">↗</span>
-</a>
-</div>
-<h2 class="experience-title" id="experience-title">
-                        Exploring the hidden hydraulic landscape
-                    </h2>
-</header>
-<div class="experience-meta">
-<p class="experience-copy">
+
+                        </div>
+
+                    </div>
+
+                </div>
+            </section>
+
+        </section>
+
+        <section
+            class="experience-page"
+            id="experience"
+            aria-labelledby="experience-title"
+        >
+            <div class="experience-inner">
+
+                <a
+                    class="experience-kicker"
+                    href="#experience"
+                >
+                    The Experience
+                    <span aria-hidden="true">↗</span>
+                </a>
+
+                <h2
+                    class="experience-title"
+                    id="experience-title"
+                >
+                    Exploring the Hidden Hydraulic Landscape
+                </h2>
+
+                <div class="experience-meta">
+
+                    <p class="experience-copy">
                         Hidden Waters is an immersive digital reconstruction
                         of the hydraulic system associated with the Convent
                         of Capuchos de Alferrara. The project combines
@@ -2327,136 +951,131 @@
                         and an interactive experience developed in
                         Unreal Engine.
                     </p>
-<a aria-label="Open the Hidden Waters download page" class="experience-download" href="https://github.com/SofiaPereira-arch/hidden-waters/releases" rel="noopener noreferrer" target="_blank">
-                        Download experience
+
+                    <a
+                        class="experience-download"
+                        href="https://github.com/SofiaPereira-arch/hidden-waters/releases"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                    >
+                        Download Experience
                         <span aria-hidden="true">↓</span>
-</a>
-</div>
-<div class="experience-image">
-<div class="experience-image-placeholder">
+                    </a>
+
+                </div>
+
+                <div class="experience-image">
+
+                    <div class="experience-image-placeholder">
                         Experience image
                     </div>
-<span class="experience-image-title">
+
+                    <span class="experience-image-title">
                         Hidden Waters Experience
                     </span>
-</div>
-</div>
-</section>
-</main>
-<footer class="site-footer">
-<div class="container footer-content">
-<span>
+
+                </div>
+
+            </div>
+        </section>
+
+    </main>
+
+    <footer class="site-footer">
+        <div class="content-width footer-content">
+
+            <span>
                 Hidden Waters
             </span>
-<span>
-                Thesis companion website · 2026
-            </span>
-</div>
-</footer>
-<script>
+
+            <div class="footer-institution">
+
+                <span>
+                    Thesis companion website · 2026
+                </span>
+
+                <img
+                    class="footer-ist-logo"
+                    src="assets/images/ist-logo-white.png"
+                    alt="Instituto Superior Técnico"
+                >
+
+            </div>
+
+        </div>
+    </footer>
+
+    <script>
         (() => {
-            const viewport = document.querySelector(".visualizer-viewport");
-            const track = document.querySelector(".visualizer-track");
-            const originalGroup = document.querySelector(".visualizer-group");
+            const viewport =
+                document.querySelector(".visualizer-viewport");
+
+            const track =
+                document.querySelector(".visualizer-track");
+
+            const originalGroup =
+                document.querySelector(".visualizer-group");
 
             if (!viewport || !track || !originalGroup) {
                 return;
             }
 
-            const SPEED = 38;
-            const reducedMotion = window.matchMedia(
-                "(prefers-reduced-motion: reduce)"
+            const duplicateGroup =
+                originalGroup.cloneNode(true);
+
+            duplicateGroup.setAttribute(
+                "aria-hidden",
+                "true"
             );
 
-            const duplicateGroup = originalGroup.cloneNode(true);
-            duplicateGroup.setAttribute("aria-hidden", "true");
-
-            duplicateGroup
-                .querySelectorAll("a, button, video")
-                .forEach((element) => {
-                    element.setAttribute("tabindex", "-1");
-                });
-
             track.appendChild(duplicateGroup);
+
+            const speed = 38;
+
+            const reducedMotion =
+                window.matchMedia(
+                    "(prefers-reduced-motion: reduce)"
+                );
 
             let distance = 0;
             let previousTime = performance.now();
             let loopWidth = 0;
 
-            function setMediaRatio(media) {
-                const item = media.closest(".visualizer-item");
-
-                if (!item) {
-                    return;
-                }
-
-                const width =
-                    media.naturalWidth ||
-                    media.videoWidth;
-
-                const height =
-                    media.naturalHeight ||
-                    media.videoHeight;
-
-                if (width && height) {
-                    item.style.setProperty(
-                        "--item-ratio",
-                        `${width} / ${height}`
-                    );
-                }
-            }
-
-            track.querySelectorAll("img").forEach((image) => {
-                if (image.complete) {
-                    setMediaRatio(image);
-                } else {
-                    image.addEventListener(
-                        "load",
-                        () => setMediaRatio(image),
-                        { once: true }
-                    );
-                }
-            });
-
-            track.querySelectorAll("video").forEach((video) => {
-                if (video.readyState >= 1) {
-                    setMediaRatio(video);
-                } else {
-                    video.addEventListener(
-                        "loadedmetadata",
-                        () => setMediaRatio(video),
-                        { once: true }
-                    );
-                }
-            });
-
             function measureLoop() {
-                const trackStyles = window.getComputedStyle(track);
-                const gap = Number.parseFloat(trackStyles.columnGap) || 0;
+                const styles =
+                    getComputedStyle(track);
+
+                const gap =
+                    Number.parseFloat(
+                        styles.columnGap
+                    ) || 0;
 
                 loopWidth =
-                    originalGroup.getBoundingClientRect().width +
-                    gap;
+                    originalGroup
+                        .getBoundingClientRect()
+                        .width
+                    + gap;
 
                 if (loopWidth > 0) {
                     distance %= loopWidth;
                 }
             }
 
-            function animate(currentTime) {
-                const elapsed = Math.min(
-                    (currentTime - previousTime) / 1000,
-                    0.1
-                );
+            function animate(time) {
+                const elapsed =
+                    Math.min(
+                        (time - previousTime) / 1000,
+                        0.1
+                    );
 
-                previousTime = currentTime;
+                previousTime = time;
 
                 if (
                     !document.hidden &&
                     !reducedMotion.matches &&
                     loopWidth > 0
                 ) {
-                    distance += SPEED * elapsed;
+                    distance += speed * elapsed;
 
                     if (distance >= loopWidth) {
                         distance -= loopWidth;
@@ -2466,27 +1085,22 @@
                         `translate3d(${-distance}px, 0, 0)`;
                 }
 
-                window.requestAnimationFrame(animate);
+                requestAnimationFrame(animate);
             }
 
-            const resizeObserver = new ResizeObserver(measureLoop);
-            resizeObserver.observe(originalGroup);
-            resizeObserver.observe(viewport);
+            new ResizeObserver(
+                measureLoop
+            ).observe(originalGroup);
 
-            reducedMotion.addEventListener("change", () => {
-                if (reducedMotion.matches) {
-                    track.style.transform = "none";
-                } else {
-                    previousTime = performance.now();
-                    measureLoop();
-                }
-            });
+            window.addEventListener(
+                "resize",
+                measureLoop
+            );
 
             measureLoop();
-            window.requestAnimationFrame(animate);
+            requestAnimationFrame(animate);
         })();
-    </script>
-<script>
+
         (() => {
             const items = [
                 ...document.querySelectorAll(
@@ -2498,45 +1112,54 @@
                 return;
             }
 
-            const waterVideo = document.createElement("video");
+            const waterVideo =
+                document.createElement("video");
 
-            waterVideo.className = "water-ripple-video";
-            waterVideo.src = "assets/media/water-ripple-overlay.mp4";
+            waterVideo.className =
+                "water-ripple-video";
+
+            waterVideo.src =
+                "assets/media/water-ripple-overlay.mp4";
+
             waterVideo.muted = true;
             waterVideo.loop = true;
             waterVideo.autoplay = true;
             waterVideo.playsInline = true;
             waterVideo.preload = "auto";
-            waterVideo.setAttribute("aria-hidden", "true");
-            waterVideo.setAttribute("tabindex", "-1");
+
+            waterVideo.setAttribute(
+                "aria-hidden",
+                "true"
+            );
 
             let activeItem = null;
             let hideTimer = null;
 
             function activate(item) {
-                window.clearTimeout(hideTimer);
+                clearTimeout(hideTimer);
 
-                if (activeItem && activeItem !== item) {
+                if (
+                    activeItem &&
+                    activeItem !== item
+                ) {
                     activeItem.classList.remove(
                         "is-water-ripple"
                     );
                 }
 
                 activeItem = item;
-                activeItem.appendChild(waterVideo);
-                activeItem.classList.add(
+
+                item.appendChild(waterVideo);
+
+                item.classList.add(
                     "is-water-ripple"
                 );
 
-                const playAttempt = waterVideo.play();
+                const playAttempt =
+                    waterVideo.play();
 
-                if (
-                    playAttempt &&
-                    typeof playAttempt.catch === "function"
-                ) {
-                    playAttempt.catch(() => {
-                        // O vídeo é silencioso; normalmente o browser permite.
-                    });
+                if (playAttempt?.catch) {
+                    playAttempt.catch(() => {});
                 }
             }
 
@@ -2549,15 +1172,16 @@
                     "is-water-ripple"
                 );
 
-                hideTimer = window.setTimeout(() => {
-                    if (
-                        activeItem === item &&
-                        waterVideo.parentElement === item
-                    ) {
-                        waterVideo.remove();
-                        activeItem = null;
-                    }
-                }, 380);
+                hideTimer =
+                    setTimeout(() => {
+                        if (
+                            activeItem === item &&
+                            waterVideo.parentElement === item
+                        ) {
+                            waterVideo.remove();
+                            activeItem = null;
+                        }
+                    }, 480);
             }
 
             items.forEach((item) => {
@@ -2583,5 +1207,6 @@
             });
         })();
     </script>
+
 </body>
 </html>
