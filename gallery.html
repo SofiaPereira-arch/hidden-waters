@@ -1,0 +1,1083 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <meta
+        name="description"
+        content="Artbook and visual gallery for the Hidden Waters thesis project."
+    >
+
+    <title>Artbook · Hidden Waters</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    <link
+        href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:wght@300;400;500;600&display=swap"
+        rel="stylesheet"
+    >
+
+    <style>
+        @font-face {
+            font-family: "Steelfish";
+            src: url("assets/fonts/steelfish-rg.otf") format("opentype");
+            font-style: normal;
+            font-weight: 400;
+            font-display: swap;
+        }
+
+        @font-face {
+            font-family: "Steelfish";
+            src: url("assets/fonts/steelfish-rg-it.otf") format("opentype");
+            font-style: italic;
+            font-weight: 400;
+            font-display: swap;
+        }
+
+        :root {
+            --background: #050505;
+            --text: #f2f2f2;
+            --muted: #a6a6a6;
+
+            --blue: #739da6;
+            --blue-light: #8fb3ba;
+
+            --line: rgba(255, 255, 255, 0.11);
+            --header-background: rgba(5, 5, 5, 0.78);
+
+            /* Mesmas margens da Home e da página Process */
+            --content-width: 1100px;
+            --content-gutter: 128px;
+
+            --gallery-gap: 28px;
+            --card-radius: 24px;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+            scroll-padding-top: 96px;
+        }
+
+        body {
+            margin: 0;
+
+            color: var(--text);
+            background: var(--background);
+
+            font-family: "Inter", Arial, sans-serif;
+            line-height: 1.6;
+        }
+
+        button,
+        a {
+            color: inherit;
+        }
+
+        a {
+            text-decoration: none;
+        }
+
+        button {
+            font: inherit;
+        }
+
+        img {
+            display: block;
+            width: 100%;
+        }
+
+        ::selection {
+            color: #050505;
+            background: #9fc0c6;
+        }
+
+        .content-width {
+            width: min(
+                var(--content-width),
+                calc(100% - var(--content-gutter))
+            );
+
+            margin-right: auto;
+            margin-left: auto;
+        }
+
+        /*
+        CABEÇALHO
+        */
+
+        .site-header {
+            position: fixed;
+            z-index: 1000;
+            top: 0;
+            right: 0;
+            left: 0;
+
+            height: 76px;
+
+            background: var(--header-background);
+            border-bottom: 1px solid var(--line);
+
+            backdrop-filter: blur(18px) saturate(150%);
+            -webkit-backdrop-filter: blur(18px) saturate(150%);
+        }
+
+        .header-content {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+
+            height: 100%;
+        }
+
+        .main-nav {
+            display: flex;
+            align-items: center;
+            gap: 30px;
+
+            color: #f1f1f1;
+
+            font-family: "Bebas Neue", sans-serif;
+            font-size: 1.28rem;
+            letter-spacing: 0.12em;
+            line-height: 1;
+        }
+
+        .main-nav > a:not(.header-logo-link) {
+            position: relative;
+
+            transition:
+                color 220ms ease,
+                transform 220ms ease;
+        }
+
+        .main-nav > a:not(.header-logo-link)::after {
+            content: "";
+            position: absolute;
+            right: 0;
+            bottom: -7px;
+            left: 0;
+
+            height: 1px;
+            background: var(--blue-light);
+
+            transform: scaleX(0);
+            transform-origin: right;
+
+            transition: transform 240ms ease;
+        }
+
+        .main-nav > a:hover,
+        .main-nav > a:focus-visible {
+            color: var(--blue-light);
+        }
+
+        .main-nav > a:not(.header-logo-link):hover,
+        .main-nav > a:not(.header-logo-link):focus-visible {
+            transform: translateY(-1px);
+        }
+
+        .main-nav > a:not(.header-logo-link):hover::after,
+        .main-nav > a:not(.header-logo-link):focus-visible::after,
+        .main-nav > a[aria-current="page"]::after {
+            transform: scaleX(1);
+            transform-origin: left;
+        }
+
+        .header-logo-link {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+
+            width: 42px;
+            height: 52px;
+            flex: 0 0 42px;
+
+            opacity: 0.94;
+
+            transition:
+                opacity 220ms ease,
+                transform 260ms ease;
+        }
+
+        .header-logo-link:hover,
+        .header-logo-link:focus-visible {
+            opacity: 1;
+            transform: scale(1.07);
+        }
+
+        .header-logo-image {
+            display: block;
+
+            width: auto;
+            height: 40px;
+            max-width: 38px;
+
+            object-fit: contain;
+        }
+
+        /*
+        TÍTULO
+        */
+
+        main {
+            padding-top: 76px;
+        }
+
+        .gallery-hero {
+            padding:
+                clamp(55px, 7vh, 95px)
+                0
+                clamp(58px, 7vh, 86px);
+        }
+
+        .gallery-title {
+            margin: 0;
+
+            color: #eeeeee;
+
+            font-family: "Bebas Neue", sans-serif;
+            font-size: clamp(5rem, 11vw, 11rem);
+            font-weight: 400;
+            letter-spacing: 0.01em;
+            line-height: 0.8;
+        }
+
+        .gallery-introduction {
+            max-width: 620px;
+            margin: 34px 0 0;
+
+            color: var(--muted);
+            font-size: 0.98rem;
+            line-height: 1.78;
+        }
+
+        /*
+        ARTBOOK / MASONRY
+        */
+
+        .artbook {
+            display: grid;
+            grid-template-columns: repeat(2, minmax(0, 1fr));
+            align-items: start;
+            gap: var(--gallery-gap);
+
+            padding-bottom: clamp(100px, 13vh, 170px);
+        }
+
+        .gallery-column {
+            display: flex;
+            flex-direction: column;
+            gap: var(--gallery-gap);
+        }
+
+        .gallery-column--right {
+            padding-top: 66px;
+        }
+
+        .gallery-card {
+            position: relative;
+
+            display: block;
+            width: 100%;
+            padding: 0;
+
+            overflow: hidden;
+
+            color: #ffffff;
+            background: #17272b;
+
+            border: 0;
+            border-radius: var(--card-radius);
+
+            cursor: zoom-in;
+            text-align: left;
+
+            isolation: isolate;
+
+            transition:
+                transform 420ms cubic-bezier(0.22, 1, 0.36, 1),
+                box-shadow 420ms ease;
+        }
+
+        .gallery-card:hover,
+        .gallery-card:focus-visible {
+            z-index: 10;
+
+            transform: translateY(-5px) scale(1.018);
+
+            box-shadow:
+                0 26px 68px rgba(0, 0, 0, 0.44),
+                0 0 0 1px rgba(143, 179, 186, 0.08);
+        }
+
+        .gallery-card:focus-visible {
+            outline: 2px solid var(--blue-light);
+            outline-offset: 6px;
+        }
+
+        .gallery-card--portrait {
+            aspect-ratio: 4 / 5;
+        }
+
+        .gallery-card--tall {
+            aspect-ratio: 3 / 5;
+        }
+
+        .gallery-card--square {
+            aspect-ratio: 1 / 1;
+        }
+
+        .gallery-card--landscape {
+            aspect-ratio: 16 / 9;
+        }
+
+        .gallery-card--wide {
+            aspect-ratio: 7 / 4;
+        }
+
+        .gallery-media,
+        .gallery-media img {
+            width: 100%;
+            height: 100%;
+        }
+
+        .gallery-media {
+            position: absolute;
+            inset: 0;
+
+            overflow: hidden;
+            border-radius: inherit;
+        }
+
+        .gallery-media img {
+            object-fit: cover;
+
+            transition:
+                transform 700ms cubic-bezier(0.22, 1, 0.36, 1),
+                filter 420ms ease;
+        }
+
+        /*
+        Placeholders temporários.
+        Mais tarde podes substituir cada .gallery-placeholder por:
+        <img src="assets/images/nome-da-imagem.jpg" alt="Descrição">
+        */
+
+        .gallery-placeholder {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+
+            width: 100%;
+            height: 100%;
+
+            color: rgba(179, 208, 214, 0.82);
+
+            background:
+                radial-gradient(
+                    circle at 28% 22%,
+                    rgba(122, 164, 173, 0.24),
+                    transparent 42%
+                ),
+                linear-gradient(
+                    145deg,
+                    #122024,
+                    #294047
+                );
+
+            font-family: "Steelfish", "Arial Narrow", sans-serif;
+            font-size: 1.15rem;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+
+            transition:
+                transform 700ms cubic-bezier(0.22, 1, 0.36, 1),
+                filter 420ms ease;
+        }
+
+        .gallery-placeholder--light {
+            color: #42626a;
+
+            background:
+                linear-gradient(
+                    145deg,
+                    #d3e0e2,
+                    #9bb4ba
+                );
+        }
+
+        .gallery-card:hover .gallery-media img,
+        .gallery-card:focus-visible .gallery-media img,
+        .gallery-card:hover .gallery-placeholder,
+        .gallery-card:focus-visible .gallery-placeholder {
+            transform: scale(1.055);
+        }
+
+        .gallery-card::after {
+            content: "";
+            position: absolute;
+            z-index: 1;
+            inset: 0;
+
+            background:
+                linear-gradient(
+                    to top,
+                    rgba(0, 0, 0, 0.70) 0%,
+                    rgba(0, 0, 0, 0.12) 44%,
+                    transparent 72%
+                );
+
+            opacity: 0;
+            pointer-events: none;
+
+            transition: opacity 320ms ease;
+        }
+
+        .gallery-card:hover::after,
+        .gallery-card:focus-visible::after {
+            opacity: 1;
+        }
+
+        .gallery-card-title {
+            position: absolute;
+            z-index: 3;
+            right: 24px;
+            bottom: 21px;
+            left: 24px;
+
+            color: #ffffff;
+
+            font-family: "Steelfish", "Arial Narrow", sans-serif;
+            font-size: clamp(1.25rem, 1.45vw, 1.65rem);
+            font-weight: 400;
+            letter-spacing: 0.045em;
+            line-height: 1;
+            text-transform: uppercase;
+
+            opacity: 0;
+            transform: translateY(12px);
+            pointer-events: none;
+
+            transition:
+                opacity 300ms ease,
+                transform 300ms ease;
+        }
+
+        .gallery-card:hover .gallery-card-title,
+        .gallery-card:focus-visible .gallery-card-title {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /*
+        LIGHTBOX
+        */
+
+        .lightbox {
+            position: fixed;
+            z-index: 2000;
+            inset: 0;
+
+            display: grid;
+            place-items: center;
+
+            padding: 38px;
+
+            background: rgba(0, 0, 0, 0.90);
+
+            opacity: 0;
+            visibility: hidden;
+
+            backdrop-filter: blur(18px);
+            -webkit-backdrop-filter: blur(18px);
+
+            transition:
+                opacity 280ms ease,
+                visibility 280ms ease;
+        }
+
+        .lightbox.is-open {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .lightbox-dialog {
+            position: relative;
+
+            width: min(1180px, 94vw);
+            max-height: 88vh;
+
+            overflow: hidden;
+
+            background: #101719;
+            border-radius: 26px;
+
+            box-shadow:
+                0 34px 100px rgba(0, 0, 0, 0.72);
+        }
+
+        .lightbox-media {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+
+            width: 100%;
+            height: min(78vh, 820px);
+
+            background:
+                linear-gradient(
+                    145deg,
+                    #122024,
+                    #294047
+                );
+        }
+
+        .lightbox-media img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+        }
+
+        .lightbox-placeholder {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+
+            width: 100%;
+            height: 100%;
+
+            color: #b3d0d6;
+
+            font-family: "Steelfish", "Arial Narrow", sans-serif;
+            font-size: 2rem;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+        }
+
+        .lightbox-caption {
+            position: absolute;
+            right: 30px;
+            bottom: 25px;
+            left: 30px;
+
+            color: #ffffff;
+
+            font-family: "Steelfish", "Arial Narrow", sans-serif;
+            font-size: 1.55rem;
+            letter-spacing: 0.045em;
+            text-transform: uppercase;
+        }
+
+        .lightbox-close {
+            position: absolute;
+            z-index: 4;
+            top: 18px;
+            right: 18px;
+
+            display: flex;
+            justify-content: center;
+            align-items: center;
+
+            width: 44px;
+            height: 44px;
+
+            color: #ffffff;
+            background: rgba(5, 5, 5, 0.58);
+
+            border: 1px solid rgba(255, 255, 255, 0.26);
+            border-radius: 50%;
+
+            cursor: pointer;
+            font-size: 1.25rem;
+
+            transition:
+                background-color 220ms ease,
+                transform 220ms ease;
+        }
+
+        .lightbox-close:hover,
+        .lightbox-close:focus-visible {
+            background: rgba(115, 157, 166, 0.55);
+            transform: scale(1.06);
+        }
+
+        /*
+        RODAPÉ
+        */
+
+        .site-footer {
+            padding: 34px 0 44px;
+            border-top: 1px solid var(--line);
+        }
+
+        .footer-content {
+            display: flex;
+            justify-content: space-between;
+            gap: 24px;
+
+            color: #818181;
+            font-size: 0.75rem;
+            letter-spacing: 0.04em;
+        }
+
+        /*
+        RESPONSIVO
+        */
+
+        @media (max-width: 900px) {
+            :root {
+                --content-gutter: 36px;
+                --gallery-gap: 20px;
+                --card-radius: 20px;
+            }
+
+            .gallery-column--right {
+                padding-top: 44px;
+            }
+        }
+
+        @media (max-width: 650px) {
+            .artbook {
+                grid-template-columns: 1fr;
+            }
+
+            .gallery-column--right {
+                padding-top: 0;
+            }
+
+            .gallery-card-title {
+                opacity: 1;
+                transform: none;
+            }
+
+            .gallery-card::after {
+                opacity: 0.52;
+            }
+        }
+
+        @media (max-width: 520px) {
+            .site-header {
+                height: 68px;
+            }
+
+            main {
+                padding-top: 68px;
+            }
+
+            .main-nav {
+                gap: 21px;
+                font-size: 1.12rem;
+            }
+
+            .header-logo-link {
+                width: 36px;
+                height: 46px;
+                flex-basis: 36px;
+            }
+
+            .header-logo-image {
+                height: 34px;
+                max-width: 33px;
+            }
+
+            .gallery-title {
+                font-size: clamp(4.8rem, 22vw, 7rem);
+            }
+
+            .gallery-introduction {
+                margin-top: 26px;
+            }
+
+            .lightbox {
+                padding: 16px;
+            }
+
+            .lightbox-dialog {
+                border-radius: 19px;
+            }
+
+            .footer-content {
+                flex-direction: column;
+                gap: 7px;
+            }
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+            *,
+            *::before,
+            *::after {
+                scroll-behavior: auto !important;
+                transition-duration: 0.01ms !important;
+                animation-duration: 0.01ms !important;
+                animation-iteration-count: 1 !important;
+            }
+        }
+    </style>
+</head>
+
+<body id="top">
+
+    <header class="site-header">
+        <div class="content-width header-content">
+
+            <nav
+                class="main-nav"
+                aria-label="Main navigation"
+            >
+                <a
+                    href="gallery.html"
+                    aria-current="page"
+                >
+                    Gallery
+                </a>
+
+                <a
+                    class="header-logo-link"
+                    href="index.html"
+                    aria-label="Return to the Hidden Waters homepage"
+                >
+                    <img
+                        class="header-logo-image"
+                        src="assets/images/hidden-waters-logo-white.png"
+                        alt=""
+                    >
+                </a>
+
+                <a href="process.html">
+                    Process
+                </a>
+            </nav>
+
+        </div>
+    </header>
+
+    <main>
+
+        <section class="gallery-hero">
+            <div class="content-width">
+
+                <h1 class="gallery-title">
+                    Artbook
+                </h1>
+
+                <p class="gallery-introduction">
+                    A visual record of the architectural reconstruction,
+                    environmental studies and development of the Hidden Waters
+                    experience.
+                </p>
+
+            </div>
+        </section>
+
+        <section
+            class="content-width artbook"
+            aria-label="Hidden Waters visual gallery"
+        >
+
+            <div class="gallery-column">
+
+                <button
+                    class="gallery-card gallery-card--portrait"
+                    type="button"
+                    data-title="Convent Reconstruction"
+                >
+                    <span class="gallery-media">
+                        <span class="gallery-placeholder gallery-placeholder--light">
+                            Image 01
+                        </span>
+                    </span>
+
+                    <span class="gallery-card-title">
+                        Convent Reconstruction
+                    </span>
+                </button>
+
+                <button
+                    class="gallery-card gallery-card--square"
+                    type="button"
+                    data-title="Hydraulic Detail"
+                >
+                    <span class="gallery-media">
+                        <span class="gallery-placeholder">
+                            Image 03
+                        </span>
+                    </span>
+
+                    <span class="gallery-card-title">
+                        Hydraulic Detail
+                    </span>
+                </button>
+
+                <button
+                    class="gallery-card gallery-card--wide"
+                    type="button"
+                    data-title="Landscape Study"
+                >
+                    <span class="gallery-media">
+                        <span class="gallery-placeholder gallery-placeholder--light">
+                            Image 05
+                        </span>
+                    </span>
+
+                    <span class="gallery-card-title">
+                        Landscape Study
+                    </span>
+                </button>
+
+                <button
+                    class="gallery-card gallery-card--portrait"
+                    type="button"
+                    data-title="Archive and Research"
+                >
+                    <span class="gallery-media">
+                        <span class="gallery-placeholder">
+                            Image 07
+                        </span>
+                    </span>
+
+                    <span class="gallery-card-title">
+                        Archive and Research
+                    </span>
+                </button>
+
+                <button
+                    class="gallery-card gallery-card--landscape"
+                    type="button"
+                    data-title="Atmosphere Study"
+                >
+                    <span class="gallery-media">
+                        <span class="gallery-placeholder gallery-placeholder--light">
+                            Image 09
+                        </span>
+                    </span>
+
+                    <span class="gallery-card-title">
+                        Atmosphere Study
+                    </span>
+                </button>
+
+            </div>
+
+            <div class="gallery-column gallery-column--right">
+
+                <button
+                    class="gallery-card gallery-card--landscape"
+                    type="button"
+                    data-title="Water System"
+                >
+                    <span class="gallery-media">
+                        <span class="gallery-placeholder">
+                            Image 02
+                        </span>
+                    </span>
+
+                    <span class="gallery-card-title">
+                        Water System
+                    </span>
+                </button>
+
+                <button
+                    class="gallery-card gallery-card--tall"
+                    type="button"
+                    data-title="Underground Gallery"
+                >
+                    <span class="gallery-media">
+                        <span class="gallery-placeholder gallery-placeholder--light">
+                            Image 04
+                        </span>
+                    </span>
+
+                    <span class="gallery-card-title">
+                        Underground Gallery
+                    </span>
+                </button>
+
+                <button
+                    class="gallery-card gallery-card--portrait"
+                    type="button"
+                    data-title="Interactive Archive"
+                >
+                    <span class="gallery-media">
+                        <span class="gallery-placeholder">
+                            Image 06
+                        </span>
+                    </span>
+
+                    <span class="gallery-card-title">
+                        Interactive Archive
+                    </span>
+                </button>
+
+                <button
+                    class="gallery-card gallery-card--tall"
+                    type="button"
+                    data-title="Final Experience"
+                >
+                    <span class="gallery-media">
+                        <span class="gallery-placeholder gallery-placeholder--light">
+                            Image 08
+                        </span>
+                    </span>
+
+                    <span class="gallery-card-title">
+                        Final Experience
+                    </span>
+                </button>
+
+            </div>
+
+        </section>
+
+    </main>
+
+    <footer class="site-footer">
+        <div class="content-width footer-content">
+            <span>Hidden Waters</span>
+            <span>Thesis companion website · 2026</span>
+        </div>
+    </footer>
+
+    <div
+        class="lightbox"
+        role="dialog"
+        aria-modal="true"
+        aria-hidden="true"
+        aria-label="Expanded gallery image"
+    >
+        <div class="lightbox-dialog">
+
+            <button
+                class="lightbox-close"
+                type="button"
+                aria-label="Close image"
+            >
+                ×
+            </button>
+
+            <div class="lightbox-media">
+                <div class="lightbox-placeholder"></div>
+            </div>
+
+            <div class="lightbox-caption"></div>
+
+        </div>
+    </div>
+
+    <script>
+        (() => {
+            const cards = [
+                ...document.querySelectorAll(".gallery-card")
+            ];
+
+            const lightbox =
+                document.querySelector(".lightbox");
+
+            const lightboxMedia =
+                document.querySelector(".lightbox-media");
+
+            const lightboxPlaceholder =
+                document.querySelector(".lightbox-placeholder");
+
+            const lightboxCaption =
+                document.querySelector(".lightbox-caption");
+
+            const closeButton =
+                document.querySelector(".lightbox-close");
+
+            let lastFocusedCard = null;
+
+            function openLightbox(card) {
+                lastFocusedCard = card;
+
+                const title =
+                    card.dataset.title || "Gallery image";
+
+                const image =
+                    card.querySelector("img");
+
+                lightboxMedia
+                    .querySelectorAll("img")
+                    .forEach((element) => element.remove());
+
+                if (image) {
+                    const expandedImage =
+                        document.createElement("img");
+
+                    expandedImage.src = image.src;
+                    expandedImage.alt = image.alt;
+
+                    lightboxMedia.prepend(expandedImage);
+                    lightboxPlaceholder.hidden = true;
+                } else {
+                    lightboxPlaceholder.hidden = false;
+                    lightboxPlaceholder.textContent = title;
+                }
+
+                lightboxCaption.textContent = title;
+
+                lightbox.classList.add("is-open");
+                lightbox.setAttribute("aria-hidden", "false");
+
+                document.body.style.overflow = "hidden";
+
+                closeButton.focus();
+            }
+
+            function closeLightbox() {
+                lightbox.classList.remove("is-open");
+                lightbox.setAttribute("aria-hidden", "true");
+
+                document.body.style.overflow = "";
+
+                if (lastFocusedCard) {
+                    lastFocusedCard.focus();
+                }
+            }
+
+            cards.forEach((card) => {
+                card.addEventListener(
+                    "click",
+                    () => openLightbox(card)
+                );
+            });
+
+            closeButton.addEventListener(
+                "click",
+                closeLightbox
+            );
+
+            lightbox.addEventListener(
+                "click",
+                (event) => {
+                    if (event.target === lightbox) {
+                        closeLightbox();
+                    }
+                }
+            );
+
+            document.addEventListener(
+                "keydown",
+                (event) => {
+                    if (
+                        event.key === "Escape" &&
+                        lightbox.classList.contains("is-open")
+                    ) {
+                        closeLightbox();
+                    }
+                }
+            );
+        })();
+    </script>
+
+</body>
+</html>
