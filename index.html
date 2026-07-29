@@ -15,13 +15,27 @@
 
     <title>Hidden Waters</title>
 
+    <!-- Bebas Neue -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    <link
+        href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:wght@300;400;500;600&display=swap"
+        rel="stylesheet"
+    >
+
     <style>
         :root {
-            --background: #f4f2ec;
-            --text: #202425;
+            --background: #ffffff;
+            --text: #111111;
+            --grey: #b5b5b5;
+            --grey-dark: #6f6f6f;
+
             --blue-dark: #315b68;
             --blue-light: #83a9b0;
-            --line: rgba(32, 36, 37, 0.22);
+
+            --line: rgba(17, 17, 17, 0.1);
+            --header-background: rgba(255, 255, 255, 0.74);
         }
 
         * {
@@ -36,7 +50,8 @@
             margin: 0;
             background: var(--background);
             color: var(--text);
-            font-family: Arial, Helvetica, sans-serif;
+
+            font-family: "Inter", Arial, sans-serif;
             line-height: 1.6;
         }
 
@@ -52,27 +67,71 @@
         }
 
         .container {
-            width: min(1200px, calc(100% - 48px));
+            width: min(1400px, calc(100% - 64px));
             margin: 0 auto;
         }
 
-        /* Cabeçalho */
+        /*
+        CABEÇALHO FIXO E FOSCO
+        */
 
         .site-header {
-            padding: 32px 0 20px;
+            position: fixed;
+            z-index: 1000;
+            top: 0;
+            right: 0;
+            left: 0;
+
+            height: 76px;
+
+            background: var(--header-background);
+            border-bottom: 1px solid var(--line);
+
+            backdrop-filter: blur(18px) saturate(150%);
+            -webkit-backdrop-filter: blur(18px) saturate(150%);
+        }
+
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+
+            height: 100%;
+        }
+
+        .brand {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+
+            font-family: "Bebas Neue", sans-serif;
+            font-size: 1.35rem;
+            letter-spacing: 0.08em;
+        }
+
+        .brand-symbol {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+
+            width: 38px;
+            height: 38px;
+
+            border: 1px solid var(--text);
+            border-radius: 50%;
+
+            font-size: 0.95rem;
+            letter-spacing: 0.04em;
         }
 
         .main-nav {
             display: flex;
-            justify-content: center;
             align-items: center;
-            gap: 20px;
+            gap: 38px;
 
-            color: var(--blue-dark);
-            font-size: 0.8rem;
-            font-weight: 600;
-            letter-spacing: 0.18em;
-            text-transform: uppercase;
+            font-family: "Bebas Neue", sans-serif;
+            font-size: 1.05rem;
+            letter-spacing: 0.1em;
         }
 
         .main-nav a {
@@ -81,14 +140,16 @@
 
         .main-nav a::after {
             content: "";
-            position: absolute;
-            left: 0;
-            bottom: -5px;
 
-            width: 100%;
+            position: absolute;
+            right: 0;
+            bottom: -5px;
+            left: 0;
+
             height: 1px;
 
             background: var(--blue-dark);
+
             transform: scaleX(0);
             transform-origin: right;
             transition: transform 250ms ease;
@@ -99,74 +160,67 @@
             transform-origin: left;
         }
 
-        .nav-separator {
-            width: 6px;
-            height: 6px;
-            background: var(--blue-light);
+        main {
+            padding-top: 76px;
         }
 
-        /* Título */
+        /*
+        TÍTULO PRINCIPAL
+        */
 
         .hero {
-            padding: 42px 0 58px;
-            text-align: center;
+            padding: clamp(80px, 10vw, 150px) 0 80px;
         }
 
         .hero h1 {
             margin: 0;
 
-            color: var(--blue-dark);
-            font-family: Georgia, "Times New Roman", serif;
-            font-size: clamp(3rem, 8vw, 7rem);
+            color: var(--text);
+
+            font-family: "Bebas Neue", sans-serif;
+            font-size: clamp(5rem, 11vw, 11rem);
             font-weight: 400;
-            letter-spacing: -0.05em;
-            line-height: 0.95;
+            letter-spacing: 0.01em;
+            line-height: 0.8;
         }
 
-        .hero p {
-            max-width: 530px;
-            margin: 24px auto 0;
+        .hero-subtitle {
+            max-width: 1250px;
+            margin: 26px 0 0;
 
-            font-family: Georgia, "Times New Roman", serif;
-            font-size: clamp(1rem, 2vw, 1.35rem);
-            font-style: italic;
-            line-height: 1.4;
+            color: var(--grey);
+
+            font-family: "Bebas Neue", sans-serif;
+            font-size: clamp(2.7rem, 6vw, 6.5rem);
+            font-weight: 400;
+            letter-spacing: 0.01em;
+            line-height: 0.9;
         }
 
-        /* Imagens e vídeo */
+        /*
+        IMAGENS E VÍDEO PRINCIPAIS
+        */
 
         .media-section {
-            padding: 0 0 100px;
+            padding-bottom: 130px;
         }
 
         .media-strip {
             display: grid;
-            grid-template-columns: 0.85fr 1.35fr 0.85fr;
-            gap: 18px;
-
-            padding: 22px 0;
-            border-top: 1px solid var(--line);
-            border-bottom: 1px solid var(--line);
+            grid-template-columns: 0.8fr 1.55fr 0.8fr;
+            gap: 24px;
         }
 
         .media-card {
             position: relative;
-            min-height: 340px;
+
+            min-height: 430 .media-strip {
+            display: grid;
+            grid-template-columns: 0px;
             overflow: hidden;
-            background: #d8dfdd;
-        }
 
-        .media-card::after {
-            content: "";
-            position: absolute;
-            inset: 0;
-
-            background:
-                linear-gradient(
-                    to top,
-                    rgba(24, 43, 48, 0.28),
-                    transparent 55%
-                );
+            background: #e5e5e5;
+            border-radius: 22px;
         }
 
         .media-placeholder {
@@ -176,31 +230,31 @@
 
             width: 100%;
             height: 100%;
-            min-height: 340px;
+            min-height: 430px;
 
             color: var(--blue-dark);
+
             background:
                 linear-gradient(
                     145deg,
-                    #dce4e1,
-                    #b7cbd0
+                    #e2eaeb,
+                    #afc2c6
                 );
 
-            font-size: 0.72rem;
-            font-weight: 600;
-            letter-spacing: 0.16em;
-            text-transform: uppercase;
+            font-family: "Bebas Neue", sans-serif;
+            font-size: 1rem;
+            letter-spacing: 0.12em;
         }
 
         .video-placeholder {
+            color: white;
+
             background:
                 linear-gradient(
                     145deg,
-                    #9eb8bd,
+                    #8eabb1,
                     #315b68
                 );
-
-            color: white;
         }
 
         .play-button {
@@ -213,105 +267,119 @@
             justify-content: center;
             align-items: center;
 
-            width: 70px;
-            height: 70px;
+            width: 76px;
+            height: 76px;
             padding-left: 5px;
 
-            border: 1px solid rgba(255, 255, 255, 0.8);
+            border: 1px solid rgba(255, 255, 255, 0.9);
             border-radius: 50%;
 
             color: white;
             font-size: 1.4rem;
 
             transform: translate(-50%, -50%);
+
             transition:
                 background-color 200ms ease,
                 transform 200ms ease;
         }
 
         .media-card:hover .play-button {
-            background: rgba(255, 255, 255, 0.15);
+            background: rgba(255, 255, 255, 0.16);
             transform: translate(-50%, -50%) scale(1.06);
         }
 
-        /* Experiência e About */
+        /*
+        EXPERIÊNCIA
+        */
 
         .experience {
             display: grid;
-            grid-template-columns: minmax(0, 1fr) minmax(280px, 0.7fr);
-            gap: clamp(40px, 8vw, 110px);
-            align-items: start;
+            grid-template-columns: minmax(0, 1.15fr) minmax(320px, 0.85fr);
+            gap: clamp(50px, 8vw, 130px);
+            align-items: center;
 
-            padding: 0 0 100px;
+            padding-bottom: 140px;
         }
 
         .section-label {
-            margin-bottom: 16px;
+            margin-bottom: 17px;
+
             color: var(--blue-light);
 
-            font-size: 0.72rem;
-            font-weight: 700;
-            letter-spacing: 0.18em;
-            text-transform: uppercase;
+            font-family: "Bebas Neue", sans-serif;
+            font-size: 1rem;
+            letter-spacing: 0.15em;
         }
 
         .experience h2 {
-            max-width: 650px;
-            margin: 0 0 24px;
+            max-width: 760px;
+            margin: 0 0 30px;
 
-            color: var(--blue-dark);
-            font-family: Georgia, "Times New Roman", serif;
-            font-size: clamp(2.2rem, 5vw, 4.8rem);
+            color: var(--text);
+
+            font-family: "Bebas Neue", sans-serif;
+            font-size: clamp(3.7rem, 7vw, 7.8rem);
             font-weight: 400;
-            line-height: 1;
+            letter-spacing: 0.01em;
+            line-height: 0.85;
         }
 
         .experience-text {
-            max-width: 620px;
-            margin: 0 0 38px;
-            font-size: 1rem;
+            max-width: 680px;
+            margin: 0 0 40px;
+
+            color: var(--grey-dark);
+            font-size: 0.95rem;
+            line-height: 1.75;
         }
 
         .download-button {
             display: inline-flex;
             align-items: center;
-            gap: 18px;
+            gap: 20px;
 
-            padding: 15px 20px;
-            border: 1px solid var(--blue-dark);
+            padding: 16px 23px;
 
-            color: var(--background);
-            background: var(--blue-dark);
+            color: white;
+            background: var(--text);
+            border: 1px solid var(--text);
+            border-radius: 100px;
 
-            font-size: 0.75rem;
-            font-weight: 700;
-            letter-spacing: 0.14em;
-            text-transform: uppercase;
+            font-family: "Bebas Neue", sans-serif;
+            font-size: 1rem;
+            letter-spacing: 0.1em;
 
             transition:
                 color 200ms ease,
-                background-color 200ms ease;
+                background-color 200ms ease,
+                transform 200ms ease;
         }
 
         .download-button:hover {
-            color: var(--blue-dark);
+            color: var(--text);
             background: transparent;
+            transform: translateY(-2px);
         }
 
         .project-image {
-            min-height: 430px;
+            min-height: 520px;
             overflow: hidden;
-            background: #c4d2d1;
+
+            background: #d8e2e3;
+            border-radius: 22px;
         }
 
         .project-image .media-placeholder {
-            min-height: 430px;
+            min-height: 520px;
         }
 
-        /* Rodapé */
+        /*
+        RODAPÉ
+        */
 
         .site-footer {
-            padding: 30px 0 42px;
+            padding: 35px 0 45px;
             border-top: 1px solid var(--line);
         }
 
@@ -320,24 +388,31 @@
             justify-content: space-between;
             gap: 24px;
 
-            color: rgba(32, 36, 37, 0.7);
+            color: var(--grey-dark);
+
             font-size: 0.75rem;
-            letter-spacing: 0.05em;
+            letter-spacing: 0.04em;
         }
 
-        /* Telemóvel */
+        /*
+        TABLET E TELEMÓVEL
+        */
 
-        @media (max-width: 760px) {
+        @media (max-width: 900px) {
             .container {
-                width: min(100% - 28px, 1200px);
+                width: min(100% - 36px, 1400px);
             }
 
-            .site-header {
-                padding-top: 22px;
+            .brand span:last-child {
+                display: none;
+            }
+
+            .main-nav {
+                gap: 25px;
             }
 
             .hero {
-                padding: 42px 0;
+                padding-top: 90px;
             }
 
             .media-strip {
@@ -346,17 +421,50 @@
 
             .media-card,
             .media-placeholder {
-                min-height: 270px;
+                min-height: 360px;
             }
 
             .experience {
                 grid-template-columns: 1fr;
-                padding-bottom: 70px;
+                padding-bottom: 90px;
             }
 
             .project-image,
             .project-image .media-placeholder {
-                min-height: 330px;
+                min-height: 420px;
+            }
+        }
+
+        @media (max-width: 520px) {
+            .site-header {
+                height: 68px;
+            }
+
+            main {
+                padding-top: 68px;
+            }
+
+            .brand-symbol {
+                width: 34px;
+                height: 34px;
+            }
+
+            .main-nav {
+                gap: 18px;
+                font-size: 0.95rem;
+            }
+
+            .hero {
+                padding: 70px 0 55px;
+            }
+
+            .media-section {
+                padding-bottom: 85px;
+            }
+
+            .media-card,
+            .media-placeholder {
+                min-height: 290px;
             }
 
             .footer-content {
@@ -367,20 +475,28 @@
     </style>
 </head>
 
-<body>
+<body id="top">
 
     <header class="site-header">
-        <div class="container">
-            <nav class="main-nav" aria-label="Main navigation">
+        <div class="container header-content">
+
+            <a
+                class="brand"
+                href="#top"
+                aria-label="Return to homepage"
+            >
+                <span class="brand-symbol">HW</span>
+                <span>Hidden Waters</span>
+            </a>
+
+            <nav
+                class="main-nav"
+                aria-label="Main navigation"
+            >
                 <a href="gallery.html">Gallery</a>
-
-                <span
-                    class="nav-separator"
-                    aria-hidden="true"
-                ></span>
-
                 <a href="process.html">Process</a>
             </nav>
+
         </div>
     </header>
 
@@ -388,17 +504,21 @@
 
         <section class="hero">
             <div class="container">
-                <h1>Hidden Waters</h1>
 
-                <p>
-                    A Journey Through the Hydraulic System
-                    of Alferrara
+                <h1>
+                    Hidden Waters
+                </h1>
+
+                <p class="hero-subtitle">
+                    A Journey Through the Hydraulic System of Alferrara
                 </p>
+
             </div>
         </section>
 
         <section class="media-section">
             <div class="container">
+
                 <div class="media-strip">
 
                     <article class="media-card">
@@ -408,6 +528,7 @@
                     </article>
 
                     <article class="media-card">
+
                         <div class="media-placeholder video-placeholder">
                             Main video
                         </div>
@@ -418,6 +539,7 @@
                         >
                             ▶
                         </span>
+
                     </article>
 
                     <article class="media-card">
@@ -427,12 +549,17 @@
                     </article>
 
                 </div>
+
             </div>
         </section>
 
-        <section class="container experience" id="about">
+        <section
+            class="container experience"
+            id="about"
+        >
 
             <div>
+
                 <div class="section-label">
                     The experience
                 </div>
@@ -458,6 +585,7 @@
                     Download experience
                     <span aria-hidden="true">↓</span>
                 </a>
+
             </div>
 
             <div class="project-image">
@@ -472,6 +600,7 @@
 
     <footer class="site-footer">
         <div class="container footer-content">
+
             <span>
                 Hidden Waters
             </span>
@@ -479,6 +608,7 @@
             <span>
                 Thesis companion website · 2026
             </span>
+
         </div>
     </footer>
 
