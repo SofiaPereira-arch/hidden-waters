@@ -1451,50 +1451,47 @@
         }
 
 
-        /* HOVER DE ÁGUA SUAVE — TEXTURA ONDULANTE ANIMADA */
+        /* HOVER DE ÁGUA — VÍDEO DE REFLEXOS */
 
-        .visualizer-item::before {
-            content: "";
+        .water-ripple-video {
             position: absolute;
             z-index: 2;
-            inset: -4%;
+            inset: -3%;
 
-            background:
-                url("assets/media/soft-water-animated.webp")
-                center / cover
-                no-repeat;
+            display: block;
+            width: 106%;
+            height: 106%;
 
+            object-fit: cover;
             opacity: 0;
             mix-blend-mode: screen;
             filter:
-                saturate(0.45)
-                brightness(1.02)
-                contrast(0.92);
+                brightness(0.92)
+                contrast(1.18);
 
             pointer-events: none;
-            transform: scale(1.06);
+            transform: scale(1.03);
 
             transition:
-                opacity 380ms ease,
+                opacity 360ms ease,
                 transform 650ms ease;
         }
 
-        .visualizer-item:hover::before,
-        .visualizer-item:focus-visible::before {
-            opacity: 0.30;
-            transform: scale(1.09);
+        .visualizer-item.is-water-ripple .water-ripple-video {
+            opacity: 0.42;
+            transform: scale(1.06);
         }
 
         .visualizer-item:hover .visualizer-media,
         .visualizer-item:hover img,
-        .visualizer-item:hover video,
+        .visualizer-item:hover video:not(.water-ripple-video),
         .visualizer-item:focus-visible .visualizer-media,
         .visualizer-item:focus-visible img,
-        .visualizer-item:focus-visible video {
+        .visualizer-item:focus-visible video:not(.water-ripple-video) {
             filter:
                 blur(2.5px)
-                brightness(0.50)
-                saturate(0.86);
+                brightness(0.46)
+                saturate(0.82);
 
             transform: scale(1.055);
         }
@@ -1505,13 +1502,13 @@
         }
 
         @media (hover: none) {
-            .visualizer-item::before {
+            .water-ripple-video {
                 display: none;
             }
         }
 
         @media (prefers-reduced-motion: reduce) {
-            .visualizer-item::before {
+            .water-ripple-video {
                 display: none;
             }
         }
@@ -1937,6 +1934,103 @@
 
             measureLoop();
             window.requestAnimationFrame(animate);
+        })();
+    </script>
+
+
+    <script>
+        (() => {
+            const items = [
+                ...document.querySelectorAll(".visualizer-item")
+            ];
+
+            if (!items.length) {
+                return;
+            }
+
+            const waterVideo = document.createElement("video");
+
+            waterVideo.className = "water-ripple-video";
+            waterVideo.src = "assets/media/water-ripple-overlay.mp4";
+            waterVideo.muted = true;
+            waterVideo.loop = true;
+            waterVideo.autoplay = true;
+            waterVideo.playsInline = true;
+            waterVideo.preload = "auto";
+            waterVideo.setAttribute("aria-hidden", "true");
+            waterVideo.setAttribute("tabindex", "-1");
+
+            let activeItem = null;
+            let hideTimer = null;
+
+            function activate(item) {
+                window.clearTimeout(hideTimer);
+
+                if (activeItem && activeItem !== item) {
+                    activeItem.classList.remove(
+                        "is-water-ripple"
+                    );
+                }
+
+                activeItem = item;
+                activeItem.appendChild(waterVideo);
+                activeItem.classList.add(
+                    "is-water-ripple"
+                );
+
+                const playAttempt = waterVideo.play();
+
+                if (
+                    playAttempt &&
+                    typeof playAttempt.catch === "function"
+                ) {
+                    playAttempt.catch(() => {
+                        // O vídeo é silencioso; normalmente o browser permite.
+                    });
+                }
+            }
+
+            function deactivate(item) {
+                if (activeItem !== item) {
+                    return;
+                }
+
+                item.classList.remove(
+                    "is-water-ripple"
+                );
+
+                hideTimer = window.setTimeout(() => {
+                    if (
+                        activeItem === item &&
+                        waterVideo.parentElement === item
+                    ) {
+                        waterVideo.remove();
+                        activeItem = null;
+                    }
+                }, 380);
+            }
+
+            items.forEach((item) => {
+                item.addEventListener(
+                    "pointerenter",
+                    () => activate(item)
+                );
+
+                item.addEventListener(
+                    "pointerleave",
+                    () => deactivate(item)
+                );
+
+                item.addEventListener(
+                    "focusin",
+                    () => activate(item)
+                );
+
+                item.addEventListener(
+                    "focusout",
+                    () => deactivate(item)
+                );
+            });
         })();
     </script>
 
