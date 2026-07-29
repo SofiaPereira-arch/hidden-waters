@@ -1450,10 +1450,178 @@
             background: #9fc0c6;
         }
 
+
+        /* HOVER COM DISTORÇÃO DE ÁGUA ANIMADA */
+
+        .water-filter-defs {
+            position: absolute;
+            width: 0;
+            height: 0;
+            overflow: hidden;
+            pointer-events: none;
+        }
+
+        .visualizer-item::before {
+            content: "";
+            position: absolute;
+            z-index: 2;
+            inset: -18%;
+
+            background:
+                repeating-radial-gradient(
+                    ellipse at 20% 40%,
+                    rgba(255, 255, 255, 0.16) 0 1px,
+                    transparent 2px 18px
+                ),
+                repeating-radial-gradient(
+                    ellipse at 75% 65%,
+                    rgba(143, 179, 186, 0.14) 0 1px,
+                    transparent 3px 24px
+                );
+
+            mix-blend-mode: screen;
+            opacity: 0;
+            transform: translate3d(-4%, 0, 0) rotate(-3deg);
+            pointer-events: none;
+
+            transition: opacity 320ms ease;
+            animation: water-caustics 5.5s linear infinite;
+        }
+
+        .visualizer-item:hover::before,
+        .visualizer-item:focus-visible::before {
+            opacity: 0.32;
+        }
+
+        .visualizer-item:hover .visualizer-media,
+        .visualizer-item:hover img,
+        .visualizer-item:hover video,
+        .visualizer-item:focus-visible .visualizer-media,
+        .visualizer-item:focus-visible img,
+        .visualizer-item:focus-visible video {
+            filter:
+                url("#water-distortion")
+                brightness(0.68)
+                saturate(0.9);
+
+            transform: scale(1.075);
+        }
+
+        .visualizer-title {
+            z-index: 4;
+        }
+
+        .visualizer-play {
+            z-index: 4;
+        }
+
+        @keyframes water-caustics {
+            0% {
+                transform:
+                    translate3d(-5%, -2%, 0)
+                    rotate(-3deg)
+                    scale(1);
+            }
+
+            50% {
+                transform:
+                    translate3d(5%, 3%, 0)
+                    rotate(2deg)
+                    scale(1.08);
+            }
+
+            100% {
+                transform:
+                    translate3d(-5%, -2%, 0)
+                    rotate(-3deg)
+                    scale(1);
+            }
+        }
+
+        @media (hover: none) {
+            .visualizer-item::before {
+                opacity: 0.10;
+            }
+
+            .visualizer-item .visualizer-media,
+            .visualizer-item img,
+            .visualizer-item video {
+                filter: none;
+            }
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+            .visualizer-item::before {
+                animation: none;
+            }
+
+            .visualizer-item:hover .visualizer-media,
+            .visualizer-item:hover img,
+            .visualizer-item:hover video,
+            .visualizer-item:focus-visible .visualizer-media,
+            .visualizer-item:focus-visible img,
+            .visualizer-item:focus-visible video {
+                filter: brightness(0.68);
+            }
+        }
+
     </style>
 </head>
 
 <body id="top">
+
+    <!-- Filtro SVG usado no hover para criar uma distorção semelhante a água -->
+    <svg
+        class="water-filter-defs"
+        aria-hidden="true"
+        focusable="false"
+    >
+        <defs>
+            <filter
+                id="water-distortion"
+                x="-15%"
+                y="-15%"
+                width="130%"
+                height="130%"
+                color-interpolation-filters="sRGB"
+            >
+                <feTurbulence
+                    type="fractalNoise"
+                    baseFrequency="0.008 0.022"
+                    numOctaves="2"
+                    seed="8"
+                    result="waterNoise"
+                >
+                    <animate
+                        attributeName="baseFrequency"
+                        dur="7s"
+                        values="
+                            0.008 0.022;
+                            0.014 0.030;
+                            0.010 0.018;
+                            0.008 0.022
+                        "
+                        repeatCount="indefinite"
+                    />
+                </feTurbulence>
+
+                <feDisplacementMap
+                    in="SourceGraphic"
+                    in2="waterNoise"
+                    scale="17"
+                    xChannelSelector="R"
+                    yChannelSelector="B"
+                    result="displaced"
+                />
+
+                <feGaussianBlur
+                    in="displaced"
+                    stdDeviation="0.7"
+                />
+            </filter>
+        </defs>
+    </svg>
+
 
     <header class="site-header">
         <div class="container header-content">
