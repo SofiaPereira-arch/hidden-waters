@@ -743,6 +743,153 @@
             }
         }
 
+
+        /* ABERTURA RESPONSIVA — FAIXA CENTRADA NO ESPAÇO DISPONÍVEL */
+
+        .intro-screen {
+            display: grid;
+            grid-template-rows: auto minmax(0, 1fr);
+
+            min-height: calc(100svh - 76px);
+            min-height: calc(100dvh - 76px);
+        }
+
+        .hero {
+            padding:
+                clamp(54px, 7vh, 96px)
+                0
+                clamp(34px, 4.5vh, 64px);
+        }
+
+        .visualizer-section {
+            display: flex;
+            align-items: center;
+
+            min-height: 0;
+            padding:
+                clamp(18px, 2.8vh, 38px)
+                0
+                clamp(30px, 4.5vh, 64px);
+        }
+
+        .visualizer-viewport {
+            display: flex;
+            align-items: center;
+
+            width: 100%;
+            min-height: 0;
+        }
+
+        .visualizer-track,
+        .visualizer-group {
+            align-items: center;
+        }
+
+        .visualizer-item {
+            height: clamp(
+                285px,
+                min(47dvh, calc(100dvh - 410px)),
+                560px
+            );
+        }
+
+        /*
+        Ecrãs mais baixos ou mais largos:
+        reduzimos o bloco do título e a altura da faixa para manter
+        tudo visível sem alterar a composição.
+        */
+
+        @media (max-height: 850px) and (min-width: 901px) {
+            .hero {
+                padding:
+                    clamp(38px, 5vh, 64px)
+                    0
+                    clamp(22px, 3vh, 38px);
+            }
+
+            .hero h1 {
+                font-size: clamp(4.4rem, 7.5vw, 8rem);
+            }
+
+            .hero-subtitle {
+                font-size: clamp(2rem, 3.5vw, 3.8rem);
+            }
+
+            .visualizer-section {
+                padding:
+                    clamp(12px, 2vh, 24px)
+                    0
+                    clamp(20px, 3vh, 38px);
+            }
+
+            .visualizer-item {
+                height: clamp(
+                    245px,
+                    min(42dvh, calc(100dvh - 340px)),
+                    430px
+                );
+            }
+        }
+
+        @media (max-height: 700px) and (min-width: 901px) {
+            .hero {
+                padding: 28px 0 18px;
+            }
+
+            .hero h1 {
+                font-size: clamp(4rem, 6.8vw, 6.8rem);
+            }
+
+            .hero-subtitle {
+                margin-top: 14px;
+                font-size: clamp(1.8rem, 3vw, 3rem);
+            }
+
+            .visualizer-section {
+                padding: 10px 0 20px;
+            }
+
+            .visualizer-item {
+                height: clamp(
+                    220px,
+                    min(38dvh, calc(100dvh - 285px)),
+                    340px
+                );
+            }
+        }
+
+        @media (max-width: 900px) {
+            .intro-screen {
+                min-height: auto;
+            }
+
+            .hero {
+                padding: 68px 0 44px;
+            }
+
+            .visualizer-section {
+                padding: 18px 0 54px;
+            }
+
+            .visualizer-item {
+                height: clamp(280px, 42dvh, 430px);
+            }
+        }
+
+        @media (max-width: 520px) {
+            .hero {
+                padding: 52px 0 34px;
+            }
+
+            .visualizer-section {
+                padding: 12px 0 44px;
+            }
+
+            .visualizer-item {
+                height: clamp(250px, 38dvh, 320px);
+            }
+        }
+
     </style>
 </head>
 
