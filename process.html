@@ -641,6 +641,243 @@
                 gap: 7px;
             }
         }
+
+        /* LINHA DO PROCESSO — PERCURSO DE ÁGUA ANIMADO */
+
+        .timeline-line {
+            width: 3px;
+
+            background:
+                linear-gradient(
+                    to bottom,
+                    rgba(115, 157, 166, 0.08) 0%,
+                    rgba(143, 179, 186, 0.62) 18%,
+                    rgba(196, 226, 232, 0.95) 30%,
+                    rgba(115, 157, 166, 0.34) 48%,
+                    rgba(143, 179, 186, 0.72) 66%,
+                    rgba(211, 239, 244, 0.92) 78%,
+                    rgba(115, 157, 166, 0.08) 100%
+                );
+
+            background-size: 100% 260px;
+
+            border-radius: 999px;
+
+            box-shadow:
+                0 0 8px rgba(115, 157, 166, 0.22),
+                0 0 22px rgba(115, 157, 166, 0.10);
+
+            animation:
+                water-flow 5.5s linear infinite;
+        }
+
+        .timeline-line::before {
+            content: "";
+            position: absolute;
+            inset: 0;
+
+            background:
+                linear-gradient(
+                    to bottom,
+                    transparent 0%,
+                    rgba(224, 247, 250, 0.72) 50%,
+                    transparent 100%
+                );
+
+            background-size: 100% 120px;
+            border-radius: inherit;
+
+            filter: blur(1.5px);
+
+            animation:
+                water-highlight 3.8s linear infinite;
+        }
+
+        .timeline-line::after {
+            content: "";
+            position: absolute;
+            top: 0;
+            bottom: 0;
+            left: 50%;
+
+            width: 22px;
+
+            background:
+                linear-gradient(
+                    to right,
+                    transparent,
+                    rgba(115, 157, 166, 0.08),
+                    transparent
+                );
+
+            filter: blur(7px);
+            pointer-events: none;
+
+            transform: translateX(-50%);
+        }
+
+        .phase-marker {
+            position: relative;
+
+            width: 17px;
+            height: 17px;
+
+            background:
+                radial-gradient(
+                    circle at 35% 30%,
+                    rgba(232, 250, 252, 0.95) 0 12%,
+                    rgba(143, 179, 186, 0.92) 28%,
+                    rgba(50, 84, 92, 0.94) 68%,
+                    #050505 72%
+                );
+
+            border: 1px solid rgba(196, 226, 232, 0.95);
+
+            box-shadow:
+                0 0 0 8px var(--background),
+                0 0 14px rgba(115, 157, 166, 0.42);
+
+            transition:
+                transform 280ms ease,
+                box-shadow 280ms ease;
+        }
+
+        .phase-marker::before,
+        .phase-marker::after {
+            content: "";
+            position: absolute;
+            top: 50%;
+            left: 50%;
+
+            width: 100%;
+            height: 100%;
+
+            border: 1px solid rgba(143, 179, 186, 0.72);
+            border-radius: 50%;
+
+            opacity: 0;
+            pointer-events: none;
+
+            transform:
+                translate(-50%, -50%)
+                scale(1);
+        }
+
+        .phase:hover .phase-marker,
+        .phase:focus-within .phase-marker {
+            transform: scale(1.12);
+
+            box-shadow:
+                0 0 0 8px var(--background),
+                0 0 18px rgba(143, 179, 186, 0.62);
+        }
+
+        .phase:hover .phase-marker::before,
+        .phase:focus-within .phase-marker::before {
+            animation:
+                water-ripple 1.8s ease-out infinite;
+        }
+
+        .phase:hover .phase-marker::after,
+        .phase:focus-within .phase-marker::after {
+            animation:
+                water-ripple 1.8s 0.65s ease-out infinite;
+        }
+
+        .phase::before {
+            content: "";
+            position: absolute;
+            z-index: -1;
+            top: 50%;
+            left: 50%;
+
+            width: 220px;
+            height: 220px;
+
+            background:
+                radial-gradient(
+                    circle,
+                    rgba(82, 126, 136, 0.075) 0%,
+                    rgba(82, 126, 136, 0.025) 45%,
+                    transparent 72%
+                );
+
+            opacity: 0.25;
+            pointer-events: none;
+
+            transform: translate(-50%, -50%);
+            transition: opacity 360ms ease;
+        }
+
+        .phase:hover::before,
+        .phase:focus-within::before {
+            opacity: 0.65;
+        }
+
+        @keyframes water-flow {
+            from {
+                background-position: 0 -260px;
+            }
+
+            to {
+                background-position: 0 0;
+            }
+        }
+
+        @keyframes water-highlight {
+            from {
+                background-position: 0 -140px;
+            }
+
+            to {
+                background-position: 0 140px;
+            }
+        }
+
+        @keyframes water-ripple {
+            0% {
+                opacity: 0.72;
+
+                transform:
+                    translate(-50%, -50%)
+                    scale(1);
+            }
+
+            75%,
+            100% {
+                opacity: 0;
+
+                transform:
+                    translate(-50%, -50%)
+                    scale(4.2);
+            }
+        }
+
+        @media (max-width: 900px) {
+            .timeline-line {
+                width: 2px;
+            }
+
+            .phase::before {
+                left: 15px;
+                width: 150px;
+                height: 150px;
+            }
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+            .timeline-line,
+            .timeline-line::before,
+            .phase-marker::before,
+            .phase-marker::after {
+                animation: none;
+            }
+
+            .timeline-line {
+                background-position: center;
+            }
+        }
+
     </style>
 </head>
 
