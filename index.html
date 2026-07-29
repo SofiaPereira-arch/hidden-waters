@@ -1651,6 +1651,140 @@
             }
         }
 
+
+        /* AJUSTES FINAIS — CONTRASTE, LINK E ÁGUA */
+
+        .hero-subtitle {
+            color: #f1f1f1;
+        }
+
+        /*
+        Fade lateral mais transparente:
+        mantém o blur, mas revela melhor as imagens nas pontas.
+        */
+
+        .visualizer-viewport::before,
+        .visualizer-viewport::after {
+            backdrop-filter: blur(5px);
+            -webkit-backdrop-filter: blur(5px);
+        }
+
+        .visualizer-viewport::before {
+            background:
+                linear-gradient(
+                    to right,
+                    rgba(5, 5, 5, 0.68) 0%,
+                    rgba(5, 5, 5, 0.38) 32%,
+                    rgba(5, 5, 5, 0.12) 70%,
+                    rgba(5, 5, 5, 0) 100%
+                );
+        }
+
+        .visualizer-viewport::after {
+            background:
+                linear-gradient(
+                    to left,
+                    rgba(5, 5, 5, 0.68) 0%,
+                    rgba(5, 5, 5, 0.38) 32%,
+                    rgba(5, 5, 5, 0.12) 70%,
+                    rgba(5, 5, 5, 0) 100%
+                );
+        }
+
+        /*
+        "The Experience" passa a ser o link direto.
+        */
+
+        .experience-topline {
+            justify-content: flex-start;
+        }
+
+        .experience-kicker-link {
+            position: relative;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+
+            width: fit-content;
+            text-decoration: none;
+            cursor: pointer;
+
+            transition: color 220ms ease;
+        }
+
+        .experience-kicker-link::after {
+            content: "";
+            position: absolute;
+            right: 0;
+            bottom: -5px;
+            left: 0;
+
+            height: 1px;
+            background: var(--blue-light);
+
+            transform: scaleX(0);
+            transform-origin: right;
+            transition: transform 220ms ease;
+        }
+
+        .experience-kicker-link:hover {
+            color: #ffffff;
+        }
+
+        .experience-kicker-link:hover::after,
+        .experience-kicker-link:focus-visible::after {
+            transform: scaleX(1);
+            transform-origin: left;
+        }
+
+        .experience-kicker-link:focus-visible {
+            outline: 2px solid var(--blue-light);
+            outline-offset: 5px;
+        }
+
+        /*
+        O mesmo efeito de água passa a funcionar na imagem final.
+        */
+
+        .experience-image .water-ripple-video {
+            border-radius: inherit;
+        }
+
+        .experience-image.is-water-ripple .water-ripple-video {
+            opacity: 0.17;
+            transform: scale(1.09);
+        }
+
+        .experience-image-placeholder,
+        .experience-image img,
+        .experience-image video:not(.water-ripple-video) {
+            transition:
+                filter 480ms ease,
+                transform 700ms ease;
+        }
+
+        .experience-image:hover .experience-image-placeholder,
+        .experience-image:hover img,
+        .experience-image:hover video:not(.water-ripple-video),
+        .experience-image:focus-within .experience-image-placeholder,
+        .experience-image:focus-within img,
+        .experience-image:focus-within video:not(.water-ripple-video) {
+            filter:
+                blur(3px)
+                brightness(0.52)
+                saturate(0.86);
+
+            transform: scale(1.05);
+        }
+
+        @media (max-width: 900px) {
+            .visualizer-viewport::before,
+            .visualizer-viewport::after {
+                backdrop-filter: blur(4px);
+                -webkit-backdrop-filter: blur(4px);
+            }
+        }
+
     </style>
 </head>
 
@@ -1870,16 +2004,12 @@
                 <header class="experience-heading">
 
                     <div class="experience-topline">
-                        <p class="experience-kicker">
-                            The experience
-                        </p>
-
                         <a
-                            class="experience-permalink"
+                            class="experience-kicker experience-kicker-link"
                             href="https://sofiapereira-arch.github.io/hidden-waters/#experience"
-                            aria-label="Open the direct link to this section"
+                            aria-label="Open the direct link to the experience section"
                         >
-                            Direct link to this section
+                            The experience
                             <span aria-hidden="true">↗</span>
                         </a>
                     </div>
@@ -2079,7 +2209,9 @@
     <script>
         (() => {
             const items = [
-                ...document.querySelectorAll(".visualizer-item")
+                ...document.querySelectorAll(
+                    ".visualizer-item, .experience-image"
+                )
             ];
 
             if (!items.length) {
