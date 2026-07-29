@@ -2,26 +2,13 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-
-    <meta
-        name="viewport"
-        content="width=device-width, initial-scale=1.0"
-    >
-
-    <meta
-        name="description"
-        content="The research, reconstruction and development process behind Hidden Waters."
-    >
-
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="The research, reconstruction and development process behind Hidden Waters.">
     <title>Process · Hidden Waters</title>
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-
-    <link
-        href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:wght@300;400;500;600&display=swap"
-        rel="stylesheet"
-    >
+    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
 
     <style>
         @font-face {
@@ -43,15 +30,14 @@
         :root {
             --background: #050505;
             --text: #f2f2f2;
-            --muted: #a9a9a9;
+            --muted: #a6a6a6;
             --blue: #739da6;
             --blue-light: #8fb3ba;
-            --line: rgba(255, 255, 255, 0.15);
+            --line: rgba(255, 255, 255, 0.11);
             --header-background: rgba(5, 5, 5, 0.78);
-
-            /* As mesmas margens da página principal */
             --content-width: 1100px;
             --content-gutter: 128px;
+            --header-height: 76px;
         }
 
         * {
@@ -60,11 +46,13 @@
 
         html {
             scroll-behavior: smooth;
-            scroll-padding-top: 96px;
+            scroll-padding-top: 104px;
         }
 
         body {
             margin: 0;
+            overflow-x: hidden;
+
             color: var(--text);
             background: var(--background);
 
@@ -77,50 +65,36 @@
             text-decoration: none;
         }
 
-        img,
-        video {
-            display: block;
-            width: 100%;
-        }
-
-        ::selection {
-            color: #050505;
-            background: #9fc0c6;
-        }
-
         .content-width {
             width: min(
                 var(--content-width),
                 calc(100% - var(--content-gutter))
             );
-            margin-right: auto;
-            margin-left: auto;
+
+            margin-inline: auto;
         }
 
-        /*
-        CABEÇALHO
-        */
+        /* HEADER */
 
         .site-header {
             position: fixed;
             z-index: 1000;
-            top: 0;
-            right: 0;
-            left: 0;
+            inset: 0 0 auto;
 
-            height: 76px;
+            height: var(--header-height);
 
             background: var(--header-background);
-            border-bottom: 1px solid rgba(255, 255, 255, 0.10);
+            border-bottom: 1px solid var(--line);
 
-            backdrop-filter: blur(18px) saturate(145%);
-            -webkit-backdrop-filter: blur(18px) saturate(145%);
+            backdrop-filter: blur(18px) saturate(150%);
+            -webkit-backdrop-filter: blur(18px) saturate(150%);
         }
 
         .header-content {
             display: flex;
             justify-content: center;
             align-items: center;
+
             height: 100%;
         }
 
@@ -155,6 +129,7 @@
 
             transform: scaleX(0);
             transform-origin: right;
+
             transition: transform 240ms ease;
         }
 
@@ -198,36 +173,26 @@
         }
 
         .header-logo-image {
+            display: block;
+
             width: auto;
             height: 40px;
             max-width: 38px;
+
             object-fit: contain;
         }
 
-        /*
-        INTRODUÇÃO
-        */
-
         main {
-            padding-top: 76px;
+            padding-top: var(--header-height);
         }
+
+        /* HERO */
 
         .process-hero {
             padding:
-                clamp(76px, 10vh, 130px)
+                clamp(55px, 7vh, 95px)
                 0
-                clamp(74px, 10vh, 128px);
-        }
-
-        .process-kicker {
-            margin: 0 0 14px;
-
-            color: var(--blue-light);
-
-            font-family: "Steelfish", "Arial Narrow", sans-serif;
-            font-size: 1.35rem;
-            letter-spacing: 0.08em;
-            text-transform: uppercase;
+                clamp(90px, 11vh, 135px);
         }
 
         .process-title {
@@ -236,48 +201,86 @@
             color: #eeeeee;
 
             font-family: "Bebas Neue", sans-serif;
-            font-size: clamp(5.4rem, 10vw, 10rem);
+            font-size: clamp(5rem, 11vw, 11rem);
             font-weight: 400;
             letter-spacing: 0.01em;
-            line-height: 0.82;
+            line-height: 0.8;
         }
 
         .process-introduction {
             max-width: 690px;
-            margin: 38px 0 0;
+            margin: 42px 0 0;
 
             color: var(--muted);
-            font-size: clamp(0.95rem, 1.15vw, 1.06rem);
+
+            font-size: 0.98rem;
+            line-height: 1.78;
         }
 
-        /*
-        LINHA DO PROCESSO
-        */
+        /* WATER TIMELINE */
 
         .process-timeline {
             position: relative;
-            padding-bottom: clamp(100px, 13vh, 170px);
+
+            padding-bottom:
+                clamp(105px, 13vh, 165px);
         }
 
         .timeline-line {
             position: absolute;
             z-index: 0;
-            top: 22px;
-            bottom: 50px;
+            top: 20px;
+            bottom: 40px;
             left: 50%;
 
-            width: 1px;
+            width: 3px;
+
+            border-radius: 999px;
 
             background:
                 linear-gradient(
                     to bottom,
-                    transparent 0,
-                    var(--line) 4%,
-                    var(--line) 96%,
+                    rgba(115, 157, 166, 0.08) 0%,
+                    rgba(143, 179, 186, 0.62) 18%,
+                    rgba(196, 226, 232, 0.95) 30%,
+                    rgba(115, 157, 166, 0.34) 48%,
+                    rgba(143, 179, 186, 0.72) 66%,
+                    rgba(211, 239, 244, 0.92) 78%,
+                    rgba(115, 157, 166, 0.08) 100%
+                );
+
+            background-size: 100% 260px;
+
+            box-shadow:
+                0 0 8px rgba(115, 157, 166, 0.22),
+                0 0 22px rgba(115, 157, 166, 0.10);
+
+            transform: translateX(-50%);
+
+            animation:
+                water-flow 5.5s linear infinite;
+        }
+
+        .timeline-line::before {
+            content: "";
+            position: absolute;
+            inset: 0;
+
+            border-radius: inherit;
+
+            background:
+                linear-gradient(
+                    to bottom,
+                    transparent 0%,
+                    rgba(224, 247, 250, 0.72) 50%,
                     transparent 100%
                 );
 
-            transform: translateX(-50%);
+            background-size: 100% 120px;
+            filter: blur(1.5px);
+
+            animation:
+                water-highlight 3.8s linear infinite;
         }
 
         .phase {
@@ -285,11 +288,15 @@
             z-index: 1;
 
             display: grid;
-            grid-template-columns: minmax(0, 1fr) 68px minmax(0, 1fr);
+            grid-template-columns:
+                minmax(0, 1fr)
+                68px
+                minmax(0, 1fr);
             align-items: center;
 
-            min-height: 540px;
-            margin-bottom: clamp(76px, 12vh, 145px);
+            min-height: 610px;
+            margin-bottom:
+                clamp(110px, 14vh, 170px);
 
             scroll-margin-top: 105px;
         }
@@ -299,21 +306,70 @@
         }
 
         .phase-marker {
+            position: relative;
+            z-index: 3;
+
             grid-column: 2;
-
-            display: flex;
-            justify-content: center;
-            align-items: center;
-
-            width: 15px;
-            height: 15px;
             justify-self: center;
+
+            width: 16px;
+            height: 16px;
 
             background: var(--background);
             border: 2px solid var(--blue-light);
+            border-radius: 50% 50% 50% 0;
+
+            box-shadow:
+                0 0 0 11px var(--background);
+
+            transform: rotate(135deg);
+
+            transition:
+                border-color 260ms ease,
+                transform 280ms ease;
+        }
+
+        .phase-marker::before,
+        .phase-marker::after {
+            content: "";
+            position: absolute;
+            top: 50%;
+            left: 50%;
+
+            width: 16px;
+            height: 16px;
+
+            border: 1px solid rgba(143, 179, 186, 0.66);
             border-radius: 50%;
 
-            box-shadow: 0 0 0 8px var(--background);
+            opacity: 0;
+            pointer-events: none;
+
+            transform:
+                translate(-50%, -50%)
+                rotate(-135deg)
+                scale(1);
+        }
+
+        .phase:hover .phase-marker,
+        .phase:focus-within .phase-marker {
+            border-color: #d3eff4;
+
+            transform:
+                rotate(135deg)
+                scale(1.1);
+        }
+
+        .phase:hover .phase-marker::before,
+        .phase:focus-within .phase-marker::before {
+            animation:
+                water-ripple 1.8s ease-out infinite;
+        }
+
+        .phase:hover .phase-marker::after,
+        .phase:focus-within .phase-marker::after {
+            animation:
+                water-ripple 1.8s 0.65s ease-out infinite;
         }
 
         .phase-copy {
@@ -323,57 +379,78 @@
         .phase--right .phase-copy {
             grid-column: 1;
             grid-row: 1;
+
             justify-self: start;
+
             padding-right: 28px;
         }
 
         .phase--right .phase-media {
             grid-column: 3;
             grid-row: 1;
+
             justify-self: end;
+
+            transform-origin: left center;
         }
 
         .phase--left .phase-media {
             grid-column: 1;
             grid-row: 1;
+
             justify-self: start;
+
+            transform-origin: right center;
         }
 
         .phase--left .phase-copy {
             grid-column: 3;
             grid-row: 1;
+
             justify-self: end;
+
             padding-left: 28px;
         }
 
         .phase-label {
+            position: relative;
+
             display: inline-flex;
             align-items: baseline;
-            gap: 10px;
+            gap: 8px;
 
-            margin-bottom: 16px;
+            width: fit-content;
+            margin-bottom: 17px;
 
             color: var(--blue-light);
 
             font-family: "Steelfish", "Arial Narrow", sans-serif;
-            font-size: 1.35rem;
-            letter-spacing: 0.07em;
+            font-size: 1.3rem;
+            letter-spacing: 0.08em;
             text-transform: uppercase;
         }
 
         .phase-label::after {
-            content: "↗";
-            font-size: 0.85em;
-            opacity: 0.70;
+            content: "";
+            position: absolute;
+            right: 0;
+            bottom: -5px;
+            left: 0;
 
-            transition:
-                opacity 200ms ease,
-                transform 200ms ease;
+            height: 1px;
+
+            background: var(--blue-light);
+
+            transform: scaleX(0);
+            transform-origin: right;
+
+            transition: transform 240ms ease;
         }
 
-        .phase-label:hover::after {
-            opacity: 1;
-            transform: translate(2px, -2px);
+        .phase-label:hover::after,
+        .phase-label:focus-visible::after {
+            transform: scaleX(1);
+            transform-origin: left;
         }
 
         .phase-title {
@@ -391,30 +468,28 @@
             margin: 0;
 
             color: var(--muted);
+
             font-size: 0.96rem;
             line-height: 1.78;
         }
 
-        /*
-        CARTÕES DE VÍDEO
-        */
+        /* VIDEO CARDS */
 
         .phase-media {
             position: relative;
+            z-index: 5;
 
             width: min(100%, 470px);
             aspect-ratio: 16 / 10;
 
-            overflow: hidden;
+            overflow: visible;
 
-            background:
-                linear-gradient(
-                    145deg,
-                    #182326,
-                    #2e4449
-                );
-
+            background: #20353a;
             border-radius: 24px;
+
+            transition:
+                transform 540ms cubic-bezier(0.22, 1, 0.36, 1),
+                box-shadow 420ms ease;
         }
 
         .phase-media-placeholder {
@@ -425,42 +500,22 @@
             width: 100%;
             height: 100%;
 
+            overflow: hidden;
+
             color: #a8c5ca;
+            background:
+                linear-gradient(
+                    145deg,
+                    #182326,
+                    #2e4449
+                );
+
+            border-radius: inherit;
 
             font-family: "Steelfish", "Arial Narrow", sans-serif;
             font-size: 1.18rem;
             letter-spacing: 0.08em;
             text-transform: uppercase;
-
-            transition:
-                filter 400ms ease,
-                transform 550ms ease;
-        }
-
-        .phase-media::after {
-            content: "";
-            position: absolute;
-            inset: 0;
-
-            background:
-                linear-gradient(
-                    to top,
-                    rgba(0, 0, 0, 0.60),
-                    rgba(0, 0, 0, 0.04) 65%
-                );
-
-            opacity: 0.32;
-            pointer-events: none;
-            transition: opacity 300ms ease;
-        }
-
-        .phase-media:hover::after {
-            opacity: 0.60;
-        }
-
-        .phase-media:hover .phase-media-placeholder {
-            filter: blur(2px) brightness(0.76);
-            transform: scale(1.035);
         }
 
         .play-button {
@@ -485,333 +540,108 @@
 
             transform: translate(-50%, -50%);
 
-            transition:
-                background-color 220ms ease,
-                transform 220ms ease;
-        }
-
-        .phase-media:hover .play-button {
-            background: rgba(255, 255, 255, 0.12);
-            transform: translate(-50%, -50%) scale(1.07);
+            transition: transform 220ms ease;
         }
 
         .media-title {
             position: absolute;
-            z-index: 3;
-            right: 25px;
-            bottom: 22px;
-            left: 25px;
+            top: calc(100% + 8px);
 
-            color: #ffffff;
+            width: max-content;
+            max-width: calc(100% - 48px);
+
+            color: #f2f2f2;
 
             font-family: "Steelfish", "Arial Narrow", sans-serif;
-            font-size: clamp(1.2rem, 1.4vw, 1.55rem);
+            font-size: clamp(1.25rem, 1.45vw, 1.65rem);
             letter-spacing: 0.045em;
+            line-height: 1;
             text-transform: uppercase;
+
+            opacity: 0;
+            transform: translateY(-8px);
+            pointer-events: none;
+
+            transition:
+                opacity 280ms ease,
+                transform 320ms ease;
         }
 
-        
+        .phase--right .media-title {
+            left: 24px;
+            text-align: left;
+        }
 
-        /*
-        RODAPÉ
-        */
+        .phase--left .media-title {
+            right: 24px;
+            text-align: right;
+        }
+
+        .phase-media:hover,
+        .phase-media:focus-visible {
+            z-index: 30;
+
+            transform: scale(1.55);
+
+            box-shadow:
+                0 34px 90px rgba(0, 0, 0, 0.58);
+        }
+
+        .phase-media:hover .play-button,
+        .phase-media:focus-visible .play-button {
+            transform:
+                translate(-50%, -50%)
+                scale(1.05);
+        }
+
+        .phase-media:hover .media-title,
+        .phase-media:focus-visible .media-title {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* FOOTER */
 
         .site-footer {
-            padding: 34px 0 44px;
-            border-top: 1px solid rgba(255, 255, 255, 0.10);
+            padding: 35px 0 45px;
+            border-top: 1px solid var(--line);
         }
 
         .footer-content {
             display: flex;
             justify-content: space-between;
+            align-items: center;
             gap: 24px;
 
             color: #818181;
+
             font-size: 0.75rem;
             letter-spacing: 0.04em;
         }
 
-        /*
-        RESPONSIVO
-        */
-
-        @media (max-width: 900px) {
-            :root {
-                --content-gutter: 36px;
-            }
-
-            .process-hero {
-                padding: 72px 0 82px;
-            }
-
-            .timeline-line {
-                left: 15px;
-                transform: none;
-            }
-
-            .phase {
-                grid-template-columns: 31px minmax(0, 1fr);
-                gap: 25px;
-
-                min-height: auto;
-                margin-bottom: 100px;
-            }
-
-            .phase-marker {
-                grid-column: 1;
-                grid-row: 1;
-                align-self: start;
-                margin-top: 8px;
-            }
-
-            .phase--right .phase-copy,
-            .phase--left .phase-copy {
-                grid-column: 2;
-                grid-row: 1;
-
-                justify-self: stretch;
-                max-width: none;
-                padding: 0;
-            }
-
-            .phase--right .phase-media,
-            .phase--left .phase-media {
-                grid-column: 2;
-                grid-row: 2;
-
-                justify-self: stretch;
-                width: 100%;
-                max-width: none;
-                margin-top: 34px;
-            }
+        .footer-institution {
+            display: flex;
+            align-items: center;
+            gap: 18px;
         }
 
-        @media (max-width: 520px) {
-            .site-header {
-                height: 68px;
-            }
+        .footer-ist-logo {
+            display: block;
 
-            main {
-                padding-top: 68px;
-            }
+            width: auto;
+            height: 27px;
 
-            .main-nav {
-                gap: 21px;
-                font-size: 1.12rem;
-            }
-
-            .header-logo-link {
-                width: 36px;
-                height: 46px;
-                flex-basis: 36px;
-            }
-
-            .header-logo-image {
-                height: 34px;
-                max-width: 33px;
-            }
-
-            .process-title {
-                font-size: clamp(4.4rem, 20vw, 6.2rem);
-            }
-
-            .process-introduction {
-                margin-top: 28px;
-            }
-
-            .phase {
-                grid-template-columns: 25px minmax(0, 1fr);
-                gap: 18px;
-            }
-
-            .timeline-line {
-                left: 12px;
-            }
-
-            .phase-title {
-                font-size: clamp(3rem, 15vw, 4.4rem);
-            }
-
-            .phase-media {
-                border-radius: 18px;
-            }
-
-            .footer-content {
-                flex-direction: column;
-                gap: 7px;
-            }
-        }
-
-        /* LINHA DO PROCESSO — PERCURSO DE ÁGUA ANIMADO */
-
-        .timeline-line {
-            width: 3px;
-
-            background:
-                linear-gradient(
-                    to bottom,
-                    rgba(115, 157, 166, 0.08) 0%,
-                    rgba(143, 179, 186, 0.62) 18%,
-                    rgba(196, 226, 232, 0.95) 30%,
-                    rgba(115, 157, 166, 0.34) 48%,
-                    rgba(143, 179, 186, 0.72) 66%,
-                    rgba(211, 239, 244, 0.92) 78%,
-                    rgba(115, 157, 166, 0.08) 100%
-                );
-
-            background-size: 100% 260px;
-
-            border-radius: 999px;
-
-            box-shadow:
-                0 0 8px rgba(115, 157, 166, 0.22),
-                0 0 22px rgba(115, 157, 166, 0.10);
-
-            animation:
-                water-flow 5.5s linear infinite;
-        }
-
-        .timeline-line::before {
-            content: "";
-            position: absolute;
-            inset: 0;
-
-            background:
-                linear-gradient(
-                    to bottom,
-                    transparent 0%,
-                    rgba(224, 247, 250, 0.72) 50%,
-                    transparent 100%
-                );
-
-            background-size: 100% 120px;
-            border-radius: inherit;
-
-            filter: blur(1.5px);
-
-            animation:
-                water-highlight 3.8s linear infinite;
-        }
-
-        .timeline-line::after {
-            content: "";
-            position: absolute;
-            top: 0;
-            bottom: 0;
-            left: 50%;
-
-            width: 22px;
-
-            background:
-                linear-gradient(
-                    to right,
-                    transparent,
-                    rgba(115, 157, 166, 0.08),
-                    transparent
-                );
-
-            filter: blur(7px);
-            pointer-events: none;
-
-            transform: translateX(-50%);
-        }
-
-        .phase-marker {
-            position: relative;
-
-            width: 17px;
-            height: 17px;
-
-            background:
-                radial-gradient(
-                    circle at 35% 30%,
-                    rgba(232, 250, 252, 0.95) 0 12%,
-                    rgba(143, 179, 186, 0.92) 28%,
-                    rgba(50, 84, 92, 0.94) 68%,
-                    #050505 72%
-                );
-
-            border: 1px solid rgba(196, 226, 232, 0.95);
-
-            box-shadow:
-                0 0 0 8px var(--background),
-                0 0 14px rgba(115, 157, 166, 0.42);
+            opacity: 0.78;
+            object-fit: contain;
 
             transition:
-                transform 280ms ease,
-                box-shadow 280ms ease;
+                opacity 220ms ease,
+                transform 220ms ease;
         }
 
-        .phase-marker::before,
-        .phase-marker::after {
-            content: "";
-            position: absolute;
-            top: 50%;
-            left: 50%;
-
-            width: 100%;
-            height: 100%;
-
-            border: 1px solid rgba(143, 179, 186, 0.72);
-            border-radius: 50%;
-
-            opacity: 0;
-            pointer-events: none;
-
-            transform:
-                translate(-50%, -50%)
-                scale(1);
-        }
-
-        .phase:hover .phase-marker,
-        .phase:focus-within .phase-marker {
-            transform: scale(1.12);
-
-            box-shadow:
-                0 0 0 8px var(--background),
-                0 0 18px rgba(143, 179, 186, 0.62);
-        }
-
-        .phase:hover .phase-marker::before,
-        .phase:focus-within .phase-marker::before {
-            animation:
-                water-ripple 1.8s ease-out infinite;
-        }
-
-        .phase:hover .phase-marker::after,
-        .phase:focus-within .phase-marker::after {
-            animation:
-                water-ripple 1.8s 0.65s ease-out infinite;
-        }
-
-        .phase::before {
-            content: "";
-            position: absolute;
-            z-index: -1;
-            top: 50%;
-            left: 50%;
-
-            width: 220px;
-            height: 220px;
-
-            background:
-                radial-gradient(
-                    circle,
-                    rgba(82, 126, 136, 0.075) 0%,
-                    rgba(82, 126, 136, 0.025) 45%,
-                    transparent 72%
-                );
-
-            opacity: 0.25;
-            pointer-events: none;
-
-            transform: translate(-50%, -50%);
-            transition: opacity 360ms ease;
-        }
-
-        .phase:hover::before,
-        .phase:focus-within::before {
-            opacity: 0.65;
+        .footer-ist-logo:hover {
+            opacity: 1;
+            transform: translateY(-1px);
         }
 
         @keyframes water-flow {
@@ -836,346 +666,6 @@
 
         @keyframes water-ripple {
             0% {
-                opacity: 0.72;
-
-                transform:
-                    translate(-50%, -50%)
-                    scale(1);
-            }
-
-            75%,
-            100% {
-                opacity: 0;
-
-                transform:
-                    translate(-50%, -50%)
-                    scale(4.2);
-            }
-        }
-
-        @media (max-width: 900px) {
-            .timeline-line {
-                width: 2px;
-            }
-
-            .phase::before {
-                left: 15px;
-                width: 150px;
-                height: 150px;
-            }
-        }
-
-        @media (prefers-reduced-motion: reduce) {
-            .timeline-line,
-            .timeline-line::before,
-            .phase-marker::before,
-            .phase-marker::after {
-                animation: none;
-            }
-
-            .timeline-line {
-                background-position: center;
-            }
-        }
-
-
-        /* VÍDEOS — APENAS AMPLIAÇÃO E TÍTULO NO HOVER */
-
-        .phase-media {
-            overflow: hidden;
-
-            transition:
-                transform 420ms cubic-bezier(0.22, 1, 0.36, 1),
-                box-shadow 420ms ease;
-        }
-
-        .phase-media:hover,
-        .phase-media:focus-visible {
-            transform: scale(1.045);
-
-            box-shadow:
-                0 18px 44px rgba(0, 0, 0, 0.38);
-        }
-
-        .phase-media::after {
-            opacity: 0;
-
-            background:
-                linear-gradient(
-                    to top,
-                    rgba(0, 0, 0, 0.58) 0%,
-                    rgba(0, 0, 0, 0.10) 42%,
-                    transparent 68%
-                );
-
-            transition: opacity 300ms ease;
-        }
-
-        .phase-media:hover::after,
-        .phase-media:focus-visible::after {
-            opacity: 1;
-        }
-
-        .phase-media-placeholder {
-            filter: none;
-            transform: none;
-
-            transition: none;
-        }
-
-        .phase-media:hover .phase-media-placeholder,
-        .phase-media:focus-visible .phase-media-placeholder {
-            filter: none;
-            transform: none;
-        }
-
-        .media-title {
-            opacity: 0;
-            transform: translateY(12px);
-
-            transition:
-                opacity 300ms ease,
-                transform 300ms ease;
-        }
-
-        .phase-media:hover .media-title,
-        .phase-media:focus-visible .media-title {
-            opacity: 1;
-            transform: translateY(0);
-        }
-
-        .play-button {
-            transition:
-                background-color 220ms ease,
-                transform 220ms ease,
-                opacity 220ms ease;
-        }
-
-        .phase-media:hover .play-button,
-        .phase-media:focus-visible .play-button {
-            background: rgba(255, 255, 255, 0.10);
-            transform: translate(-50%, -50%) scale(1.04);
-        }
-
-        .phase-media:focus-visible {
-            outline: 2px solid var(--blue-light);
-            outline-offset: 6px;
-        }
-
-        @media (hover: none) {
-            .media-title {
-                opacity: 1;
-                transform: translateY(0);
-            }
-
-            .phase-media::after {
-                opacity: 0.55;
-            }
-
-            .phase-media:hover {
-                transform: none;
-            }
-        }
-
-        @media (prefers-reduced-motion: reduce) {
-            .phase-media,
-            .media-title {
-                transition: none;
-            }
-        }
-
-
-        /* MARCADORES DA LINHA — GOTA MINIMALISTA */
-
-        .phase-marker {
-            width: 16px;
-            height: 16px;
-
-            background: rgba(115, 157, 166, 0.08);
-            border: 2px solid var(--blue-light);
-
-            /*
-            Forma de gota sem volume, brilho interior ou sombra 3D.
-            */
-            border-radius: 50% 50% 50% 0;
-
-            box-shadow:
-                0 0 0 7px var(--background);
-
-            transform: rotate(-45deg);
-
-            transition:
-                border-color 260ms ease,
-                background-color 260ms ease,
-                transform 280ms ease;
-        }
-
-        .phase:hover .phase-marker,
-        .phase:focus-within .phase-marker {
-            background: rgba(143, 179, 186, 0.16);
-            border-color: #d3eff4;
-
-            box-shadow:
-                0 0 0 7px var(--background);
-
-            transform:
-                rotate(-45deg)
-                scale(1.10);
-        }
-
-        /*
-        As ondulações continuam circulares, como uma gota a tocar na água.
-        A rotação inversa compensa a rotação do marcador.
-        */
-
-        .phase-marker::before,
-        .phase-marker::after {
-            width: 16px;
-            height: 16px;
-
-            border: 1px solid rgba(143, 179, 186, 0.66);
-            border-radius: 50%;
-
-            transform:
-                translate(-50%, -50%)
-                rotate(45deg)
-                scale(1);
-        }
-
-        @keyframes water-ripple {
-            0% {
-                opacity: 0.66;
-
-                transform:
-                    translate(-50%, -50%)
-                    rotate(45deg)
-                    scale(1);
-            }
-
-            75%,
-            100% {
-                opacity: 0;
-
-                transform:
-                    translate(-50%, -50%)
-                    rotate(45deg)
-                    scale(4.1);
-            }
-        }
-
-
-        /* VÍDEOS — AMPLIAÇÃO GRANDE NO HOVER */
-
-        .phase-media {
-            z-index: 5;
-
-            transition:
-                transform 520ms cubic-bezier(0.22, 1, 0.36, 1),
-                box-shadow 420ms ease;
-        }
-
-        /*
-        Os vídeos do lado direito crescem para a direita.
-        Os vídeos do lado esquerdo crescem para a esquerda.
-        Assim não invadem tanto a linha central nem o texto.
-        */
-
-        .phase--right .phase-media {
-            transform-origin: left center;
-        }
-
-        .phase--left .phase-media {
-            transform-origin: right center;
-        }
-
-        .phase-media:hover,
-        .phase-media:focus-visible {
-            z-index: 30;
-
-            transform: scale(1.34);
-
-            box-shadow:
-                0 30px 80px rgba(0, 0, 0, 0.58),
-                0 0 0 1px rgba(143, 179, 186, 0.10);
-        }
-
-        .phase-media:hover .play-button,
-        .phase-media:focus-visible .play-button {
-            transform:
-                translate(-50%, -50%)
-                scale(1.08);
-        }
-
-        @media (max-width: 1200px) and (min-width: 901px) {
-            .phase-media:hover,
-            .phase-media:focus-visible {
-                transform: scale(1.22);
-            }
-        }
-
-        @media (max-width: 900px) {
-            .phase--right .phase-media,
-            .phase--left .phase-media {
-                transform-origin: center;
-            }
-
-            .phase-media:hover,
-            .phase-media:focus-visible {
-                transform: scale(1.06);
-            }
-        }
-
-        @media (hover: none) {
-            .phase-media:hover {
-                transform: none;
-            }
-        }
-
-
-        /* GOTA VIRADA PARA CIMA E INTERRUPÇÃO DA LINHA */
-
-        .phase-marker {
-            /*
-            Fundo sólido para esconder completamente a linha no interior.
-            A rotação de 135 graus coloca a ponta da gota para cima.
-            */
-            background: var(--background);
-            border: 2px solid var(--blue-light);
-
-            box-shadow:
-                0 0 0 11px var(--background);
-
-            transform: rotate(135deg);
-        }
-
-        .phase:hover .phase-marker,
-        .phase:focus-within .phase-marker {
-            background: var(--background);
-            border-color: #d3eff4;
-
-            box-shadow:
-                0 0 0 11px var(--background);
-
-            transform:
-                rotate(135deg)
-                scale(1.10);
-        }
-
-        /*
-        As ondas continuam circulares e sem herdar visualmente
-        a orientação da gota.
-        */
-
-        .phase-marker::before,
-        .phase-marker::after {
-            transform:
-                translate(-50%, -50%)
-                rotate(-135deg)
-                scale(1);
-        }
-
-        @keyframes water-ripple {
-            0% {
                 opacity: 0.66;
 
                 transform:
@@ -1195,131 +685,7 @@
             }
         }
 
-
-        /* VÍDEOS — AMPLIAÇÃO EXTRA, SEM ESCURECIMENTO, TÍTULO EXTERIOR */
-
-        .phase-media {
-            /*
-            O conteúdo pode ultrapassar o cartão para o título aparecer
-            por baixo. Os elementos visuais mantêm os cantos arredondados.
-            */
-            overflow: visible;
-            z-index: 5;
-
-            transition:
-                transform 540ms cubic-bezier(0.22, 1, 0.36, 1),
-                box-shadow 420ms ease;
-        }
-
-        .phase-media-placeholder,
-        .phase-media > img,
-        .phase-media > video {
-            border-radius: inherit;
-            overflow: hidden;
-        }
-
-        /*
-        Retira totalmente a camada que escurecia o vídeo.
-        */
-        .phase-media::after,
-        .phase-media:hover::after,
-        .phase-media:focus-visible::after {
-            display: none;
-            opacity: 0;
-            background: none;
-        }
-
-        /*
-        Sem blur, sem redução de brilho e sem alteração da imagem.
-        */
-        .phase-media-placeholder,
-        .phase-media:hover .phase-media-placeholder,
-        .phase-media:focus-visible .phase-media-placeholder,
-        .phase-media > img,
-        .phase-media:hover > img,
-        .phase-media:focus-visible > img,
-        .phase-media > video,
-        .phase-media:hover > video,
-        .phase-media:focus-visible > video {
-            filter: none;
-        }
-
-        /*
-        O vídeo cresce a partir do lado da linha:
-        - cartões à direita crescem para a direita;
-        - cartões à esquerda crescem para a esquerda.
-        */
-        .phase--right .phase-media {
-            transform-origin: left center;
-        }
-
-        .phase--left .phase-media {
-            transform-origin: right center;
-        }
-
-        .phase-media:hover,
-        .phase-media:focus-visible {
-            z-index: 30;
-
-            transform: scale(1.55);
-
-            box-shadow:
-                0 34px 90px rgba(0, 0, 0, 0.58);
-        }
-
-        /*
-        O título fica fora do vídeo, por baixo e do lado da linha central.
-        */
-        .media-title {
-            top: calc(100% + 20px);
-            bottom: auto;
-
-            width: max-content;
-            max-width: 100%;
-
-            padding: 0;
-
-            color: #f2f2f2;
-
-            opacity: 0;
-            transform: translateY(-8px);
-
-            pointer-events: none;
-
-            transition:
-                opacity 280ms ease,
-                transform 320ms ease;
-        }
-
-        .phase--right .media-title {
-            right: auto;
-            left: 0;
-            text-align: left;
-        }
-
-        .phase--left .media-title {
-            right: 0;
-            left: auto;
-            text-align: right;
-        }
-
-        .phase-media:hover .media-title,
-        .phase-media:focus-visible .media-title {
-            opacity: 1;
-            transform: translateY(0);
-        }
-
-        /*
-        Mantém o botão de reprodução simples e legível.
-        */
-        .phase-media:hover .play-button,
-        .phase-media:focus-visible .play-button {
-            background: transparent;
-
-            transform:
-                translate(-50%, -50%)
-                scale(1.05);
-        }
+        /* RESPONSIVE */
 
         @media (max-width: 1350px) and (min-width: 901px) {
             .phase-media:hover,
@@ -1329,8 +695,59 @@
         }
 
         @media (max-width: 900px) {
+            :root {
+                --content-gutter: 36px;
+            }
+
+            .timeline-line {
+                left: 15px;
+
+                width: 2px;
+
+                transform: none;
+            }
+
+            .phase {
+                grid-template-columns:
+                    31px
+                    minmax(0, 1fr);
+                gap: 25px;
+
+                min-height: auto;
+                margin-bottom: 100px;
+            }
+
+            .phase-marker {
+                grid-column: 1;
+                grid-row: 1;
+
+                align-self: start;
+
+                margin-top: 8px;
+            }
+
+            .phase--right .phase-copy,
+            .phase--left .phase-copy {
+                grid-column: 2;
+                grid-row: 1;
+
+                justify-self: stretch;
+
+                max-width: none;
+                padding: 0;
+            }
+
             .phase--right .phase-media,
             .phase--left .phase-media {
+                grid-column: 2;
+                grid-row: 2;
+
+                justify-self: stretch;
+
+                width: 100%;
+                max-width: none;
+                margin-top: 34px;
+
                 transform-origin: center;
             }
 
@@ -1342,8 +759,45 @@
             .phase--right .media-title,
             .phase--left .media-title {
                 right: auto;
-                left: 0;
+                left: 20px;
+
                 text-align: left;
+            }
+        }
+
+        @media (max-width: 520px) {
+            :root {
+                --header-height: 68px;
+            }
+
+            .main-nav {
+                gap: 21px;
+                font-size: 1.12rem;
+            }
+
+            .header-logo-link {
+                width: 36px;
+                height: 46px;
+                flex-basis: 36px;
+            }
+
+            .header-logo-image {
+                height: 34px;
+                max-width: 33px;
+            }
+
+            .footer-content {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+
+            .footer-institution {
+                align-items: flex-start;
+                gap: 14px;
+            }
+
+            .footer-ist-logo {
+                height: 25px;
             }
         }
 
@@ -1354,10 +808,11 @@
 
             .media-title {
                 position: static;
+
                 display: block;
 
                 width: auto;
-                margin-top: 16px;
+                margin-top: 14px;
 
                 opacity: 1;
                 transform: none;
@@ -1365,75 +820,15 @@
         }
 
         @media (prefers-reduced-motion: reduce) {
-            .phase-media,
-            .media-title {
-                transition: none;
+            *,
+            *::before,
+            *::after {
+                scroll-behavior: auto !important;
+                animation-duration: 0.01ms !important;
+                animation-iteration-count: 1 !important;
+                transition-duration: 0.01ms !important;
             }
         }
-
-
-        /* ESPAÇAMENTO SUPERIOR IGUAL AO DA HOME */
-
-        .process-hero {
-            padding-top: clamp(54px, 7vh, 96px);
-        }
-
-        @media (max-height: 850px) and (min-width: 901px) {
-            .process-hero {
-                padding-top: clamp(38px, 5vh, 64px);
-            }
-        }
-
-        @media (max-height: 700px) and (min-width: 901px) {
-            .process-hero {
-                padding-top: 28px;
-            }
-        }
-
-        @media (max-width: 900px) {
-            .process-hero {
-                padding-top: 68px;
-            }
-        }
-
-        @media (max-width: 520px) {
-            .process-hero {
-                padding-top: 52px;
-            }
-        }
-
-
-        /* TÍTULOS DOS VÍDEOS — MAIS PRÓXIMOS E ALINHADOS COM AS CURVAS */
-
-        .media-title {
-            top: calc(100% + 8px);
-        }
-
-        /*
-        O recuo corresponde aproximadamente ao raio dos cantos do vídeo.
-        */
-
-        .phase--right .media-title {
-            right: auto;
-            left: 24px;
-            text-align: left;
-        }
-
-        .phase--left .media-title {
-            right: 24px;
-            left: auto;
-            text-align: right;
-        }
-
-        @media (max-width: 900px) {
-            .phase--right .media-title,
-            .phase--left .media-title {
-                right: auto;
-                left: 20px;
-                text-align: left;
-            }
-        }
-
     </style>
 </head>
 
@@ -1446,7 +841,9 @@
                 class="main-nav"
                 aria-label="Main navigation"
             >
-                <a href="gallery.html">Gallery</a>
+                <a href="gallery.html">
+                    Gallery
+                </a>
 
                 <a
                     class="header-logo-link"
@@ -1498,7 +895,6 @@
                 aria-hidden="true"
             ></div>
 
-            <!-- PHASE 01 -->
             <article
                 class="phase phase--right"
                 id="phase-01-research"
@@ -1508,9 +904,9 @@
                     <a
                         class="phase-label"
                         href="#phase-01-research"
-                        aria-label="Direct link to Phase 01"
                     >
                         Phase 01
+                        <span aria-hidden="true">↗</span>
                     </a>
 
                     <h2 class="phase-title">
@@ -1554,7 +950,6 @@
                 </a>
             </article>
 
-            <!-- PHASE 02 -->
             <article
                 class="phase phase--left"
                 id="phase-02-reconstruction"
@@ -1590,9 +985,9 @@
                     <a
                         class="phase-label"
                         href="#phase-02-reconstruction"
-                        aria-label="Direct link to Phase 02"
                     >
                         Phase 02
+                        <span aria-hidden="true">↗</span>
                     </a>
 
                     <h2 class="phase-title">
@@ -1610,7 +1005,6 @@
                 </div>
             </article>
 
-            <!-- PHASE 03 -->
             <article
                 class="phase phase--right"
                 id="phase-03-interactive-experience"
@@ -1620,9 +1014,9 @@
                     <a
                         class="phase-label"
                         href="#phase-03-interactive-experience"
-                        aria-label="Direct link to Phase 03"
                     >
                         Phase 03
+                        <span aria-hidden="true">↗</span>
                     </a>
 
                     <h2 class="phase-title">
@@ -1668,14 +1062,29 @@
 
         </section>
 
-        
-
     </main>
 
     <footer class="site-footer">
         <div class="content-width footer-content">
-            <span>Hidden Waters</span>
-            <span>Thesis companion website · 2026</span>
+
+            <span>
+                Hidden Waters
+            </span>
+
+            <div class="footer-institution">
+
+                <span>
+                    Thesis companion website · 2026
+                </span>
+
+                <img
+                    class="footer-ist-logo"
+                    src="assets/images/ist-logo-white.png"
+                    alt="Instituto Superior Técnico"
+                >
+
+            </div>
+
         </div>
     </footer>
 
