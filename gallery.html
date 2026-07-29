@@ -808,6 +808,159 @@
             }
         }
 
+
+
+        /* GALERIA — BLOCOS COMPLETOS POR FASE */
+
+        .gallery-phase-grid {
+            display: grid;
+            grid-template-columns: repeat(2, minmax(0, 1fr));
+            grid-template-rows:
+                repeat(2, clamp(270px, 26vw, 390px));
+            gap: var(--gallery-gap);
+        }
+
+        .gallery-phase-grid .gallery-card {
+            width: 100%;
+            height: 100%;
+            aspect-ratio: auto;
+        }
+
+        .gallery-phase-grid--feature-left .gallery-card--feature {
+            grid-column: 1;
+            grid-row: 1 / span 2;
+        }
+
+        .gallery-phase-grid--feature-left .gallery-card--stack-top {
+            grid-column: 2;
+            grid-row: 1;
+        }
+
+        .gallery-phase-grid--feature-left .gallery-card--stack-bottom {
+            grid-column: 2;
+            grid-row: 2;
+        }
+
+        .gallery-phase-grid--feature-right .gallery-card--feature {
+            grid-column: 2;
+            grid-row: 1 / span 2;
+        }
+
+        .gallery-phase-grid--feature-right .gallery-card--stack-top {
+            grid-column: 1;
+            grid-row: 1;
+        }
+
+        .gallery-phase-grid--feature-right .gallery-card--stack-bottom {
+            grid-column: 1;
+            grid-row: 2;
+        }
+
+        /*
+        HOVER DE ÁGUA SUAVE — IGUAL À HOME
+        */
+
+        .gallery-card {
+            isolation: isolate;
+        }
+
+        .gallery-media {
+            z-index: 0;
+        }
+
+        .gallery-card::after {
+            z-index: 1;
+
+            background:
+                linear-gradient(
+                    to top,
+                    rgba(0, 0, 0, 0.58) 0%,
+                    rgba(0, 0, 0, 0.10) 42%,
+                    transparent 70%
+                );
+        }
+
+        .water-ripple-video {
+            position: absolute;
+            z-index: 2;
+            inset: -3%;
+
+            display: block;
+            width: 106%;
+            height: 106%;
+
+            object-fit: cover;
+            border-radius: inherit;
+
+            opacity: 0;
+            mix-blend-mode: screen;
+
+            filter:
+                blur(1.4px)
+                brightness(0.78)
+                contrast(0.82);
+
+            pointer-events: none;
+            transform: scale(1.07);
+
+            transition:
+                opacity 480ms ease,
+                transform 850ms ease;
+        }
+
+        .gallery-card.is-water-ripple .water-ripple-video {
+            opacity: 0.17;
+            transform: scale(1.09);
+        }
+
+        .gallery-card:hover .gallery-placeholder,
+        .gallery-card:focus-visible .gallery-placeholder,
+        .gallery-card:hover .gallery-media img,
+        .gallery-card:focus-visible .gallery-media img {
+            filter:
+                blur(3px)
+                brightness(0.52)
+                saturate(0.86);
+
+            transform: scale(1.05);
+        }
+
+        .gallery-card-title {
+            z-index: 4;
+        }
+
+        @media (max-width: 650px) {
+            .gallery-phase-grid {
+                grid-template-columns: 1fr;
+                grid-template-rows: none;
+            }
+
+            .gallery-phase-grid .gallery-card {
+                grid-column: 1 !important;
+                grid-row: auto !important;
+
+                min-height: 320px;
+                aspect-ratio: 4 / 5;
+            }
+
+            .gallery-phase-grid .gallery-card--stack-top,
+            .gallery-phase-grid .gallery-card--stack-bottom {
+                aspect-ratio: 16 / 10;
+            }
+        }
+
+        @media (hover: none) {
+            .water-ripple-video {
+                display: none;
+            }
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+            .water-ripple-video {
+                display: none;
+            }
+        }
+
 </style>
 </head>
 <body id="top">
@@ -837,7 +990,7 @@
                 </p>
 </div>
 </section>
-<section aria-label="Hidden Waters visual gallery" class="content-width gallery-phases"><section aria-labelledby="gallery-phase-01-title" class="gallery-phase" id="gallery-phase-01"><header class="gallery-phase-header"><div><p class="gallery-phase-number">Phase 01</p><h2 class="gallery-phase-title" id="gallery-phase-01-title">Historical Research</h2></div><span aria-hidden="true" class="gallery-phase-line"></span></header><div class="gallery-phase-grid"><div class="gallery-column"><button class="gallery-card gallery-card--portrait" data-title="Convent Reconstruction" type="button">
+<section aria-label="Hidden Waters visual gallery" class="content-width gallery-phases"><section aria-labelledby="gallery-phase-01-title" class="gallery-phase" id="gallery-phase-01"><header class="gallery-phase-header"><div><p class="gallery-phase-number">Phase 01</p><h2 class="gallery-phase-title" id="gallery-phase-01-title">Historical Research</h2></div><span aria-hidden="true" class="gallery-phase-line"></span></header><div class="gallery-phase-grid gallery-phase-grid--feature-left"><button class="gallery-card gallery-card gallery-card--feature" data-title="Convent Reconstruction" type="button">
 <span class="gallery-media">
 <span class="gallery-placeholder gallery-placeholder--light">
                             Image 01
@@ -846,7 +999,7 @@
 <span class="gallery-card-title">
                         Convent Reconstruction
                     </span>
-</button><button class="gallery-card gallery-card--square" data-title="Hydraulic Detail" type="button">
+</button><button class="gallery-card gallery-card gallery-card--stack-top" data-title="Hydraulic Detail" type="button">
 <span class="gallery-media">
 <span class="gallery-placeholder">
                             Image 03
@@ -855,7 +1008,7 @@
 <span class="gallery-card-title">
                         Hydraulic Detail
                     </span>
-</button></div><div class="gallery-column"><button class="gallery-card gallery-card--landscape" data-title="Water System" type="button">
+</button><button class="gallery-card gallery-card gallery-card--stack-bottom" data-title="Water System" type="button">
 <span class="gallery-media">
 <span class="gallery-placeholder">
                             Image 02
@@ -864,7 +1017,7 @@
 <span class="gallery-card-title">
                         Water System
                     </span>
-</button></div></div></section><section aria-labelledby="gallery-phase-02-title" class="gallery-phase" id="gallery-phase-02"><header class="gallery-phase-header"><div><p class="gallery-phase-number">Phase 02</p><h2 class="gallery-phase-title" id="gallery-phase-02-title">Digital Reconstruction</h2></div><span aria-hidden="true" class="gallery-phase-line"></span></header><div class="gallery-phase-grid"><div class="gallery-column"><button class="gallery-card gallery-card--tall" data-title="Underground Gallery" type="button">
+</button></div></section><section aria-labelledby="gallery-phase-02-title" class="gallery-phase" id="gallery-phase-02"><header class="gallery-phase-header"><div><p class="gallery-phase-number">Phase 02</p><h2 class="gallery-phase-title" id="gallery-phase-02-title">Digital Reconstruction</h2></div><span aria-hidden="true" class="gallery-phase-line"></span></header><div class="gallery-phase-grid gallery-phase-grid--feature-right"><button class="gallery-card gallery-card gallery-card--feature" data-title="Underground Gallery" type="button">
 <span class="gallery-media">
 <span class="gallery-placeholder gallery-placeholder--light">
                             Image 04
@@ -873,7 +1026,7 @@
 <span class="gallery-card-title">
                         Underground Gallery
                     </span>
-</button><button class="gallery-card gallery-card--portrait" data-title="Interactive Archive" type="button">
+</button><button class="gallery-card gallery-card gallery-card--stack-top" data-title="Interactive Archive" type="button">
 <span class="gallery-media">
 <span class="gallery-placeholder">
                             Image 06
@@ -882,7 +1035,7 @@
 <span class="gallery-card-title">
                         Interactive Archive
                     </span>
-</button></div><div class="gallery-column"><button class="gallery-card gallery-card--wide" data-title="Landscape Study" type="button">
+</button><button class="gallery-card gallery-card gallery-card--stack-bottom" data-title="Landscape Study" type="button">
 <span class="gallery-media">
 <span class="gallery-placeholder gallery-placeholder--light">
                             Image 05
@@ -891,7 +1044,7 @@
 <span class="gallery-card-title">
                         Landscape Study
                     </span>
-</button></div></div></section><section aria-labelledby="gallery-phase-03-title" class="gallery-phase" id="gallery-phase-03"><header class="gallery-phase-header"><div><p class="gallery-phase-number">Phase 03</p><h2 class="gallery-phase-title" id="gallery-phase-03-title">Interactive Experience</h2></div><span aria-hidden="true" class="gallery-phase-line"></span></header><div class="gallery-phase-grid"><div class="gallery-column"><button class="gallery-card gallery-card--portrait" data-title="Archive and Research" type="button">
+</button></div></section><section aria-labelledby="gallery-phase-03-title" class="gallery-phase" id="gallery-phase-03"><header class="gallery-phase-header"><div><p class="gallery-phase-number">Phase 03</p><h2 class="gallery-phase-title" id="gallery-phase-03-title">Interactive Experience</h2></div><span aria-hidden="true" class="gallery-phase-line"></span></header><div class="gallery-phase-grid gallery-phase-grid--feature-left"><button class="gallery-card gallery-card gallery-card--feature" data-title="Archive and Research" type="button">
 <span class="gallery-media">
 <span class="gallery-placeholder">
                             Image 07
@@ -900,7 +1053,7 @@
 <span class="gallery-card-title">
                         Archive and Research
                     </span>
-</button><button class="gallery-card gallery-card--landscape" data-title="Atmosphere Study" type="button">
+</button><button class="gallery-card gallery-card gallery-card--stack-top" data-title="Atmosphere Study" type="button">
 <span class="gallery-media">
 <span class="gallery-placeholder gallery-placeholder--light">
                             Image 09
@@ -909,7 +1062,7 @@
 <span class="gallery-card-title">
                         Atmosphere Study
                     </span>
-</button></div><div class="gallery-column"><button class="gallery-card gallery-card--tall" data-title="Final Experience" type="button">
+</button><button class="gallery-card gallery-card gallery-card--stack-bottom" data-title="Final Experience" type="button">
 <span class="gallery-media">
 <span class="gallery-placeholder gallery-placeholder--light">
                             Image 08
@@ -918,7 +1071,7 @@
 <span class="gallery-card-title">
                         Final Experience
                     </span>
-</button></div></div></section></section>
+</button></div></section></section>
 </main>
 <footer class="site-footer">
 <div class="content-width footer-content">
@@ -1040,6 +1193,94 @@
                     }
                 }
             );
+        })();
+    </script>
+
+<script>
+        (() => {
+            const cards = [
+                ...document.querySelectorAll(".gallery-card")
+            ];
+
+            if (!cards.length) {
+                return;
+            }
+
+            const waterVideo = document.createElement("video");
+
+            waterVideo.className = "water-ripple-video";
+            waterVideo.src = "assets/media/water-ripple-overlay.mp4";
+            waterVideo.muted = true;
+            waterVideo.loop = true;
+            waterVideo.autoplay = true;
+            waterVideo.playsInline = true;
+            waterVideo.preload = "auto";
+            waterVideo.setAttribute("aria-hidden", "true");
+            waterVideo.setAttribute("tabindex", "-1");
+
+            let activeCard = null;
+            let hideTimer = null;
+
+            function activate(card) {
+                window.clearTimeout(hideTimer);
+
+                if (activeCard && activeCard !== card) {
+                    activeCard.classList.remove("is-water-ripple");
+                }
+
+                activeCard = card;
+                activeCard.appendChild(waterVideo);
+                activeCard.classList.add("is-water-ripple");
+
+                const playAttempt = waterVideo.play();
+
+                if (
+                    playAttempt &&
+                    typeof playAttempt.catch === "function"
+                ) {
+                    playAttempt.catch(() => {});
+                }
+            }
+
+            function deactivate(card) {
+                if (activeCard !== card) {
+                    return;
+                }
+
+                card.classList.remove("is-water-ripple");
+
+                hideTimer = window.setTimeout(() => {
+                    if (
+                        activeCard === card &&
+                        waterVideo.parentElement === card
+                    ) {
+                        waterVideo.remove();
+                        activeCard = null;
+                    }
+                }, 480);
+            }
+
+            cards.forEach((card) => {
+                card.addEventListener(
+                    "pointerenter",
+                    () => activate(card)
+                );
+
+                card.addEventListener(
+                    "pointerleave",
+                    () => deactivate(card)
+                );
+
+                card.addEventListener(
+                    "focusin",
+                    () => activate(card)
+                );
+
+                card.addEventListener(
+                    "focusout",
+                    () => deactivate(card)
+                );
+            });
         })();
     </script>
 </body>
