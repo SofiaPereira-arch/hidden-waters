@@ -2303,6 +2303,303 @@
                 border-radius: 18px;
             }
         }
+
+
+        /* =========================================================
+           EXPERIENCE VIDEO — CLEAN PREVIEW
+           ========================================================= */
+
+        .experience-video-preview {
+            position: relative;
+
+            width: 100%;
+            height: auto !important;
+            min-height: 0 !important;
+
+            padding: 0 !important;
+            overflow: hidden;
+
+            aspect-ratio: 16 / 9;
+
+            background: #101b1e;
+            border-radius: 24px;
+
+            cursor: pointer;
+            isolation: isolate;
+        }
+
+        .experience-video-preview::before {
+            content: "";
+
+            position: absolute;
+            z-index: 2;
+            inset: 0;
+
+            background:
+                linear-gradient(
+                    to top,
+                    rgba(0,0,0,.18),
+                    rgba(0,0,0,.03) 45%,
+                    rgba(0,0,0,.08)
+                );
+
+            pointer-events: none;
+        }
+
+        .experience-video-preview::after {
+            display: none !important;
+        }
+
+        .experience-video-thumbnail {
+            position: absolute;
+            inset: 0;
+
+            width: 100%;
+            height: 100%;
+
+            object-fit: cover;
+
+            filter:
+                brightness(.78)
+                saturate(.86);
+
+            transform: scale(1.002);
+
+            transition:
+                transform 520ms cubic-bezier(.22,1,.36,1),
+                filter 320ms ease;
+        }
+
+        .experience-video-play {
+            position: absolute;
+            z-index: 4;
+
+            top: 50%;
+            left: 50%;
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            width: 72px;
+            height: 72px;
+
+            padding-left: 4px;
+
+            color: #ffffff;
+            background: rgba(5,5,5,.16);
+
+            border:
+                1px solid
+                rgba(255,255,255,.72);
+
+            border-radius: 50%;
+
+            transform: translate(-50%,-50%);
+
+            backdrop-filter: blur(4px);
+            -webkit-backdrop-filter: blur(4px);
+
+            transition:
+                transform 260ms ease,
+                background-color 260ms ease,
+                border-color 260ms ease;
+        }
+
+        .experience-video-preview:hover
+        .experience-video-thumbnail,
+        .experience-video-preview:focus-visible
+        .experience-video-thumbnail {
+            transform: scale(1.025);
+
+            filter:
+                brightness(.91)
+                saturate(.94);
+        }
+
+        .experience-video-preview:hover
+        .experience-video-play,
+        .experience-video-preview:focus-visible
+        .experience-video-play {
+            transform:
+                translate(-50%,-50%)
+                scale(1.08);
+
+            background:
+                rgba(83,128,137,.20);
+
+            border-color:
+                rgba(220,247,250,.96);
+        }
+
+        .experience-video-preview:focus-visible {
+            outline:
+                1px solid
+                var(--blue-light);
+
+            outline-offset: 5px;
+        }
+
+        /* =========================================================
+           EXPERIENCE VIDEO — LIGHTBOX
+           ========================================================= */
+
+        .experience-lightbox {
+            position: fixed;
+            z-index: 2500;
+            inset: 0;
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            padding: 86px 42px 42px;
+
+            background:
+                rgba(0,0,0,.92);
+
+            opacity: 0;
+            visibility: hidden;
+
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+
+            transition:
+                opacity 280ms ease,
+                visibility 280ms ease;
+        }
+
+        .experience-lightbox.is-open {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .experience-lightbox-dialog {
+            position: relative;
+
+            width:
+                min(
+                    1280px,
+                    94vw,
+                    calc(84vh * 16 / 9)
+                );
+
+            aspect-ratio: 16 / 9;
+
+            overflow: visible;
+        }
+
+        .experience-lightbox-frame {
+            position: absolute;
+            inset: 0;
+
+            overflow: hidden;
+
+            background: #050505;
+
+            border-radius: 24px;
+
+            box-shadow:
+                0 30px 100px
+                rgba(0,0,0,.68);
+        }
+
+        .experience-lightbox-frame iframe {
+            display: block;
+
+            width: 100%;
+            height: 100%;
+
+            border: 0;
+        }
+
+        .experience-lightbox-close {
+            position: absolute;
+            z-index: 5;
+
+            top: -58px;
+            right: 0;
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            width: 46px;
+            height: 46px;
+
+            padding: 0;
+
+            color: #ffffff;
+            background:
+                rgba(13,21,23,.94);
+
+            border:
+                1px solid
+                rgba(143,179,186,.38);
+
+            border-radius: 50%;
+
+            cursor: pointer;
+
+            font-size: 1.25rem;
+            line-height: 1;
+
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+
+            transition:
+                transform 220ms ease,
+                background-color 220ms ease,
+                border-color 220ms ease;
+        }
+
+        .experience-lightbox-close:hover,
+        .experience-lightbox-close:focus-visible {
+            transform: scale(1.06);
+
+            background:
+                rgba(115,157,166,.34);
+
+            border-color:
+                rgba(190,224,230,.70);
+        }
+
+        @media (max-width: 700px) {
+            .experience-video-preview {
+                border-radius: 18px;
+            }
+
+            .experience-video-play {
+                width: 60px;
+                height: 60px;
+            }
+
+            .experience-lightbox {
+                padding:
+                    74px
+                    14px
+                    14px;
+            }
+
+            .experience-lightbox-dialog {
+                width:
+                    min(
+                        96vw,
+                        calc(78vh * 16 / 9)
+                    );
+            }
+
+            .experience-lightbox-frame {
+                border-radius: 18px;
+            }
+
+            .experience-lightbox-close {
+                top: -52px;
+
+                width: 42px;
+                height: 42px;
+            }
+        }
 </style>
 </head>
 <body id="top">
@@ -2424,7 +2721,7 @@
 <p class="experience-copy" data-en="Hidden Waters is an immersive digital reconstruction of the hydraulic system associated with the Convent of Capuchos de Alferrara. The project combines historical research, architectural reconstruction and an interactive experience developed in Unreal Engine." data-pt="Hidden Waters é uma reconstrução digital imersiva do sistema hidráulico associado ao Convento dos Capuchos de Alferrara. O projeto combina investigação histórica, reconstrução arquitetónica e uma experiência interativa desenvolvida em Unreal Engine.">Hidden Waters is an immersive digital reconstruction of the hydraulic system associated with the Convent of Capuchos de Alferrara. The project combines historical research, architectural reconstruction and an interactive experience developed in Unreal Engine.</p>
 <a aria-label="Download Hidden Waters on itch.io" class="experience-download" href="https://sofiapereira-arch.itch.io/hidden-waters" rel="noopener noreferrer" target="_blank"><span data-en="Download Experience" data-pt="Descarregar Experiência">Download Experience</span><span aria-hidden="true">↓</span></a>
 </div>
-<div class="experience-image experience-image--youtube"><iframe allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen="" class="experience-youtube" loading="lazy" src="https://www.youtube-nocookie.com/embed/BtS3GKPRUNY?rel=0" title="Hidden Waters Experience"></iframe></div>
+<div aria-label="Play Hidden Waters Experience video" class="experience-image experience-video-preview" role="button" tabindex="0"><img alt="" class="experience-video-thumbnail" decoding="async" loading="lazy" src="https://i.ytimg.com/vi/BtS3GKPRUNY/maxresdefault.jpg"/><span aria-hidden="true" class="experience-video-play">▶</span></div>
 </div>
 </section>
 </main>
@@ -2695,5 +2992,142 @@
 
     setLanguage("en");
 })();
+</script><div aria-hidden="true" class="experience-lightbox"><div aria-label="Hidden Waters Experience video" aria-modal="true" class="experience-lightbox-dialog" role="dialog"><button aria-label="Close video" class="experience-lightbox-close" type="button">×</button><div class="experience-lightbox-frame"></div></div></div><script>
+        (() => {
+            const preview =
+                document.querySelector(
+                    ".experience-video-preview"
+                );
+
+            const lightbox =
+                document.querySelector(
+                    ".experience-lightbox"
+                );
+
+            const frame =
+                document.querySelector(
+                    ".experience-lightbox-frame"
+                );
+
+            const closeButton =
+                document.querySelector(
+                    ".experience-lightbox-close"
+                );
+
+            if (
+                !preview ||
+                !lightbox ||
+                !frame ||
+                !closeButton
+            ) {
+                return;
+            }
+
+            function openVideo() {
+                frame.innerHTML = "";
+
+                const iframe =
+                    document.createElement(
+                        "iframe"
+                    );
+
+                iframe.src =
+                    "https://www.youtube-nocookie.com/embed/BtS3GKPRUNY?autoplay=1&rel=0";
+
+                iframe.title =
+                    "Hidden Waters Experience";
+
+                iframe.allow =
+                    "accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share";
+
+                iframe.allowFullscreen =
+                    true;
+
+                frame.appendChild(
+                    iframe
+                );
+
+                lightbox.classList.add(
+                    "is-open"
+                );
+
+                lightbox.setAttribute(
+                    "aria-hidden",
+                    "false"
+                );
+
+                document.body.style.overflow =
+                    "hidden";
+
+                closeButton.focus();
+            }
+
+            function closeVideo() {
+                lightbox.classList.remove(
+                    "is-open"
+                );
+
+                lightbox.setAttribute(
+                    "aria-hidden",
+                    "true"
+                );
+
+                document.body.style.overflow =
+                    "";
+
+                frame.innerHTML = "";
+
+                preview.focus();
+            }
+
+            preview.addEventListener(
+                "click",
+                openVideo
+            );
+
+            preview.addEventListener(
+                "keydown",
+                (event) => {
+                    if (
+                        event.key === "Enter" ||
+                        event.key === " "
+                    ) {
+                        event.preventDefault();
+                        openVideo();
+                    }
+                }
+            );
+
+            closeButton.addEventListener(
+                "click",
+                closeVideo
+            );
+
+            lightbox.addEventListener(
+                "click",
+                (event) => {
+                    if (
+                        event.target ===
+                        lightbox
+                    ) {
+                        closeVideo();
+                    }
+                }
+            );
+
+            document.addEventListener(
+                "keydown",
+                (event) => {
+                    if (
+                        event.key === "Escape" &&
+                        lightbox.classList.contains(
+                            "is-open"
+                        )
+                    ) {
+                        closeVideo();
+                    }
+                }
+            );
+        })();
 </script></body>
 </html>
