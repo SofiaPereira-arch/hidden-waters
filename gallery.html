@@ -1,34 +1,15 @@
 <!DOCTYPE html>
+
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Visual gallery for the Hidden Waters thesis project.">
-    
-    <link
-        rel="icon"
-        type="image/png"
-        href="assets/images/favicon.png"
-    >
-    
-    <link
-        rel="icon"
-        href="assets/images/favicon.ico"
-        sizes="any"
-    >
-    
-    <link
-        rel="apple-touch-icon"
-        href="assets/images/apple-touch-icon.png"
-    >
-    
-    <title>Gallery · Hidden Waters</title>
-
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
-
-    <style>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<meta content="Artbook and visual gallery for the Hidden Waters thesis project." name="description"/>
+<title>Artbook · Hidden Waters</title>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&amp;family=Inter:wght@300;400;500;600&amp;display=swap" rel="stylesheet"/>
+<style>
         @font-face {
             font-family: "Steelfish";
             src: url("assets/fonts/steelfish-rg.otf") format("opentype");
@@ -49,13 +30,17 @@
             --background: #050505;
             --text: #f2f2f2;
             --muted: #a6a6a6;
+
             --blue: #739da6;
             --blue-light: #8fb3ba;
+
             --line: rgba(255, 255, 255, 0.11);
             --header-background: rgba(5, 5, 5, 0.78);
+
+            /* Mesmas margens da Home e da página Process */
             --content-width: 1100px;
             --content-gutter: 128px;
-            --header-height: 76px;
+
             --gallery-gap: 28px;
             --card-radius: 24px;
         }
@@ -66,7 +51,7 @@
 
         html {
             scroll-behavior: smooth;
-            scroll-padding-top: 104px;
+            scroll-padding-top: 96px;
         }
 
         body {
@@ -76,7 +61,7 @@
             background: var(--background);
 
             font-family: "Inter", Arial, sans-serif;
-            line-height: 1.65;
+            line-height: 1.6;
         }
 
         button,
@@ -92,10 +77,14 @@
             font: inherit;
         }
 
-        img,
-        video {
+        img {
             display: block;
             width: 100%;
+        }
+
+        ::selection {
+            color: #050505;
+            background: #9fc0c6;
         }
 
         .content-width {
@@ -104,17 +93,22 @@
                 calc(100% - var(--content-gutter))
             );
 
-            margin-inline: auto;
+            margin-right: auto;
+            margin-left: auto;
         }
 
-        /* HEADER */
+        /*
+        CABEÇALHO
+        */
 
         .site-header {
             position: fixed;
             z-index: 1000;
-            inset: 0 0 auto;
+            top: 0;
+            right: 0;
+            left: 0;
 
-            height: var(--header-height);
+            height: 76px;
 
             background: var(--header-background);
             border-bottom: 1px solid var(--line);
@@ -135,6 +129,8 @@
             display: flex;
             align-items: center;
             gap: 30px;
+
+            color: #f1f1f1;
 
             font-family: "Bebas Neue", sans-serif;
             font-size: 1.28rem;
@@ -206,6 +202,8 @@
         }
 
         .header-logo-image {
+            display: block;
+
             width: auto;
             height: 40px;
             max-width: 38px;
@@ -213,17 +211,19 @@
             object-fit: contain;
         }
 
-        main {
-            padding-top: var(--header-height);
-        }
+        /*
+        TÍTULO
+        */
 
-        /* HERO */
+        main {
+            padding-top: 76px;
+        }
 
         .gallery-hero {
             padding:
                 clamp(55px, 7vh, 95px)
                 0
-                clamp(82px, 10vh, 120px);
+                clamp(58px, 7vh, 86px);
         }
 
         .gallery-title {
@@ -239,140 +239,42 @@
         }
 
         .gallery-introduction {
-            max-width: 640px;
-            margin: 38px 0 0;
+            max-width: 620px;
+            margin: 34px 0 0;
 
             color: var(--muted);
-
             font-size: 0.98rem;
             line-height: 1.78;
         }
 
-        /* PHASES */
+        /*
+        ARTBOOK / MASONRY
+        */
 
-        .gallery-phases {
-            padding-bottom:
-                clamp(105px, 13vh, 170px);
-        }
-
-        .gallery-phase {
-            margin-bottom:
-                clamp(110px, 15vh, 185px);
-
-            scroll-margin-top: 104px;
-        }
-
-        .gallery-phase:last-child {
-            margin-bottom: 0;
-        }
-
-        .gallery-phase-header {
+        .artbook {
             display: grid;
-            grid-template-columns:
-                auto
-                minmax(90px, 1fr);
-            align-items: end;
-            gap: 30px;
-
-            margin-bottom: 36px;
-        }
-
-        .gallery-phase-direct-link {
-            position: relative;
-
-            display: inline-flex;
-            align-items: baseline;
-            gap: 7px;
-
-            width: fit-content;
-            margin: 0 0 5px;
-
-            color: var(--blue-light);
-
-            font-family: "Steelfish", "Arial Narrow", sans-serif;
-            font-size: 1.08rem;
-            letter-spacing: 0.1em;
-            line-height: 1;
-            text-transform: uppercase;
-
-            transition:
-                color 220ms ease,
-                transform 220ms ease;
-        }
-
-        .gallery-phase-direct-link::after {
-            content: "";
-            position: absolute;
-            right: 0;
-            bottom: -5px;
-            left: 0;
-
-            height: 1px;
-
-            background: var(--blue-light);
-
-            transform: scaleX(0);
-            transform-origin: right;
-
-            transition: transform 240ms ease;
-        }
-
-        .gallery-phase-direct-link:hover,
-        .gallery-phase-direct-link:focus-visible {
-            color: #ffffff;
-            transform: translateY(-1px);
-        }
-
-        .gallery-phase-direct-link:hover::after,
-        .gallery-phase-direct-link:focus-visible::after {
-            transform: scaleX(1);
-            transform-origin: left;
-        }
-
-        .gallery-phase-title {
-            margin: 0;
-
-            color: #eeeeee;
-
-            font-family: "Bebas Neue", sans-serif;
-            font-size: clamp(2.35rem, 3.8vw, 4rem);
-            font-weight: 400;
-            letter-spacing: 0.015em;
-            line-height: 0.92;
-        }
-
-        .gallery-phase-line {
-            display: block;
-
-            height: 1px;
-            margin-bottom: 7px;
-
-            background:
-                linear-gradient(
-                    to right,
-                    rgba(143, 179, 186, 0.52),
-                    rgba(143, 179, 186, 0.05)
-                );
-        }
-
-        /* FILLED GRID */
-
-        .gallery-phase-grid {
-            display: grid;
-            grid-template-columns:
-                repeat(2, minmax(0, 1fr));
-            grid-template-rows:
-                repeat(2, clamp(270px, 26vw, 390px));
+            grid-template-columns: repeat(2, minmax(0, 1fr));
+            align-items: start;
             gap: var(--gallery-gap);
+
+            padding-bottom: clamp(100px, 13vh, 170px);
+        }
+
+        .gallery-column {
+            display: flex;
+            flex-direction: column;
+            gap: var(--gallery-gap);
+        }
+
+        .gallery-column--right {
+            padding-top: 66px;
         }
 
         .gallery-card {
             position: relative;
 
             display: block;
-
             width: 100%;
-            height: 100%;
             padding: 0;
 
             overflow: hidden;
@@ -385,6 +287,7 @@
 
             cursor: zoom-in;
             text-align: left;
+
             isolation: isolate;
 
             transition:
@@ -392,43 +295,11 @@
                 box-shadow 420ms ease;
         }
 
-        .gallery-phase-grid--feature-left .gallery-card--feature {
-            grid-column: 1;
-            grid-row: 1 / span 2;
-        }
-
-        .gallery-phase-grid--feature-left .gallery-card--stack-top {
-            grid-column: 2;
-            grid-row: 1;
-        }
-
-        .gallery-phase-grid--feature-left .gallery-card--stack-bottom {
-            grid-column: 2;
-            grid-row: 2;
-        }
-
-        .gallery-phase-grid--feature-right .gallery-card--feature {
-            grid-column: 2;
-            grid-row: 1 / span 2;
-        }
-
-        .gallery-phase-grid--feature-right .gallery-card--stack-top {
-            grid-column: 1;
-            grid-row: 1;
-        }
-
-        .gallery-phase-grid--feature-right .gallery-card--stack-bottom {
-            grid-column: 1;
-            grid-row: 2;
-        }
-
         .gallery-card:hover,
         .gallery-card:focus-visible {
             z-index: 10;
 
-            transform:
-                translateY(-5px)
-                scale(1.018);
+            transform: translateY(-5px) scale(1.018);
 
             box-shadow:
                 0 26px 68px rgba(0, 0, 0, 0.44),
@@ -440,31 +311,61 @@
             outline-offset: 6px;
         }
 
+        .gallery-card--portrait {
+            aspect-ratio: 4 / 5;
+        }
+
+        .gallery-card--tall {
+            aspect-ratio: 3 / 5;
+        }
+
+        .gallery-card--square {
+            aspect-ratio: 1 / 1;
+        }
+
+        .gallery-card--landscape {
+            aspect-ratio: 16 / 9;
+        }
+
+        .gallery-card--wide {
+            aspect-ratio: 7 / 4;
+        }
+
+        .gallery-media,
+        .gallery-media img {
+            width: 100%;
+            height: 100%;
+        }
+
         .gallery-media {
             position: absolute;
-            z-index: 0;
             inset: 0;
 
             overflow: hidden;
             border-radius: inherit;
         }
 
-        .gallery-placeholder,
         .gallery-media img {
-            width: 100%;
-            height: 100%;
-
             object-fit: cover;
 
             transition:
-                transform 700ms ease,
-                filter 480ms ease;
+                transform 700ms cubic-bezier(0.22, 1, 0.36, 1),
+                filter 420ms ease;
         }
+
+        /*
+        Placeholders temporários.
+        Mais tarde podes substituir cada .gallery-placeholder por:
+        <img src="assets/images/nome-da-imagem.jpg" alt="Descrição">
+        */
 
         .gallery-placeholder {
             display: flex;
             justify-content: center;
             align-items: center;
+
+            width: 100%;
+            height: 100%;
 
             color: rgba(179, 208, 214, 0.82);
 
@@ -484,6 +385,10 @@
             font-size: 1.15rem;
             letter-spacing: 0.08em;
             text-transform: uppercase;
+
+            transition:
+                transform 700ms cubic-bezier(0.22, 1, 0.36, 1),
+                filter 420ms ease;
         }
 
         .gallery-placeholder--light {
@@ -497,6 +402,13 @@
                 );
         }
 
+        .gallery-card:hover .gallery-media img,
+        .gallery-card:focus-visible .gallery-media img,
+        .gallery-card:hover .gallery-placeholder,
+        .gallery-card:focus-visible .gallery-placeholder {
+            transform: scale(1.055);
+        }
+
         .gallery-card::after {
             content: "";
             position: absolute;
@@ -506,9 +418,9 @@
             background:
                 linear-gradient(
                     to top,
-                    rgba(0, 0, 0, 0.58) 0%,
-                    rgba(0, 0, 0, 0.1) 42%,
-                    transparent 70%
+                    rgba(0, 0, 0, 0.70) 0%,
+                    rgba(0, 0, 0, 0.12) 44%,
+                    transparent 72%
                 );
 
             opacity: 0;
@@ -522,21 +434,9 @@
             opacity: 1;
         }
 
-        .gallery-card:hover .gallery-placeholder,
-        .gallery-card:focus-visible .gallery-placeholder,
-        .gallery-card:hover .gallery-media img,
-        .gallery-card:focus-visible .gallery-media img {
-            filter:
-                blur(3px)
-                brightness(0.52)
-                saturate(0.86);
-
-            transform: scale(1.05);
-        }
-
         .gallery-card-title {
             position: absolute;
-            z-index: 4;
+            z-index: 3;
             right: 24px;
             bottom: 21px;
             left: 24px;
@@ -545,6 +445,7 @@
 
             font-family: "Steelfish", "Arial Narrow", sans-serif;
             font-size: clamp(1.25rem, 1.45vw, 1.65rem);
+            font-weight: 400;
             letter-spacing: 0.045em;
             line-height: 1;
             text-transform: uppercase;
@@ -564,41 +465,9 @@
             transform: translateY(0);
         }
 
-        .water-ripple-video {
-            position: absolute;
-            z-index: 2;
-            inset: -3%;
-
-            display: block;
-
-            width: 106%;
-            height: 106%;
-
-            object-fit: cover;
-            border-radius: inherit;
-
-            opacity: 0;
-            mix-blend-mode: screen;
-
-            filter:
-                blur(1.4px)
-                brightness(0.78)
-                contrast(0.82);
-
-            pointer-events: none;
-            transform: scale(1.07);
-
-            transition:
-                opacity 480ms ease,
-                transform 850ms ease;
-        }
-
-        .gallery-card.is-water-ripple .water-ripple-video {
-            opacity: 0.17;
-            transform: scale(1.09);
-        }
-
-        /* LIGHTBOX */
+        /*
+        LIGHTBOX
+        */
 
         .lightbox {
             position: fixed;
@@ -610,7 +479,7 @@
 
             padding: 38px;
 
-            background: rgba(0, 0, 0, 0.9);
+            background: rgba(0, 0, 0, 0.90);
 
             opacity: 0;
             visibility: hidden;
@@ -662,7 +531,6 @@
         .lightbox-media img {
             width: 100%;
             height: 100%;
-
             object-fit: contain;
         }
 
@@ -729,51 +597,28 @@
             transform: scale(1.06);
         }
 
-        /* FOOTER */
+        /*
+        RODAPÉ
+        */
 
         .site-footer {
-            padding: 35px 0 45px;
+            padding: 34px 0 44px;
             border-top: 1px solid var(--line);
         }
 
         .footer-content {
             display: flex;
             justify-content: space-between;
-            align-items: center;
             gap: 24px;
 
             color: #818181;
-
             font-size: 0.75rem;
             letter-spacing: 0.04em;
         }
 
-        .footer-institution {
-            display: flex;
-            align-items: center;
-            gap: 18px;
-        }
-
-        .footer-ist-logo {
-            display: block;
-
-            width: auto;
-            height: 27px;
-
-            opacity: 0.78;
-            object-fit: contain;
-
-            transition:
-                opacity 220ms ease,
-                transform 220ms ease;
-        }
-
-        .footer-ist-logo:hover {
-            opacity: 1;
-            transform: translateY(-1px);
-        }
-
-        /* RESPONSIVE */
+        /*
+        RESPONSIVO
+        */
 
         @media (max-width: 900px) {
             :root {
@@ -781,37 +626,19 @@
                 --gallery-gap: 20px;
                 --card-radius: 20px;
             }
+
+            .gallery-column--right {
+                padding-top: 44px;
+            }
         }
 
         @media (max-width: 650px) {
-            .gallery-phase-header {
+            .artbook {
                 grid-template-columns: 1fr;
-                gap: 16px;
-
-                margin-bottom: 26px;
             }
 
-            .gallery-phase-line {
-                width: 100%;
-                margin: 0;
-            }
-
-            .gallery-phase-grid {
-                grid-template-columns: 1fr;
-                grid-template-rows: none;
-            }
-
-            .gallery-phase-grid .gallery-card {
-                grid-column: 1 !important;
-                grid-row: auto !important;
-
-                min-height: 320px;
-                aspect-ratio: 4 / 5;
-            }
-
-            .gallery-phase-grid .gallery-card--stack-top,
-            .gallery-phase-grid .gallery-card--stack-bottom {
-                aspect-ratio: 16 / 10;
+            .gallery-column--right {
+                padding-top: 0;
             }
 
             .gallery-card-title {
@@ -825,8 +652,12 @@
         }
 
         @media (max-width: 520px) {
-            :root {
-                --header-height: 68px;
+            .site-header {
+                height: 68px;
+            }
+
+            main {
+                padding-top: 68px;
             }
 
             .main-nav {
@@ -845,22 +676,276 @@
                 max-width: 33px;
             }
 
+            .gallery-title {
+                font-size: clamp(4.8rem, 22vw, 7rem);
+            }
+
+            .gallery-introduction {
+                margin-top: 26px;
+            }
+
             .lightbox {
                 padding: 16px;
             }
 
+            .lightbox-dialog {
+                border-radius: 19px;
+            }
+
             .footer-content {
                 flex-direction: column;
-                align-items: flex-start;
+                gap: 7px;
+            }
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+            *,
+            *::before,
+            *::after {
+                scroll-behavior: auto !important;
+                transition-duration: 0.01ms !important;
+                animation-duration: 0.01ms !important;
+                animation-iteration-count: 1 !important;
+            }
+        }
+    
+
+        /* GALERIA ORGANIZADA POR FASES */
+
+        .gallery-phases {
+            padding-bottom: clamp(100px, 13vh, 170px);
+        }
+
+        .gallery-phase {
+            margin-bottom: clamp(110px, 15vh, 185px);
+            scroll-margin-top: 104px;
+        }
+
+        .gallery-phase:last-child {
+            margin-bottom: 0;
+        }
+
+        .gallery-phase-header {
+            display: grid;
+            grid-template-columns: auto minmax(90px, 1fr);
+            align-items: end;
+            gap: 30px;
+
+            margin-bottom: 36px;
+        }
+
+        .gallery-phase-number {
+            margin: 0 0 5px;
+
+            color: var(--blue-light);
+
+            font-family: "Steelfish", "Arial Narrow", sans-serif;
+            font-size: 1.08rem;
+            letter-spacing: 0.10em;
+            line-height: 1;
+            text-transform: uppercase;
+        }
+
+        .gallery-phase-title {
+            margin: 0;
+
+            color: #eeeeee;
+
+            font-family: "Bebas Neue", sans-serif;
+            font-size: clamp(2.35rem, 3.8vw, 4rem);
+            font-weight: 400;
+            letter-spacing: 0.015em;
+            line-height: 0.92;
+        }
+
+        .gallery-phase-line {
+            display: block;
+
+            height: 1px;
+            margin-bottom: 7px;
+
+            background:
+                linear-gradient(
+                    to right,
+                    rgba(143, 179, 186, 0.52),
+                    rgba(143, 179, 186, 0.05)
+                );
+        }
+
+        .gallery-phase-grid {
+            display: grid;
+            grid-template-columns: repeat(2, minmax(0, 1fr));
+            align-items: start;
+            gap: var(--gallery-gap);
+        }
+
+        /*
+        As duas colunas começam exatamente na mesma linha.
+        */
+
+        .gallery-column--right {
+            padding-top: 0;
+        }
+
+        @media (max-width: 650px) {
+            .gallery-phase {
+                margin-bottom: 92px;
             }
 
-            .footer-institution {
-                align-items: flex-start;
-                gap: 14px;
+            .gallery-phase-header {
+                grid-template-columns: 1fr;
+                gap: 16px;
+                margin-bottom: 26px;
             }
 
-            .footer-ist-logo {
-                height: 25px;
+            .gallery-phase-line {
+                width: 100%;
+                margin: 0;
+            }
+
+            .gallery-phase-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+
+
+        /* GALERIA — BLOCOS COMPLETOS POR FASE */
+
+        .gallery-phase-grid {
+            display: grid;
+            grid-template-columns: repeat(2, minmax(0, 1fr));
+            grid-template-rows:
+                repeat(2, clamp(270px, 26vw, 390px));
+            gap: var(--gallery-gap);
+        }
+
+        .gallery-phase-grid .gallery-card {
+            width: 100%;
+            height: 100%;
+            aspect-ratio: auto;
+        }
+
+        .gallery-phase-grid--feature-left .gallery-card--feature {
+            grid-column: 1;
+            grid-row: 1 / span 2;
+        }
+
+        .gallery-phase-grid--feature-left .gallery-card--stack-top {
+            grid-column: 2;
+            grid-row: 1;
+        }
+
+        .gallery-phase-grid--feature-left .gallery-card--stack-bottom {
+            grid-column: 2;
+            grid-row: 2;
+        }
+
+        .gallery-phase-grid--feature-right .gallery-card--feature {
+            grid-column: 2;
+            grid-row: 1 / span 2;
+        }
+
+        .gallery-phase-grid--feature-right .gallery-card--stack-top {
+            grid-column: 1;
+            grid-row: 1;
+        }
+
+        .gallery-phase-grid--feature-right .gallery-card--stack-bottom {
+            grid-column: 1;
+            grid-row: 2;
+        }
+
+        /*
+        HOVER DE ÁGUA SUAVE — IGUAL À HOME
+        */
+
+        .gallery-card {
+            isolation: isolate;
+        }
+
+        .gallery-media {
+            z-index: 0;
+        }
+
+        .gallery-card::after {
+            z-index: 1;
+
+            background:
+                linear-gradient(
+                    to top,
+                    rgba(0, 0, 0, 0.58) 0%,
+                    rgba(0, 0, 0, 0.10) 42%,
+                    transparent 70%
+                );
+        }
+
+        .water-ripple-video {
+            position: absolute;
+            z-index: 2;
+            inset: -3%;
+
+            display: block;
+            width: 106%;
+            height: 106%;
+
+            object-fit: cover;
+            border-radius: inherit;
+
+            opacity: 0;
+            mix-blend-mode: screen;
+
+            filter:
+                blur(1.4px)
+                brightness(0.78)
+                contrast(0.82);
+
+            pointer-events: none;
+            transform: scale(1.07);
+
+            transition:
+                opacity 480ms ease,
+                transform 850ms ease;
+        }
+
+        .gallery-card.is-water-ripple .water-ripple-video {
+            opacity: 0.17;
+            transform: scale(1.09);
+        }
+
+        .gallery-card:hover .gallery-placeholder,
+        .gallery-card:focus-visible .gallery-placeholder,
+        .gallery-card:hover .gallery-media img,
+        .gallery-card:focus-visible .gallery-media img {
+            filter:
+                blur(3px)
+                brightness(0.52)
+                saturate(0.86);
+
+            transform: scale(1.05);
+        }
+
+        .gallery-card-title {
+            z-index: 4;
+        }
+
+        @media (max-width: 650px) {
+            .gallery-phase-grid {
+                grid-template-columns: 1fr;
+                grid-template-rows: none;
+            }
+
+            .gallery-phase-grid .gallery-card {
+                grid-column: 1 !important;
+                grid-row: auto !important;
+
+                min-height: 320px;
+                aspect-ratio: 4 / 5;
+            }
+
+            .gallery-phase-grid .gallery-card--stack-top,
+            .gallery-phase-grid .gallery-card--stack-bottom {
+                aspect-ratio: 16 / 10;
             }
         }
 
@@ -871,399 +956,173 @@
         }
 
         @media (prefers-reduced-motion: reduce) {
-            *,
-            *::before,
-            *::after {
-                scroll-behavior: auto !important;
-                animation-duration: 0.01ms !important;
-                animation-iteration-count: 1 !important;
-                transition-duration: 0.01ms !important;
-            }
-
             .water-ripple-video {
                 display: none;
             }
         }
-    </style>
+
+
+
+        /* LINKS DIRETOS PARA CADA FASE DA GALERIA */
+
+        .gallery-phase-direct-link {
+            position: relative;
+
+            display: inline-flex;
+            align-items: baseline;
+            gap: 7px;
+
+            width: fit-content;
+
+            text-decoration: none;
+            cursor: pointer;
+
+            transition:
+                color 220ms ease,
+                transform 220ms ease;
+        }
+
+        .gallery-phase-direct-link::after {
+            content: "";
+            position: absolute;
+            right: 0;
+            bottom: -5px;
+            left: 0;
+
+            height: 1px;
+
+            background: var(--blue-light);
+
+            transform: scaleX(0);
+            transform-origin: right;
+
+            transition:
+                transform 240ms ease;
+        }
+
+        .gallery-phase-direct-link:hover,
+        .gallery-phase-direct-link:focus-visible {
+            color: #ffffff;
+            transform: translateY(-1px);
+        }
+
+        .gallery-phase-direct-link:hover::after,
+        .gallery-phase-direct-link:focus-visible::after {
+            transform: scaleX(1);
+            transform-origin: left;
+        }
+
+        .gallery-phase-direct-link:focus-visible {
+            outline: 2px solid var(--blue-light);
+            outline-offset: 6px;
+        }
+
+
+/* LANGUAGE SWITCH */
+.header-content { position: relative; }
+
+.language-switch {
+    position: absolute;
+    right: 0;
+    top: 50%;
+    display: flex;
+    gap: 3px;
+    padding: 4px;
+    transform: translateY(-50%);
+    background: rgba(255,255,255,.045);
+    border: 1px solid rgba(255,255,255,.12);
+    border-radius: 999px;
+}
+
+.language-button {
+    min-width: 36px;
+    padding: 6px 9px;
+    color: #8f8f8f;
+    background: transparent;
+    border: 0;
+    border-radius: 999px;
+    cursor: pointer;
+    font-family: "Bebas Neue", sans-serif;
+    font-size: .9rem;
+    letter-spacing: .08em;
+}
+
+.language-button.is-active {
+    color: #050505;
+    background: var(--blue-light);
+}
+
+.language-button:hover:not(.is-active),
+.language-button:focus-visible:not(.is-active) {
+    color: #fff;
+}
+
+@media (max-width: 650px) {
+    .language-switch {
+        right: 4px;
+        transform: translate(28%, -50%) scale(.88);
+    }
+
+    .language-button {
+        min-width: 31px;
+        padding: 5px 6px;
+        font-size: .8rem;
+    }
+}
+
+.gallery-phase-direct-link {
+    font-size: clamp(1.5rem, 2.15vw, 2rem);
+    letter-spacing: .045em;
+    line-height: 1;
+    margin: 0;
+}
+</style>
 </head>
-
 <body id="top">
-
-    <header class="site-header">
-        <div class="content-width header-content">
-
-            <nav
-                class="main-nav"
-                aria-label="Main navigation"
-            >
-                <a
-                    href="gallery.html"
-                    aria-current="page"
-                >
-                    Gallery
-                </a>
-
-                <a
-                    class="header-logo-link"
-                    href="index.html"
-                    aria-label="Return to the Hidden Waters homepage"
-                >
-                    <img
-                        class="header-logo-image"
-                        src="assets/images/hidden-waters-logo-white.png"
-                        alt=""
-                    >
-                </a>
-
-                <a href="process.html">
-                    Process
-                </a>
-            </nav>
-
-        </div>
-    </header>
-
-    <main>
-
-        <section class="gallery-hero">
-            <div class="content-width">
-
-                <h1 class="gallery-title">
-                    Gallery
-                </h1>
-
-                <p class="gallery-introduction">
-                    A visual record of the architectural reconstruction,
-                    environmental studies and development of the
-                    Hidden Waters experience.
-                </p>
-
-            </div>
-        </section>
-
-        <section
-            class="content-width gallery-phases"
-            aria-label="Hidden Waters visual gallery"
-        >
-
-            <section
-                class="gallery-phase"
-                id="gallery-phase-01"
-                aria-labelledby="gallery-phase-01-title"
-            >
-                <header class="gallery-phase-header">
-
-                    <div>
-
-                        <a
-                            class="gallery-phase-direct-link"
-                            href="#gallery-phase-01"
-                        >
-                            Phase 01
-                            <span aria-hidden="true">↗</span>
-                        </a>
-
-                        <h2
-                            class="gallery-phase-title"
-                            id="gallery-phase-01-title"
-                        >
-                            Historical Research
-                        </h2>
-
-                    </div>
-
-                    <span
-                        class="gallery-phase-line"
-                        aria-hidden="true"
-                    ></span>
-
-                </header>
-
-                <div class="gallery-phase-grid gallery-phase-grid--feature-left">
-
-                    <button
-                        class="gallery-card gallery-card--feature"
-                        type="button"
-                        data-title="Historical Sources"
-                    >
-                        <span class="gallery-media">
-                            <span class="gallery-placeholder gallery-placeholder--light">
-                                Image 01
-                            </span>
-                        </span>
-
-                        <span class="gallery-card-title">
-                            Historical Sources
-                        </span>
-                    </button>
-
-                    <button
-                        class="gallery-card gallery-card--stack-top"
-                        type="button"
-                        data-title="Comparative Research"
-                    >
-                        <span class="gallery-media">
-                            <span class="gallery-placeholder">
-                                Image 02
-                            </span>
-                        </span>
-
-                        <span class="gallery-card-title">
-                            Comparative Research
-                        </span>
-                    </button>
-
-                    <button
-                        class="gallery-card gallery-card--stack-bottom"
-                        type="button"
-                        data-title="Hydraulic Records"
-                    >
-                        <span class="gallery-media">
-                            <span class="gallery-placeholder">
-                                Image 03
-                            </span>
-                        </span>
-
-                        <span class="gallery-card-title">
-                            Hydraulic Records
-                        </span>
-                    </button>
-
-                </div>
-            </section>
-
-            <section
-                class="gallery-phase"
-                id="gallery-phase-02"
-                aria-labelledby="gallery-phase-02-title"
-            >
-                <header class="gallery-phase-header">
-
-                    <div>
-
-                        <a
-                            class="gallery-phase-direct-link"
-                            href="#gallery-phase-02"
-                        >
-                            Phase 02
-                            <span aria-hidden="true">↗</span>
-                        </a>
-
-                        <h2
-                            class="gallery-phase-title"
-                            id="gallery-phase-02-title"
-                        >
-                            Digital Reconstruction
-                        </h2>
-
-                    </div>
-
-                    <span
-                        class="gallery-phase-line"
-                        aria-hidden="true"
-                    ></span>
-
-                </header>
-
-                <div class="gallery-phase-grid gallery-phase-grid--feature-right">
-
-                    <button
-                        class="gallery-card gallery-card--feature"
-                        type="button"
-                        data-title="Architectural Model"
-                    >
-                        <span class="gallery-media">
-                            <span class="gallery-placeholder gallery-placeholder--light">
-                                Image 04
-                            </span>
-                        </span>
-
-                        <span class="gallery-card-title">
-                            Architectural Model
-                        </span>
-                    </button>
-
-                    <button
-                        class="gallery-card gallery-card--stack-top"
-                        type="button"
-                        data-title="Landscape Reconstruction"
-                    >
-                        <span class="gallery-media">
-                            <span class="gallery-placeholder">
-                                Image 05
-                            </span>
-                        </span>
-
-                        <span class="gallery-card-title">
-                            Landscape Reconstruction
-                        </span>
-                    </button>
-
-                    <button
-                        class="gallery-card gallery-card--stack-bottom"
-                        type="button"
-                        data-title="Hydraulic System"
-                    >
-                        <span class="gallery-media">
-                            <span class="gallery-placeholder">
-                                Image 06
-                            </span>
-                        </span>
-
-                        <span class="gallery-card-title">
-                            Hydraulic System
-                        </span>
-                    </button>
-
-                </div>
-            </section>
-
-            <section
-                class="gallery-phase"
-                id="gallery-phase-03"
-                aria-labelledby="gallery-phase-03-title"
-            >
-                <header class="gallery-phase-header">
-
-                    <div>
-
-                        <a
-                            class="gallery-phase-direct-link"
-                            href="#gallery-phase-03"
-                        >
-                            Phase 03
-                            <span aria-hidden="true">↗</span>
-                        </a>
-
-                        <h2
-                            class="gallery-phase-title"
-                            id="gallery-phase-03-title"
-                        >
-                            Interactive Experience
-                        </h2>
-
-                    </div>
-
-                    <span
-                        class="gallery-phase-line"
-                        aria-hidden="true"
-                    ></span>
-
-                </header>
-
-                <div class="gallery-phase-grid gallery-phase-grid--feature-left">
-
-                    <button
-                        class="gallery-card gallery-card--feature"
-                        type="button"
-                        data-title="Final Experience"
-                    >
-                        <span class="gallery-media">
-                            <span class="gallery-placeholder gallery-placeholder--light">
-                                Image 07
-                            </span>
-                        </span>
-
-                        <span class="gallery-card-title">
-                            Final Experience
-                        </span>
-                    </button>
-
-                    <button
-                        class="gallery-card gallery-card--stack-top"
-                        type="button"
-                        data-title="Atmosphere Study"
-                    >
-                        <span class="gallery-media">
-                            <span class="gallery-placeholder">
-                                Image 08
-                            </span>
-                        </span>
-
-                        <span class="gallery-card-title">
-                            Atmosphere Study
-                        </span>
-                    </button>
-
-                    <button
-                        class="gallery-card gallery-card--stack-bottom"
-                        type="button"
-                        data-title="Interactive Archive"
-                    >
-                        <span class="gallery-media">
-                            <span class="gallery-placeholder">
-                                Image 09
-                            </span>
-                        </span>
-
-                        <span class="gallery-card-title">
-                            Interactive Archive
-                        </span>
-                    </button>
-
-                </div>
-            </section>
-
-        </section>
-
-    </main>
-
-    <footer class="site-footer">
-        <div class="content-width footer-content">
-
-            <span>
-                Hidden Waters
-            </span>
-
-            <div class="footer-institution">
-
-                <span>
-                    Thesis companion website · 2026
-                </span>
-
-                <img
-                    class="footer-ist-logo"
-                    src="assets/images/ist-logo-white.png"
-                    alt="Instituto Superior Técnico"
-                >
-
-            </div>
-
-        </div>
-    </footer>
-
-    <div
-        class="lightbox"
-        role="dialog"
-        aria-modal="true"
-        aria-hidden="true"
-        aria-label="Expanded gallery image"
-    >
-        <div class="lightbox-dialog">
-
-            <button
-                class="lightbox-close"
-                type="button"
-                aria-label="Close image"
-            >
+<header class="site-header">
+<div class="content-width header-content">
+<nav aria-label="Main navigation" class="main-nav">
+<a aria-current="page" href="gallery.html"><span data-en="Gallery" data-pt="Galeria">Gallery</span></a>
+<a aria-label="Return to the Hidden Waters homepage" class="header-logo-link" href="index.html">
+<img alt="" class="header-logo-image" src="assets/images/hidden-waters-logo-white.png"/>
+</a>
+<a href="process.html"><span data-en="Process" data-pt="Processo">Process</span></a>
+</nav>
+<div aria-label="Language" class="language-switch" role="group">
+<button aria-pressed="false" class="language-button" data-language="pt" type="button">PT</button>
+<button aria-pressed="true" class="language-button is-active" data-language="en" type="button">EN</button>
+</div></div>
+</header>
+<main>
+<section class="gallery-hero">
+<div class="content-width">
+<h1 class="gallery-title" data-en="Gallery" data-pt="Galeria">Gallery</h1>
+<p class="gallery-introduction" data-en="A visual record of the development of the interactive experience, organised according to the same structure used in the written dissertation." data-pt="Um registo visual do desenvolvimento da experiência interativa, organizado segundo a mesma estrutura utilizada na dissertação escrita.">A visual record of the development of the interactive experience, organised according to the same structure used in the written dissertation.</p>
+</div>
+</section>
+<section aria-label="Hidden Waters visual gallery" class="content-width gallery-phases"><section class="gallery-phase" id="virtual-environment"><header class="gallery-phase-header"><div><a class="gallery-phase-number gallery-phase-direct-link" href="#virtual-environment"><span data-en="Virtual Environment Construction" data-pt="Construção do ambiente virtual">Virtual Environment Construction</span><span aria-hidden="true">↗</span></a></div><span aria-hidden="true" class="gallery-phase-line"></span></header><div class="gallery-phase-grid gallery-phase-grid--feature-left"><button class="gallery-card gallery-card--feature" data-title-en="Virtual Environment Construction — Image 1" data-title-pt="Construção do ambiente virtual — Imagem 1" type="button"><span class="gallery-media"><span class="gallery-placeholder gallery-placeholder--light"><span data-en="Image 01" data-pt="Imagem 01">Image 01</span></span></span><span class="gallery-card-title" data-en="Virtual Environment Construction — Image 1" data-pt="Construção do ambiente virtual — Imagem 1">Virtual Environment Construction — Image 1</span></button><button class="gallery-card gallery-card--stack-top" data-title-en="Virtual Environment Construction — Image 2" data-title-pt="Construção do ambiente virtual — Imagem 2" type="button"><span class="gallery-media"><span class="gallery-placeholder"><span data-en="Image 02" data-pt="Imagem 02">Image 02</span></span></span><span class="gallery-card-title" data-en="Virtual Environment Construction — Image 2" data-pt="Construção do ambiente virtual — Imagem 2">Virtual Environment Construction — Image 2</span></button><button class="gallery-card gallery-card--stack-bottom" data-title-en="Virtual Environment Construction — Image 3" data-title-pt="Construção do ambiente virtual — Imagem 3" type="button"><span class="gallery-media"><span class="gallery-placeholder"><span data-en="Image 03" data-pt="Imagem 03">Image 03</span></span></span><span class="gallery-card-title" data-en="Virtual Environment Construction — Image 3" data-pt="Construção do ambiente virtual — Imagem 3">Virtual Environment Construction — Image 3</span></button></div></section><section class="gallery-phase" id="characters-exploration"><header class="gallery-phase-header"><div><a class="gallery-phase-number gallery-phase-direct-link" href="#characters-exploration"><span data-en="Characters and Exploration Framework" data-pt="Personagens e base para exploração">Characters and Exploration Framework</span><span aria-hidden="true">↗</span></a></div><span aria-hidden="true" class="gallery-phase-line"></span></header><div class="gallery-phase-grid gallery-phase-grid--feature-right"><button class="gallery-card gallery-card--feature" data-title-en="Characters and Exploration Framework — Image 1" data-title-pt="Personagens e base para exploração — Imagem 1" type="button"><span class="gallery-media"><span class="gallery-placeholder gallery-placeholder--light"><span data-en="Image 04" data-pt="Imagem 04">Image 04</span></span></span><span class="gallery-card-title" data-en="Characters and Exploration Framework — Image 1" data-pt="Personagens e base para exploração — Imagem 1">Characters and Exploration Framework — Image 1</span></button><button class="gallery-card gallery-card--stack-top" data-title-en="Characters and Exploration Framework — Image 2" data-title-pt="Personagens e base para exploração — Imagem 2" type="button"><span class="gallery-media"><span class="gallery-placeholder"><span data-en="Image 05" data-pt="Imagem 05">Image 05</span></span></span><span class="gallery-card-title" data-en="Characters and Exploration Framework — Image 2" data-pt="Personagens e base para exploração — Imagem 2">Characters and Exploration Framework — Image 2</span></button><button class="gallery-card gallery-card--stack-bottom" data-title-en="Characters and Exploration Framework — Image 3" data-title-pt="Personagens e base para exploração — Imagem 3" type="button"><span class="gallery-media"><span class="gallery-placeholder"><span data-en="Image 06" data-pt="Imagem 06">Image 06</span></span></span><span class="gallery-card-title" data-en="Characters and Exploration Framework — Image 3" data-pt="Personagens e base para exploração — Imagem 3">Characters and Exploration Framework — Image 3</span></button></div></section><section class="gallery-phase" id="menus-interface"><header class="gallery-phase-header"><div><a class="gallery-phase-number gallery-phase-direct-link" href="#menus-interface"><span data-en="Menus and Interface" data-pt="Menus e interface">Menus and Interface</span><span aria-hidden="true">↗</span></a></div><span aria-hidden="true" class="gallery-phase-line"></span></header><div class="gallery-phase-grid gallery-phase-grid--feature-left"><button class="gallery-card gallery-card--feature" data-title-en="Menus and Interface — Image 1" data-title-pt="Menus e interface — Imagem 1" type="button"><span class="gallery-media"><span class="gallery-placeholder gallery-placeholder--light"><span data-en="Image 07" data-pt="Imagem 07">Image 07</span></span></span><span class="gallery-card-title" data-en="Menus and Interface — Image 1" data-pt="Menus e interface — Imagem 1">Menus and Interface — Image 1</span></button><button class="gallery-card gallery-card--stack-top" data-title-en="Menus and Interface — Image 2" data-title-pt="Menus e interface — Imagem 2" type="button"><span class="gallery-media"><span class="gallery-placeholder"><span data-en="Image 08" data-pt="Imagem 08">Image 08</span></span></span><span class="gallery-card-title" data-en="Menus and Interface — Image 2" data-pt="Menus e interface — Imagem 2">Menus and Interface — Image 2</span></button><button class="gallery-card gallery-card--stack-bottom" data-title-en="Menus and Interface — Image 3" data-title-pt="Menus e interface — Imagem 3" type="button"><span class="gallery-media"><span class="gallery-placeholder"><span data-en="Image 09" data-pt="Imagem 09">Image 09</span></span></span><span class="gallery-card-title" data-en="Menus and Interface — Image 3" data-pt="Menus e interface — Imagem 3">Menus and Interface — Image 3</span></button></div></section><section class="gallery-phase" id="interaction-systems"><header class="gallery-phase-header"><div><a class="gallery-phase-number gallery-phase-direct-link" href="#interaction-systems"><span data-en="Interaction Systems" data-pt="Sistemas de interação">Interaction Systems</span><span aria-hidden="true">↗</span></a></div><span aria-hidden="true" class="gallery-phase-line"></span></header><div class="gallery-phase-grid gallery-phase-grid--feature-right"><button class="gallery-card gallery-card--feature" data-title-en="Interaction Systems — Image 1" data-title-pt="Sistemas de interação — Imagem 1" type="button"><span class="gallery-media"><span class="gallery-placeholder gallery-placeholder--light"><span data-en="Image 10" data-pt="Imagem 10">Image 10</span></span></span><span class="gallery-card-title" data-en="Interaction Systems — Image 1" data-pt="Sistemas de interação — Imagem 1">Interaction Systems — Image 1</span></button><button class="gallery-card gallery-card--stack-top" data-title-en="Interaction Systems — Image 2" data-title-pt="Sistemas de interação — Imagem 2" type="button"><span class="gallery-media"><span class="gallery-placeholder"><span data-en="Image 11" data-pt="Imagem 11">Image 11</span></span></span><span class="gallery-card-title" data-en="Interaction Systems — Image 2" data-pt="Sistemas de interação — Imagem 2">Interaction Systems — Image 2</span></button><button class="gallery-card gallery-card--stack-bottom" data-title-en="Interaction Systems — Image 3" data-title-pt="Sistemas de interação — Imagem 3" type="button"><span class="gallery-media"><span class="gallery-placeholder"><span data-en="Image 12" data-pt="Imagem 12">Image 12</span></span></span><span class="gallery-card-title" data-en="Interaction Systems — Image 3" data-pt="Sistemas de interação — Imagem 3">Interaction Systems — Image 3</span></button></div></section><section class="gallery-phase" id="xray-system"><header class="gallery-phase-header"><div><a class="gallery-phase-number gallery-phase-direct-link" href="#xray-system"><span data-en="X-Ray System" data-pt="Sistema X-Ray">X-Ray System</span><span aria-hidden="true">↗</span></a></div><span aria-hidden="true" class="gallery-phase-line"></span></header><div class="gallery-phase-grid gallery-phase-grid--feature-left"><button class="gallery-card gallery-card--feature" data-title-en="X-Ray System — Image 1" data-title-pt="Sistema X-Ray — Imagem 1" type="button"><span class="gallery-media"><span class="gallery-placeholder gallery-placeholder--light"><span data-en="Image 13" data-pt="Imagem 13">Image 13</span></span></span><span class="gallery-card-title" data-en="X-Ray System — Image 1" data-pt="Sistema X-Ray — Imagem 1">X-Ray System — Image 1</span></button><button class="gallery-card gallery-card--stack-top" data-title-en="X-Ray System — Image 2" data-title-pt="Sistema X-Ray — Imagem 2" type="button"><span class="gallery-media"><span class="gallery-placeholder"><span data-en="Image 14" data-pt="Imagem 14">Image 14</span></span></span><span class="gallery-card-title" data-en="X-Ray System — Image 2" data-pt="Sistema X-Ray — Imagem 2">X-Ray System — Image 2</span></button><button class="gallery-card gallery-card--stack-bottom" data-title-en="X-Ray System — Image 3" data-title-pt="Sistema X-Ray — Imagem 3" type="button"><span class="gallery-media"><span class="gallery-placeholder"><span data-en="Image 15" data-pt="Imagem 15">Image 15</span></span></span><span class="gallery-card-title" data-en="X-Ray System — Image 3" data-pt="Sistema X-Ray — Imagem 3">X-Ray System — Image 3</span></button></div></section><section class="gallery-phase" id="maps-archive"><header class="gallery-phase-header"><div><a class="gallery-phase-number gallery-phase-direct-link" href="#maps-archive"><span data-en="Maps and Archive" data-pt="Mapas e arquivo">Maps and Archive</span><span aria-hidden="true">↗</span></a></div><span aria-hidden="true" class="gallery-phase-line"></span></header><div class="gallery-phase-grid gallery-phase-grid--feature-right"><button class="gallery-card gallery-card--feature" data-title-en="Maps and Archive — Image 1" data-title-pt="Mapas e arquivo — Imagem 1" type="button"><span class="gallery-media"><span class="gallery-placeholder gallery-placeholder--light"><span data-en="Image 16" data-pt="Imagem 16">Image 16</span></span></span><span class="gallery-card-title" data-en="Maps and Archive — Image 1" data-pt="Mapas e arquivo — Imagem 1">Maps and Archive — Image 1</span></button><button class="gallery-card gallery-card--stack-top" data-title-en="Maps and Archive — Image 2" data-title-pt="Mapas e arquivo — Imagem 2" type="button"><span class="gallery-media"><span class="gallery-placeholder"><span data-en="Image 17" data-pt="Imagem 17">Image 17</span></span></span><span class="gallery-card-title" data-en="Maps and Archive — Image 2" data-pt="Mapas e arquivo — Imagem 2">Maps and Archive — Image 2</span></button><button class="gallery-card gallery-card--stack-bottom" data-title-en="Maps and Archive — Image 3" data-title-pt="Mapas e arquivo — Imagem 3" type="button"><span class="gallery-media"><span class="gallery-placeholder"><span data-en="Image 18" data-pt="Imagem 18">Image 18</span></span></span><span class="gallery-card-title" data-en="Maps and Archive — Image 3" data-pt="Mapas e arquivo — Imagem 3">Maps and Archive — Image 3</span></button></div></section><section class="gallery-phase" id="clock-temporal-system"><header class="gallery-phase-header"><div><a class="gallery-phase-number gallery-phase-direct-link" href="#clock-temporal-system"><span data-en="Clock and Temporal System" data-pt="Relógio e sistema temporal">Clock and Temporal System</span><span aria-hidden="true">↗</span></a></div><span aria-hidden="true" class="gallery-phase-line"></span></header><div class="gallery-phase-grid gallery-phase-grid--feature-left"><button class="gallery-card gallery-card--feature" data-title-en="Clock and Temporal System — Image 1" data-title-pt="Relógio e sistema temporal — Imagem 1" type="button"><span class="gallery-media"><span class="gallery-placeholder gallery-placeholder--light"><span data-en="Image 19" data-pt="Imagem 19">Image 19</span></span></span><span class="gallery-card-title" data-en="Clock and Temporal System — Image 1" data-pt="Relógio e sistema temporal — Imagem 1">Clock and Temporal System — Image 1</span></button><button class="gallery-card gallery-card--stack-top" data-title-en="Clock and Temporal System — Image 2" data-title-pt="Relógio e sistema temporal — Imagem 2" type="button"><span class="gallery-media"><span class="gallery-placeholder"><span data-en="Image 20" data-pt="Imagem 20">Image 20</span></span></span><span class="gallery-card-title" data-en="Clock and Temporal System — Image 2" data-pt="Relógio e sistema temporal — Imagem 2">Clock and Temporal System — Image 2</span></button><button class="gallery-card gallery-card--stack-bottom" data-title-en="Clock and Temporal System — Image 3" data-title-pt="Relógio e sistema temporal — Imagem 3" type="button"><span class="gallery-media"><span class="gallery-placeholder"><span data-en="Image 21" data-pt="Imagem 21">Image 21</span></span></span><span class="gallery-card-title" data-en="Clock and Temporal System — Image 3" data-pt="Relógio e sistema temporal — Imagem 3">Clock and Temporal System — Image 3</span></button></div></section><section class="gallery-phase" id="atmosphere-weather"><header class="gallery-phase-header"><div><a class="gallery-phase-number gallery-phase-direct-link" href="#atmosphere-weather"><span data-en="Atmosphere and Weather System" data-pt="Atmosfera e sistema climático">Atmosphere and Weather System</span><span aria-hidden="true">↗</span></a></div><span aria-hidden="true" class="gallery-phase-line"></span></header><div class="gallery-phase-grid gallery-phase-grid--feature-right"><button class="gallery-card gallery-card--feature" data-title-en="Atmosphere and Weather System — Image 1" data-title-pt="Atmosfera e sistema climático — Imagem 1" type="button"><span class="gallery-media"><span class="gallery-placeholder gallery-placeholder--light"><span data-en="Image 22" data-pt="Imagem 22">Image 22</span></span></span><span class="gallery-card-title" data-en="Atmosphere and Weather System — Image 1" data-pt="Atmosfera e sistema climático — Imagem 1">Atmosphere and Weather System — Image 1</span></button><button class="gallery-card gallery-card--stack-top" data-title-en="Atmosphere and Weather System — Image 2" data-title-pt="Atmosfera e sistema climático — Imagem 2" type="button"><span class="gallery-media"><span class="gallery-placeholder"><span data-en="Image 23" data-pt="Imagem 23">Image 23</span></span></span><span class="gallery-card-title" data-en="Atmosphere and Weather System — Image 2" data-pt="Atmosfera e sistema climático — Imagem 2">Atmosphere and Weather System — Image 2</span></button><button class="gallery-card gallery-card--stack-bottom" data-title-en="Atmosphere and Weather System — Image 3" data-title-pt="Atmosfera e sistema climático — Imagem 3" type="button"><span class="gallery-media"><span class="gallery-placeholder"><span data-en="Image 24" data-pt="Imagem 24">Image 24</span></span></span><span class="gallery-card-title" data-en="Atmosphere and Weather System — Image 3" data-pt="Atmosfera e sistema climático — Imagem 3">Atmosphere and Weather System — Image 3</span></button></div></section><section class="gallery-phase" id="historical-system"><header class="gallery-phase-header"><div><a class="gallery-phase-number gallery-phase-direct-link" href="#historical-system"><span data-en="Historical System" data-pt="Sistema Histórico">Historical System</span><span aria-hidden="true">↗</span></a></div><span aria-hidden="true" class="gallery-phase-line"></span></header><div class="gallery-phase-grid gallery-phase-grid--feature-left"><button class="gallery-card gallery-card--feature" data-title-en="Historical System — Image 1" data-title-pt="Sistema Histórico — Imagem 1" type="button"><span class="gallery-media"><span class="gallery-placeholder gallery-placeholder--light"><span data-en="Image 25" data-pt="Imagem 25">Image 25</span></span></span><span class="gallery-card-title" data-en="Historical System — Image 1" data-pt="Sistema Histórico — Imagem 1">Historical System — Image 1</span></button><button class="gallery-card gallery-card--stack-top" data-title-en="Historical System — Image 2" data-title-pt="Sistema Histórico — Imagem 2" type="button"><span class="gallery-media"><span class="gallery-placeholder"><span data-en="Image 26" data-pt="Imagem 26">Image 26</span></span></span><span class="gallery-card-title" data-en="Historical System — Image 2" data-pt="Sistema Histórico — Imagem 2">Historical System — Image 2</span></button><button class="gallery-card gallery-card--stack-bottom" data-title-en="Historical System — Image 3" data-title-pt="Sistema Histórico — Imagem 3" type="button"><span class="gallery-media"><span class="gallery-placeholder"><span data-en="Image 27" data-pt="Imagem 27">Image 27</span></span></span><span class="gallery-card-title" data-en="Historical System — Image 3" data-pt="Sistema Histórico — Imagem 3">Historical System — Image 3</span></button></div></section><section class="gallery-phase" id="sound-immersion"><header class="gallery-phase-header"><div><a class="gallery-phase-number gallery-phase-direct-link" href="#sound-immersion"><span data-en="Sound and Immersion" data-pt="Som e imersão">Sound and Immersion</span><span aria-hidden="true">↗</span></a></div><span aria-hidden="true" class="gallery-phase-line"></span></header><div class="gallery-phase-grid gallery-phase-grid--feature-right"><button class="gallery-card gallery-card--feature" data-title-en="Sound and Immersion — Image 1" data-title-pt="Som e imersão — Imagem 1" type="button"><span class="gallery-media"><span class="gallery-placeholder gallery-placeholder--light"><span data-en="Image 28" data-pt="Imagem 28">Image 28</span></span></span><span class="gallery-card-title" data-en="Sound and Immersion — Image 1" data-pt="Som e imersão — Imagem 1">Sound and Immersion — Image 1</span></button><button class="gallery-card gallery-card--stack-top" data-title-en="Sound and Immersion — Image 2" data-title-pt="Som e imersão — Imagem 2" type="button"><span class="gallery-media"><span class="gallery-placeholder"><span data-en="Image 29" data-pt="Imagem 29">Image 29</span></span></span><span class="gallery-card-title" data-en="Sound and Immersion — Image 2" data-pt="Som e imersão — Imagem 2">Sound and Immersion — Image 2</span></button><button class="gallery-card gallery-card--stack-bottom" data-title-en="Sound and Immersion — Image 3" data-title-pt="Som e imersão — Imagem 3" type="button"><span class="gallery-media"><span class="gallery-placeholder"><span data-en="Image 30" data-pt="Imagem 30">Image 30</span></span></span><span class="gallery-card-title" data-en="Sound and Immersion — Image 3" data-pt="Som e imersão — Imagem 3">Sound and Immersion — Image 3</span></button></div></section><section class="gallery-phase" id="narrative-cutscene"><header class="gallery-phase-header"><div><a class="gallery-phase-number gallery-phase-direct-link" href="#narrative-cutscene"><span data-en="Narrative and Cutscene" data-pt="Narrativa e Cutscene">Narrative and Cutscene</span><span aria-hidden="true">↗</span></a></div><span aria-hidden="true" class="gallery-phase-line"></span></header><div class="gallery-phase-grid gallery-phase-grid--feature-left"><button class="gallery-card gallery-card--feature" data-title-en="Narrative and Cutscene — Image 1" data-title-pt="Narrativa e Cutscene — Imagem 1" type="button"><span class="gallery-media"><span class="gallery-placeholder gallery-placeholder--light"><span data-en="Image 31" data-pt="Imagem 31">Image 31</span></span></span><span class="gallery-card-title" data-en="Narrative and Cutscene — Image 1" data-pt="Narrativa e Cutscene — Imagem 1">Narrative and Cutscene — Image 1</span></button><button class="gallery-card gallery-card--stack-top" data-title-en="Narrative and Cutscene — Image 2" data-title-pt="Narrativa e Cutscene — Imagem 2" type="button"><span class="gallery-media"><span class="gallery-placeholder"><span data-en="Image 32" data-pt="Imagem 32">Image 32</span></span></span><span class="gallery-card-title" data-en="Narrative and Cutscene — Image 2" data-pt="Narrativa e Cutscene — Imagem 2">Narrative and Cutscene — Image 2</span></button><button class="gallery-card gallery-card--stack-bottom" data-title-en="Narrative and Cutscene — Image 3" data-title-pt="Narrativa e Cutscene — Imagem 3" type="button"><span class="gallery-media"><span class="gallery-placeholder"><span data-en="Image 33" data-pt="Imagem 33">Image 33</span></span></span><span class="gallery-card-title" data-en="Narrative and Cutscene — Image 3" data-pt="Narrativa e Cutscene — Imagem 3">Narrative and Cutscene — Image 3</span></button></div></section><section class="gallery-phase" id="experience-modes"><header class="gallery-phase-header"><div><a class="gallery-phase-number gallery-phase-direct-link" href="#experience-modes"><span data-en="Experience Modes" data-pt="Modos da experiência">Experience Modes</span><span aria-hidden="true">↗</span></a></div><span aria-hidden="true" class="gallery-phase-line"></span></header><div class="gallery-phase-grid gallery-phase-grid--feature-right"><button class="gallery-card gallery-card--feature" data-title-en="Experience Modes — Image 1" data-title-pt="Modos da experiência — Imagem 1" type="button"><span class="gallery-media"><span class="gallery-placeholder gallery-placeholder--light"><span data-en="Image 34" data-pt="Imagem 34">Image 34</span></span></span><span class="gallery-card-title" data-en="Experience Modes — Image 1" data-pt="Modos da experiência — Imagem 1">Experience Modes — Image 1</span></button><button class="gallery-card gallery-card--stack-top" data-title-en="Experience Modes — Image 2" data-title-pt="Modos da experiência — Imagem 2" type="button"><span class="gallery-media"><span class="gallery-placeholder"><span data-en="Image 35" data-pt="Imagem 35">Image 35</span></span></span><span class="gallery-card-title" data-en="Experience Modes — Image 2" data-pt="Modos da experiência — Imagem 2">Experience Modes — Image 2</span></button><button class="gallery-card gallery-card--stack-bottom" data-title-en="Experience Modes — Image 3" data-title-pt="Modos da experiência — Imagem 3" type="button"><span class="gallery-media"><span class="gallery-placeholder"><span data-en="Image 36" data-pt="Imagem 36">Image 36</span></span></span><span class="gallery-card-title" data-en="Experience Modes — Image 3" data-pt="Modos da experiência — Imagem 3">Experience Modes — Image 3</span></button></div></section><section class="gallery-phase" id="optimization-preparation"><header class="gallery-phase-header"><div><a class="gallery-phase-number gallery-phase-direct-link" href="#optimization-preparation"><span data-en="Optimization and Preparation for Use" data-pt="Otimização e preparação para utilização">Optimization and Preparation for Use</span><span aria-hidden="true">↗</span></a></div><span aria-hidden="true" class="gallery-phase-line"></span></header><div class="gallery-phase-grid gallery-phase-grid--feature-left"><button class="gallery-card gallery-card--feature" data-title-en="Optimization and Preparation for Use — Image 1" data-title-pt="Otimização e preparação para utilização — Imagem 1" type="button"><span class="gallery-media"><span class="gallery-placeholder gallery-placeholder--light"><span data-en="Image 37" data-pt="Imagem 37">Image 37</span></span></span><span class="gallery-card-title" data-en="Optimization and Preparation for Use — Image 1" data-pt="Otimização e preparação para utilização — Imagem 1">Optimization and Preparation for Use — Image 1</span></button><button class="gallery-card gallery-card--stack-top" data-title-en="Optimization and Preparation for Use — Image 2" data-title-pt="Otimização e preparação para utilização — Imagem 2" type="button"><span class="gallery-media"><span class="gallery-placeholder"><span data-en="Image 38" data-pt="Imagem 38">Image 38</span></span></span><span class="gallery-card-title" data-en="Optimization and Preparation for Use — Image 2" data-pt="Otimização e preparação para utilização — Imagem 2">Optimization and Preparation for Use — Image 2</span></button><button class="gallery-card gallery-card--stack-bottom" data-title-en="Optimization and Preparation for Use — Image 3" data-title-pt="Otimização e preparação para utilização — Imagem 3" type="button"><span class="gallery-media"><span class="gallery-placeholder"><span data-en="Image 39" data-pt="Imagem 39">Image 39</span></span></span><span class="gallery-card-title" data-en="Optimization and Preparation for Use — Image 3" data-pt="Otimização e preparação para utilização — Imagem 3">Optimization and Preparation for Use — Image 3</span></button></div></section></section>
+</main>
+<footer class="site-footer">
+<div class="content-width footer-content">
+<span>Hidden Waters</span>
+<span>Thesis companion website · 2026</span>
+</div>
+</footer>
+<div aria-hidden="true" aria-label="Expanded gallery image" aria-modal="true" class="lightbox" role="dialog">
+<div class="lightbox-dialog">
+<button aria-label="Close image" class="lightbox-close" type="button">
                 ×
             </button>
-
-            <div class="lightbox-media">
-                <div class="lightbox-placeholder"></div>
-            </div>
-
-            <div class="lightbox-caption"></div>
-
-        </div>
-    </div>
-
-    <script>
+<div class="lightbox-media">
+<div class="lightbox-placeholder"></div>
+</div>
+<div class="lightbox-caption"></div>
+</div>
+</div>
+<script>
         (() => {
             const cards = [
-                ...document.querySelectorAll(
-                    ".gallery-card"
-                )
+                ...document.querySelectorAll(".gallery-card")
             ];
 
             const lightbox =
@@ -1273,92 +1132,61 @@
                 document.querySelector(".lightbox-media");
 
             const lightboxPlaceholder =
-                document.querySelector(
-                    ".lightbox-placeholder"
-                );
+                document.querySelector(".lightbox-placeholder");
 
             const lightboxCaption =
-                document.querySelector(
-                    ".lightbox-caption"
-                );
+                document.querySelector(".lightbox-caption");
 
             const closeButton =
-                document.querySelector(
-                    ".lightbox-close"
-                );
+                document.querySelector(".lightbox-close");
 
             let lastFocusedCard = null;
 
             function openLightbox(card) {
                 lastFocusedCard = card;
 
+                const lang = document.documentElement.lang || "en";
                 const title =
-                    card.dataset.title ||
-                    "Gallery image";
+                    lang === "pt"
+                    ? card.dataset.titlePt
+                    : card.dataset.titleEn;
 
                 const image =
                     card.querySelector("img");
 
                 lightboxMedia
                     .querySelectorAll("img")
-                    .forEach((element) => {
-                        element.remove();
-                    });
+                    .forEach((element) => element.remove());
 
                 if (image) {
                     const expandedImage =
                         document.createElement("img");
 
-                    expandedImage.src =
-                        image.src;
+                    expandedImage.src = image.src;
+                    expandedImage.alt = image.alt;
 
-                    expandedImage.alt =
-                        image.alt;
-
-                    lightboxMedia.prepend(
-                        expandedImage
-                    );
-
-                    lightboxPlaceholder.hidden =
-                        true;
+                    lightboxMedia.prepend(expandedImage);
+                    lightboxPlaceholder.hidden = true;
                 } else {
-                    lightboxPlaceholder.hidden =
-                        false;
-
-                    lightboxPlaceholder.textContent =
-                        title;
+                    lightboxPlaceholder.hidden = false;
+                    lightboxPlaceholder.textContent = title;
                 }
 
-                lightboxCaption.textContent =
-                    title;
+                lightboxCaption.textContent = title;
 
-                lightbox.classList.add(
-                    "is-open"
-                );
+                lightbox.classList.add("is-open");
+                lightbox.setAttribute("aria-hidden", "false");
 
-                lightbox.setAttribute(
-                    "aria-hidden",
-                    "false"
-                );
-
-                document.body.style.overflow =
-                    "hidden";
+                document.body.style.overflow = "hidden";
 
                 closeButton.focus();
             }
 
             function closeLightbox() {
-                lightbox.classList.remove(
-                    "is-open"
-                );
+                lightbox.classList.remove("is-open");
+                lightbox.setAttribute("aria-hidden", "true");
 
-                lightbox.setAttribute(
-                    "aria-hidden",
-                    "true"
-                );
-
-                document.body.style.overflow =
-                    "";
+                document.body.style.overflow = "";
 
                 if (lastFocusedCard) {
                     lastFocusedCard.focus();
@@ -1380,9 +1208,7 @@
             lightbox.addEventListener(
                 "click",
                 (event) => {
-                    if (
-                        event.target === lightbox
-                    ) {
+                    if (event.target === lightbox) {
                         closeLightbox();
                     }
                 }
@@ -1393,74 +1219,56 @@
                 (event) => {
                     if (
                         event.key === "Escape" &&
-                        lightbox.classList.contains(
-                            "is-open"
-                        )
+                        lightbox.classList.contains("is-open")
                     ) {
                         closeLightbox();
                     }
                 }
             );
         })();
-
+    </script>
+<script>
         (() => {
             const cards = [
-                ...document.querySelectorAll(
-                    ".gallery-card"
-                )
+                ...document.querySelectorAll(".gallery-card")
             ];
 
             if (!cards.length) {
                 return;
             }
 
-            const waterVideo =
-                document.createElement("video");
+            const waterVideo = document.createElement("video");
 
-            waterVideo.className =
-                "water-ripple-video";
-
-            waterVideo.src =
-                "assets/media/water-ripple-overlay.mp4";
-
+            waterVideo.className = "water-ripple-video";
+            waterVideo.src = "assets/media/water-ripple-overlay.mp4";
             waterVideo.muted = true;
             waterVideo.loop = true;
             waterVideo.autoplay = true;
             waterVideo.playsInline = true;
             waterVideo.preload = "auto";
-
-            waterVideo.setAttribute(
-                "aria-hidden",
-                "true"
-            );
+            waterVideo.setAttribute("aria-hidden", "true");
+            waterVideo.setAttribute("tabindex", "-1");
 
             let activeCard = null;
             let hideTimer = null;
 
             function activate(card) {
-                clearTimeout(hideTimer);
+                window.clearTimeout(hideTimer);
 
-                if (
-                    activeCard &&
-                    activeCard !== card
-                ) {
-                    activeCard.classList.remove(
-                        "is-water-ripple"
-                    );
+                if (activeCard && activeCard !== card) {
+                    activeCard.classList.remove("is-water-ripple");
                 }
 
                 activeCard = card;
+                activeCard.appendChild(waterVideo);
+                activeCard.classList.add("is-water-ripple");
 
-                card.appendChild(waterVideo);
+                const playAttempt = waterVideo.play();
 
-                card.classList.add(
-                    "is-water-ripple"
-                );
-
-                const playAttempt =
-                    waterVideo.play();
-
-                if (playAttempt?.catch) {
+                if (
+                    playAttempt &&
+                    typeof playAttempt.catch === "function"
+                ) {
                     playAttempt.catch(() => {});
                 }
             }
@@ -1470,20 +1278,17 @@
                     return;
                 }
 
-                card.classList.remove(
-                    "is-water-ripple"
-                );
+                card.classList.remove("is-water-ripple");
 
-                hideTimer =
-                    setTimeout(() => {
-                        if (
-                            activeCard === card &&
-                            waterVideo.parentElement === card
-                        ) {
-                            waterVideo.remove();
-                            activeCard = null;
-                        }
-                    }, 480);
+                hideTimer = window.setTimeout(() => {
+                    if (
+                        activeCard === card &&
+                        waterVideo.parentElement === card
+                    ) {
+                        waterVideo.remove();
+                        activeCard = null;
+                    }
+                }, 480);
             }
 
             cards.forEach((card) => {
@@ -1509,6 +1314,32 @@
             });
         })();
     </script>
+<script>
+(() => {
+    const buttons = [...document.querySelectorAll(".language-button")];
+    const translated = [...document.querySelectorAll("[data-en][data-pt]")];
 
-</body>
+    function setLanguage(lang) {
+        document.documentElement.lang = lang;
+
+        translated.forEach((el) => {
+            el.textContent = el.dataset[lang];
+        });
+
+        buttons.forEach((button) => {
+            const active = button.dataset.language === lang;
+            button.classList.toggle("is-active", active);
+            button.setAttribute("aria-pressed", active ? "true" : "false");
+        });
+    }
+
+    buttons.forEach((button) => {
+        button.addEventListener("click", () => {
+            setLanguage(button.dataset.language);
+        });
+    });
+
+    setLanguage("en");
+})();
+</script></body>
 </html>
