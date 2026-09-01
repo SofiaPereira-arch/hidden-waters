@@ -843,83 +843,89 @@
             }
         }
 
+
+/* LANGUAGE SWITCH */
+.header-content { position: relative; }
+
+.language-switch {
+    position: absolute;
+    right: 0;
+    top: 50%;
+    display: flex;
+    gap: 3px;
+    padding: 4px;
+    transform: translateY(-50%);
+    background: rgba(255,255,255,.045);
+    border: 1px solid rgba(255,255,255,.12);
+    border-radius: 999px;
+}
+
+.language-button {
+    min-width: 36px;
+    padding: 6px 9px;
+    color: #8f8f8f;
+    background: transparent;
+    border: 0;
+    border-radius: 999px;
+    cursor: pointer;
+    font-family: "Bebas Neue", sans-serif;
+    font-size: .9rem;
+    letter-spacing: .08em;
+}
+
+.language-button.is-active {
+    color: #050505;
+    background: var(--blue-light);
+}
+
+.language-button:hover:not(.is-active),
+.language-button:focus-visible:not(.is-active) {
+    color: #fff;
+}
+
+@media (max-width: 650px) {
+    .language-switch {
+        right: 4px;
+        transform: translate(28%, -50%) scale(.88);
+    }
+
+    .language-button {
+        min-width: 31px;
+        padding: 5px 6px;
+        font-size: .8rem;
+    }
+}
+
+.chapter-direct-link {
+    font-size: clamp(1.5rem, 2vw, 1.9rem);
+    letter-spacing: .045em;
+    line-height: 1;
+}
 </style>
 </head>
 <body id="top">
 <header class="site-header">
 <div class="content-width header-content">
 <nav aria-label="Main navigation" class="main-nav">
-<a href="gallery.html">Gallery</a>
+<a href="gallery.html"><span data-en="Gallery" data-pt="Galeria">Gallery</span></a>
 <a aria-label="Return to the Hidden Waters homepage" class="header-logo-link" href="index.html">
 <img alt="" class="header-logo-image" src="assets/images/hidden-waters-logo-white.png"/>
 </a>
-<a aria-current="page" href="process.html">Process</a>
+<a aria-current="page" href="process.html"><span data-en="Process" data-pt="Processo">Process</span></a>
 </nav>
-</div>
+<div aria-label="Language" class="language-switch" role="group">
+<button aria-pressed="false" class="language-button" data-language="pt" type="button">PT</button>
+<button aria-pressed="true" class="language-button is-active" data-language="en" type="button">EN</button>
+</div></div>
 </header>
 <main>
 <section class="process-hero">
 <div class="content-width">
-<h1 class="process-title">Process</h1>
-<p class="process-introduction">
-                    From historical investigation to digital reconstruction and interactive development, the project was structured through three complementary phases.
-                </p>
+<h1 class="process-title" data-en="Process" data-pt="Processo">Process</h1>
+<p class="process-introduction" data-en="The development of the interactive experience follows the same structure used in the written dissertation." data-pt="O desenvolvimento da experiência interativa segue a mesma estrutura utilizada na dissertação escrita.">The development of the interactive experience follows the same structure used in the written dissertation.</p>
 </div>
 </section>
-<section aria-label="Hidden Waters development phases" class="content-width process-timeline">
-<div aria-hidden="true" class="timeline-line"></div>
-<article class="phase phase--right" id="phase-01-research">
-<div class="phase-copy">
-<a class="phase-label" href="#phase-01-research">
-                        Phase 01 <span aria-hidden="true">↗</span>
-</a>
-<h2 class="phase-title">Historical Research</h2>
-<p class="phase-description">
-                        Collection and interpretation of historical sources, architectural records, interviews and comparable hydraulic systems. This phase established the basis for reconstructing elements that are no longer accessible or fully documented.
-                    </p>
-</div>
-<span aria-hidden="true" class="phase-marker"></span>
-<button aria-label="Play the historical research video" class="phase-media" data-title="Historical Research" type="button">
-<div class="phase-media-placeholder">Phase 01 video</div>
-<span aria-hidden="true" class="play-button">▶</span>
-<span class="media-title">Historical Research</span>
-</button>
-</article>
-<article class="phase phase--left" id="phase-02-reconstruction">
-<button aria-label="Play the digital reconstruction video" class="phase-media" data-title="Digital Reconstruction" type="button">
-<div class="phase-media-placeholder">Phase 02 video</div>
-<span aria-hidden="true" class="play-button">▶</span>
-<span class="media-title">Digital Reconstruction</span>
-</button>
-<span aria-hidden="true" class="phase-marker"></span>
-<div class="phase-copy">
-<a class="phase-label" href="#phase-02-reconstruction">
-                        Phase 02 <span aria-hidden="true">↗</span>
-</a>
-<h2 class="phase-title">Digital Reconstruction</h2>
-<p class="phase-description">
-                        Architectural modelling, terrain integration and reconstruction of the hydraulic route using the evidence gathered during the research phase. Revit, image documentation and comparative analysis informed the geometry transferred into Unreal Engine.
-                    </p>
-</div>
-</article>
-<article class="phase phase--right" id="phase-03-interactive-experience">
-<div class="phase-copy">
-<a class="phase-label" href="#phase-03-interactive-experience">
-                        Phase 03 <span aria-hidden="true">↗</span>
-</a>
-<h2 class="phase-title">Interactive Experience</h2>
-<p class="phase-description">
-                        Development of the first-person experience, archive, interaction systems, photography, weather, time, navigation and visual atmosphere. This final phase brought the research and reconstruction together in an explorable environment.
-                    </p>
-</div>
-<span aria-hidden="true" class="phase-marker"></span>
-<button aria-label="Play the interactive experience video" class="phase-media" data-title="Interactive Experience" type="button">
-<div class="phase-media-placeholder">Phase 03 video</div>
-<span aria-hidden="true" class="play-button">▶</span>
-<span class="media-title">Interactive Experience</span>
-</button>
-</article>
-</section>
+<section aria-label="Hidden Waters development phases" class="content-width process-timeline"><div aria-hidden="true" class="timeline-line"></div><article class="phase phase--right" id="virtual-environment"><div class="phase-copy"><a class="phase-label chapter-direct-link" href="#virtual-environment"><span data-en="Virtual Environment Construction" data-pt="Construção do ambiente virtual">Virtual Environment Construction</span><span aria-hidden="true">↗</span></a></div><span aria-hidden="true" class="phase-marker"></span><button class="phase-media" data-title-en="Virtual Environment Construction" data-title-pt="Construção do ambiente virtual" type="button"><div class="phase-media-placeholder"><span data-en="Process video" data-pt="Vídeo do processo">Process video</span></div><span aria-hidden="true" class="play-button">▶</span><span class="media-title" data-en="Virtual Environment Construction" data-pt="Construção do ambiente virtual">Virtual Environment Construction</span></button></article><article class="phase phase--left" id="characters-exploration"><button class="phase-media" data-title-en="Characters and Exploration Framework" data-title-pt="Personagens e base para exploração" type="button"><div class="phase-media-placeholder"><span data-en="Process video" data-pt="Vídeo do processo">Process video</span></div><span aria-hidden="true" class="play-button">▶</span><span class="media-title" data-en="Characters and Exploration Framework" data-pt="Personagens e base para exploração">Characters and Exploration Framework</span></button><span aria-hidden="true" class="phase-marker"></span><div class="phase-copy"><a class="phase-label chapter-direct-link" href="#characters-exploration"><span data-en="Characters and Exploration Framework" data-pt="Personagens e base para exploração">Characters and Exploration Framework</span><span aria-hidden="true">↗</span></a></div></article><article class="phase phase--right" id="menus-interface"><div class="phase-copy"><a class="phase-label chapter-direct-link" href="#menus-interface"><span data-en="Menus and Interface" data-pt="Menus e interface">Menus and Interface</span><span aria-hidden="true">↗</span></a></div><span aria-hidden="true" class="phase-marker"></span><button class="phase-media" data-title-en="Menus and Interface" data-title-pt="Menus e interface" type="button"><div class="phase-media-placeholder"><span data-en="Process video" data-pt="Vídeo do processo">Process video</span></div><span aria-hidden="true" class="play-button">▶</span><span class="media-title" data-en="Menus and Interface" data-pt="Menus e interface">Menus and Interface</span></button></article><article class="phase phase--left" id="interaction-systems"><button class="phase-media" data-title-en="Interaction Systems" data-title-pt="Sistemas de interação" type="button"><div class="phase-media-placeholder"><span data-en="Process video" data-pt="Vídeo do processo">Process video</span></div><span aria-hidden="true" class="play-button">▶</span><span class="media-title" data-en="Interaction Systems" data-pt="Sistemas de interação">Interaction Systems</span></button><span aria-hidden="true" class="phase-marker"></span><div class="phase-copy"><a class="phase-label chapter-direct-link" href="#interaction-systems"><span data-en="Interaction Systems" data-pt="Sistemas de interação">Interaction Systems</span><span aria-hidden="true">↗</span></a></div></article><article class="phase phase--right" id="xray-system"><div class="phase-copy"><a class="phase-label chapter-direct-link" href="#xray-system"><span data-en="X-Ray System" data-pt="Sistema X-Ray">X-Ray System</span><span aria-hidden="true">↗</span></a></div><span aria-hidden="true" class="phase-marker"></span><button class="phase-media" data-title-en="X-Ray System" data-title-pt="Sistema X-Ray" type="button"><div class="phase-media-placeholder"><span data-en="Process video" data-pt="Vídeo do processo">Process video</span></div><span aria-hidden="true" class="play-button">▶</span><span class="media-title" data-en="X-Ray System" data-pt="Sistema X-Ray">X-Ray System</span></button></article><article class="phase phase--left" id="maps-archive"><button class="phase-media" data-title-en="Maps and Archive" data-title-pt="Mapas e arquivo" type="button"><div class="phase-media-placeholder"><span data-en="Process video" data-pt="Vídeo do processo">Process video</span></div><span aria-hidden="true" class="play-button">▶</span><span class="media-title" data-en="Maps and Archive" data-pt="Mapas e arquivo">Maps and Archive</span></button><span aria-hidden="true" class="phase-marker"></span><div class="phase-copy"><a class="phase-label chapter-direct-link" href="#maps-archive"><span data-en="Maps and Archive" data-pt="Mapas e arquivo">Maps and Archive</span><span aria-hidden="true">↗</span></a></div></article><article class="phase phase--right" id="clock-temporal-system"><div class="phase-copy"><a class="phase-label chapter-direct-link" href="#clock-temporal-system"><span data-en="Clock and Temporal System" data-pt="Relógio e sistema temporal">Clock and Temporal System</span><span aria-hidden="true">↗</span></a></div><span aria-hidden="true" class="phase-marker"></span><button class="phase-media" data-title-en="Clock and Temporal System" data-title-pt="Relógio e sistema temporal" type="button"><div class="phase-media-placeholder"><span data-en="Process video" data-pt="Vídeo do processo">Process video</span></div><span aria-hidden="true" class="play-button">▶</span><span class="media-title" data-en="Clock and Temporal System" data-pt="Relógio e sistema temporal">Clock and Temporal System</span></button></article><article class="phase phase--left" id="atmosphere-weather"><button class="phase-media" data-title-en="Atmosphere and Weather System" data-title-pt="Atmosfera e sistema climático" type="button"><div class="phase-media-placeholder"><span data-en="Process video" data-pt="Vídeo do processo">Process video</span></div><span aria-hidden="true" class="play-button">▶</span><span class="media-title" data-en="Atmosphere and Weather System" data-pt="Atmosfera e sistema climático">Atmosphere and Weather System</span></button><span aria-hidden="true" class="phase-marker"></span><div class="phase-copy"><a class="phase-label chapter-direct-link" href="#atmosphere-weather"><span data-en="Atmosphere and Weather System" data-pt="Atmosfera e sistema climático">Atmosphere and Weather System</span><span aria-hidden="true">↗</span></a></div></article><article class="phase phase--right" id="historical-system"><div class="phase-copy"><a class="phase-label chapter-direct-link" href="#historical-system"><span data-en="Historical System" data-pt="Sistema Histórico">Historical System</span><span aria-hidden="true">↗</span></a></div><span aria-hidden="true" class="phase-marker"></span><button class="phase-media" data-title-en="Historical System" data-title-pt="Sistema Histórico" type="button"><div class="phase-media-placeholder"><span data-en="Process video" data-pt="Vídeo do processo">Process video</span></div><span aria-hidden="true" class="play-button">▶</span><span class="media-title" data-en="Historical System" data-pt="Sistema Histórico">Historical System</span></button></article><article class="phase phase--left" id="sound-immersion"><button class="phase-media" data-title-en="Sound and Immersion" data-title-pt="Som e imersão" type="button"><div class="phase-media-placeholder"><span data-en="Process video" data-pt="Vídeo do processo">Process video</span></div><span aria-hidden="true" class="play-button">▶</span><span class="media-title" data-en="Sound and Immersion" data-pt="Som e imersão">Sound and Immersion</span></button><span aria-hidden="true" class="phase-marker"></span><div class="phase-copy"><a class="phase-label chapter-direct-link" href="#sound-immersion"><span data-en="Sound and Immersion" data-pt="Som e imersão">Sound and Immersion</span><span aria-hidden="true">↗</span></a></div></article><article class="phase phase--right" id="narrative-cutscene"><div class="phase-copy"><a class="phase-label chapter-direct-link" href="#narrative-cutscene"><span data-en="Narrative and Cutscene" data-pt="Narrativa e Cutscene">Narrative and Cutscene</span><span aria-hidden="true">↗</span></a></div><span aria-hidden="true" class="phase-marker"></span><button class="phase-media" data-title-en="Narrative and Cutscene" data-title-pt="Narrativa e Cutscene" type="button"><div class="phase-media-placeholder"><span data-en="Process video" data-pt="Vídeo do processo">Process video</span></div><span aria-hidden="true" class="play-button">▶</span><span class="media-title" data-en="Narrative and Cutscene" data-pt="Narrativa e Cutscene">Narrative and Cutscene</span></button></article><article class="phase phase--left" id="experience-modes"><button class="phase-media" data-title-en="Experience Modes" data-title-pt="Modos da experiência" type="button"><div class="phase-media-placeholder"><span data-en="Process video" data-pt="Vídeo do processo">Process video</span></div><span aria-hidden="true" class="play-button">▶</span><span class="media-title" data-en="Experience Modes" data-pt="Modos da experiência">Experience Modes</span></button><span aria-hidden="true" class="phase-marker"></span><div class="phase-copy"><a class="phase-label chapter-direct-link" href="#experience-modes"><span data-en="Experience Modes" data-pt="Modos da experiência">Experience Modes</span><span aria-hidden="true">↗</span></a></div></article><article class="phase phase--right" id="optimization-preparation"><div class="phase-copy"><a class="phase-label chapter-direct-link" href="#optimization-preparation"><span data-en="Optimization and Preparation for Use" data-pt="Otimização e preparação para utilização">Optimization and Preparation for Use</span><span aria-hidden="true">↗</span></a></div><span aria-hidden="true" class="phase-marker"></span><button class="phase-media" data-title-en="Optimization and Preparation for Use" data-title-pt="Otimização e preparação para utilização" type="button"><div class="phase-media-placeholder"><span data-en="Process video" data-pt="Vídeo do processo">Process video</span></div><span aria-hidden="true" class="play-button">▶</span><span class="media-title" data-en="Optimization and Preparation for Use" data-pt="Otimização e preparação para utilização">Optimization and Preparation for Use</span></button></article></section>
 </main>
 <footer class="site-footer">
 <div class="content-width footer-content">
@@ -941,7 +947,6 @@
 <div class="process-lightbox-caption"></div>
 </div>
 </div>
-
 <script>
         (() => {
             const cards = [
@@ -1019,9 +1024,11 @@
             function openLightbox(card) {
                 lastFocusedCard = card;
 
+                const lang = document.documentElement.lang || "en";
                 const title =
-                    card.dataset.title ||
-                    "Process video";
+                    lang === "pt"
+                    ? card.dataset.titlePt
+                    : card.dataset.titleEn;
 
                 const sourceVideo =
                     card.querySelector("video");
@@ -1113,5 +1120,32 @@
                 }
             );
         })();
+</script><script>
+(() => {
+    const buttons = [...document.querySelectorAll(".language-button")];
+    const translated = [...document.querySelectorAll("[data-en][data-pt]")];
+
+    function setLanguage(lang) {
+        document.documentElement.lang = lang;
+
+        translated.forEach((el) => {
+            el.textContent = el.dataset[lang];
+        });
+
+        buttons.forEach((button) => {
+            const active = button.dataset.language === lang;
+            button.classList.toggle("is-active", active);
+            button.setAttribute("aria-pressed", active ? "true" : "false");
+        });
+    }
+
+    buttons.forEach((button) => {
+        button.addEventListener("click", () => {
+            setLanguage(button.dataset.language);
+        });
+    });
+
+    setLanguage("en");
+})();
 </script></body>
 </html>
