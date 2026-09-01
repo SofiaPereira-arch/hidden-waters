@@ -1,1345 +1,1169 @@
 <!DOCTYPE html>
-
 <html lang="en">
 <head>
-<meta charset="utf-8"/>
-<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
-<meta content="Artbook and visual gallery for the Hidden Waters thesis project." name="description"/>
-<title>Artbook · Hidden Waters</title>
-<link href="https://fonts.googleapis.com" rel="preconnect"/>
-<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
-<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&amp;family=Inter:wght@300;400;500;600&amp;display=swap" rel="stylesheet"/>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="Visual gallery for the Hidden Waters thesis project.">
+
+<link rel="icon" type="image/png" href="assets/images/favicon.png">
+<link rel="icon" href="assets/images/favicon.ico" sizes="any">
+<link rel="apple-touch-icon" href="assets/images/apple-touch-icon.png">
+
+<title>Gallery · Hidden Waters</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+
 <style>
-        @font-face {
-            font-family: "Steelfish";
-            src: url("assets/fonts/steelfish-rg.otf") format("opentype");
-            font-style: normal;
-            font-weight: 400;
-            font-display: swap;
-        }
-
-        @font-face {
-            font-family: "Steelfish";
-            src: url("assets/fonts/steelfish-rg-it.otf") format("opentype");
-            font-style: italic;
-            font-weight: 400;
-            font-display: swap;
-        }
-
-        :root {
-            --background: #050505;
-            --text: #f2f2f2;
-            --muted: #a6a6a6;
-
-            --blue: #739da6;
-            --blue-light: #8fb3ba;
-
-            --line: rgba(255, 255, 255, 0.11);
-            --header-background: rgba(5, 5, 5, 0.78);
-
-            /* Mesmas margens da Home e da página Process */
-            --content-width: 1100px;
-            --content-gutter: 128px;
-
-            --gallery-gap: 28px;
-            --card-radius: 24px;
-        }
-
-        * {
-            box-sizing: border-box;
-        }
-
-        html {
-            scroll-behavior: smooth;
-            scroll-padding-top: 96px;
-        }
-
-        body {
-            margin: 0;
-
-            color: var(--text);
-            background: var(--background);
-
-            font-family: "Inter", Arial, sans-serif;
-            line-height: 1.6;
-        }
-
-        button,
-        a {
-            color: inherit;
-        }
-
-        a {
-            text-decoration: none;
-        }
-
-        button {
-            font: inherit;
-        }
-
-        img {
-            display: block;
-            width: 100%;
-        }
-
-        ::selection {
-            color: #050505;
-            background: #9fc0c6;
-        }
-
-        .content-width {
-            width: min(
-                var(--content-width),
-                calc(100% - var(--content-gutter))
-            );
-
-            margin-right: auto;
-            margin-left: auto;
-        }
-
-        /*
-        CABEÇALHO
-        */
-
-        .site-header {
-            position: fixed;
-            z-index: 1000;
-            top: 0;
-            right: 0;
-            left: 0;
-
-            height: 76px;
-
-            background: var(--header-background);
-            border-bottom: 1px solid var(--line);
-
-            backdrop-filter: blur(18px) saturate(150%);
-            -webkit-backdrop-filter: blur(18px) saturate(150%);
-        }
-
-        .header-content {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-
-            height: 100%;
-        }
-
-        .main-nav {
-            display: flex;
-            align-items: center;
-            gap: 30px;
-
-            color: #f1f1f1;
-
-            font-family: "Bebas Neue", sans-serif;
-            font-size: 1.28rem;
-            letter-spacing: 0.12em;
-            line-height: 1;
-        }
-
-        .main-nav > a:not(.header-logo-link) {
-            position: relative;
-
-            transition:
-                color 220ms ease,
-                transform 220ms ease;
-        }
-
-        .main-nav > a:not(.header-logo-link)::after {
-            content: "";
-            position: absolute;
-            right: 0;
-            bottom: -7px;
-            left: 0;
-
-            height: 1px;
-            background: var(--blue-light);
-
-            transform: scaleX(0);
-            transform-origin: right;
-
-            transition: transform 240ms ease;
-        }
-
-        .main-nav > a:hover,
-        .main-nav > a:focus-visible {
-            color: var(--blue-light);
-        }
-
-        .main-nav > a:not(.header-logo-link):hover,
-        .main-nav > a:not(.header-logo-link):focus-visible {
-            transform: translateY(-1px);
-        }
-
-        .main-nav > a:not(.header-logo-link):hover::after,
-        .main-nav > a:not(.header-logo-link):focus-visible::after,
-        .main-nav > a[aria-current="page"]::after {
-            transform: scaleX(1);
-            transform-origin: left;
-        }
-
-        .header-logo-link {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-
-            width: 42px;
-            height: 52px;
-            flex: 0 0 42px;
-
-            opacity: 0.94;
-
-            transition:
-                opacity 220ms ease,
-                transform 260ms ease;
-        }
-
-        .header-logo-link:hover,
-        .header-logo-link:focus-visible {
-            opacity: 1;
-            transform: scale(1.07);
-        }
-
-        .header-logo-image {
-            display: block;
-
-            width: auto;
-            height: 40px;
-            max-width: 38px;
-
-            object-fit: contain;
-        }
-
-        /*
-        TÍTULO
-        */
-
-        main {
-            padding-top: 76px;
-        }
-
-        .gallery-hero {
-            padding:
-                clamp(55px, 7vh, 95px)
-                0
-                clamp(58px, 7vh, 86px);
-        }
-
-        .gallery-title {
-            margin: 0;
-
-            color: #eeeeee;
-
-            font-family: "Bebas Neue", sans-serif;
-            font-size: clamp(5rem, 11vw, 11rem);
-            font-weight: 400;
-            letter-spacing: 0.01em;
-            line-height: 0.8;
-        }
-
-        .gallery-introduction {
-            max-width: 620px;
-            margin: 34px 0 0;
-
-            color: var(--muted);
-            font-size: 0.98rem;
-            line-height: 1.78;
-        }
-
-        /*
-        ARTBOOK / MASONRY
-        */
-
-        .artbook {
-            display: grid;
-            grid-template-columns: repeat(2, minmax(0, 1fr));
-            align-items: start;
-            gap: var(--gallery-gap);
-
-            padding-bottom: clamp(100px, 13vh, 170px);
-        }
-
-        .gallery-column {
-            display: flex;
-            flex-direction: column;
-            gap: var(--gallery-gap);
-        }
-
-        .gallery-column--right {
-            padding-top: 66px;
-        }
-
-        .gallery-card {
-            position: relative;
-
-            display: block;
-            width: 100%;
-            padding: 0;
-
-            overflow: hidden;
-
-            color: #ffffff;
-            background: #17272b;
-
-            border: 0;
-            border-radius: var(--card-radius);
-
-            cursor: zoom-in;
-            text-align: left;
-
-            isolation: isolate;
-
-            transition:
-                transform 420ms cubic-bezier(0.22, 1, 0.36, 1),
-                box-shadow 420ms ease;
-        }
-
-        .gallery-card:hover,
-        .gallery-card:focus-visible {
-            z-index: 10;
-
-            transform: translateY(-5px) scale(1.018);
-
-            box-shadow:
-                0 26px 68px rgba(0, 0, 0, 0.44),
-                0 0 0 1px rgba(143, 179, 186, 0.08);
-        }
-
-        .gallery-card:focus-visible {
-            outline: 2px solid var(--blue-light);
-            outline-offset: 6px;
-        }
-
-        .gallery-card--portrait {
-            aspect-ratio: 4 / 5;
-        }
-
-        .gallery-card--tall {
-            aspect-ratio: 3 / 5;
-        }
-
-        .gallery-card--square {
-            aspect-ratio: 1 / 1;
-        }
-
-        .gallery-card--landscape {
-            aspect-ratio: 16 / 9;
-        }
-
-        .gallery-card--wide {
-            aspect-ratio: 7 / 4;
-        }
-
-        .gallery-media,
-        .gallery-media img {
-            width: 100%;
-            height: 100%;
-        }
-
-        .gallery-media {
-            position: absolute;
-            inset: 0;
-
-            overflow: hidden;
-            border-radius: inherit;
-        }
-
-        .gallery-media img {
-            object-fit: cover;
-
-            transition:
-                transform 700ms cubic-bezier(0.22, 1, 0.36, 1),
-                filter 420ms ease;
-        }
-
-        /*
-        Placeholders temporários.
-        Mais tarde podes substituir cada .gallery-placeholder por:
-        <img src="assets/images/nome-da-imagem.jpg" alt="Descrição">
-        */
-
-        .gallery-placeholder {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-
-            width: 100%;
-            height: 100%;
-
-            color: rgba(179, 208, 214, 0.82);
-
-            background:
-                radial-gradient(
-                    circle at 28% 22%,
-                    rgba(122, 164, 173, 0.24),
-                    transparent 42%
-                ),
-                linear-gradient(
-                    145deg,
-                    #122024,
-                    #294047
-                );
-
-            font-family: "Steelfish", "Arial Narrow", sans-serif;
-            font-size: 1.15rem;
-            letter-spacing: 0.08em;
-            text-transform: uppercase;
-
-            transition:
-                transform 700ms cubic-bezier(0.22, 1, 0.36, 1),
-                filter 420ms ease;
-        }
-
-        .gallery-placeholder--light {
-            color: #42626a;
-
-            background:
-                linear-gradient(
-                    145deg,
-                    #d3e0e2,
-                    #9bb4ba
-                );
-        }
-
-        .gallery-card:hover .gallery-media img,
-        .gallery-card:focus-visible .gallery-media img,
-        .gallery-card:hover .gallery-placeholder,
-        .gallery-card:focus-visible .gallery-placeholder {
-            transform: scale(1.055);
-        }
-
-        .gallery-card::after {
-            content: "";
-            position: absolute;
-            z-index: 1;
-            inset: 0;
-
-            background:
-                linear-gradient(
-                    to top,
-                    rgba(0, 0, 0, 0.70) 0%,
-                    rgba(0, 0, 0, 0.12) 44%,
-                    transparent 72%
-                );
-
-            opacity: 0;
-            pointer-events: none;
-
-            transition: opacity 320ms ease;
-        }
-
-        .gallery-card:hover::after,
-        .gallery-card:focus-visible::after {
-            opacity: 1;
-        }
-
-        .gallery-card-title {
-            position: absolute;
-            z-index: 3;
-            right: 24px;
-            bottom: 21px;
-            left: 24px;
-
-            color: #ffffff;
-
-            font-family: "Steelfish", "Arial Narrow", sans-serif;
-            font-size: clamp(1.25rem, 1.45vw, 1.65rem);
-            font-weight: 400;
-            letter-spacing: 0.045em;
-            line-height: 1;
-            text-transform: uppercase;
-
-            opacity: 0;
-            transform: translateY(12px);
-            pointer-events: none;
-
-            transition:
-                opacity 300ms ease,
-                transform 300ms ease;
-        }
-
-        .gallery-card:hover .gallery-card-title,
-        .gallery-card:focus-visible .gallery-card-title {
-            opacity: 1;
-            transform: translateY(0);
-        }
-
-        /*
-        LIGHTBOX
-        */
-
-        .lightbox {
-            position: fixed;
-            z-index: 2000;
-            inset: 0;
-
-            display: grid;
-            place-items: center;
-
-            padding: 38px;
-
-            background: rgba(0, 0, 0, 0.90);
-
-            opacity: 0;
-            visibility: hidden;
-
-            backdrop-filter: blur(18px);
-            -webkit-backdrop-filter: blur(18px);
-
-            transition:
-                opacity 280ms ease,
-                visibility 280ms ease;
-        }
-
-        .lightbox.is-open {
-            opacity: 1;
-            visibility: visible;
-        }
-
-        .lightbox-dialog {
-            position: relative;
-
-            width: min(1180px, 94vw);
-            max-height: 88vh;
-
-            overflow: hidden;
-
-            background: #101719;
-            border-radius: 26px;
-
-            box-shadow:
-                0 34px 100px rgba(0, 0, 0, 0.72);
-        }
-
-        .lightbox-media {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-
-            width: 100%;
-            height: min(78vh, 820px);
-
-            background:
-                linear-gradient(
-                    145deg,
-                    #122024,
-                    #294047
-                );
-        }
-
-        .lightbox-media img {
-            width: 100%;
-            height: 100%;
-            object-fit: contain;
-        }
-
-        .lightbox-placeholder {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-
-            width: 100%;
-            height: 100%;
-
-            color: #b3d0d6;
-
-            font-family: "Steelfish", "Arial Narrow", sans-serif;
-            font-size: 2rem;
-            letter-spacing: 0.08em;
-            text-transform: uppercase;
-        }
-
-        .lightbox-caption {
-            position: absolute;
-            right: 30px;
-            bottom: 25px;
-            left: 30px;
-
-            color: #ffffff;
-
-            font-family: "Steelfish", "Arial Narrow", sans-serif;
-            font-size: 1.55rem;
-            letter-spacing: 0.045em;
-            text-transform: uppercase;
-        }
-
-        .lightbox-close {
-            position: absolute;
-            z-index: 4;
-            top: 18px;
-            right: 18px;
-
-            display: flex;
-            justify-content: center;
-            align-items: center;
-
-            width: 44px;
-            height: 44px;
-
-            color: #ffffff;
-            background: rgba(5, 5, 5, 0.58);
-
-            border: 1px solid rgba(255, 255, 255, 0.26);
-            border-radius: 50%;
-
-            cursor: pointer;
-            font-size: 1.25rem;
-
-            transition:
-                background-color 220ms ease,
-                transform 220ms ease;
-        }
-
-        .lightbox-close:hover,
-        .lightbox-close:focus-visible {
-            background: rgba(115, 157, 166, 0.55);
-            transform: scale(1.06);
-        }
-
-        /*
-        RODAPÉ
-        */
-
-        .site-footer {
-            padding: 34px 0 44px;
-            border-top: 1px solid var(--line);
-        }
-
-        .footer-content {
-            display: flex;
-            justify-content: space-between;
-            gap: 24px;
-
-            color: #818181;
-            font-size: 0.75rem;
-            letter-spacing: 0.04em;
-        }
-
-        /*
-        RESPONSIVO
-        */
-
-        @media (max-width: 900px) {
-            :root {
-                --content-gutter: 36px;
-                --gallery-gap: 20px;
-                --card-radius: 20px;
-            }
-
-            .gallery-column--right {
-                padding-top: 44px;
-            }
-        }
-
-        @media (max-width: 650px) {
-            .artbook {
-                grid-template-columns: 1fr;
-            }
-
-            .gallery-column--right {
-                padding-top: 0;
-            }
-
-            .gallery-card-title {
-                opacity: 1;
-                transform: none;
-            }
-
-            .gallery-card::after {
-                opacity: 0.52;
-            }
-        }
-
-        @media (max-width: 520px) {
-            .site-header {
-                height: 68px;
-            }
-
-            main {
-                padding-top: 68px;
-            }
-
-            .main-nav {
-                gap: 21px;
-                font-size: 1.12rem;
-            }
-
-            .header-logo-link {
-                width: 36px;
-                height: 46px;
-                flex-basis: 36px;
-            }
-
-            .header-logo-image {
-                height: 34px;
-                max-width: 33px;
-            }
-
-            .gallery-title {
-                font-size: clamp(4.8rem, 22vw, 7rem);
-            }
-
-            .gallery-introduction {
-                margin-top: 26px;
-            }
-
-            .lightbox {
-                padding: 16px;
-            }
-
-            .lightbox-dialog {
-                border-radius: 19px;
-            }
-
-            .footer-content {
-                flex-direction: column;
-                gap: 7px;
-            }
-        }
-
-        @media (prefers-reduced-motion: reduce) {
-            *,
-            *::before,
-            *::after {
-                scroll-behavior: auto !important;
-                transition-duration: 0.01ms !important;
-                animation-duration: 0.01ms !important;
-                animation-iteration-count: 1 !important;
-            }
-        }
-    
-
-        /* GALERIA ORGANIZADA POR FASES */
-
-        .gallery-phases {
-            padding-bottom: clamp(100px, 13vh, 170px);
-        }
-
-        .gallery-phase {
-            margin-bottom: clamp(110px, 15vh, 185px);
-            scroll-margin-top: 104px;
-        }
-
-        .gallery-phase:last-child {
-            margin-bottom: 0;
-        }
-
-        .gallery-phase-header {
-            display: grid;
-            grid-template-columns: auto minmax(90px, 1fr);
-            align-items: end;
-            gap: 30px;
-
-            margin-bottom: 36px;
-        }
-
-        .gallery-phase-number {
-            margin: 0 0 5px;
-
-            color: var(--blue-light);
-
-            font-family: "Steelfish", "Arial Narrow", sans-serif;
-            font-size: 1.08rem;
-            letter-spacing: 0.10em;
-            line-height: 1;
-            text-transform: uppercase;
-        }
-
-        .gallery-phase-title {
-            margin: 0;
-
-            color: #eeeeee;
-
-            font-family: "Bebas Neue", sans-serif;
-            font-size: clamp(2.35rem, 3.8vw, 4rem);
-            font-weight: 400;
-            letter-spacing: 0.015em;
-            line-height: 0.92;
-        }
-
-        .gallery-phase-line {
-            display: block;
-
-            height: 1px;
-            margin-bottom: 7px;
-
-            background:
-                linear-gradient(
-                    to right,
-                    rgba(143, 179, 186, 0.52),
-                    rgba(143, 179, 186, 0.05)
-                );
-        }
-
-        .gallery-phase-grid {
-            display: grid;
-            grid-template-columns: repeat(2, minmax(0, 1fr));
-            align-items: start;
-            gap: var(--gallery-gap);
-        }
-
-        /*
-        As duas colunas começam exatamente na mesma linha.
-        */
-
-        .gallery-column--right {
-            padding-top: 0;
-        }
-
-        @media (max-width: 650px) {
-            .gallery-phase {
-                margin-bottom: 92px;
-            }
-
-            .gallery-phase-header {
-                grid-template-columns: 1fr;
-                gap: 16px;
-                margin-bottom: 26px;
-            }
-
-            .gallery-phase-line {
-                width: 100%;
-                margin: 0;
-            }
-
-            .gallery-phase-grid {
-                grid-template-columns: 1fr;
-            }
-        }
-
-
-
-        /* GALERIA — BLOCOS COMPLETOS POR FASE */
-
-        .gallery-phase-grid {
-            display: grid;
-            grid-template-columns: repeat(2, minmax(0, 1fr));
-            grid-template-rows:
-                repeat(2, clamp(270px, 26vw, 390px));
-            gap: var(--gallery-gap);
-        }
-
-        .gallery-phase-grid .gallery-card {
-            width: 100%;
-            height: 100%;
-            aspect-ratio: auto;
-        }
-
-        .gallery-phase-grid--feature-left .gallery-card--feature {
-            grid-column: 1;
-            grid-row: 1 / span 2;
-        }
-
-        .gallery-phase-grid--feature-left .gallery-card--stack-top {
-            grid-column: 2;
-            grid-row: 1;
-        }
-
-        .gallery-phase-grid--feature-left .gallery-card--stack-bottom {
-            grid-column: 2;
-            grid-row: 2;
-        }
-
-        .gallery-phase-grid--feature-right .gallery-card--feature {
-            grid-column: 2;
-            grid-row: 1 / span 2;
-        }
-
-        .gallery-phase-grid--feature-right .gallery-card--stack-top {
-            grid-column: 1;
-            grid-row: 1;
-        }
-
-        .gallery-phase-grid--feature-right .gallery-card--stack-bottom {
-            grid-column: 1;
-            grid-row: 2;
-        }
-
-        /*
-        HOVER DE ÁGUA SUAVE — IGUAL À HOME
-        */
-
-        .gallery-card {
-            isolation: isolate;
-        }
-
-        .gallery-media {
-            z-index: 0;
-        }
-
-        .gallery-card::after {
-            z-index: 1;
-
-            background:
-                linear-gradient(
-                    to top,
-                    rgba(0, 0, 0, 0.58) 0%,
-                    rgba(0, 0, 0, 0.10) 42%,
-                    transparent 70%
-                );
-        }
-
-        .water-ripple-video {
-            position: absolute;
-            z-index: 2;
-            inset: -3%;
-
-            display: block;
-            width: 106%;
-            height: 106%;
-
-            object-fit: cover;
-            border-radius: inherit;
-
-            opacity: 0;
-            mix-blend-mode: screen;
-
-            filter:
-                blur(1.4px)
-                brightness(0.78)
-                contrast(0.82);
-
-            pointer-events: none;
-            transform: scale(1.07);
-
-            transition:
-                opacity 480ms ease,
-                transform 850ms ease;
-        }
-
-        .gallery-card.is-water-ripple .water-ripple-video {
-            opacity: 0.17;
-            transform: scale(1.09);
-        }
-
-        .gallery-card:hover .gallery-placeholder,
-        .gallery-card:focus-visible .gallery-placeholder,
-        .gallery-card:hover .gallery-media img,
-        .gallery-card:focus-visible .gallery-media img {
-            filter:
-                blur(3px)
-                brightness(0.52)
-                saturate(0.86);
-
-            transform: scale(1.05);
-        }
-
-        .gallery-card-title {
-            z-index: 4;
-        }
-
-        @media (max-width: 650px) {
-            .gallery-phase-grid {
-                grid-template-columns: 1fr;
-                grid-template-rows: none;
-            }
-
-            .gallery-phase-grid .gallery-card {
-                grid-column: 1 !important;
-                grid-row: auto !important;
-
-                min-height: 320px;
-                aspect-ratio: 4 / 5;
-            }
-
-            .gallery-phase-grid .gallery-card--stack-top,
-            .gallery-phase-grid .gallery-card--stack-bottom {
-                aspect-ratio: 16 / 10;
-            }
-        }
-
-        @media (hover: none) {
-            .water-ripple-video {
-                display: none;
-            }
-        }
-
-        @media (prefers-reduced-motion: reduce) {
-            .water-ripple-video {
-                display: none;
-            }
-        }
-
-
-
-        /* LINKS DIRETOS PARA CADA FASE DA GALERIA */
-
-        .gallery-phase-direct-link {
-            position: relative;
-
-            display: inline-flex;
-            align-items: baseline;
-            gap: 7px;
-
-            width: fit-content;
-
-            text-decoration: none;
-            cursor: pointer;
-
-            transition:
-                color 220ms ease,
-                transform 220ms ease;
-        }
-
-        .gallery-phase-direct-link::after {
-            content: "";
-            position: absolute;
-            right: 0;
-            bottom: -5px;
-            left: 0;
-
-            height: 1px;
-
-            background: var(--blue-light);
-
-            transform: scaleX(0);
-            transform-origin: right;
-
-            transition:
-                transform 240ms ease;
-        }
-
-        .gallery-phase-direct-link:hover,
-        .gallery-phase-direct-link:focus-visible {
-            color: #ffffff;
-            transform: translateY(-1px);
-        }
-
-        .gallery-phase-direct-link:hover::after,
-        .gallery-phase-direct-link:focus-visible::after {
-            transform: scaleX(1);
-            transform-origin: left;
-        }
-
-        .gallery-phase-direct-link:focus-visible {
-            outline: 2px solid var(--blue-light);
-            outline-offset: 6px;
-        }
-
-
-/* LANGUAGE SWITCH */
-.header-content { position: relative; }
-
-.language-switch {
-    position: absolute;
-    right: 0;
-    top: 50%;
-    display: flex;
-    gap: 3px;
-    padding: 4px;
-    transform: translateY(-50%);
-    background: rgba(255,255,255,.045);
-    border: 1px solid rgba(255,255,255,.12);
-    border-radius: 999px;
+@font-face{
+    font-family:"Steelfish";
+    src:url("assets/fonts/steelfish-rg.otf") format("opentype");
+    font-style:normal;
+    font-weight:400;
+    font-display:swap;
 }
 
-.language-button {
-    min-width: 36px;
-    padding: 6px 9px;
-    color: #8f8f8f;
-    background: transparent;
-    border: 0;
-    border-radius: 999px;
-    cursor: pointer;
-    font-family: "Bebas Neue", sans-serif;
-    font-size: .9rem;
-    letter-spacing: .08em;
+@font-face{
+    font-family:"Steelfish";
+    src:url("assets/fonts/steelfish-rg-it.otf") format("opentype");
+    font-style:italic;
+    font-weight:400;
+    font-display:swap;
 }
 
-.language-button.is-active {
-    color: #050505;
-    background: var(--blue-light);
+:root{
+    --background:#050505;
+    --text:#f2f2f2;
+    --muted:#a6a6a6;
+    --blue:#739da6;
+    --blue-light:#8fb3ba;
+    --line:rgba(255,255,255,.11);
+    --header-background:rgba(5,5,5,.78);
+    --content-width:1100px;
+    --content-gutter:128px;
+    --header-height:76px;
+    --gallery-gap:24px;
+    --radius:24px;
 }
 
-.language-button:hover:not(.is-active),
-.language-button:focus-visible:not(.is-active) {
-    color: #fff;
+*{box-sizing:border-box}
+
+html{
+    scroll-behavior:smooth;
+    scroll-padding-top:110px;
 }
 
-@media (max-width: 650px) {
-    .language-switch {
-        right: 4px;
-        transform: translate(28%, -50%) scale(.88);
-    }
+body{
+    margin:0;
+    overflow-x:hidden;
+    color:var(--text);
+    background:var(--background);
+    font-family:"Inter",Arial,sans-serif;
+    line-height:1.65;
+}
 
-    .language-button {
-        min-width: 31px;
-        padding: 5px 6px;
-        font-size: .8rem;
+a{
+    color:inherit;
+    text-decoration:none;
+}
+
+button{font:inherit}
+
+img,video{
+    display:block;
+    width:100%;
+}
+
+.content-width{
+    width:min(var(--content-width),calc(100% - var(--content-gutter)));
+    margin-inline:auto;
+}
+
+/* HEADER */
+
+.site-header{
+    position:fixed;
+    z-index:1000;
+    inset:0 0 auto;
+    height:var(--header-height);
+    background:var(--header-background);
+    border-bottom:1px solid var(--line);
+    backdrop-filter:blur(18px) saturate(150%);
+    -webkit-backdrop-filter:blur(18px) saturate(150%);
+}
+
+.header-content{
+    position:relative;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    height:100%;
+}
+
+.main-nav{
+    display:flex;
+    align-items:center;
+    gap:30px;
+    font-family:"Bebas Neue",sans-serif;
+    font-size:1.28rem;
+    letter-spacing:.12em;
+    line-height:1;
+}
+
+.main-nav>a:not(.header-logo-link){
+    position:relative;
+    transition:color .22s ease,transform .22s ease;
+}
+
+.main-nav>a:not(.header-logo-link)::after{
+    content:"";
+    position:absolute;
+    right:0;
+    bottom:-7px;
+    left:0;
+    height:1px;
+    background:var(--blue-light);
+    transform:scaleX(0);
+    transform-origin:right;
+    transition:transform .24s ease;
+}
+
+.main-nav>a:hover,
+.main-nav>a:focus-visible{
+    color:var(--blue-light);
+}
+
+.main-nav>a:not(.header-logo-link):hover,
+.main-nav>a:not(.header-logo-link):focus-visible{
+    transform:translateY(-1px);
+}
+
+.main-nav>a:not(.header-logo-link):hover::after,
+.main-nav>a:not(.header-logo-link):focus-visible::after,
+.main-nav>a[aria-current="page"]::after{
+    transform:scaleX(1);
+    transform-origin:left;
+}
+
+.header-logo-link{
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    width:42px;
+    height:52px;
+    flex:0 0 42px;
+    opacity:.94;
+    transition:opacity .22s ease,transform .26s ease;
+}
+
+.header-logo-link:hover,
+.header-logo-link:focus-visible{
+    opacity:1;
+    transform:scale(1.07);
+}
+
+.header-logo-image{
+    width:auto;
+    height:40px;
+    max-width:38px;
+    object-fit:contain;
+}
+
+/* PT / EN */
+
+.language-switch{
+    position:absolute;
+    top:50%;
+    right:0;
+    display:flex;
+    gap:3px;
+    padding:4px;
+    background:rgba(255,255,255,.045);
+    border:1px solid rgba(255,255,255,.12);
+    border-radius:999px;
+    transform:translateY(-50%);
+}
+
+.language-button{
+    min-width:36px;
+    padding:6px 9px;
+    color:#8f8f8f;
+    background:transparent;
+    border:0;
+    border-radius:999px;
+    cursor:pointer;
+    font-family:"Bebas Neue",sans-serif;
+    font-size:.9rem;
+    letter-spacing:.08em;
+}
+
+.language-button.is-active{
+    color:#050505;
+    background:var(--blue-light);
+}
+
+.language-button:hover:not(.is-active){color:#fff}
+
+main{padding-top:var(--header-height)}
+
+/* HERO */
+
+.gallery-hero{
+    padding:clamp(55px,7vh,95px) 0 clamp(90px,11vh,135px);
+}
+
+.gallery-title{
+    margin:0;
+    color:#eee;
+    font-family:"Bebas Neue",sans-serif;
+    font-size:clamp(5rem,11vw,11rem);
+    font-weight:400;
+    letter-spacing:.01em;
+    line-height:.8;
+}
+
+.gallery-introduction{
+    max-width:690px;
+    margin:42px 0 0;
+    color:var(--muted);
+    font-size:.98rem;
+    line-height:1.78;
+}
+
+/* SECTIONS */
+
+.gallery-sections{
+    padding-bottom:clamp(110px,14vh,180px);
+}
+
+.gallery-section{
+    margin-bottom:clamp(120px,16vh,195px);
+    scroll-margin-top:110px;
+}
+
+.gallery-section:last-child{margin-bottom:0}
+
+.gallery-section-header{
+    display:grid;
+    grid-template-columns:auto minmax(80px,1fr);
+    align-items:center;
+    gap:30px;
+    margin-bottom:34px;
+}
+
+.gallery-section-link{
+    display:inline-flex;
+    align-items:baseline;
+    gap:8px;
+    width:fit-content;
+    color:var(--blue-light);
+    font-family:"Steelfish","Arial Narrow",sans-serif;
+    font-size:clamp(1.55rem,2.2vw,2rem);
+    letter-spacing:.045em;
+    line-height:1;
+    text-transform:uppercase;
+    transition:color .22s ease,transform .22s ease;
+}
+
+.gallery-section-link .arrow{
+    font-size:.72em;
+    opacity:.8;
+}
+
+.gallery-section-link:hover,
+.gallery-section-link:focus-visible{
+    color:#fff;
+    transform:translateY(-1px);
+}
+
+.gallery-section-line{
+    height:1px;
+    background:linear-gradient(
+        to right,
+        rgba(143,179,186,.5),
+        rgba(143,179,186,.035)
+    );
+}
+
+/* DYNAMIC ARTBOOK */
+
+.gallery-layout{width:100%}
+
+.gallery-layout--single{
+    display:block;
+}
+
+.gallery-layout--single .gallery-card{
+    width:100%;
+}
+
+.gallery-layout--pair{
+    display:grid;
+    grid-template-columns:repeat(2,minmax(0,1fr));
+    align-items:start;
+    gap:var(--gallery-gap);
+}
+
+.gallery-layout--masonry{
+    column-count:2;
+    column-gap:var(--gallery-gap);
+}
+
+.gallery-layout--masonry .gallery-card{
+    display:inline-block;
+    width:100%;
+    margin:0 0 var(--gallery-gap);
+    break-inside:avoid;
+}
+
+/* CARDS */
+
+.gallery-card{
+    position:relative;
+    padding:0;
+    overflow:hidden;
+    color:#fff;
+    background:#18292d;
+    border:0;
+    border-radius:var(--radius);
+    cursor:zoom-in;
+    text-align:left;
+    isolation:isolate;
+    transition:
+        transform .42s cubic-bezier(.22,1,.36,1),
+        box-shadow .42s ease;
+}
+
+.gallery-card img{
+    width:100%;
+    height:auto;
+    border-radius:inherit;
+    object-fit:contain;
+    transition:
+        transform .7s cubic-bezier(.22,1,.36,1),
+        filter .48s ease;
+}
+
+.gallery-card::after{
+    content:"";
+    position:absolute;
+    z-index:1;
+    inset:0;
+    background:linear-gradient(
+        to top,
+        rgba(0,0,0,.54) 0%,
+        rgba(0,0,0,.08) 40%,
+        transparent 68%
+    );
+    opacity:0;
+    pointer-events:none;
+    transition:opacity .33s ease;
+}
+
+.gallery-card:hover,
+.gallery-card:focus-visible{
+    z-index:20;
+    transform:translateY(-4px) scale(1.012);
+    box-shadow:0 25px 65px rgba(0,0,0,.46);
+}
+
+.gallery-card:hover::after,
+.gallery-card:focus-visible::after{
+    opacity:1;
+}
+
+.gallery-card:hover img,
+.gallery-card:focus-visible img{
+    filter:blur(2.5px) brightness(.58) saturate(.88);
+    transform:scale(1.025);
+}
+
+.gallery-card-title{
+    position:absolute;
+    z-index:4;
+    right:24px;
+    bottom:20px;
+    left:24px;
+    color:#fff;
+    font-family:"Steelfish","Arial Narrow",sans-serif;
+    font-size:clamp(1.15rem,1.35vw,1.5rem);
+    letter-spacing:.045em;
+    line-height:1;
+    text-transform:uppercase;
+    opacity:0;
+    transform:translateY(10px);
+    pointer-events:none;
+    transition:opacity .3s ease,transform .3s ease;
+}
+
+.gallery-card:hover .gallery-card-title,
+.gallery-card:focus-visible .gallery-card-title{
+    opacity:1;
+    transform:translateY(0);
+}
+
+/* WATER HOVER */
+
+.water-ripple-video{
+    position:absolute;
+    z-index:2;
+    inset:-3%;
+    width:106%;
+    height:106%;
+    object-fit:cover;
+    border-radius:inherit;
+    opacity:0;
+    mix-blend-mode:screen;
+    filter:blur(1.4px) brightness(.78) contrast(.82);
+    pointer-events:none;
+    transform:scale(1.07);
+    transition:opacity .48s ease,transform .85s ease;
+}
+
+.gallery-card.is-water-ripple .water-ripple-video{
+    opacity:.16;
+    transform:scale(1.09);
+}
+
+/* LIGHTBOX */
+
+.lightbox{
+    position:fixed;
+    z-index:2200;
+    inset:0;
+    display:grid;
+    place-items:center;
+    padding:38px;
+    background:rgba(0,0,0,.92);
+    opacity:0;
+    visibility:hidden;
+    backdrop-filter:blur(18px);
+    -webkit-backdrop-filter:blur(18px);
+    transition:opacity .28s ease,visibility .28s ease;
+}
+
+.lightbox.is-open{
+    opacity:1;
+    visibility:visible;
+}
+
+.lightbox-dialog{
+    position:relative;
+    width:min(1280px,94vw);
+    height:min(88vh,900px);
+    overflow:hidden;
+    background:#0a0a0a;
+    border-radius:26px;
+    box-shadow:0 34px 110px rgba(0,0,0,.76);
+}
+
+.lightbox-media{
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    width:100%;
+    height:100%;
+    padding:24px;
+}
+
+.lightbox-media img{
+    width:auto;
+    max-width:100%;
+    height:auto;
+    max-height:100%;
+    object-fit:contain;
+    border-radius:12px;
+}
+
+.lightbox-caption{
+    position:absolute;
+    z-index:4;
+    right:30px;
+    bottom:25px;
+    left:30px;
+    color:#fff;
+    font-family:"Steelfish","Arial Narrow",sans-serif;
+    font-size:clamp(1.25rem,1.8vw,1.6rem);
+    letter-spacing:.045em;
+    text-transform:uppercase;
+    pointer-events:none;
+}
+
+.lightbox-close{
+    position:absolute;
+    z-index:6;
+    top:18px;
+    right:18px;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    width:46px;
+    height:46px;
+    padding:0;
+    color:#fff;
+    background:rgba(5,5,5,.68);
+    border:1px solid rgba(255,255,255,.28);
+    border-radius:50%;
+    cursor:pointer;
+    font-size:1.3rem;
+}
+
+.lightbox-close:hover,
+.lightbox-close:focus-visible{
+    background:rgba(115,157,166,.62);
+    transform:scale(1.06);
+}
+
+/* FOOTER */
+
+.site-footer{
+    padding:35px 0 45px;
+    border-top:1px solid var(--line);
+}
+
+.footer-content{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    gap:24px;
+    color:#818181;
+    font-size:.75rem;
+    letter-spacing:.04em;
+}
+
+.footer-institution{
+    display:flex;
+    align-items:center;
+    gap:18px;
+}
+
+.footer-ist-logo{
+    width:auto;
+    height:27px;
+    opacity:.78;
+    object-fit:contain;
+}
+
+/* RESPONSIVE */
+
+@media(max-width:900px){
+    :root{
+        --content-gutter:36px;
+        --gallery-gap:18px;
+        --radius:20px;
     }
 }
 
-.gallery-phase-direct-link {
-    font-size: clamp(1.5rem, 2.15vw, 2rem);
-    letter-spacing: .045em;
-    line-height: 1;
-    margin: 0;
+@media(max-width:700px){
+    .gallery-layout--pair{
+        grid-template-columns:1fr;
+    }
+
+    .gallery-layout--masonry{
+        column-count:1;
+    }
+
+    .gallery-section-header{
+        grid-template-columns:1fr;
+        gap:14px;
+    }
+
+    .gallery-card-title{
+        opacity:1;
+        transform:none;
+    }
+
+    .gallery-card::after{
+        opacity:.38;
+    }
+}
+
+@media(max-width:520px){
+    :root{
+        --header-height:68px;
+    }
+
+    .main-nav{
+        gap:13px;
+        font-size:.94rem;
+    }
+
+    .header-logo-link{
+        width:32px;
+        height:42px;
+        flex-basis:32px;
+    }
+
+    .header-logo-image{
+        height:31px;
+        max-width:30px;
+    }
+
+    .language-switch{
+        right:-4px;
+        transform:translate(35%,-50%) scale(.86);
+    }
+
+    .language-button{
+        min-width:31px;
+        padding:5px 6px;
+        font-size:.8rem;
+    }
+
+    .footer-content{
+        flex-direction:column;
+        align-items:flex-start;
+    }
+
+    .lightbox{
+        padding:14px;
+    }
+
+    .lightbox-dialog{
+        width:100%;
+        height:82vh;
+        border-radius:19px;
+    }
+}
+
+@media(hover:none){
+    .water-ripple-video{
+        display:none;
+    }
+}
+
+@media(prefers-reduced-motion:reduce){
+    *,
+    *::before,
+    *::after{
+        scroll-behavior:auto!important;
+        animation-duration:.01ms!important;
+        animation-iteration-count:1!important;
+        transition-duration:.01ms!important;
+    }
+
+    .water-ripple-video{
+        display:none;
+    }
 }
 </style>
 </head>
+
 <body id="top">
+
 <header class="site-header">
-<div class="content-width header-content">
-<nav aria-label="Main navigation" class="main-nav">
-<a aria-current="page" href="gallery.html"><span data-en="Gallery" data-pt="Galeria">Gallery</span></a>
-<a aria-label="Return to the Hidden Waters homepage" class="header-logo-link" href="index.html">
-<img alt="" class="header-logo-image" src="assets/images/hidden-waters-logo-white.png"/>
-</a>
-<a href="process.html"><span data-en="Process" data-pt="Processo">Process</span></a>
-</nav>
-<div aria-label="Language" class="language-switch" role="group">
-<button aria-pressed="false" class="language-button" data-language="pt" type="button">PT</button>
-<button aria-pressed="true" class="language-button is-active" data-language="en" type="button">EN</button>
-</div></div>
-</header>
-<main>
-<section class="gallery-hero">
-<div class="content-width">
-<h1 class="gallery-title" data-en="Gallery" data-pt="Galeria">Gallery</h1>
-<p class="gallery-introduction" data-en="A visual record of the development of the interactive experience, organised according to the same structure used in the written dissertation." data-pt="Um registo visual do desenvolvimento da experiência interativa, organizado segundo a mesma estrutura utilizada na dissertação escrita.">A visual record of the development of the interactive experience, organised according to the same structure used in the written dissertation.</p>
-</div>
-</section>
-<section aria-label="Hidden Waters visual gallery" class="content-width gallery-phases"><section class="gallery-phase" id="virtual-environment"><header class="gallery-phase-header"><div><a class="gallery-phase-number gallery-phase-direct-link" href="#virtual-environment"><span data-en="Virtual Environment Construction" data-pt="Construção do ambiente virtual">Virtual Environment Construction</span><span aria-hidden="true">↗</span></a></div><span aria-hidden="true" class="gallery-phase-line"></span></header><div class="gallery-phase-grid gallery-phase-grid--feature-left"><button class="gallery-card gallery-card--feature" data-title-en="Virtual Environment Construction — Image 1" data-title-pt="Construção do ambiente virtual — Imagem 1" type="button"><span class="gallery-media"><span class="gallery-placeholder gallery-placeholder--light"><span data-en="Image 01" data-pt="Imagem 01">Image 01</span></span></span><span class="gallery-card-title" data-en="Virtual Environment Construction — Image 1" data-pt="Construção do ambiente virtual — Imagem 1">Virtual Environment Construction — Image 1</span></button><button class="gallery-card gallery-card--stack-top" data-title-en="Virtual Environment Construction — Image 2" data-title-pt="Construção do ambiente virtual — Imagem 2" type="button"><span class="gallery-media"><span class="gallery-placeholder"><span data-en="Image 02" data-pt="Imagem 02">Image 02</span></span></span><span class="gallery-card-title" data-en="Virtual Environment Construction — Image 2" data-pt="Construção do ambiente virtual — Imagem 2">Virtual Environment Construction — Image 2</span></button><button class="gallery-card gallery-card--stack-bottom" data-title-en="Virtual Environment Construction — Image 3" data-title-pt="Construção do ambiente virtual — Imagem 3" type="button"><span class="gallery-media"><span class="gallery-placeholder"><span data-en="Image 03" data-pt="Imagem 03">Image 03</span></span></span><span class="gallery-card-title" data-en="Virtual Environment Construction — Image 3" data-pt="Construção do ambiente virtual — Imagem 3">Virtual Environment Construction — Image 3</span></button></div></section><section class="gallery-phase" id="characters-exploration"><header class="gallery-phase-header"><div><a class="gallery-phase-number gallery-phase-direct-link" href="#characters-exploration"><span data-en="Characters and Exploration Framework" data-pt="Personagens e base para exploração">Characters and Exploration Framework</span><span aria-hidden="true">↗</span></a></div><span aria-hidden="true" class="gallery-phase-line"></span></header><div class="gallery-phase-grid gallery-phase-grid--feature-right"><button class="gallery-card gallery-card--feature" data-title-en="Characters and Exploration Framework — Image 1" data-title-pt="Personagens e base para exploração — Imagem 1" type="button"><span class="gallery-media"><span class="gallery-placeholder gallery-placeholder--light"><span data-en="Image 04" data-pt="Imagem 04">Image 04</span></span></span><span class="gallery-card-title" data-en="Characters and Exploration Framework — Image 1" data-pt="Personagens e base para exploração — Imagem 1">Characters and Exploration Framework — Image 1</span></button><button class="gallery-card gallery-card--stack-top" data-title-en="Characters and Exploration Framework — Image 2" data-title-pt="Personagens e base para exploração — Imagem 2" type="button"><span class="gallery-media"><span class="gallery-placeholder"><span data-en="Image 05" data-pt="Imagem 05">Image 05</span></span></span><span class="gallery-card-title" data-en="Characters and Exploration Framework — Image 2" data-pt="Personagens e base para exploração — Imagem 2">Characters and Exploration Framework — Image 2</span></button><button class="gallery-card gallery-card--stack-bottom" data-title-en="Characters and Exploration Framework — Image 3" data-title-pt="Personagens e base para exploração — Imagem 3" type="button"><span class="gallery-media"><span class="gallery-placeholder"><span data-en="Image 06" data-pt="Imagem 06">Image 06</span></span></span><span class="gallery-card-title" data-en="Characters and Exploration Framework — Image 3" data-pt="Personagens e base para exploração — Imagem 3">Characters and Exploration Framework — Image 3</span></button></div></section><section class="gallery-phase" id="menus-interface"><header class="gallery-phase-header"><div><a class="gallery-phase-number gallery-phase-direct-link" href="#menus-interface"><span data-en="Menus and Interface" data-pt="Menus e interface">Menus and Interface</span><span aria-hidden="true">↗</span></a></div><span aria-hidden="true" class="gallery-phase-line"></span></header><div class="gallery-phase-grid gallery-phase-grid--feature-left"><button class="gallery-card gallery-card--feature" data-title-en="Menus and Interface — Image 1" data-title-pt="Menus e interface — Imagem 1" type="button"><span class="gallery-media"><span class="gallery-placeholder gallery-placeholder--light"><span data-en="Image 07" data-pt="Imagem 07">Image 07</span></span></span><span class="gallery-card-title" data-en="Menus and Interface — Image 1" data-pt="Menus e interface — Imagem 1">Menus and Interface — Image 1</span></button><button class="gallery-card gallery-card--stack-top" data-title-en="Menus and Interface — Image 2" data-title-pt="Menus e interface — Imagem 2" type="button"><span class="gallery-media"><span class="gallery-placeholder"><span data-en="Image 08" data-pt="Imagem 08">Image 08</span></span></span><span class="gallery-card-title" data-en="Menus and Interface — Image 2" data-pt="Menus e interface — Imagem 2">Menus and Interface — Image 2</span></button><button class="gallery-card gallery-card--stack-bottom" data-title-en="Menus and Interface — Image 3" data-title-pt="Menus e interface — Imagem 3" type="button"><span class="gallery-media"><span class="gallery-placeholder"><span data-en="Image 09" data-pt="Imagem 09">Image 09</span></span></span><span class="gallery-card-title" data-en="Menus and Interface — Image 3" data-pt="Menus e interface — Imagem 3">Menus and Interface — Image 3</span></button></div></section><section class="gallery-phase" id="interaction-systems"><header class="gallery-phase-header"><div><a class="gallery-phase-number gallery-phase-direct-link" href="#interaction-systems"><span data-en="Interaction Systems" data-pt="Sistemas de interação">Interaction Systems</span><span aria-hidden="true">↗</span></a></div><span aria-hidden="true" class="gallery-phase-line"></span></header><div class="gallery-phase-grid gallery-phase-grid--feature-right"><button class="gallery-card gallery-card--feature" data-title-en="Interaction Systems — Image 1" data-title-pt="Sistemas de interação — Imagem 1" type="button"><span class="gallery-media"><span class="gallery-placeholder gallery-placeholder--light"><span data-en="Image 10" data-pt="Imagem 10">Image 10</span></span></span><span class="gallery-card-title" data-en="Interaction Systems — Image 1" data-pt="Sistemas de interação — Imagem 1">Interaction Systems — Image 1</span></button><button class="gallery-card gallery-card--stack-top" data-title-en="Interaction Systems — Image 2" data-title-pt="Sistemas de interação — Imagem 2" type="button"><span class="gallery-media"><span class="gallery-placeholder"><span data-en="Image 11" data-pt="Imagem 11">Image 11</span></span></span><span class="gallery-card-title" data-en="Interaction Systems — Image 2" data-pt="Sistemas de interação — Imagem 2">Interaction Systems — Image 2</span></button><button class="gallery-card gallery-card--stack-bottom" data-title-en="Interaction Systems — Image 3" data-title-pt="Sistemas de interação — Imagem 3" type="button"><span class="gallery-media"><span class="gallery-placeholder"><span data-en="Image 12" data-pt="Imagem 12">Image 12</span></span></span><span class="gallery-card-title" data-en="Interaction Systems — Image 3" data-pt="Sistemas de interação — Imagem 3">Interaction Systems — Image 3</span></button></div></section><section class="gallery-phase" id="xray-system"><header class="gallery-phase-header"><div><a class="gallery-phase-number gallery-phase-direct-link" href="#xray-system"><span data-en="X-Ray System" data-pt="Sistema X-Ray">X-Ray System</span><span aria-hidden="true">↗</span></a></div><span aria-hidden="true" class="gallery-phase-line"></span></header><div class="gallery-phase-grid gallery-phase-grid--feature-left"><button class="gallery-card gallery-card--feature" data-title-en="X-Ray System — Image 1" data-title-pt="Sistema X-Ray — Imagem 1" type="button"><span class="gallery-media"><span class="gallery-placeholder gallery-placeholder--light"><span data-en="Image 13" data-pt="Imagem 13">Image 13</span></span></span><span class="gallery-card-title" data-en="X-Ray System — Image 1" data-pt="Sistema X-Ray — Imagem 1">X-Ray System — Image 1</span></button><button class="gallery-card gallery-card--stack-top" data-title-en="X-Ray System — Image 2" data-title-pt="Sistema X-Ray — Imagem 2" type="button"><span class="gallery-media"><span class="gallery-placeholder"><span data-en="Image 14" data-pt="Imagem 14">Image 14</span></span></span><span class="gallery-card-title" data-en="X-Ray System — Image 2" data-pt="Sistema X-Ray — Imagem 2">X-Ray System — Image 2</span></button><button class="gallery-card gallery-card--stack-bottom" data-title-en="X-Ray System — Image 3" data-title-pt="Sistema X-Ray — Imagem 3" type="button"><span class="gallery-media"><span class="gallery-placeholder"><span data-en="Image 15" data-pt="Imagem 15">Image 15</span></span></span><span class="gallery-card-title" data-en="X-Ray System — Image 3" data-pt="Sistema X-Ray — Imagem 3">X-Ray System — Image 3</span></button></div></section><section class="gallery-phase" id="maps-archive"><header class="gallery-phase-header"><div><a class="gallery-phase-number gallery-phase-direct-link" href="#maps-archive"><span data-en="Maps and Archive" data-pt="Mapas e arquivo">Maps and Archive</span><span aria-hidden="true">↗</span></a></div><span aria-hidden="true" class="gallery-phase-line"></span></header><div class="gallery-phase-grid gallery-phase-grid--feature-right"><button class="gallery-card gallery-card--feature" data-title-en="Maps and Archive — Image 1" data-title-pt="Mapas e arquivo — Imagem 1" type="button"><span class="gallery-media"><span class="gallery-placeholder gallery-placeholder--light"><span data-en="Image 16" data-pt="Imagem 16">Image 16</span></span></span><span class="gallery-card-title" data-en="Maps and Archive — Image 1" data-pt="Mapas e arquivo — Imagem 1">Maps and Archive — Image 1</span></button><button class="gallery-card gallery-card--stack-top" data-title-en="Maps and Archive — Image 2" data-title-pt="Mapas e arquivo — Imagem 2" type="button"><span class="gallery-media"><span class="gallery-placeholder"><span data-en="Image 17" data-pt="Imagem 17">Image 17</span></span></span><span class="gallery-card-title" data-en="Maps and Archive — Image 2" data-pt="Mapas e arquivo — Imagem 2">Maps and Archive — Image 2</span></button><button class="gallery-card gallery-card--stack-bottom" data-title-en="Maps and Archive — Image 3" data-title-pt="Mapas e arquivo — Imagem 3" type="button"><span class="gallery-media"><span class="gallery-placeholder"><span data-en="Image 18" data-pt="Imagem 18">Image 18</span></span></span><span class="gallery-card-title" data-en="Maps and Archive — Image 3" data-pt="Mapas e arquivo — Imagem 3">Maps and Archive — Image 3</span></button></div></section><section class="gallery-phase" id="clock-temporal-system"><header class="gallery-phase-header"><div><a class="gallery-phase-number gallery-phase-direct-link" href="#clock-temporal-system"><span data-en="Clock and Temporal System" data-pt="Relógio e sistema temporal">Clock and Temporal System</span><span aria-hidden="true">↗</span></a></div><span aria-hidden="true" class="gallery-phase-line"></span></header><div class="gallery-phase-grid gallery-phase-grid--feature-left"><button class="gallery-card gallery-card--feature" data-title-en="Clock and Temporal System — Image 1" data-title-pt="Relógio e sistema temporal — Imagem 1" type="button"><span class="gallery-media"><span class="gallery-placeholder gallery-placeholder--light"><span data-en="Image 19" data-pt="Imagem 19">Image 19</span></span></span><span class="gallery-card-title" data-en="Clock and Temporal System — Image 1" data-pt="Relógio e sistema temporal — Imagem 1">Clock and Temporal System — Image 1</span></button><button class="gallery-card gallery-card--stack-top" data-title-en="Clock and Temporal System — Image 2" data-title-pt="Relógio e sistema temporal — Imagem 2" type="button"><span class="gallery-media"><span class="gallery-placeholder"><span data-en="Image 20" data-pt="Imagem 20">Image 20</span></span></span><span class="gallery-card-title" data-en="Clock and Temporal System — Image 2" data-pt="Relógio e sistema temporal — Imagem 2">Clock and Temporal System — Image 2</span></button><button class="gallery-card gallery-card--stack-bottom" data-title-en="Clock and Temporal System — Image 3" data-title-pt="Relógio e sistema temporal — Imagem 3" type="button"><span class="gallery-media"><span class="gallery-placeholder"><span data-en="Image 21" data-pt="Imagem 21">Image 21</span></span></span><span class="gallery-card-title" data-en="Clock and Temporal System — Image 3" data-pt="Relógio e sistema temporal — Imagem 3">Clock and Temporal System — Image 3</span></button></div></section><section class="gallery-phase" id="atmosphere-weather"><header class="gallery-phase-header"><div><a class="gallery-phase-number gallery-phase-direct-link" href="#atmosphere-weather"><span data-en="Atmosphere and Weather System" data-pt="Atmosfera e sistema climático">Atmosphere and Weather System</span><span aria-hidden="true">↗</span></a></div><span aria-hidden="true" class="gallery-phase-line"></span></header><div class="gallery-phase-grid gallery-phase-grid--feature-right"><button class="gallery-card gallery-card--feature" data-title-en="Atmosphere and Weather System — Image 1" data-title-pt="Atmosfera e sistema climático — Imagem 1" type="button"><span class="gallery-media"><span class="gallery-placeholder gallery-placeholder--light"><span data-en="Image 22" data-pt="Imagem 22">Image 22</span></span></span><span class="gallery-card-title" data-en="Atmosphere and Weather System — Image 1" data-pt="Atmosfera e sistema climático — Imagem 1">Atmosphere and Weather System — Image 1</span></button><button class="gallery-card gallery-card--stack-top" data-title-en="Atmosphere and Weather System — Image 2" data-title-pt="Atmosfera e sistema climático — Imagem 2" type="button"><span class="gallery-media"><span class="gallery-placeholder"><span data-en="Image 23" data-pt="Imagem 23">Image 23</span></span></span><span class="gallery-card-title" data-en="Atmosphere and Weather System — Image 2" data-pt="Atmosfera e sistema climático — Imagem 2">Atmosphere and Weather System — Image 2</span></button><button class="gallery-card gallery-card--stack-bottom" data-title-en="Atmosphere and Weather System — Image 3" data-title-pt="Atmosfera e sistema climático — Imagem 3" type="button"><span class="gallery-media"><span class="gallery-placeholder"><span data-en="Image 24" data-pt="Imagem 24">Image 24</span></span></span><span class="gallery-card-title" data-en="Atmosphere and Weather System — Image 3" data-pt="Atmosfera e sistema climático — Imagem 3">Atmosphere and Weather System — Image 3</span></button></div></section><section class="gallery-phase" id="historical-system"><header class="gallery-phase-header"><div><a class="gallery-phase-number gallery-phase-direct-link" href="#historical-system"><span data-en="Historical System" data-pt="Sistema Histórico">Historical System</span><span aria-hidden="true">↗</span></a></div><span aria-hidden="true" class="gallery-phase-line"></span></header><div class="gallery-phase-grid gallery-phase-grid--feature-left"><button class="gallery-card gallery-card--feature" data-title-en="Historical System — Image 1" data-title-pt="Sistema Histórico — Imagem 1" type="button"><span class="gallery-media"><span class="gallery-placeholder gallery-placeholder--light"><span data-en="Image 25" data-pt="Imagem 25">Image 25</span></span></span><span class="gallery-card-title" data-en="Historical System — Image 1" data-pt="Sistema Histórico — Imagem 1">Historical System — Image 1</span></button><button class="gallery-card gallery-card--stack-top" data-title-en="Historical System — Image 2" data-title-pt="Sistema Histórico — Imagem 2" type="button"><span class="gallery-media"><span class="gallery-placeholder"><span data-en="Image 26" data-pt="Imagem 26">Image 26</span></span></span><span class="gallery-card-title" data-en="Historical System — Image 2" data-pt="Sistema Histórico — Imagem 2">Historical System — Image 2</span></button><button class="gallery-card gallery-card--stack-bottom" data-title-en="Historical System — Image 3" data-title-pt="Sistema Histórico — Imagem 3" type="button"><span class="gallery-media"><span class="gallery-placeholder"><span data-en="Image 27" data-pt="Imagem 27">Image 27</span></span></span><span class="gallery-card-title" data-en="Historical System — Image 3" data-pt="Sistema Histórico — Imagem 3">Historical System — Image 3</span></button></div></section><section class="gallery-phase" id="sound-immersion"><header class="gallery-phase-header"><div><a class="gallery-phase-number gallery-phase-direct-link" href="#sound-immersion"><span data-en="Sound and Immersion" data-pt="Som e imersão">Sound and Immersion</span><span aria-hidden="true">↗</span></a></div><span aria-hidden="true" class="gallery-phase-line"></span></header><div class="gallery-phase-grid gallery-phase-grid--feature-right"><button class="gallery-card gallery-card--feature" data-title-en="Sound and Immersion — Image 1" data-title-pt="Som e imersão — Imagem 1" type="button"><span class="gallery-media"><span class="gallery-placeholder gallery-placeholder--light"><span data-en="Image 28" data-pt="Imagem 28">Image 28</span></span></span><span class="gallery-card-title" data-en="Sound and Immersion — Image 1" data-pt="Som e imersão — Imagem 1">Sound and Immersion — Image 1</span></button><button class="gallery-card gallery-card--stack-top" data-title-en="Sound and Immersion — Image 2" data-title-pt="Som e imersão — Imagem 2" type="button"><span class="gallery-media"><span class="gallery-placeholder"><span data-en="Image 29" data-pt="Imagem 29">Image 29</span></span></span><span class="gallery-card-title" data-en="Sound and Immersion — Image 2" data-pt="Som e imersão — Imagem 2">Sound and Immersion — Image 2</span></button><button class="gallery-card gallery-card--stack-bottom" data-title-en="Sound and Immersion — Image 3" data-title-pt="Som e imersão — Imagem 3" type="button"><span class="gallery-media"><span class="gallery-placeholder"><span data-en="Image 30" data-pt="Imagem 30">Image 30</span></span></span><span class="gallery-card-title" data-en="Sound and Immersion — Image 3" data-pt="Som e imersão — Imagem 3">Sound and Immersion — Image 3</span></button></div></section><section class="gallery-phase" id="narrative-cutscene"><header class="gallery-phase-header"><div><a class="gallery-phase-number gallery-phase-direct-link" href="#narrative-cutscene"><span data-en="Narrative and Cutscene" data-pt="Narrativa e Cutscene">Narrative and Cutscene</span><span aria-hidden="true">↗</span></a></div><span aria-hidden="true" class="gallery-phase-line"></span></header><div class="gallery-phase-grid gallery-phase-grid--feature-left"><button class="gallery-card gallery-card--feature" data-title-en="Narrative and Cutscene — Image 1" data-title-pt="Narrativa e Cutscene — Imagem 1" type="button"><span class="gallery-media"><span class="gallery-placeholder gallery-placeholder--light"><span data-en="Image 31" data-pt="Imagem 31">Image 31</span></span></span><span class="gallery-card-title" data-en="Narrative and Cutscene — Image 1" data-pt="Narrativa e Cutscene — Imagem 1">Narrative and Cutscene — Image 1</span></button><button class="gallery-card gallery-card--stack-top" data-title-en="Narrative and Cutscene — Image 2" data-title-pt="Narrativa e Cutscene — Imagem 2" type="button"><span class="gallery-media"><span class="gallery-placeholder"><span data-en="Image 32" data-pt="Imagem 32">Image 32</span></span></span><span class="gallery-card-title" data-en="Narrative and Cutscene — Image 2" data-pt="Narrativa e Cutscene — Imagem 2">Narrative and Cutscene — Image 2</span></button><button class="gallery-card gallery-card--stack-bottom" data-title-en="Narrative and Cutscene — Image 3" data-title-pt="Narrativa e Cutscene — Imagem 3" type="button"><span class="gallery-media"><span class="gallery-placeholder"><span data-en="Image 33" data-pt="Imagem 33">Image 33</span></span></span><span class="gallery-card-title" data-en="Narrative and Cutscene — Image 3" data-pt="Narrativa e Cutscene — Imagem 3">Narrative and Cutscene — Image 3</span></button></div></section><section class="gallery-phase" id="experience-modes"><header class="gallery-phase-header"><div><a class="gallery-phase-number gallery-phase-direct-link" href="#experience-modes"><span data-en="Experience Modes" data-pt="Modos da experiência">Experience Modes</span><span aria-hidden="true">↗</span></a></div><span aria-hidden="true" class="gallery-phase-line"></span></header><div class="gallery-phase-grid gallery-phase-grid--feature-right"><button class="gallery-card gallery-card--feature" data-title-en="Experience Modes — Image 1" data-title-pt="Modos da experiência — Imagem 1" type="button"><span class="gallery-media"><span class="gallery-placeholder gallery-placeholder--light"><span data-en="Image 34" data-pt="Imagem 34">Image 34</span></span></span><span class="gallery-card-title" data-en="Experience Modes — Image 1" data-pt="Modos da experiência — Imagem 1">Experience Modes — Image 1</span></button><button class="gallery-card gallery-card--stack-top" data-title-en="Experience Modes — Image 2" data-title-pt="Modos da experiência — Imagem 2" type="button"><span class="gallery-media"><span class="gallery-placeholder"><span data-en="Image 35" data-pt="Imagem 35">Image 35</span></span></span><span class="gallery-card-title" data-en="Experience Modes — Image 2" data-pt="Modos da experiência — Imagem 2">Experience Modes — Image 2</span></button><button class="gallery-card gallery-card--stack-bottom" data-title-en="Experience Modes — Image 3" data-title-pt="Modos da experiência — Imagem 3" type="button"><span class="gallery-media"><span class="gallery-placeholder"><span data-en="Image 36" data-pt="Imagem 36">Image 36</span></span></span><span class="gallery-card-title" data-en="Experience Modes — Image 3" data-pt="Modos da experiência — Imagem 3">Experience Modes — Image 3</span></button></div></section><section class="gallery-phase" id="optimization-preparation"><header class="gallery-phase-header"><div><a class="gallery-phase-number gallery-phase-direct-link" href="#optimization-preparation"><span data-en="Optimization and Preparation for Use" data-pt="Otimização e preparação para utilização">Optimization and Preparation for Use</span><span aria-hidden="true">↗</span></a></div><span aria-hidden="true" class="gallery-phase-line"></span></header><div class="gallery-phase-grid gallery-phase-grid--feature-left"><button class="gallery-card gallery-card--feature" data-title-en="Optimization and Preparation for Use — Image 1" data-title-pt="Otimização e preparação para utilização — Imagem 1" type="button"><span class="gallery-media"><span class="gallery-placeholder gallery-placeholder--light"><span data-en="Image 37" data-pt="Imagem 37">Image 37</span></span></span><span class="gallery-card-title" data-en="Optimization and Preparation for Use — Image 1" data-pt="Otimização e preparação para utilização — Imagem 1">Optimization and Preparation for Use — Image 1</span></button><button class="gallery-card gallery-card--stack-top" data-title-en="Optimization and Preparation for Use — Image 2" data-title-pt="Otimização e preparação para utilização — Imagem 2" type="button"><span class="gallery-media"><span class="gallery-placeholder"><span data-en="Image 38" data-pt="Imagem 38">Image 38</span></span></span><span class="gallery-card-title" data-en="Optimization and Preparation for Use — Image 2" data-pt="Otimização e preparação para utilização — Imagem 2">Optimization and Preparation for Use — Image 2</span></button><button class="gallery-card gallery-card--stack-bottom" data-title-en="Optimization and Preparation for Use — Image 3" data-title-pt="Otimização e preparação para utilização — Imagem 3" type="button"><span class="gallery-media"><span class="gallery-placeholder"><span data-en="Image 39" data-pt="Imagem 39">Image 39</span></span></span><span class="gallery-card-title" data-en="Optimization and Preparation for Use — Image 3" data-pt="Otimização e preparação para utilização — Imagem 3">Optimization and Preparation for Use — Image 3</span></button></div></section></section>
-</main>
-<footer class="site-footer">
-<div class="content-width footer-content">
-<span>Hidden Waters</span>
-<span>Thesis companion website · 2026</span>
-</div>
-</footer>
-<div aria-hidden="true" aria-label="Expanded gallery image" aria-modal="true" class="lightbox" role="dialog">
-<div class="lightbox-dialog">
-<button aria-label="Close image" class="lightbox-close" type="button">
-                ×
+    <div class="content-width header-content">
+
+        <nav class="main-nav" aria-label="Main navigation">
+            <a href="gallery.html" aria-current="page">
+                <span data-en="Gallery" data-pt="Galeria">Gallery</span>
+            </a>
+
+            <a
+                class="header-logo-link"
+                href="index.html"
+                aria-label="Hidden Waters"
+            >
+                <img
+                    class="header-logo-image"
+                    src="assets/images/hidden-waters-logo-white.png"
+                    alt=""
+                >
+            </a>
+
+            <a href="process.html">
+                <span data-en="Process" data-pt="Processo">Process</span>
+            </a>
+        </nav>
+
+        <div class="language-switch" role="group" aria-label="Language">
+            <button
+                class="language-button"
+                type="button"
+                data-language="pt"
+                aria-pressed="false"
+            >
+                PT
             </button>
-<div class="lightbox-media">
-<div class="lightbox-placeholder"></div>
+
+            <button
+                class="language-button is-active"
+                type="button"
+                data-language="en"
+                aria-pressed="true"
+            >
+                EN
+            </button>
+        </div>
+
+    </div>
+</header>
+
+<main>
+
+    <section class="gallery-hero">
+        <div class="content-width">
+
+            <h1
+                class="gallery-title"
+                data-en="Gallery"
+                data-pt="Galeria"
+            >
+                Gallery
+            </h1>
+
+            <p
+                class="gallery-introduction"
+                data-en="A visual record of the development of the interactive experience, organised according to the same structure used in the written dissertation."
+                data-pt="Um registo visual do desenvolvimento da experiência interativa, organizado segundo a mesma estrutura utilizada na dissertação escrita."
+            >
+                A visual record of the development of the interactive
+                experience, organised according to the same structure
+                used in the written dissertation.
+            </p>
+
+        </div>
+    </section>
+
+    <div
+        class="content-width gallery-sections"
+        id="gallerySections"
+    ></div>
+
+</main>
+
+<footer class="site-footer">
+    <div class="content-width footer-content">
+
+        <span>Hidden Waters</span>
+
+        <div class="footer-institution">
+            <span
+                data-en="Thesis companion website · 2026"
+                data-pt="Site complementar da tese · 2026"
+            >
+                Thesis companion website · 2026
+            </span>
+
+            <img
+                class="footer-ist-logo"
+                src="assets/images/ist-logo-white.png"
+                alt="Instituto Superior Técnico"
+            >
+        </div>
+
+    </div>
+</footer>
+
+<div
+    class="lightbox"
+    role="dialog"
+    aria-modal="true"
+    aria-hidden="true"
+    aria-label="Expanded gallery image"
+>
+    <div class="lightbox-dialog">
+
+        <button
+            class="lightbox-close"
+            type="button"
+            aria-label="Close image"
+        >
+            ×
+        </button>
+
+        <div class="lightbox-media"></div>
+        <div class="lightbox-caption"></div>
+
+    </div>
 </div>
-<div class="lightbox-caption"></div>
-</div>
-</div>
+
 <script>
-        (() => {
-            const cards = [
-                ...document.querySelectorAll(".gallery-card")
-            ];
-
-            const lightbox =
-                document.querySelector(".lightbox");
-
-            const lightboxMedia =
-                document.querySelector(".lightbox-media");
-
-            const lightboxPlaceholder =
-                document.querySelector(".lightbox-placeholder");
-
-            const lightboxCaption =
-                document.querySelector(".lightbox-caption");
-
-            const closeButton =
-                document.querySelector(".lightbox-close");
-
-            let lastFocusedCard = null;
-
-            function openLightbox(card) {
-                lastFocusedCard = card;
-
-                const lang = document.documentElement.lang || "en";
-                const title =
-                    lang === "pt"
-                    ? card.dataset.titlePt
-                    : card.dataset.titleEn;
-
-                const image =
-                    card.querySelector("img");
-
-                lightboxMedia
-                    .querySelectorAll("img")
-                    .forEach((element) => element.remove());
-
-                if (image) {
-                    const expandedImage =
-                        document.createElement("img");
-
-                    expandedImage.src = image.src;
-                    expandedImage.alt = image.alt;
-
-                    lightboxMedia.prepend(expandedImage);
-                    lightboxPlaceholder.hidden = true;
-                } else {
-                    lightboxPlaceholder.hidden = false;
-                    lightboxPlaceholder.textContent = title;
-                }
-
-                lightboxCaption.textContent = title;
-
-                lightbox.classList.add("is-open");
-                lightbox.setAttribute("aria-hidden", "false");
-
-                document.body.style.overflow = "hidden";
-
-                closeButton.focus();
-            }
-
-            function closeLightbox() {
-                lightbox.classList.remove("is-open");
-                lightbox.setAttribute("aria-hidden", "true");
-
-                document.body.style.overflow = "";
-
-                if (lastFocusedCard) {
-                    lastFocusedCard.focus();
-                }
-            }
-
-            cards.forEach((card) => {
-                card.addEventListener(
-                    "click",
-                    () => openLightbox(card)
-                );
-            });
-
-            closeButton.addEventListener(
-                "click",
-                closeLightbox
-            );
-
-            lightbox.addEventListener(
-                "click",
-                (event) => {
-                    if (event.target === lightbox) {
-                        closeLightbox();
-                    }
-                }
-            );
-
-            document.addEventListener(
-                "keydown",
-                (event) => {
-                    if (
-                        event.key === "Escape" &&
-                        lightbox.classList.contains("is-open")
-                    ) {
-                        closeLightbox();
-                    }
-                }
-            );
-        })();
-    </script>
-<script>
-        (() => {
-            const cards = [
-                ...document.querySelectorAll(".gallery-card")
-            ];
-
-            if (!cards.length) {
-                return;
-            }
-
-            const waterVideo = document.createElement("video");
-
-            waterVideo.className = "water-ripple-video";
-            waterVideo.src = "assets/media/water-ripple-overlay.mp4";
-            waterVideo.muted = true;
-            waterVideo.loop = true;
-            waterVideo.autoplay = true;
-            waterVideo.playsInline = true;
-            waterVideo.preload = "auto";
-            waterVideo.setAttribute("aria-hidden", "true");
-            waterVideo.setAttribute("tabindex", "-1");
-
-            let activeCard = null;
-            let hideTimer = null;
-
-            function activate(card) {
-                window.clearTimeout(hideTimer);
-
-                if (activeCard && activeCard !== card) {
-                    activeCard.classList.remove("is-water-ripple");
-                }
-
-                activeCard = card;
-                activeCard.appendChild(waterVideo);
-                activeCard.classList.add("is-water-ripple");
-
-                const playAttempt = waterVideo.play();
-
-                if (
-                    playAttempt &&
-                    typeof playAttempt.catch === "function"
-                ) {
-                    playAttempt.catch(() => {});
-                }
-            }
-
-            function deactivate(card) {
-                if (activeCard !== card) {
-                    return;
-                }
-
-                card.classList.remove("is-water-ripple");
-
-                hideTimer = window.setTimeout(() => {
-                    if (
-                        activeCard === card &&
-                        waterVideo.parentElement === card
-                    ) {
-                        waterVideo.remove();
-                        activeCard = null;
-                    }
-                }, 480);
-            }
-
-            cards.forEach((card) => {
-                card.addEventListener(
-                    "pointerenter",
-                    () => activate(card)
-                );
-
-                card.addEventListener(
-                    "pointerleave",
-                    () => deactivate(card)
-                );
-
-                card.addEventListener(
-                    "focusin",
-                    () => activate(card)
-                );
-
-                card.addEventListener(
-                    "focusout",
-                    () => deactivate(card)
-                );
-            });
-        })();
-    </script>
-<script>
-(() => {
-    const buttons = [...document.querySelectorAll(".language-button")];
-    const translated = [...document.querySelectorAll("[data-en][data-pt]")];
-
-    function setLanguage(lang) {
-        document.documentElement.lang = lang;
-
-        translated.forEach((el) => {
-            el.textContent = el.dataset[lang];
-        });
-
-        buttons.forEach((button) => {
-            const active = button.dataset.language === lang;
-            button.classList.toggle("is-active", active);
-            button.setAttribute("aria-pressed", active ? "true" : "false");
-        });
+const SECTIONS = [
+    {
+        id:"virtual-environment",
+        en:"Virtual Environment Construction",
+        pt:"Construção do ambiente virtual",
+        images:["4.1.jpg"]
+    },
+    {
+        id:"characters-exploration",
+        en:"Characters and Exploration Framework",
+        pt:"Personagens e base para exploração",
+        images:["4.2_1.jpg","4.2_2.jpg","4.2_3.jpg"]
+    },
+    {
+        id:"menus-interface",
+        en:"Menus and Interface",
+        pt:"Menus e interface",
+        images:["4.3_1.jpg","4.3_2.jpg"]
+    },
+    {
+        id:"interaction-systems",
+        en:"Interaction Systems",
+        pt:"Sistemas de interação",
+        images:[
+            "4.4_1.jpg","4.4_2.jpg","4.4_3.jpg","4.4_4.jpg",
+            "4.4_5.jpg","4.4_6.jpg","4.4_7.jpg"
+        ]
+    },
+    {
+        id:"xray-system",
+        en:"X-Ray System",
+        pt:"Sistema X-Ray",
+        images:["4.5_1.jpg","4.5_2.jpg"]
+    },
+    {
+        id:"maps-archive",
+        en:"Maps and Archive",
+        pt:"Mapas e arquivo",
+        images:["4.6_1.jpg","4.6_2.jpg","4.6_3.jpg","4.6_4.jpg"]
+    },
+    {
+        id:"clock-temporal-system",
+        en:"Clock and Temporal System",
+        pt:"Relógio e sistema temporal",
+        images:["4.7_1.jpg","4.7_2.jpg","4.7_3.jpg","4.7_4.jpg"]
+    },
+    {
+        id:"atmosphere-weather",
+        en:"Atmosphere and Weather System",
+        pt:"Atmosfera e sistema climático",
+        images:["4.8_1.jpg","4.8_2.jpg","4.8_3.jpg","4.8_4.jpg"]
+    },
+    {
+        id:"historical-system",
+        en:"Historical System",
+        pt:"Sistema Histórico",
+        images:["4.9_1.jpg","4.9_2.jpg"]
+    },
+    {
+        id:"sound-immersion",
+        en:"Sound and Immersion",
+        pt:"Som e imersão",
+        images:["4.10_1.jpg","4.10_2.jpg"]
+    },
+    {
+        id:"narrative-cutscene",
+        en:"Narrative and Cutscene",
+        pt:"Narrativa e Cutscene",
+        images:["4.11_1.jpg","4.11_2.jpg"]
+    },
+    {
+        id:"experience-modes",
+        en:"Experience Modes",
+        pt:"Modos da experiência",
+        images:["4.12.jpg"]
+    },
+    {
+        id:"optimization-preparation",
+        en:"Optimization and Preparation for Use",
+        pt:"Otimização e preparação para utilização",
+        images:["4.13_1.jpg","4.13_2.jpg"]
     }
+];
 
-    buttons.forEach((button) => {
-        button.addEventListener("click", () => {
-            setLanguage(button.dataset.language);
+let currentLanguage = "en";
+
+const gallery = document.querySelector("#gallerySections");
+const lightbox = document.querySelector(".lightbox");
+const lightboxMedia = document.querySelector(".lightbox-media");
+const lightboxCaption = document.querySelector(".lightbox-caption");
+const lightboxClose = document.querySelector(".lightbox-close");
+
+const waterVideo = document.createElement("video");
+waterVideo.className = "water-ripple-video";
+waterVideo.src = "assets/media/water-ripple-overlay.mp4";
+waterVideo.muted = true;
+waterVideo.loop = true;
+waterVideo.autoplay = true;
+waterVideo.playsInline = true;
+waterVideo.preload = "auto";
+waterVideo.setAttribute("aria-hidden","true");
+
+let activeWaterCard = null;
+let waterTimer = null;
+let lastFocusedCard = null;
+
+function layoutClass(count){
+    if(count === 1) return "gallery-layout--single";
+    if(count === 2) return "gallery-layout--pair";
+    return "gallery-layout--masonry";
+}
+
+function renderGallery(){
+    gallery.innerHTML = SECTIONS.map(section => {
+        const cards = section.images.map((file,index) => {
+            const number = index + 1;
+            const titleEn = `${section.en} — Image ${number}`;
+            const titlePt = `${section.pt} — Imagem ${number}`;
+
+            return `
+                <button
+                    class="gallery-card"
+                    type="button"
+                    data-title-en="${titleEn}"
+                    data-title-pt="${titlePt}"
+                >
+                    <img
+                        src="assets/images/gallery/${file}"
+                        alt="${titleEn}"
+                        loading="lazy"
+                        decoding="async"
+                    >
+
+                    <span
+                        class="gallery-card-title"
+                        data-en="${titleEn}"
+                        data-pt="${titlePt}"
+                    >
+                        ${currentLanguage === "pt" ? titlePt : titleEn}
+                    </span>
+                </button>
+            `;
+        }).join("");
+
+        const title =
+            currentLanguage === "pt"
+                ? section.pt
+                : section.en;
+
+        return `
+            <section
+                class="gallery-section"
+                id="${section.id}"
+            >
+                <header class="gallery-section-header">
+
+                    <a
+                        class="gallery-section-link"
+                        href="#${section.id}"
+                    >
+                        <span>${title}</span>
+                        <span class="arrow" aria-hidden="true">↗</span>
+                    </a>
+
+                    <span
+                        class="gallery-section-line"
+                        aria-hidden="true"
+                    ></span>
+
+                </header>
+
+                <div
+                    class="gallery-layout ${layoutClass(section.images.length)}"
+                >
+                    ${cards}
+                </div>
+            </section>
+        `;
+    }).join("");
+}
+
+function updateStaticLanguage(){
+    document.documentElement.lang = currentLanguage;
+
+    document
+        .querySelectorAll("[data-en][data-pt]")
+        .forEach(element => {
+            element.textContent =
+                element.dataset[currentLanguage];
         });
+
+    document
+        .querySelectorAll(".language-button")
+        .forEach(button => {
+            const active =
+                button.dataset.language ===
+                currentLanguage;
+
+            button.classList.toggle(
+                "is-active",
+                active
+            );
+
+            button.setAttribute(
+                "aria-pressed",
+                active ? "true" : "false"
+            );
+        });
+}
+
+function setLanguage(language){
+    currentLanguage = language;
+    updateStaticLanguage();
+    renderGallery();
+}
+
+document
+    .querySelectorAll(".language-button")
+    .forEach(button => {
+        button.addEventListener(
+            "click",
+            () => setLanguage(
+                button.dataset.language
+            )
+        );
     });
 
-    setLanguage("en");
-})();
-</script></body>
+/* LIGHTBOX — event delegation */
+
+gallery.addEventListener("click",event => {
+    const card =
+        event.target.closest(".gallery-card");
+
+    if(!card) return;
+
+    const source =
+        card.querySelector("img");
+
+    if(!source) return;
+
+    lastFocusedCard = card;
+
+    const title =
+        currentLanguage === "pt"
+            ? card.dataset.titlePt
+            : card.dataset.titleEn;
+
+    lightboxMedia.innerHTML = "";
+
+    const image =
+        document.createElement("img");
+
+    image.src = source.src;
+    image.alt = source.alt;
+
+    lightboxMedia.appendChild(image);
+    lightboxCaption.textContent = title;
+
+    lightbox.classList.add("is-open");
+    lightbox.setAttribute("aria-hidden","false");
+
+    document.body.style.overflow = "hidden";
+    lightboxClose.focus();
+});
+
+function closeLightbox(){
+    lightbox.classList.remove("is-open");
+    lightbox.setAttribute("aria-hidden","true");
+
+    document.body.style.overflow = "";
+    lightboxMedia.innerHTML = "";
+
+    if(lastFocusedCard){
+        lastFocusedCard.focus();
+    }
+}
+
+lightboxClose.addEventListener(
+    "click",
+    closeLightbox
+);
+
+lightbox.addEventListener(
+    "click",
+    event => {
+        if(event.target === lightbox){
+            closeLightbox();
+        }
+    }
+);
+
+document.addEventListener(
+    "keydown",
+    event => {
+        if(
+            event.key === "Escape" &&
+            lightbox.classList.contains("is-open")
+        ){
+            closeLightbox();
+        }
+    }
+);
+
+/* WATER HOVER — event delegation */
+
+gallery.addEventListener(
+    "pointerover",
+    event => {
+        const card =
+            event.target.closest(".gallery-card");
+
+        if(!card) return;
+
+        if(
+            event.relatedTarget &&
+            card.contains(event.relatedTarget)
+        ){
+            return;
+        }
+
+        clearTimeout(waterTimer);
+
+        if(
+            activeWaterCard &&
+            activeWaterCard !== card
+        ){
+            activeWaterCard.classList.remove(
+                "is-water-ripple"
+            );
+        }
+
+        activeWaterCard = card;
+
+        card.appendChild(waterVideo);
+        card.classList.add(
+            "is-water-ripple"
+        );
+
+        const attempt = waterVideo.play();
+
+        if(attempt?.catch){
+            attempt.catch(() => {});
+        }
+    }
+);
+
+gallery.addEventListener(
+    "pointerout",
+    event => {
+        const card =
+            event.target.closest(".gallery-card");
+
+        if(!card) return;
+
+        if(
+            event.relatedTarget &&
+            card.contains(event.relatedTarget)
+        ){
+            return;
+        }
+
+        if(activeWaterCard !== card){
+            return;
+        }
+
+        card.classList.remove(
+            "is-water-ripple"
+        );
+
+        waterTimer = setTimeout(() => {
+            if(
+                activeWaterCard === card &&
+                waterVideo.parentElement === card
+            ){
+                waterVideo.remove();
+                activeWaterCard = null;
+            }
+        },480);
+    }
+);
+
+updateStaticLanguage();
+renderGallery();
+</script>
+
+</body>
 </html>
