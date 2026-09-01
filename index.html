@@ -2248,6 +2248,61 @@
         font-size: .8rem;
     }
 }
+
+
+        /* =========================================================
+           EXPERIENCE — YOUTUBE VIDEO
+           ========================================================= */
+
+        .experience-image--youtube {
+            position: relative;
+
+            width: 100%;
+            height: auto !important;
+            min-height: 0 !important;
+
+            padding: 0 !important;
+
+            overflow: hidden;
+
+            aspect-ratio: 16 / 9;
+
+            background: #050505;
+
+            border-radius: 24px;
+        }
+
+        .experience-image--youtube::after {
+            display: none !important;
+        }
+
+        .experience-image--youtube
+        .water-ripple-video,
+        .experience-image--youtube
+        .experience-image-title {
+            display: none !important;
+        }
+
+        .experience-youtube {
+            position: absolute;
+            inset: 0;
+
+            display: block;
+
+            width: 100%;
+            height: 100%;
+
+            border: 0;
+            border-radius: inherit;
+
+            background: #050505;
+        }
+
+        @media (max-width: 700px) {
+            .experience-image--youtube {
+                border-radius: 18px;
+            }
+        }
 </style>
 </head>
 <body id="top">
@@ -2369,14 +2424,7 @@
 <p class="experience-copy" data-en="Hidden Waters is an immersive digital reconstruction of the hydraulic system associated with the Convent of Capuchos de Alferrara. The project combines historical research, architectural reconstruction and an interactive experience developed in Unreal Engine." data-pt="Hidden Waters é uma reconstrução digital imersiva do sistema hidráulico associado ao Convento dos Capuchos de Alferrara. O projeto combina investigação histórica, reconstrução arquitetónica e uma experiência interativa desenvolvida em Unreal Engine.">Hidden Waters is an immersive digital reconstruction of the hydraulic system associated with the Convent of Capuchos de Alferrara. The project combines historical research, architectural reconstruction and an interactive experience developed in Unreal Engine.</p>
 <a aria-label="Download Hidden Waters on itch.io" class="experience-download" href="https://sofiapereira-arch.itch.io/hidden-waters" rel="noopener noreferrer" target="_blank"><span data-en="Download Experience" data-pt="Descarregar Experiência">Download Experience</span><span aria-hidden="true">↓</span></a>
 </div>
-<div class="experience-image">
-<div class="experience-image-placeholder">
-                        Experience image
-                    </div>
-<span class="experience-image-title">
-                        Hidden Waters Experience
-                    </span>
-</div>
+<div class="experience-image experience-image--youtube"><iframe allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen="" class="experience-youtube" loading="lazy" src="https://www.youtube-nocookie.com/embed/BtS3GKPRUNY?rel=0" title="Hidden Waters Experience"></iframe></div>
 </div>
 </section>
 </main>
