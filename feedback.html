@@ -1,0 +1,1426 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="Feedback questionnaire for the Hidden Waters thesis project.">
+
+<link rel="icon" type="image/png" href="assets/images/favicon.png">
+<link rel="icon" sizes="any" href="assets/images/favicon.ico">
+<link rel="apple-touch-icon" href="assets/images/apple-touch-icon.png">
+
+<title>Feedback · Hidden Waters</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+
+<style>
+@font-face{
+    font-family:"Steelfish";
+    src:url("assets/fonts/steelfish-rg.otf") format("opentype");
+    font-style:normal;
+    font-weight:400;
+    font-display:swap;
+}
+
+@font-face{
+    font-family:"Steelfish";
+    src:url("assets/fonts/steelfish-rg-it.otf") format("opentype");
+    font-style:italic;
+    font-weight:400;
+    font-display:swap;
+}
+
+:root{
+    --background:#050505;
+    --text:#f2f2f2;
+    --muted:#a6a6a6;
+    --blue:#739da6;
+    --blue-light:#8fb3ba;
+    --line:rgba(255,255,255,.11);
+    --header-background:rgba(5,5,5,.78);
+
+    --content-width:1100px;
+    --content-gutter:128px;
+    --header-height:76px;
+
+    --radius:24px;
+}
+
+*{
+    box-sizing:border-box;
+}
+
+html{
+    scroll-behavior:smooth;
+}
+
+body{
+    margin:0;
+    overflow-x:hidden;
+
+    color:var(--text);
+    background:var(--background);
+
+    font-family:"Inter",Arial,sans-serif;
+    line-height:1.65;
+}
+
+a{
+    color:inherit;
+    text-decoration:none;
+}
+
+button,
+textarea{
+    font:inherit;
+}
+
+button{
+    color:inherit;
+}
+
+.content-width{
+    width:min(
+        var(--content-width),
+        calc(100% - var(--content-gutter))
+    );
+    margin-inline:auto;
+}
+
+
+/* =========================================================
+   HEADER
+   ========================================================= */
+
+.site-header{
+    position:fixed;
+    z-index:1000;
+    inset:0 0 auto;
+
+    height:var(--header-height);
+
+    background:var(--header-background);
+
+    border-bottom:1px solid var(--line);
+
+    backdrop-filter:blur(18px) saturate(150%);
+    -webkit-backdrop-filter:blur(18px) saturate(150%);
+}
+
+.header-content{
+    position:relative;
+
+    display:flex;
+    align-items:center;
+    justify-content:center;
+
+    height:100%;
+}
+
+.main-nav{
+    display:flex;
+    align-items:center;
+
+    gap:30px;
+
+    margin:0;
+    padding:0;
+
+    font-family:"Bebas Neue",sans-serif;
+    font-size:1.28rem;
+    letter-spacing:.12em;
+    line-height:1;
+}
+
+.main-nav > a:not(.header-logo-link){
+    position:relative;
+
+    transition:
+        color .22s ease,
+        transform .22s ease;
+}
+
+.main-nav > a:not(.header-logo-link)::after{
+    content:"";
+
+    position:absolute;
+    right:0;
+    bottom:-7px;
+    left:0;
+
+    height:1px;
+
+    background:var(--blue-light);
+
+    transform:scaleX(0);
+    transform-origin:right;
+
+    transition:transform .24s ease;
+}
+
+.main-nav > a:not(.header-logo-link):hover,
+.main-nav > a:not(.header-logo-link):focus-visible{
+    color:var(--blue-light);
+
+    transform:translateY(-1px);
+}
+
+.main-nav > a:not(.header-logo-link):hover::after,
+.main-nav > a:not(.header-logo-link):focus-visible::after{
+    transform:scaleX(1);
+    transform-origin:left;
+}
+
+.header-logo-link{
+    display:flex;
+    align-items:center;
+    justify-content:center;
+
+    width:42px;
+    height:52px;
+    flex:0 0 42px;
+
+    opacity:.94;
+
+    transition:
+        opacity .22s ease,
+        transform .26s ease;
+}
+
+.header-logo-link:hover,
+.header-logo-link:focus-visible{
+    opacity:1;
+
+    transform:translateY(-1px);
+}
+
+.header-logo-image{
+    display:block;
+
+    width:auto;
+    height:40px;
+    max-width:38px;
+
+    object-fit:contain;
+}
+
+
+/* FEEDBACK */
+
+.header-feedback-link{
+    position:absolute;
+    z-index:3;
+
+    top:50%;
+    left:0;
+
+    display:inline-flex;
+    align-items:center;
+
+    color:var(--blue-light);
+
+    font-family:"Bebas Neue",sans-serif;
+    font-size:1.05rem;
+    letter-spacing:.11em;
+    line-height:1;
+    text-transform:uppercase;
+
+    transform:translateY(-50%);
+}
+
+.header-feedback-link::after{
+    content:"";
+
+    position:absolute;
+    right:0;
+    bottom:-7px;
+    left:0;
+
+    height:1px;
+
+    background:var(--blue-light);
+}
+
+
+/* LANGUAGE */
+
+.language-switch{
+    position:absolute;
+
+    top:50%;
+    right:0;
+
+    display:flex;
+    align-items:center;
+
+    width:auto;
+    height:38px;
+
+    gap:2px;
+    padding:3px;
+
+    background:rgba(255,255,255,.045);
+
+    border:1px solid rgba(255,255,255,.12);
+    border-radius:999px;
+
+    transform:translateY(-50%);
+}
+
+.language-button{
+    display:flex;
+    align-items:center;
+    justify-content:center;
+
+    width:32px;
+    min-width:32px;
+    height:30px;
+
+    margin:0;
+    padding:0;
+
+    color:#8f8f8f;
+    background:transparent;
+
+    border:0;
+    border-radius:999px;
+
+    cursor:pointer;
+
+    font-family:"Bebas Neue",sans-serif;
+    font-size:.86rem;
+    letter-spacing:.08em;
+    line-height:1;
+}
+
+.language-button.is-active{
+    color:#050505;
+    background:var(--blue-light);
+}
+
+.language-button:hover:not(.is-active),
+.language-button:focus-visible:not(.is-active){
+    color:#fff;
+}
+
+
+/* =========================================================
+   MAIN / HERO
+   ========================================================= */
+
+main{
+    padding-top:var(--header-height);
+}
+
+.feedback-hero{
+    padding:
+        clamp(60px,8vh,105px)
+        0
+        clamp(72px,9vh,110px);
+}
+
+.feedback-title{
+    margin:0;
+
+    color:#eeeeee;
+
+    font-family:"Bebas Neue",sans-serif;
+    font-size:clamp(5rem,11vw,10.5rem);
+    font-weight:400;
+    letter-spacing:.01em;
+    line-height:.8;
+}
+
+.feedback-introduction{
+    max-width:760px;
+
+    margin:
+        clamp(40px,5vh,58px)
+        0
+        0;
+
+    color:var(--muted);
+
+    font-size:1rem;
+    line-height:1.82;
+}
+
+
+/* =========================================================
+   FORM
+   ========================================================= */
+
+.feedback-form{
+    padding-bottom:
+        clamp(120px,15vh,180px);
+}
+
+.feedback-section{
+    padding:
+        clamp(40px,5vh,58px)
+        0;
+
+    border-top:1px solid var(--line);
+}
+
+.feedback-section:first-child{
+    padding-top:0;
+    border-top:0;
+}
+
+.section-eyebrow{
+    margin:0 0 16px;
+
+    color:var(--blue-light);
+
+    font-family:"Steelfish","Arial Narrow",sans-serif;
+    font-size:1.45rem;
+    letter-spacing:.06em;
+    line-height:1;
+    text-transform:uppercase;
+}
+
+.section-title{
+    margin:0 0 30px;
+
+    color:#f1f1f1;
+
+    font-family:"Bebas Neue",sans-serif;
+    font-size:clamp(2.4rem,5vw,4.2rem);
+    font-weight:400;
+    letter-spacing:.015em;
+    line-height:.95;
+}
+
+
+/* PARTICIPATION */
+
+.participation-options{
+    display:grid;
+    grid-template-columns:repeat(2,minmax(0,1fr));
+
+    gap:20px;
+}
+
+.participation-option{
+    position:relative;
+
+    display:flex;
+    align-items:flex-start;
+
+    min-height:150px;
+
+    padding:28px;
+
+    color:#c8c8c8;
+    background:
+        rgba(255,255,255,.025);
+
+    border:
+        1px solid
+        rgba(255,255,255,.12);
+
+    border-radius:var(--radius);
+
+    cursor:pointer;
+
+    transition:
+        border-color .24s ease,
+        background-color .24s ease,
+        transform .24s ease;
+}
+
+.participation-option:hover{
+    border-color:
+        rgba(143,179,186,.48);
+
+    background:
+        rgba(143,179,186,.045);
+
+    transform:translateY(-2px);
+}
+
+.participation-option input{
+    position:absolute;
+
+    width:1px;
+    height:1px;
+
+    opacity:0;
+    pointer-events:none;
+}
+
+.participation-control{
+    flex:0 0 auto;
+
+    display:flex;
+    align-items:center;
+    justify-content:center;
+
+    width:22px;
+    height:22px;
+
+    margin:
+        2px
+        18px
+        0
+        0;
+
+    border:
+        1px solid
+        rgba(255,255,255,.42);
+
+    border-radius:50%;
+
+    transition:
+        border-color .2s ease,
+        background-color .2s ease;
+}
+
+.participation-control::after{
+    content:"";
+
+    width:8px;
+    height:8px;
+
+    background:#050505;
+
+    border-radius:50%;
+
+    opacity:0;
+
+    transform:scale(.4);
+
+    transition:
+        opacity .2s ease,
+        transform .2s ease;
+}
+
+.participation-option:has(input:checked){
+    color:#f2f2f2;
+
+    background:
+        rgba(143,179,186,.075);
+
+    border-color:
+        rgba(143,179,186,.72);
+}
+
+.participation-option:has(input:checked)
+.participation-control{
+    background:var(--blue-light);
+    border-color:var(--blue-light);
+}
+
+.participation-option:has(input:checked)
+.participation-control::after{
+    opacity:1;
+    transform:scale(1);
+}
+
+.participation-copy{
+    min-width:0;
+}
+
+.participation-name{
+    display:block;
+
+    margin-bottom:8px;
+
+    color:#f0f0f0;
+
+    font-size:1rem;
+    font-weight:500;
+    line-height:1.45;
+}
+
+.participation-description{
+    display:block;
+
+    color:#888;
+
+    font-size:.8rem;
+    line-height:1.55;
+}
+
+
+/* QUESTIONS */
+
+.questions-area{
+    display:none;
+
+    opacity:0;
+
+    transform:translateY(12px);
+}
+
+.questions-area.is-visible{
+    display:block;
+
+    animation:
+        feedbackReveal
+        .42s
+        cubic-bezier(.22,1,.36,1)
+        forwards;
+}
+
+@keyframes feedbackReveal{
+    to{
+        opacity:1;
+        transform:none;
+    }
+}
+
+.question-list{
+    display:grid;
+    gap:54px;
+}
+
+.question{
+    display:grid;
+    grid-template-columns:54px minmax(0,1fr);
+    gap:22px;
+}
+
+.question-number{
+    padding-top:2px;
+
+    color:var(--blue-light);
+
+    font-family:"Steelfish","Arial Narrow",sans-serif;
+    font-size:1.55rem;
+    letter-spacing:.05em;
+    line-height:1;
+}
+
+.question-body{
+    min-width:0;
+}
+
+.question-label{
+    display:block;
+
+    max-width:870px;
+
+    margin:0 0 18px;
+
+    color:#d7d7d7;
+
+    font-size:1rem;
+    font-weight:500;
+    line-height:1.58;
+}
+
+.question-hint{
+    display:block;
+
+    margin-top:5px;
+
+    color:#747474;
+
+    font-size:.78rem;
+    font-weight:400;
+}
+
+.feedback-textarea{
+    display:block;
+
+    width:100%;
+    min-height:128px;
+
+    resize:vertical;
+
+    padding:20px 22px;
+
+    color:#eeeeee;
+    background:
+        rgba(255,255,255,.025);
+
+    border:
+        1px solid
+        rgba(255,255,255,.16);
+
+    border-radius:18px;
+
+    outline:none;
+
+    font-size:.95rem;
+    line-height:1.65;
+
+    transition:
+        border-color .22s ease,
+        background-color .22s ease;
+}
+
+.feedback-textarea:hover{
+    border-color:
+        rgba(143,179,186,.36);
+}
+
+.feedback-textarea:focus{
+    background:
+        rgba(143,179,186,.035);
+
+    border-color:
+        rgba(143,179,186,.78);
+}
+
+.feedback-textarea::placeholder{
+    color:#555;
+}
+
+
+/* ADDITIONAL COMMENTS */
+
+.additional-comments{
+    margin-top:72px;
+
+    padding-top:52px;
+
+    border-top:1px solid var(--line);
+}
+
+.additional-comments .feedback-textarea{
+    min-height:210px;
+}
+
+
+/* =========================================================
+   FOOTER
+   ========================================================= */
+
+.site-footer{
+    padding:35px 0 45px;
+
+    border-top:1px solid var(--line);
+}
+
+.footer-content{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+
+    gap:24px;
+
+    color:#818181;
+
+    font-size:.75rem;
+    letter-spacing:.04em;
+}
+
+.footer-institution{
+    display:flex;
+    align-items:center;
+
+    gap:18px;
+}
+
+.footer-ist-logo{
+    display:block;
+
+    width:auto;
+    height:27px;
+
+    opacity:.78;
+
+    object-fit:contain;
+}
+
+
+/* =========================================================
+   RESPONSIVE
+   ========================================================= */
+
+@media(max-width:900px){
+    :root{
+        --content-gutter:36px;
+        --radius:20px;
+    }
+
+    .participation-options{
+        grid-template-columns:1fr;
+    }
+}
+
+@media(max-width:700px){
+    .question{
+        grid-template-columns:1fr;
+        gap:10px;
+    }
+
+    .question-number{
+        font-size:1.35rem;
+    }
+}
+
+@media(max-width:520px){
+    :root{
+        --header-height:68px;
+    }
+
+    .main-nav{
+        gap:13px;
+
+        font-size:.94rem;
+    }
+
+    .header-logo-link{
+        width:32px;
+        height:42px;
+        flex-basis:32px;
+    }
+
+    .header-logo-image{
+        height:31px;
+        max-width:30px;
+    }
+
+    .language-switch{
+        right:-4px;
+
+        height:34px;
+
+        transform:
+            translate(35%,-50%)
+            scale(.86);
+    }
+
+    .language-button{
+        width:28px;
+        min-width:28px;
+        height:26px;
+
+        font-size:.78rem;
+    }
+
+    .header-feedback-link{
+        left:4px;
+
+        font-size:.86rem;
+
+        transform:
+            translate(-28%,-50%)
+            scale(.88);
+    }
+
+    .feedback-hero{
+        padding-top:48px;
+    }
+
+    .participation-option{
+        min-height:0;
+
+        padding:22px;
+    }
+
+    .feedback-textarea{
+        min-height:116px;
+    }
+
+    .additional-comments .feedback-textarea{
+        min-height:180px;
+    }
+
+    .footer-content{
+        flex-direction:column;
+        align-items:flex-start;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<header class="site-header">
+    <div class="content-width header-content">
+
+        <a
+            class="header-feedback-link"
+            href="feedback.html"
+            aria-current="page"
+        >
+            FEEDBACK
+        </a>
+
+        <nav
+            class="main-nav"
+            aria-label="Main navigation"
+        >
+            <a href="gallery.html">
+                <span
+                    data-en="Gallery"
+                    data-pt="Galeria"
+                >
+                    Gallery
+                </span>
+            </a>
+
+            <a
+                class="header-logo-link"
+                href="index.html"
+                aria-label="Hidden Waters"
+            >
+                <img
+                    class="header-logo-image"
+                    src="assets/images/hidden-waters-logo-white.png"
+                    alt=""
+                >
+            </a>
+
+            <a href="process.html">
+                <span
+                    data-en="Process"
+                    data-pt="Processo"
+                >
+                    Process
+                </span>
+            </a>
+        </nav>
+
+        <div
+            class="language-switch"
+            role="group"
+            aria-label="Language"
+        >
+            <button
+                class="language-button"
+                type="button"
+                data-language="pt"
+                aria-pressed="false"
+            >
+                PT
+            </button>
+
+            <button
+                class="language-button is-active"
+                type="button"
+                data-language="en"
+                aria-pressed="true"
+            >
+                EN
+            </button>
+        </div>
+
+    </div>
+</header>
+
+
+<main>
+
+    <section class="feedback-hero">
+        <div class="content-width">
+
+            <h1 class="feedback-title">
+                FEEDBACK
+            </h1>
+
+            <p
+                class="feedback-introduction"
+                data-en="Thank you for exploring Hidden Waters. If you have the opportunity, you can answer this short questionnaire, which aims to collect anonymous feedback about the experience and the way it communicates and presents the hydraulic system of the Convent of Capuchos de Alferrara."
+                data-pt="Obrigada por explorar Hidden Waters. Se tiver oportunidade, pode responder a este breve questionário, que procura recolher feedback, de forma anónima, sobre a experiência e a forma como esta comunica e mostra o sistema hidráulico do Convento dos Capuchos de Alferrara."
+            >
+                Thank you for exploring Hidden Waters. If you have the
+                opportunity, you can answer this short questionnaire,
+                which aims to collect anonymous feedback about the
+                experience and the way it communicates and presents the
+                hydraulic system of the Convent of Capuchos de Alferrara.
+            </p>
+
+        </div>
+    </section>
+
+
+    <form
+        class="content-width feedback-form"
+        id="feedbackForm"
+    >
+
+        <section class="feedback-section">
+
+            <p
+                class="section-eyebrow"
+                data-en="Participation"
+                data-pt="Participação"
+            >
+                Participation
+            </p>
+
+            <h2
+                class="section-title"
+                data-en="How did you explore Hidden Waters?"
+                data-pt="Como explorou Hidden Waters?"
+            >
+                How did you explore Hidden Waters?
+            </h2>
+
+            <div class="participation-options">
+
+                <label class="participation-option">
+                    <input
+                        type="radio"
+                        name="participation"
+                        value="experience"
+                    >
+
+                    <span
+                        class="participation-control"
+                        aria-hidden="true"
+                    ></span>
+
+                    <span class="participation-copy">
+
+                        <span
+                            class="participation-name"
+                            data-en="I downloaded and explored the interactive experience"
+                            data-pt="Descarreguei e experimentei a experiência interativa"
+                        >
+                            I downloaded and explored the interactive experience
+                        </span>
+
+                        <span
+                            class="participation-description"
+                            data-en="Feedback based on direct use of the Unreal Engine experience."
+                            data-pt="Feedback baseado na utilização direta da experiência em Unreal Engine."
+                        >
+                            Feedback based on direct use of the Unreal Engine experience.
+                        </span>
+
+                    </span>
+                </label>
+
+
+                <label class="participation-option">
+                    <input
+                        type="radio"
+                        name="participation"
+                        value="website"
+                    >
+
+                    <span
+                        class="participation-control"
+                        aria-hidden="true"
+                    ></span>
+
+                    <span class="participation-copy">
+
+                        <span
+                            class="participation-name"
+                            data-en="I only explored the website, images and videos"
+                            data-pt="Explorei apenas o website, imagens e vídeos"
+                        >
+                            I only explored the website, images and videos
+                        </span>
+
+                        <span
+                            class="participation-description"
+                            data-en="Feedback based on the material presented on this website."
+                            data-pt="Feedback baseado no material apresentado neste website."
+                        >
+                            Feedback based on the material presented on this website.
+                        </span>
+
+                    </span>
+                </label>
+
+            </div>
+
+        </section>
+
+
+        <div
+            class="questions-area"
+            id="questionsArea"
+        >
+
+            <section class="feedback-section">
+
+                <p
+                    class="section-eyebrow"
+                    data-en="Questions"
+                    data-pt="Perguntas"
+                >
+                    Questions
+                </p>
+
+
+                <div class="question-list">
+
+                    <div class="question">
+
+                        <div class="question-number">
+                            01
+                        </div>
+
+                        <div class="question-body">
+
+                            <label
+                                class="question-label"
+                                for="question1"
+                                id="question1Label"
+                            ></label>
+
+                            <textarea
+                                class="feedback-textarea"
+                                id="question1"
+                                name="question1"
+                            ></textarea>
+
+                        </div>
+                    </div>
+
+
+                    <div class="question">
+
+                        <div class="question-number">
+                            02
+                        </div>
+
+                        <div class="question-body">
+
+                            <label
+                                class="question-label"
+                                for="question2"
+                                id="question2Label"
+                            ></label>
+
+                            <textarea
+                                class="feedback-textarea"
+                                id="question2"
+                                name="question2"
+                            ></textarea>
+
+                        </div>
+                    </div>
+
+
+                    <div class="question">
+
+                        <div class="question-number">
+                            03
+                        </div>
+
+                        <div class="question-body">
+
+                            <label
+                                class="question-label"
+                                for="question3"
+                                id="question3Label"
+                            ></label>
+
+                            <textarea
+                                class="feedback-textarea"
+                                id="question3"
+                                name="question3"
+                            ></textarea>
+
+                        </div>
+                    </div>
+
+
+                    <div class="question">
+
+                        <div class="question-number">
+                            04
+                        </div>
+
+                        <div class="question-body">
+
+                            <label
+                                class="question-label"
+                                for="question4"
+                                id="question4Label"
+                            ></label>
+
+                            <textarea
+                                class="feedback-textarea"
+                                id="question4"
+                                name="question4"
+                            ></textarea>
+
+                        </div>
+                    </div>
+
+                </div>
+
+
+                <div class="additional-comments">
+
+                    <p
+                        class="section-eyebrow"
+                        data-en="Additional information"
+                        data-pt="Informação adicional"
+                    >
+                        Additional information
+                    </p>
+
+                    <label
+                        class="question-label"
+                        for="additionalComments"
+                        data-en="Additional comments or feedback"
+                        data-pt="Comentários ou feedback adicional"
+                    >
+                        Additional comments or feedback
+                    </label>
+
+                    <textarea
+                        class="feedback-textarea"
+                        id="additionalComments"
+                        name="additionalComments"
+                    ></textarea>
+
+                </div>
+
+            </section>
+
+        </div>
+
+    </form>
+
+</main>
+
+
+<footer class="site-footer">
+    <div class="content-width footer-content">
+
+        <span>
+            Hidden Waters
+        </span>
+
+        <div class="footer-institution">
+
+            <span
+                data-en="Thesis companion website · 2026"
+                data-pt="Site complementar da tese · 2026"
+            >
+                Thesis companion website · 2026
+            </span>
+
+            <img
+                class="footer-ist-logo"
+                src="assets/images/ist-logo-white.png"
+                alt="Instituto Superior Técnico"
+            >
+
+        </div>
+
+    </div>
+</footer>
+
+
+<script>
+(() => {
+
+    const languageButtons =
+        [...document.querySelectorAll(".language-button")];
+
+    const participationInputs =
+        [...document.querySelectorAll(
+            'input[name="participation"]'
+        )];
+
+    const questionsArea =
+        document.getElementById("questionsArea");
+
+    let currentLanguage = "en";
+    let currentMode = null;
+
+
+    const questions = {
+
+        experience: {
+
+            pt: [
+                "O que é que mais lhe chamou a atenção durante a experiência?<span class=\"question-hint\">(momento / funcionalidade / ferramenta)</span>",
+
+                "Sentiu que a experiência o/a ajudou a conhecer/compreender melhor o espaço e o sistema hidráulico? De que forma?",
+
+                "Houve algum momento/ferramenta/funcionalidade que tenha sido difícil de perceber ou utilizar?",
+
+                "Há alguma coisa que gostaria de conseguir fazer, ver ou descobrir na experiência que não encontrou durante o teste?"
+            ],
+
+            en: [
+                "What caught your attention the most during the experience?<span class=\"question-hint\">(moment / feature / tool)</span>",
+
+                "Did you feel that the experience helped you to know or understand the space and the hydraulic system better? In what way?",
+
+                "Was there any moment, tool or feature that was difficult to understand or use?",
+
+                "Is there anything you would have liked to do, see or discover in the experience that you did not find during the test?"
+            ]
+        },
+
+
+        website: {
+
+            pt: [
+                "O que é que mais lhe chamou a atenção ao conhecer a experiência através do website e dos vídeos?<span class=\"question-hint\">(momento / funcionalidade / ferramenta)</span>",
+
+                "Sentiu que o website e os vídeos o/a ajudaram a conhecer/compreender melhor o espaço e o sistema hidráulico? De que forma?",
+
+                "Houve algum momento/ferramenta/funcionalidade que tenha sido difícil de perceber através dos vídeos?",
+
+                "Há alguma coisa que gostaria de conseguir fazer, ver ou descobrir na experiência que não encontrou através do website ou dos vídeos?"
+            ],
+
+            en: [
+                "What caught your attention the most when discovering the experience through the website and videos?<span class=\"question-hint\">(moment / feature / tool)</span>",
+
+                "Did you feel that the website and videos helped you to know or understand the space and the hydraulic system better? In what way?",
+
+                "Was there any moment, tool or feature that was difficult to understand through the videos?",
+
+                "Is there anything you would have liked to do, see or discover in the experience that you did not find through the website or videos?"
+            ]
+        }
+    };
+
+
+    function updateStaticLanguage() {
+
+        document.documentElement.lang =
+            currentLanguage;
+
+        document
+            .querySelectorAll(
+                "[data-en][data-pt]"
+            )
+            .forEach((element) => {
+
+                element.textContent =
+                    element.dataset[currentLanguage];
+
+            });
+
+
+        languageButtons.forEach((button) => {
+
+            const active =
+                button.dataset.language ===
+                currentLanguage;
+
+            button.classList.toggle(
+                "is-active",
+                active
+            );
+
+            button.setAttribute(
+                "aria-pressed",
+                String(active)
+            );
+
+        });
+
+
+        updateQuestions();
+    }
+
+
+    function updateQuestions() {
+
+        if (!currentMode) {
+            return;
+        }
+
+        const copy =
+            questions[currentMode][currentLanguage];
+
+        copy.forEach((question, index) => {
+
+            const label =
+                document.getElementById(
+                    `question${index + 1}Label`
+                );
+
+            label.innerHTML = question;
+
+        });
+    }
+
+
+    function chooseParticipation(value) {
+
+        currentMode = value;
+
+        updateQuestions();
+
+        if (
+            !questionsArea.classList.contains(
+                "is-visible"
+            )
+        ) {
+            questionsArea.classList.add(
+                "is-visible"
+            );
+        }
+
+    }
+
+
+    languageButtons.forEach((button) => {
+
+        button.addEventListener(
+            "click",
+            () => {
+
+                currentLanguage =
+                    button.dataset.language;
+
+                updateStaticLanguage();
+
+            }
+        );
+
+    });
+
+
+    participationInputs.forEach((input) => {
+
+        input.addEventListener(
+            "change",
+            () => {
+
+                if (input.checked) {
+                    chooseParticipation(
+                        input.value
+                    );
+                }
+
+            }
+        );
+
+    });
+
+
+    document
+        .querySelectorAll(".feedback-textarea")
+        .forEach((textarea) => {
+
+            textarea.addEventListener(
+                "input",
+                () => {
+
+                    textarea.style.height =
+                        "auto";
+
+                    textarea.style.height =
+                        Math.max(
+                            textarea.scrollHeight,
+                            128
+                        ) + "px";
+
+                }
+            );
+
+        });
+
+
+    updateStaticLanguage();
+
+})();
+</script>
+
+</body>
+</html>
