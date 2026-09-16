@@ -833,6 +833,136 @@ main{
 .feedback-introduction p + p{
     margin-top:18px;
 }
+
+
+/* =========================================================
+   FEEDBACK SUBMISSION
+   ========================================================= */
+
+.feedback-submit-area{
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+
+    margin-top:64px;
+}
+
+.feedback-submit-button{
+    position:relative;
+
+    display:inline-flex;
+    align-items:center;
+    justify-content:center;
+
+    min-width:260px;
+    min-height:58px;
+
+    gap:18px;
+    padding:0 28px;
+
+    color:#e8e8e8;
+    background:transparent;
+
+    border:1px solid rgba(143,179,186,.48);
+    border-radius:0;
+
+    cursor:pointer;
+
+    font-family:"Steelfish","Arial Narrow",sans-serif;
+    font-size:1.12rem;
+    letter-spacing:.08em;
+    line-height:1;
+    text-transform:uppercase;
+
+    transition:
+        color .22s ease,
+        background-color .22s ease,
+        border-color .22s ease,
+        transform .22s ease,
+        opacity .22s ease;
+}
+
+.feedback-submit-button:hover,
+.feedback-submit-button:focus-visible{
+    color:#050505;
+    background:var(--blue-light);
+    border-color:var(--blue-light);
+
+    transform:translateY(-2px);
+
+    outline:none;
+}
+
+.feedback-submit-button:focus-visible{
+    box-shadow:
+        0 0 0 3px
+        rgba(143,179,186,.16);
+}
+
+.feedback-submit-button:disabled{
+    cursor:wait;
+
+    opacity:.55;
+    transform:none;
+}
+
+.feedback-submit-arrow{
+    font-family:"Inter",Arial,sans-serif;
+    font-size:.9rem;
+
+    transition:transform .22s ease;
+}
+
+.feedback-submit-button:hover
+.feedback-submit-arrow,
+.feedback-submit-button:focus-visible
+.feedback-submit-arrow{
+    transform:translateX(3px);
+}
+
+.feedback-submit-status{
+    min-height:1.6em;
+
+    margin:18px 0 0;
+
+    color:var(--blue-light);
+
+    font-size:.78rem;
+    letter-spacing:.025em;
+    text-align:center;
+}
+
+.feedback-submit-status.is-error{
+    color:#d6a5a5;
+}
+
+.feedback-submit-frame{
+    position:absolute;
+
+    width:1px;
+    height:1px;
+
+    overflow:hidden;
+
+    clip:rect(0 0 0 0);
+    clip-path:inset(50%);
+
+    white-space:nowrap;
+
+    border:0;
+}
+
+@media(max-width:520px){
+    .feedback-submit-area{
+        margin-top:50px;
+    }
+
+    .feedback-submit-button{
+        width:100%;
+        min-width:0;
+        min-height:56px;
+    }
+}
 </style>
 </head>
 <body>
@@ -875,7 +1005,7 @@ main{
 <div class="feedback-introduction"><p data-en="Thank you for exploring Hidden Waters." data-pt="Obrigada por explorar Hidden Waters.">Thank you for exploring Hidden Waters.</p><p data-en="If you have the opportunity, you can answer this short questionnaire, which aims to collect anonymous feedback about the experience and the way it communicates and presents the hydraulic system of the Convent of Capuchos de Alferrara." data-pt="Se tiver oportunidade, pode responder a este breve questionário, que procura recolher feedback, de forma anónima, sobre a experiência e a forma como esta comunica e mostra o sistema hidráulico do Convento dos Capuchos de Alferrara.">If you have the opportunity, you can answer this short questionnaire, which aims to collect anonymous feedback about the experience and the way it communicates and presents the hydraulic system of the Convent of Capuchos de Alferrara.</p></div>
 </div>
 </section>
-<form class="content-width feedback-form" id="feedbackForm">
+<form action="https://script.google.com/macros/s/AKfycbxNZ1tX5lFS1EDXJEw_DjIr8Kmdz1GoFrE-9RQI6qCke394xGe4HI922zQ4gwtodXC7/exec" autocomplete="off" class="content-width feedback-form" id="feedbackForm" method="POST" target="feedbackSubmitFrame"><input id="feedbackLanguage" name="language" type="hidden" value="en"/>
 <section class="feedback-section">
 <p class="section-eyebrow" data-en="Participation" data-pt="Participação">
                 Participation
@@ -885,7 +1015,7 @@ main{
             </h2>
 <div class="participation-options">
 <label class="participation-option">
-<input name="participation" type="radio" value="experience"/>
+<input name="participation" required="" type="radio" value="experience"/>
 <span aria-hidden="true" class="participation-control"></span>
 <span class="participation-copy">
 <span class="participation-name" data-en="I downloaded and explored the interactive experience" data-pt="Descarreguei e experimentei a experiência interativa">
@@ -897,7 +1027,7 @@ main{
 </span>
 </label>
 <label class="participation-option">
-<input name="participation" type="radio" value="website"/>
+<input name="participation" required="" type="radio" value="website"/>
 <span aria-hidden="true" class="participation-control"></span>
 <span class="participation-copy">
 <span class="participation-name" data-en="I only explored the website, images and videos" data-pt="Explorei apenas o website, imagens e vídeos">
@@ -922,7 +1052,7 @@ main{
                         </div>
 <div class="question-body">
 <label class="question-label" for="question1" id="question1Label"></label>
-<textarea class="feedback-textarea" id="question1" name="question1"></textarea>
+<textarea class="feedback-textarea" id="question1" name="question1" required=""></textarea>
 </div>
 </div>
 <div class="question">
@@ -931,7 +1061,7 @@ main{
                         </div>
 <div class="question-body">
 <label class="question-label" for="question2" id="question2Label"></label>
-<textarea class="feedback-textarea" id="question2" name="question2"></textarea>
+<textarea class="feedback-textarea" id="question2" name="question2" required=""></textarea>
 </div>
 </div>
 <div class="question">
@@ -940,7 +1070,7 @@ main{
                         </div>
 <div class="question-body">
 <label class="question-label" for="question3" id="question3Label"></label>
-<textarea class="feedback-textarea" id="question3" name="question3"></textarea>
+<textarea class="feedback-textarea" id="question3" name="question3" required=""></textarea>
 </div>
 </div>
 <div class="question">
@@ -949,7 +1079,7 @@ main{
                         </div>
 <div class="question-body">
 <label class="question-label" for="question4" id="question4Label"></label>
-<textarea class="feedback-textarea" id="question4" name="question4"></textarea>
+<textarea class="feedback-textarea" id="question4" name="question4" required=""></textarea>
 </div>
 </div>
 </div>
@@ -961,10 +1091,10 @@ main{
                         Additional comments or feedback
                     </label>
 <textarea class="feedback-textarea" id="additionalComments" name="additionalComments"></textarea>
-</div>
+</div><div class="feedback-submit-area"><button class="feedback-submit-button" id="feedbackSubmitButton" type="submit"><span data-en="Submit feedback" data-pt="Submeter feedback" id="feedbackSubmitLabel">Submit feedback</span><span aria-hidden="true" class="feedback-submit-arrow">→</span></button><p aria-live="polite" class="feedback-submit-status" id="feedbackSubmitStatus" role="status"></p></div>
 </section>
 </div>
-</form>
+</form><iframe aria-hidden="true" class="feedback-submit-frame" id="feedbackSubmitFrame" name="feedbackSubmitFrame" tabindex="-1" title="Feedback submission"></iframe>
 </main>
 <footer class="site-footer">
 <div class="content-width footer-content">
@@ -993,8 +1123,29 @@ main{
     const questionsArea =
         document.getElementById("questionsArea");
 
+    const form =
+        document.getElementById("feedbackForm");
+
+    const languageField =
+        document.getElementById("feedbackLanguage");
+
+    const submitButton =
+        document.getElementById("feedbackSubmitButton");
+
+    const submitLabel =
+        document.getElementById("feedbackSubmitLabel");
+
+    const submitStatus =
+        document.getElementById("feedbackSubmitStatus");
+
+    const submitFrame =
+        document.getElementById("feedbackSubmitFrame");
+
     let currentLanguage = "en";
     let currentMode = null;
+
+    let submissionPending = false;
+    let submissionComplete = false;
 
 
     const questions = {
@@ -1002,7 +1153,7 @@ main{
         experience: {
 
             pt: [
-                "O que é que mais lhe chamou a atenção durante a experiência?<span class=\"question-hint\">(momento / funcionalidade / ferramenta)</span>",
+                'O que é que mais lhe chamou a atenção durante a experiência?<span class="question-hint">(momento / funcionalidade / ferramenta)</span>',
 
                 "Sentiu que a experiência o/a ajudou a conhecer/compreender melhor o espaço e o sistema hidráulico? De que forma?",
 
@@ -1012,7 +1163,7 @@ main{
             ],
 
             en: [
-                "What caught your attention the most during the experience?<span class=\"question-hint\">(moment / feature / tool)</span>",
+                'What caught your attention the most during the experience?<span class="question-hint">(moment / feature / tool)</span>',
 
                 "Did you feel that the experience helped you to know or understand the space and the hydraulic system better? In what way?",
 
@@ -1026,7 +1177,7 @@ main{
         website: {
 
             pt: [
-                "O que é que mais lhe chamou a atenção ao conhecer a experiência através do website e dos vídeos?<span class=\"question-hint\">(momento / funcionalidade / ferramenta)</span>",
+                'O que é que mais lhe chamou a atenção ao conhecer a experiência através do website e dos vídeos?<span class="question-hint">(momento / funcionalidade / ferramenta)</span>',
 
                 "Sentiu que o website e os vídeos o/a ajudaram a conhecer/compreender melhor o espaço e o sistema hidráulico? De que forma?",
 
@@ -1036,7 +1187,7 @@ main{
             ],
 
             en: [
-                "What caught your attention the most when discovering the experience through the website and videos?<span class=\"question-hint\">(moment / feature / tool)</span>",
+                'What caught your attention the most when discovering the experience through the website and videos?<span class="question-hint">(moment / feature / tool)</span>',
 
                 "Did you feel that the website and videos helped you to know or understand the space and the hydraulic system better? In what way?",
 
@@ -1044,6 +1195,24 @@ main{
 
                 "Is there anything you would have liked to do, see or discover in the experience that you did not find through the website or videos?"
             ]
+        }
+    };
+
+
+    const submissionCopy = {
+
+        en: {
+            idle: "Submit feedback",
+            sending: "Sending…",
+            success: "Thank you. Your feedback has been submitted.",
+            invalid: "Please answer the four questions before submitting."
+        },
+
+        pt: {
+            idle: "Submeter feedback",
+            sending: "A enviar…",
+            success: "Obrigada. O seu feedback foi submetido.",
+            invalid: "Por favor, responda às quatro perguntas antes de submeter."
         }
     };
 
@@ -1084,7 +1253,29 @@ main{
         });
 
 
+        if (languageField) {
+            languageField.value =
+                currentLanguage;
+        }
+
+
         updateQuestions();
+
+
+        if (!submissionPending) {
+
+            submitLabel.textContent =
+                submissionComplete
+                    ? submissionCopy[currentLanguage].idle
+                    : submissionCopy[currentLanguage].idle;
+
+            if (submissionComplete) {
+                submitStatus.textContent =
+                    submissionCopy[currentLanguage].success;
+            }
+
+        }
+
     }
 
 
@@ -1185,6 +1376,99 @@ main{
             );
 
         });
+
+
+    form.addEventListener(
+        "submit",
+        (event) => {
+
+            if (submissionPending) {
+                event.preventDefault();
+                return;
+            }
+
+            const requiredQuestions =
+                [1,2,3,4].map(
+                    number =>
+                        document.getElementById(
+                            `question${number}`
+                        )
+                );
+
+            const hasEmptyQuestion =
+                requiredQuestions.some(
+                    field =>
+                        !field.value.trim()
+                );
+
+            if (
+                !form.checkValidity() ||
+                hasEmptyQuestion
+            ) {
+
+                event.preventDefault();
+
+                submitStatus.textContent =
+                    submissionCopy[currentLanguage].invalid;
+
+                submitStatus.classList.add(
+                    "is-error"
+                );
+
+                form.reportValidity();
+
+                return;
+            }
+
+            submitStatus.classList.remove(
+                "is-error"
+            );
+
+            submissionPending = true;
+            submissionComplete = false;
+
+            submitButton.disabled = true;
+
+            submitLabel.textContent =
+                submissionCopy[currentLanguage].sending;
+
+            submitStatus.textContent = "";
+
+            if (languageField) {
+                languageField.value =
+                    currentLanguage;
+            }
+
+            // The native form POST continues into the hidden iframe.
+        }
+    );
+
+
+    submitFrame.addEventListener(
+        "load",
+        () => {
+
+            if (!submissionPending) {
+                return;
+            }
+
+            submissionPending = false;
+            submissionComplete = true;
+
+            submitButton.disabled = false;
+
+            submitLabel.textContent =
+                submissionCopy[currentLanguage].idle;
+
+            submitStatus.classList.remove(
+                "is-error"
+            );
+
+            submitStatus.textContent =
+                submissionCopy[currentLanguage].success;
+
+        }
+    );
 
 
     updateStaticLanguage();
