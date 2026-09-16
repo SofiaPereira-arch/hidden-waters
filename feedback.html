@@ -1002,10 +1002,10 @@ main{
 <h1 class="feedback-title">
                 FEEDBACK
             </h1>
-<div class="feedback-introduction"><p data-en="Thank you for exploring Hidden Waters." data-pt="Obrigada por explorar Hidden Waters.">Thank you for exploring Hidden Waters.</p><p data-en="If you have the opportunity, you can answer this short questionnaire, which aims to collect anonymous feedback about the experience and the way it communicates and presents the hydraulic system of the Convent of Capuchos de Alferrara." data-pt="Se tiver oportunidade, pode responder a este breve questionário, que procura recolher feedback, de forma anónima, sobre a experiência e a forma como esta comunica e mostra o sistema hidráulico do Convento dos Capuchos de Alferrara.">If you have the opportunity, you can answer this short questionnaire, which aims to collect anonymous feedback about the experience and the way it communicates and presents the hydraulic system of the Convent of Capuchos de Alferrara.</p></div>
+<div class="feedback-introduction"><p data-en="Thank you for exploring Hidden Waters." data-pt="Obrigada por explorar Hidden Waters.">Thank you for exploring Hidden Waters.</p><p data-en="If you have the opportunity, you can answer this short questionnaire, which aims to collect feedback without requesting personal data, about the experience and the way it communicates and presents the hydraulic system of the Convent of Capuchos de Alferrara." data-pt="Se tiver oportunidade, pode responder a este breve questionário, que procura recolher feedback sem solicitar dados pessoais, sobre a experiência e a forma como esta comunica e mostra o sistema hidráulico do Convento dos Capuchos de Alferrara.">If you have the opportunity, you can answer this short questionnaire, which aims to collect feedback without requesting personal data, about the experience and the way it communicates and presents the hydraulic system of the Convent of Capuchos de Alferrara.</p></div>
 </div>
 </section>
-<form action="https://script.google.com/macros/s/AKfycbxRAXKN4n6eCtFudOXrEx_AB2NJKE3R3rFMM2QWk7USzGlx6wx3ekzaCdwmk-0xggZG/exec" autocomplete="off" class="content-width feedback-form" id="feedbackForm" method="POST" target="feedbackSubmitFrame"><input id="feedbackLanguage" name="language" type="hidden" value="en"/>
+<form action="https://script.google.com/macros/s/AKfycbwqpysskMhl4kZ3nRSXzPZQchQL_Jz1lOuHmv6cP5YDpobuNs8WQi7rEb6r_NopypQW/exec" autocomplete="off" class="content-width feedback-form" id="feedbackForm" method="POST" target="feedbackSubmitFrame"><input id="participantId" name="participantId" type="hidden" value=""/><input id="submissionId" name="submissionId" type="hidden" value=""/><input id="feedbackLanguage" name="language" type="hidden" value="en"/>
 <section class="feedback-section">
 <p class="section-eyebrow" data-en="Participation" data-pt="Participação">
                 Participation
@@ -1146,6 +1146,88 @@ main{
 
     let submissionPending = false;
     let submissionComplete = false;
+
+    const participantIdField =
+        document.getElementById("participantId");
+
+    const submissionIdField =
+        document.getElementById("submissionId");
+
+
+    function makeId(prefix) {
+
+        if (
+            window.crypto &&
+            typeof window.crypto.randomUUID === "function"
+        ) {
+            return (
+                prefix +
+                "-" +
+                window.crypto
+                    .randomUUID()
+                    .replaceAll("-", "")
+                    .slice(0, 12)
+                    .toUpperCase()
+            );
+        }
+
+        const randomPart =
+            Math.random()
+                .toString(36)
+                .slice(2, 14)
+                .toUpperCase();
+
+        return prefix + "-" + randomPart;
+    }
+
+
+    function getParticipantId() {
+
+        const storageKey =
+            "hiddenWatersParticipantId";
+
+        try {
+
+            let stored =
+                localStorage.getItem(
+                    storageKey
+                );
+
+            if (!stored) {
+
+                stored =
+                    makeId("HW");
+
+                localStorage.setItem(
+                    storageKey,
+                    stored
+                );
+            }
+
+            return stored;
+
+        } catch (error) {
+
+            // If storage is unavailable (e.g. strict private mode),
+            // still generate an ID for the current page session.
+            return makeId("HW");
+        }
+    }
+
+
+    function prepareIdentifiers() {
+
+        if (participantIdField) {
+            participantIdField.value =
+                getParticipantId();
+        }
+
+        if (submissionIdField) {
+            submissionIdField.value =
+                makeId("SUB");
+        }
+    }
+
 
 
     const questions = {
@@ -1439,6 +1521,8 @@ main{
                     currentLanguage;
             }
 
+            prepareIdentifiers();
+
             // The native form POST continues into the hidden iframe.
         }
     );
@@ -1471,6 +1555,7 @@ main{
     );
 
 
+    prepareIdentifiers();
     updateStaticLanguage();
 
 })();
