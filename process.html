@@ -1906,12 +1906,468 @@
                 pointer-events: auto;
             }
         }
+
+.header-content { position: relative; }
+
+
+/* =========================================================
+   HEADER — FEEDBACK LINK (mirrored with PT/EN)
+   ========================================================= */
+
+.header-feedback-link {
+    position: absolute;
+    top: 50%;
+    left: 0;
+    z-index: 3;
+
+    display: inline-flex;
+    align-items: center;
+
+    color: #b7b7b7;
+
+    font-family: "Bebas Neue", sans-serif;
+    font-size: 1.05rem;
+    letter-spacing: 0.11em;
+    line-height: 1;
+    text-transform: uppercase;
+
+    transform: translateY(-50%);
+
+    transition:
+        color 220ms ease,
+        transform 220ms ease;
+}
+
+.header-feedback-link::after {
+    content: "";
+
+    position: absolute;
+    right: 0;
+    bottom: -7px;
+    left: 0;
+
+    height: 1px;
+
+    background: var(--blue-light, #8fb3ba);
+
+    transform: scaleX(0);
+    transform-origin: right;
+
+    transition: transform 240ms ease;
+}
+
+.header-feedback-link:hover,
+.header-feedback-link:focus-visible {
+    color: var(--blue-light, #8fb3ba);
+    transform: translateY(calc(-50% - 1px));
+}
+
+.header-feedback-link:hover::after,
+.header-feedback-link:focus-visible::after,
+.header-feedback-link[aria-current="page"]::after {
+    transform: scaleX(1);
+    transform-origin: left;
+}
+
+@media (max-width: 650px) {
+    .header-feedback-link {
+        left: 4px;
+        font-size: 0.86rem;
+        transform: translate(-28%, -50%) scale(.88);
+    }
+
+    .header-feedback-link:hover,
+    .header-feedback-link:focus-visible {
+        transform: translate(-28%, calc(-50% - 1px)) scale(.88);
+    }
+}
+
+
+/* =========================================================
+   UNIFIED HEADER — EXACT GALLERY SPACING
+   ========================================================= */
+
+.site-header {
+    position: fixed !important;
+    z-index: 1000 !important;
+    inset: 0 0 auto !important;
+
+    height: 76px !important;
+
+    background: rgba(5, 5, 5, .78) !important;
+    border-bottom: 1px solid rgba(255,255,255,.11) !important;
+
+    backdrop-filter: blur(18px) saturate(150%) !important;
+    -webkit-backdrop-filter: blur(18px) saturate(150%) !important;
+}
+
+/* Same 1100 px content width + 128 px desktop gutter as Gallery */
+.site-header .header-content {
+    position: relative !important;
+
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+
+    width: min(1100px, calc(100% - 128px)) !important;
+    max-width: none !important;
+    height: 100% !important;
+
+    margin-inline: auto !important;
+    padding: 0 !important;
+}
+
+/* Central navigation — identical to Gallery */
+.site-header .main-nav,
+.site-header .simple-main-nav {
+    display: flex !important;
+    align-items: center !important;
+
+    gap: 30px !important;
+
+    margin: 0 !important;
+    padding: 0 !important;
+
+    font-family: "Bebas Neue", sans-serif !important;
+    font-size: 1.28rem !important;
+    letter-spacing: .12em !important;
+    line-height: 1 !important;
+}
+
+/* Normal nav links */
+.site-header .main-nav > a:not(.header-logo-link) {
+    position: relative !important;
+
+    color: inherit;
+
+    transition:
+        color .22s ease,
+        transform .22s ease !important;
+}
+
+.site-header .main-nav > a:not(.header-logo-link)::after {
+    content: "" !important;
+
+    position: absolute !important;
+    right: 0 !important;
+    bottom: -7px !important;
+    left: 0 !important;
+
+    height: 1px !important;
+
+    background: #8fb3ba !important;
+
+    transform: scaleX(0) !important;
+    transform-origin: right !important;
+
+    transition: transform .24s ease !important;
+}
+
+.site-header .main-nav > a:not(.header-logo-link):hover,
+.site-header .main-nav > a:not(.header-logo-link):focus-visible {
+    color: #8fb3ba !important;
+
+    transform: translateY(-1px) !important;
+}
+
+.site-header .main-nav > a:not(.header-logo-link):hover::after,
+.site-header .main-nav > a:not(.header-logo-link):focus-visible::after,
+.site-header .main-nav > a[aria-current="page"]:not(.header-logo-link)::after {
+    transform: scaleX(1) !important;
+    transform-origin: left !important;
+}
+
+/* Prevent older Index rules from drawing a line below the HW logo */
+.site-header .header-logo-link::after {
+    content: none !important;
+    display: none !important;
+}
+
+/* HW logo — exact Gallery dimensions */
+.site-header .header-logo-link {
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+
+    width: 42px !important;
+    height: 52px !important;
+    flex: 0 0 42px !important;
+
+    margin: 0 !important;
+    padding: 0 !important;
+
+    opacity: .94 !important;
+
+    transition:
+        opacity .22s ease,
+        transform .26s ease !important;
+}
+
+.site-header .header-logo-link:hover,
+.site-header .header-logo-link:focus-visible {
+    opacity: 1 !important;
+    transform: translateY(-1px) !important;
+}
+
+.site-header .header-logo-image {
+    display: block !important;
+
+    width: auto !important;
+    height: 40px !important;
+    max-width: 38px !important;
+
+    object-fit: contain !important;
+}
+
+/* Feedback — left edge of same Gallery content width */
+.site-header .header-feedback-link {
+    position: absolute !important;
+    z-index: 3 !important;
+
+    top: 50% !important;
+    left: 0 !important;
+
+    display: inline-flex !important;
+    align-items: center !important;
+
+    margin: 0 !important;
+
+    color: #b7b7b7 !important;
+
+    font-family: "Bebas Neue", sans-serif !important;
+    font-size: 1.05rem !important;
+    letter-spacing: .11em !important;
+    line-height: 1 !important;
+    text-transform: uppercase !important;
+
+    transform: translateY(-50%) !important;
+
+    transition:
+        color .22s ease,
+        transform .22s ease !important;
+}
+
+.site-header .header-feedback-link::after {
+    content: "" !important;
+
+    position: absolute !important;
+    right: 0 !important;
+    bottom: -7px !important;
+    left: 0 !important;
+
+    height: 1px !important;
+
+    background: #8fb3ba !important;
+
+    transform: scaleX(0) !important;
+    transform-origin: right !important;
+
+    transition: transform .24s ease !important;
+}
+
+.site-header .header-feedback-link:hover,
+.site-header .header-feedback-link:focus-visible {
+    color: #8fb3ba !important;
+
+    transform: translateY(calc(-50% - 1px)) !important;
+}
+
+.site-header .header-feedback-link:hover::after,
+.site-header .header-feedback-link:focus-visible::after,
+.site-header .header-feedback-link[aria-current="page"]::after {
+    transform: scaleX(1) !important;
+    transform-origin: left !important;
+}
+
+/* PT / EN — right edge of same Gallery content width */
+.site-header .language-switch {
+    position: absolute !important;
+
+    top: 50% !important;
+    right: 0 !important;
+
+    display: flex !important;
+    gap: 3px !important;
+
+    margin: 0 !important;
+    padding: 4px !important;
+
+    background: rgba(255,255,255,.045) !important;
+
+    border: 1px solid rgba(255,255,255,.12) !important;
+    border-radius: 999px !important;
+
+    transform: translateY(-50%) !important;
+}
+
+.site-header .language-button {
+    min-width: 36px !important;
+
+    padding: 6px 9px !important;
+
+    color: #8f8f8f !important;
+    background: transparent !important;
+
+    border: 0 !important;
+    border-radius: 999px !important;
+
+    cursor: pointer !important;
+
+    font-family: "Bebas Neue", sans-serif !important;
+    font-size: .9rem !important;
+    letter-spacing: .08em !important;
+}
+
+.site-header .language-button.is-active {
+    color: #050505 !important;
+    background: #8fb3ba !important;
+}
+
+.site-header .language-button:hover:not(.is-active),
+.site-header .language-button:focus-visible:not(.is-active) {
+    color: #fff !important;
+}
+
+/* Gallery uses a much smaller gutter below 900px */
+@media (max-width: 900px) {
+    .site-header .header-content {
+        width: calc(100% - 36px) !important;
+    }
+}
+
+/* Same mobile header behaviour as Gallery */
+@media (max-width: 520px) {
+    .site-header {
+        height: 68px !important;
+    }
+
+    .site-header .main-nav,
+    .site-header .simple-main-nav {
+        gap: 13px !important;
+
+        font-size: .94rem !important;
+    }
+
+    .site-header .header-logo-link {
+        width: 32px !important;
+        height: 42px !important;
+        flex-basis: 32px !important;
+    }
+
+    .site-header .header-logo-image {
+        height: 31px !important;
+        max-width: 30px !important;
+    }
+
+    .site-header .language-switch {
+        right: -4px !important;
+
+        transform:
+            translate(35%, -50%)
+            scale(.86) !important;
+    }
+
+    .site-header .language-button {
+        min-width: 31px !important;
+
+        padding: 5px 6px !important;
+
+        font-size: .8rem !important;
+    }
+
+    .site-header .header-feedback-link {
+        left: 4px !important;
+
+        font-size: .86rem !important;
+
+        transform:
+            translate(-28%, -50%)
+            scale(.88) !important;
+    }
+
+    .site-header .header-feedback-link:hover,
+    .site-header .header-feedback-link:focus-visible {
+        transform:
+            translate(-28%, calc(-50% - 1px))
+            scale(.88) !important;
+    }
+}
+
+
+/* =========================================================
+   FINAL HEADER FIX — IDENTICAL LANGUAGE SWITCH ON ALL PAGES
+   ========================================================= */
+
+.site-header .language-switch {
+    box-sizing: border-box !important;
+
+    width: auto !important;
+    height: 38px !important;
+    min-height: 38px !important;
+    max-height: 38px !important;
+
+    padding: 3px !important;
+    gap: 2px !important;
+
+    align-items: center !important;
+
+    border-radius: 999px !important;
+
+    line-height: 1 !important;
+}
+
+.site-header .language-button {
+    box-sizing: border-box !important;
+
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+
+    width: 32px !important;
+    min-width: 32px !important;
+    height: 30px !important;
+    min-height: 30px !important;
+    max-height: 30px !important;
+
+    margin: 0 !important;
+    padding: 0 !important;
+
+    border-radius: 999px !important;
+
+    font-size: .86rem !important;
+    line-height: 1 !important;
+}
+
+@media (max-width: 520px) {
+    .site-header .language-switch {
+        width: auto !important;
+        height: 34px !important;
+        min-height: 34px !important;
+        max-height: 34px !important;
+
+        padding: 3px !important;
+
+        transform:
+            translate(35%, -50%)
+            scale(.86) !important;
+    }
+
+    .site-header .language-button {
+        width: 28px !important;
+        min-width: 28px !important;
+        height: 26px !important;
+        min-height: 26px !important;
+        max-height: 26px !important;
+
+        font-size: .78rem !important;
+    }
+}
 </style>
 </head>
 <body id="top">
 <header class="site-header">
-<div class="content-width header-content">
-<nav aria-label="Main navigation" class="main-nav">
+<div class="content-width header-content header-content">
+<a class="header-feedback-link" href="feedback.html"><span data-en="Feedback" data-pt="Feedback">Feedback</span></a><nav aria-label="Main navigation" class="main-nav">
 <a href="gallery.html"><span data-en="Gallery" data-pt="Galeria">Gallery</span></a>
 <a aria-label="Return to the Hidden Waters homepage" class="header-logo-link" href="index.html">
 <img alt="" class="header-logo-image" src="assets/images/hidden-waters-logo-white.png"/>
