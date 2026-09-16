@@ -2626,12 +2626,87 @@
                 height: 24px;
             }
         }
+
+.header-content { position: relative; }
+
+
+/* =========================================================
+   HEADER — FEEDBACK LINK (mirrored with PT/EN)
+   ========================================================= */
+
+.header-feedback-link {
+    position: absolute;
+    top: 50%;
+    left: 0;
+    z-index: 3;
+
+    display: inline-flex;
+    align-items: center;
+
+    color: #b7b7b7;
+
+    font-family: "Bebas Neue", sans-serif;
+    font-size: 1.05rem;
+    letter-spacing: 0.11em;
+    line-height: 1;
+    text-transform: uppercase;
+
+    transform: translateY(-50%);
+
+    transition:
+        color 220ms ease,
+        transform 220ms ease;
+}
+
+.header-feedback-link::after {
+    content: "";
+
+    position: absolute;
+    right: 0;
+    bottom: -7px;
+    left: 0;
+
+    height: 1px;
+
+    background: var(--blue-light, #8fb3ba);
+
+    transform: scaleX(0);
+    transform-origin: right;
+
+    transition: transform 240ms ease;
+}
+
+.header-feedback-link:hover,
+.header-feedback-link:focus-visible {
+    color: var(--blue-light, #8fb3ba);
+    transform: translateY(calc(-50% - 1px));
+}
+
+.header-feedback-link:hover::after,
+.header-feedback-link:focus-visible::after,
+.header-feedback-link[aria-current="page"]::after {
+    transform: scaleX(1);
+    transform-origin: left;
+}
+
+@media (max-width: 650px) {
+    .header-feedback-link {
+        left: 4px;
+        font-size: 0.86rem;
+        transform: translate(-28%, -50%) scale(.88);
+    }
+
+    .header-feedback-link:hover,
+    .header-feedback-link:focus-visible {
+        transform: translate(-28%, calc(-50% - 1px)) scale(.88);
+    }
+}
 </style>
 </head>
 <body id="top">
 <header class="site-header">
 <div class="container header-content">
-<nav aria-label="Main navigation" class="main-nav simple-main-nav">
+<a class="header-feedback-link" href="feedback.html"><span data-en="Feedback" data-pt="Feedback">Feedback</span></a><nav aria-label="Main navigation" class="main-nav simple-main-nav">
 <a href="gallery.html"><span data-en="Gallery" data-pt="Galeria">Gallery</span></a>
 <a aria-label="Return to the Hidden Waters homepage" class="header-logo-link" href="#top">
 <img alt="" class="header-logo-image" src="assets/images/hidden-waters-logo-white.png"/>
@@ -2756,7 +2831,6 @@
 <span>
                 Hidden Waters
             </span>
-
 <div class="footer-institution"><span>
                 Thesis companion website · 2026
             </span><img alt="Instituto Superior Técnico" class="footer-ist-logo" src="assets/images/ist-logo-white.png"/></div></div>
