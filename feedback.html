@@ -982,6 +982,46 @@ main{
 .relation-option-text{line-height:1.5;font-size:.88rem;}
 .relation-message{min-height:1.4em;margin:12px 0 0;color:#d6a5a5;font-size:.76rem;}
 @media(max-width:700px){.relation-options{grid-template-columns:1fr;}.relation-option{min-height:0;}}
+
+
+/* OTHER RELATION — short free-text field */
+.relation-other-wrap{
+    margin-top:14px;
+}
+
+.relation-other-input{
+    display:block;
+    width:100%;
+    padding:16px 18px;
+
+    color:#eeeeee;
+    background:rgba(255,255,255,.025);
+
+    border:1px solid rgba(255,255,255,.15);
+    border-radius:14px;
+
+    outline:none;
+
+    font-size:.9rem;
+    line-height:1.4;
+
+    transition:
+        border-color .22s ease,
+        background-color .22s ease;
+}
+
+.relation-other-input:hover{
+    border-color:rgba(143,179,186,.36);
+}
+
+.relation-other-input:focus{
+    background:rgba(143,179,186,.035);
+    border-color:rgba(143,179,186,.72);
+}
+
+.relation-other-input::placeholder{
+    color:#555;
+}
 </style>
 </head>
 <body>
@@ -1059,7 +1099,7 @@ main{
 </label>
 </div>
 </section>
-<div class="questions-area" id="questionsArea"><section class="feedback-section relation-section" id="relationSection"><p class="section-eyebrow" data-en="Context" data-pt="Contexto">Context</p><h2 class="section-title relation-title" data-en="What best describes your relationship with the subject?" data-pt="Qual destas opções melhor descreve a sua relação com o tema?">What best describes your relationship with the subject?</h2><p class="relation-helper" data-en="You can select up to 2 options." data-pt="Pode selecionar até 2 opções.">You can select up to 2 options.</p><div class="relation-options"><label class="relation-option"><input class="relation-checkbox" data-label-en="I know or have visited the Convent of Capuchos de Alferrara" data-label-pt="Conheço ou já visitei o Convento dos Capuchos de Alferrara" type="checkbox" value="alferrara"/><span aria-hidden="true" class="relation-control"></span><span class="relation-option-text" data-en="I know or have visited the Convent of Capuchos de Alferrara" data-pt="Conheço ou já visitei o Convento dos Capuchos de Alferrara">I know or have visited the Convent of Capuchos de Alferrara</span></label><label class="relation-option"><input class="relation-checkbox" data-label-en="I know other convents or similar heritage sites" data-label-pt="Conheço outros conventos ou espaços patrimoniais semelhantes" type="checkbox" value="similar-heritage"/><span aria-hidden="true" class="relation-control"></span><span class="relation-option-text" data-en="I know other convents or similar heritage sites" data-pt="Conheço outros conventos ou espaços patrimoniais semelhantes">I know other convents or similar heritage sites</span></label><label class="relation-option"><input class="relation-checkbox" data-label-en="I have an academic or professional connection to architecture, heritage or history" data-label-pt="Tenho ligação académica ou profissional à arquitetura, património ou história" type="checkbox" value="academic-professional"/><span aria-hidden="true" class="relation-control"></span><span class="relation-option-text" data-en="I have an academic or professional connection to architecture, heritage or history" data-pt="Tenho ligação académica ou profissional à arquitetura, património ou história">I have an academic or professional connection to architecture, heritage or history</span></label><label class="relation-option"><input class="relation-checkbox" data-label-en="I have a personal interest in these subjects" data-label-pt="Tenho interesse pessoal nestes temas" type="checkbox" value="personal-interest"/><span aria-hidden="true" class="relation-control"></span><span class="relation-option-text" data-en="I have a personal interest in these subjects" data-pt="Tenho interesse pessoal nestes temas">I have a personal interest in these subjects</span></label><label class="relation-option"><input class="relation-checkbox" data-label-en="I had no previous contact with this subject" data-label-pt="Não tinha contacto prévio com este tema" type="checkbox" value="no-prior-contact"/><span aria-hidden="true" class="relation-control"></span><span class="relation-option-text" data-en="I had no previous contact with this subject" data-pt="Não tinha contacto prévio com este tema">I had no previous contact with this subject</span></label><label class="relation-option"><input class="relation-checkbox" data-label-en="Other" data-label-pt="Outro" type="checkbox" value="other"/><span aria-hidden="true" class="relation-control"></span><span class="relation-option-text" data-en="Other" data-pt="Outro">Other</span></label></div><p aria-live="polite" class="relation-message" id="relationMessage" role="status"></p></section>
+<div class="questions-area" id="questionsArea"><section class="feedback-section relation-section" id="relationSection"><p class="section-eyebrow" data-en="Context" data-pt="Contexto">Context</p><h2 class="section-title relation-title" data-en="What best describes your relationship with the subject?" data-pt="Qual destas opções melhor descreve a sua relação com o tema?">What best describes your relationship with the subject?</h2><p class="relation-helper" data-en="You can select up to 2 options." data-pt="Pode selecionar até 2 opções.">You can select up to 2 options.</p><div class="relation-options"><label class="relation-option"><input class="relation-checkbox" data-label-en="I know or have visited the Convent of Capuchos de Alferrara" data-label-pt="Conheço ou já visitei o Convento dos Capuchos de Alferrara" type="checkbox" value="alferrara"/><span aria-hidden="true" class="relation-control"></span><span class="relation-option-text" data-en="I know or have visited the Convent of Capuchos de Alferrara" data-pt="Conheço ou já visitei o Convento dos Capuchos de Alferrara">I know or have visited the Convent of Capuchos de Alferrara</span></label><label class="relation-option"><input class="relation-checkbox" data-label-en="I know other convents or similar heritage sites" data-label-pt="Conheço outros conventos ou espaços patrimoniais semelhantes" type="checkbox" value="similar-heritage"/><span aria-hidden="true" class="relation-control"></span><span class="relation-option-text" data-en="I know other convents or similar heritage sites" data-pt="Conheço outros conventos ou espaços patrimoniais semelhantes">I know other convents or similar heritage sites</span></label><label class="relation-option"><input class="relation-checkbox" data-label-en="I have an academic or professional connection to architecture, heritage or history" data-label-pt="Tenho ligação académica ou profissional à arquitetura, património ou história" type="checkbox" value="academic-professional"/><span aria-hidden="true" class="relation-control"></span><span class="relation-option-text" data-en="I have an academic or professional connection to architecture, heritage or history" data-pt="Tenho ligação académica ou profissional à arquitetura, património ou história">I have an academic or professional connection to architecture, heritage or history</span></label><label class="relation-option"><input class="relation-checkbox" data-label-en="I have a personal interest in these subjects" data-label-pt="Tenho interesse pessoal nestes temas" type="checkbox" value="personal-interest"/><span aria-hidden="true" class="relation-control"></span><span class="relation-option-text" data-en="I have a personal interest in these subjects" data-pt="Tenho interesse pessoal nestes temas">I have a personal interest in these subjects</span></label><label class="relation-option"><input class="relation-checkbox" data-label-en="I had no previous contact with this subject" data-label-pt="Não tinha contacto prévio com este tema" type="checkbox" value="no-prior-contact"/><span aria-hidden="true" class="relation-control"></span><span class="relation-option-text" data-en="I had no previous contact with this subject" data-pt="Não tinha contacto prévio com este tema">I had no previous contact with this subject</span></label><label class="relation-option"><input class="relation-checkbox" data-label-en="Other" data-label-pt="Outro" type="checkbox" value="other"/><span aria-hidden="true" class="relation-control"></span><span class="relation-option-text" data-en="Other" data-pt="Outro">Other</span></label></div><div class="relation-other-wrap" hidden="" id="relationOtherWrap"><input class="relation-other-input" data-placeholder-en="Briefly specify your relationship" data-placeholder-pt="Indique brevemente qual é a sua relação" id="relationOther" maxlength="160" placeholder="Briefly specify your relationship" type="text"/></div><p aria-live="polite" class="relation-message" id="relationMessage" role="status"></p></section>
 <section class="feedback-section">
 <p class="section-eyebrow" data-en="Questions" data-pt="Perguntas">
                     Questions
@@ -1178,6 +1218,13 @@ main{
 
     const relationValueField =
         document.getElementById("relationValue");
+
+    const relationOtherWrap =
+        document.getElementById("relationOtherWrap");
+
+    const relationOtherInput =
+        document.getElementById("relationOther");
+
 
     const relationMessage =
         document.getElementById("relationMessage");
@@ -1340,6 +1387,26 @@ main{
     };
 
 
+
+    function updateOtherRelationVisibility() {
+
+        const other =
+            relationCheckboxes.find(
+                checkbox =>
+                    checkbox.value === "other"
+            );
+
+        const show =
+            Boolean(other && other.checked);
+
+        relationOtherWrap.hidden = !show;
+
+        if (!show) {
+            relationOtherInput.value = "";
+        }
+    }
+
+
     function updateRelationValue() {
         const selected = relationCheckboxes.filter(checkbox => checkbox.checked);
         const labels = selected.map(checkbox =>
@@ -1397,6 +1464,14 @@ main{
                 currentLanguage;
         }
 
+
+
+        if (relationOtherInput) {
+            relationOtherInput.placeholder =
+                currentLanguage === "pt"
+                    ? relationOtherInput.dataset.placeholderPt
+                    : relationOtherInput.dataset.placeholderEn;
+        }
 
         updateQuestions();
         updateRelationValue();
@@ -1525,11 +1600,23 @@ main{
                         relationCopy[currentLanguage].max;
                 }
 
+                updateOtherRelationVisibility();
                 updateRelationValue();
             }
         );
 
     });
+
+
+
+    if (relationOtherInput) {
+        relationOtherInput.addEventListener(
+            "input",
+            () => {
+                updateRelationValue();
+            }
+        );
+    }
 
 
     document
@@ -1579,6 +1666,27 @@ main{
             }
 
             updateRelationValue();
+
+
+
+            const otherSelected =
+                relationCheckboxes.some(
+                    checkbox =>
+                        checkbox.value === "other" &&
+                        checkbox.checked
+                );
+
+            if (
+                otherSelected &&
+                relationOtherInput &&
+                !relationOtherInput.value.trim()
+            ) {
+                event.preventDefault();
+
+                relationOtherInput.focus();
+
+                return;
+            }
 
 
             const requiredQuestions =
@@ -1633,7 +1741,8 @@ main{
                     currentLanguage;
             }
 
-            prepareIdentifiers();
+            updateOtherRelationVisibility();
+    prepareIdentifiers();
 
             // The native form POST continues into the hidden iframe.
         }
