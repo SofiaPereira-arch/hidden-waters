@@ -963,6 +963,25 @@ main{
         min-height:56px;
     }
 }
+
+
+/* =========================================================
+   RELATION TO THE SUBJECT
+   ========================================================= */
+.relation-title{margin-bottom:12px;}
+.relation-helper{margin:0 0 28px;color:#777;font-size:.8rem;line-height:1.5;}
+.relation-options{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px;}
+.relation-option{position:relative;display:flex;align-items:flex-start;min-height:86px;padding:20px 22px;color:#aaa;background:rgba(255,255,255,.02);border:1px solid rgba(255,255,255,.12);border-radius:18px;cursor:pointer;transition:color .22s ease,background-color .22s ease,border-color .22s ease,transform .22s ease;}
+.relation-option:hover{color:#d9d9d9;background:rgba(143,179,186,.035);border-color:rgba(143,179,186,.38);transform:translateY(-1px);}
+.relation-option input{position:absolute;width:1px;height:1px;opacity:0;pointer-events:none;}
+.relation-control{position:relative;flex:0 0 auto;width:20px;height:20px;margin:2px 16px 0 0;border:1px solid rgba(255,255,255,.38);border-radius:5px;transition:background-color .2s ease,border-color .2s ease;}
+.relation-control::after{content:"";position:absolute;top:3px;left:6px;width:5px;height:9px;border-right:2px solid #050505;border-bottom:2px solid #050505;opacity:0;transform:rotate(45deg) scale(.5);transition:opacity .18s ease,transform .18s ease;}
+.relation-option:has(input:checked){color:#f0f0f0;background:rgba(143,179,186,.07);border-color:rgba(143,179,186,.68);}
+.relation-option:has(input:checked) .relation-control{background:var(--blue-light);border-color:var(--blue-light);}
+.relation-option:has(input:checked) .relation-control::after{opacity:1;transform:rotate(45deg) scale(1);}
+.relation-option-text{line-height:1.5;font-size:.88rem;}
+.relation-message{min-height:1.4em;margin:12px 0 0;color:#d6a5a5;font-size:.76rem;}
+@media(max-width:700px){.relation-options{grid-template-columns:1fr;}.relation-option{min-height:0;}}
 </style>
 </head>
 <body>
@@ -1002,10 +1021,10 @@ main{
 <h1 class="feedback-title">
                 FEEDBACK
             </h1>
-<div class="feedback-introduction"><p data-en="Thank you for exploring Hidden Waters." data-pt="Obrigada por explorar Hidden Waters.">Thank you for exploring Hidden Waters.</p><p data-en="If you have the opportunity, you can answer this short questionnaire, which aims to collect feedback without requesting personal data, about the experience and the way it communicates and presents the hydraulic system of the Convent of Capuchos de Alferrara." data-pt="Se tiver oportunidade, pode responder a este breve questionário, que procura recolher feedback sem solicitar dados pessoais, sobre a experiência e a forma como esta comunica e mostra o sistema hidráulico do Convento dos Capuchos de Alferrara.">If you have the opportunity, you can answer this short questionnaire, which aims to collect feedback without requesting personal data, about the experience and the way it communicates and presents the hydraulic system of the Convent of Capuchos de Alferrara.</p></div>
+<div class="feedback-introduction"><p data-en="Thank you for exploring Hidden Waters." data-pt="Obrigada por explorar Hidden Waters.">Thank you for exploring Hidden Waters.</p><p data-en="If you have the opportunity, you can answer this short questionnaire, which aims to collect feedback without requesting personally identifying information, about the experience and the way it communicates and presents the hydraulic system of the Convent of Capuchos de Alferrara." data-pt="Se tiver oportunidade, pode responder a este breve questionário, que procura recolher feedback sem solicitar dados de identificação pessoal, sobre a experiência e a forma como esta comunica e mostra o sistema hidráulico do Convento dos Capuchos de Alferrara.">If you have the opportunity, you can answer this short questionnaire, which aims to collect feedback without requesting personally identifying information, about the experience and the way it communicates and presents the hydraulic system of the Convent of Capuchos de Alferrara.</p></div>
 </div>
 </section>
-<form action="https://script.google.com/macros/s/AKfycbwqpysskMhl4kZ3nRSXzPZQchQL_Jz1lOuHmv6cP5YDpobuNs8WQi7rEb6r_NopypQW/exec" autocomplete="off" class="content-width feedback-form" id="feedbackForm" method="POST" target="feedbackSubmitFrame"><input id="participantId" name="participantId" type="hidden" value=""/><input id="submissionId" name="submissionId" type="hidden" value=""/><input id="feedbackLanguage" name="language" type="hidden" value="en"/>
+<form action="https://script.google.com/macros/s/AKfycbwqpysskMhl4kZ3nRSXzPZQchQL_Jz1lOuHmv6cP5YDpobuNs8WQi7rEb6r_NopypQW/exec" autocomplete="off" class="content-width feedback-form" id="feedbackForm" method="POST" target="feedbackSubmitFrame"><input id="relationValue" name="relation" type="hidden" value=""/><input id="participantId" name="participantId" type="hidden" value=""/><input id="submissionId" name="submissionId" type="hidden" value=""/><input id="feedbackLanguage" name="language" type="hidden" value="en"/>
 <section class="feedback-section">
 <p class="section-eyebrow" data-en="Participation" data-pt="Participação">
                 Participation
@@ -1040,7 +1059,7 @@ main{
 </label>
 </div>
 </section>
-<div class="questions-area" id="questionsArea">
+<div class="questions-area" id="questionsArea"><section class="feedback-section relation-section" id="relationSection"><p class="section-eyebrow" data-en="Context" data-pt="Contexto">Context</p><h2 class="section-title relation-title" data-en="What best describes your relationship with the subject?" data-pt="Qual destas opções melhor descreve a sua relação com o tema?">What best describes your relationship with the subject?</h2><p class="relation-helper" data-en="You can select up to 2 options." data-pt="Pode selecionar até 2 opções.">You can select up to 2 options.</p><div class="relation-options"><label class="relation-option"><input class="relation-checkbox" data-label-en="I know or have visited the Convent of Capuchos de Alferrara" data-label-pt="Conheço ou já visitei o Convento dos Capuchos de Alferrara" type="checkbox" value="alferrara"/><span aria-hidden="true" class="relation-control"></span><span class="relation-option-text" data-en="I know or have visited the Convent of Capuchos de Alferrara" data-pt="Conheço ou já visitei o Convento dos Capuchos de Alferrara">I know or have visited the Convent of Capuchos de Alferrara</span></label><label class="relation-option"><input class="relation-checkbox" data-label-en="I know other convents or similar heritage sites" data-label-pt="Conheço outros conventos ou espaços patrimoniais semelhantes" type="checkbox" value="similar-heritage"/><span aria-hidden="true" class="relation-control"></span><span class="relation-option-text" data-en="I know other convents or similar heritage sites" data-pt="Conheço outros conventos ou espaços patrimoniais semelhantes">I know other convents or similar heritage sites</span></label><label class="relation-option"><input class="relation-checkbox" data-label-en="I have an academic or professional connection to architecture, heritage or history" data-label-pt="Tenho ligação académica ou profissional à arquitetura, património ou história" type="checkbox" value="academic-professional"/><span aria-hidden="true" class="relation-control"></span><span class="relation-option-text" data-en="I have an academic or professional connection to architecture, heritage or history" data-pt="Tenho ligação académica ou profissional à arquitetura, património ou história">I have an academic or professional connection to architecture, heritage or history</span></label><label class="relation-option"><input class="relation-checkbox" data-label-en="I have a personal interest in these subjects" data-label-pt="Tenho interesse pessoal nestes temas" type="checkbox" value="personal-interest"/><span aria-hidden="true" class="relation-control"></span><span class="relation-option-text" data-en="I have a personal interest in these subjects" data-pt="Tenho interesse pessoal nestes temas">I have a personal interest in these subjects</span></label><label class="relation-option"><input class="relation-checkbox" data-label-en="I had no previous contact with this subject" data-label-pt="Não tinha contacto prévio com este tema" type="checkbox" value="no-prior-contact"/><span aria-hidden="true" class="relation-control"></span><span class="relation-option-text" data-en="I had no previous contact with this subject" data-pt="Não tinha contacto prévio com este tema">I had no previous contact with this subject</span></label><label class="relation-option"><input class="relation-checkbox" data-label-en="Other" data-label-pt="Outro" type="checkbox" value="other"/><span aria-hidden="true" class="relation-control"></span><span class="relation-option-text" data-en="Other" data-pt="Outro">Other</span></label></div><p aria-live="polite" class="relation-message" id="relationMessage" role="status"></p></section>
 <section class="feedback-section">
 <p class="section-eyebrow" data-en="Questions" data-pt="Perguntas">
                     Questions
@@ -1152,6 +1171,16 @@ main{
 
     const submissionIdField =
         document.getElementById("submissionId");
+
+
+    const relationCheckboxes =
+        [...document.querySelectorAll(".relation-checkbox")];
+
+    const relationValueField =
+        document.getElementById("relationValue");
+
+    const relationMessage =
+        document.getElementById("relationMessage");
 
 
     function makeId(prefix) {
@@ -1299,6 +1328,34 @@ main{
     };
 
 
+    const relationCopy = {
+        en: {
+            max: "You can select a maximum of 2 options.",
+            required: "Please select at least one option."
+        },
+        pt: {
+            max: "Pode selecionar no máximo 2 opções.",
+            required: "Por favor, selecione pelo menos uma opção."
+        }
+    };
+
+
+    function updateRelationValue() {
+        const selected = relationCheckboxes.filter(checkbox => checkbox.checked);
+        const labels = selected.map(checkbox =>
+            currentLanguage === "pt"
+                ? checkbox.dataset.labelPt
+                : checkbox.dataset.labelEn
+        );
+        relationValueField.value = labels.join(" | ");
+    }
+
+
+    function clearRelationMessage() {
+        relationMessage.textContent = "";
+    }
+
+
     function updateStaticLanguage() {
 
         document.documentElement.lang =
@@ -1342,6 +1399,7 @@ main{
 
 
         updateQuestions();
+        updateRelationValue();
 
 
         if (!submissionPending) {
@@ -1437,6 +1495,43 @@ main{
     });
 
 
+    relationCheckboxes.forEach((checkbox) => {
+
+        checkbox.addEventListener(
+            "change",
+            () => {
+
+                clearRelationMessage();
+
+                const noContact =
+                    relationCheckboxes.find(
+                        item => item.value === "no-prior-contact"
+                    );
+
+                if (checkbox.checked && checkbox.value === "no-prior-contact") {
+                    relationCheckboxes
+                        .filter(item => item !== checkbox)
+                        .forEach(item => item.checked = false);
+                } else if (checkbox.checked && noContact && noContact.checked) {
+                    noContact.checked = false;
+                }
+
+                const selected =
+                    relationCheckboxes.filter(item => item.checked);
+
+                if (selected.length > 2) {
+                    checkbox.checked = false;
+                    relationMessage.textContent =
+                        relationCopy[currentLanguage].max;
+                }
+
+                updateRelationValue();
+            }
+        );
+
+    });
+
+
     document
         .querySelectorAll(".feedback-textarea")
         .forEach((textarea) => {
@@ -1468,6 +1563,23 @@ main{
                 event.preventDefault();
                 return;
             }
+
+            const selectedRelations =
+                relationCheckboxes.filter(checkbox => checkbox.checked);
+
+            if (selectedRelations.length === 0) {
+                event.preventDefault();
+                relationMessage.textContent =
+                    relationCopy[currentLanguage].required;
+                document.getElementById("relationSection").scrollIntoView({
+                    behavior: "smooth",
+                    block: "center"
+                });
+                return;
+            }
+
+            updateRelationValue();
+
 
             const requiredQuestions =
                 [1,2,3,4].map(
@@ -1556,6 +1668,7 @@ main{
 
 
     prepareIdentifiers();
+    updateRelationValue();
     updateStaticLanguage();
 
 })();
