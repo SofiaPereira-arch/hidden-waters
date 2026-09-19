@@ -3082,6 +3082,138 @@
         font-size: .78rem !important;
     }
 }
+
+
+        /* =========================================================
+           EXPERIENCE — FEEDBACK CALLOUT
+           ========================================================= */
+
+        .experience-actions {
+            display: flex;
+            flex-direction: column;
+            align-items: stretch;
+
+            width: 290px;
+            max-width: 100%;
+
+            gap: 14px;
+        }
+
+        .experience-feedback-callout {
+            position: relative;
+
+            display: grid;
+            grid-template-columns: 1fr auto;
+            grid-template-areas:
+                "label arrow"
+                "text  arrow";
+            align-items: center;
+
+            gap: 4px 16px;
+
+            width: 100%;
+            padding: 16px 18px;
+
+            color: #cfcfcf;
+            background:
+                rgba(143, 179, 186, 0.045);
+
+            border:
+                1px solid
+                rgba(143, 179, 186, 0.24);
+
+            border-radius: 18px;
+
+            transition:
+                color 220ms ease,
+                background-color 220ms ease,
+                border-color 220ms ease,
+                transform 220ms ease;
+        }
+
+        .experience-feedback-label {
+            grid-area: label;
+
+            color: var(--blue-light);
+
+            font-family:
+                "Steelfish",
+                "Arial Narrow",
+                sans-serif;
+
+            font-size: 0.95rem;
+            letter-spacing: 0.08em;
+            line-height: 1;
+            text-transform: uppercase;
+        }
+
+        .experience-feedback-text {
+            grid-area: text;
+
+            font-size: 0.76rem;
+            line-height: 1.45;
+        }
+
+        .experience-feedback-arrow {
+            grid-area: arrow;
+
+            color: var(--blue-light);
+
+            font-size: 1rem;
+
+            transition:
+                transform 220ms ease;
+        }
+
+        .experience-feedback-callout:hover,
+        .experience-feedback-callout:focus-visible {
+            color: #f1f1f1;
+
+            background:
+                rgba(143, 179, 186, 0.085);
+
+            border-color:
+                rgba(143, 179, 186, 0.52);
+
+            transform: translateY(-2px);
+
+            outline: none;
+        }
+
+        .experience-feedback-callout:hover
+        .experience-feedback-arrow,
+        .experience-feedback-callout:focus-visible
+        .experience-feedback-arrow {
+            transform:
+                translate(2px, -2px);
+        }
+
+        .experience-actions
+        .experience-download {
+            width: 100%;
+        }
+
+        @media (max-width: 900px) {
+            .experience-actions {
+                width: 290px;
+                align-items: stretch;
+            }
+
+            .experience-actions
+            .experience-download {
+                justify-self: auto;
+            }
+        }
+
+        @media (max-width: 520px) {
+            .experience-actions {
+                width: 100%;
+            }
+
+            .experience-feedback-callout {
+                border-radius: 16px;
+            }
+        }
 </style>
 </head>
 <body id="top">
@@ -3201,8 +3333,8 @@
 </header>
 <div class="experience-meta">
 <p class="experience-copy" data-en="Hidden Waters is an immersive digital reconstruction of the hydraulic system associated with the Convent of Capuchos de Alferrara. The project combines historical research, architectural reconstruction and an interactive experience developed in Unreal Engine." data-pt="Hidden Waters é uma reconstrução digital imersiva do sistema hidráulico associado ao Convento dos Capuchos de Alferrara. O projeto combina investigação histórica, reconstrução arquitetónica e uma experiência interativa desenvolvida em Unreal Engine.">Hidden Waters is an immersive digital reconstruction of the hydraulic system associated with the Convent of Capuchos de Alferrara. The project combines historical research, architectural reconstruction and an interactive experience developed in Unreal Engine.</p>
-<a aria-label="Download Hidden Waters on itch.io" class="experience-download" href="https://sofiapereira-arch.itch.io/hidden-waters" rel="noopener noreferrer" target="_blank"><span data-en="Download Experience" data-pt="Descarregar Experiência">Download Experience</span><span aria-hidden="true">↓</span></a>
-</div>
+
+<div class="experience-actions"><a aria-label="Share feedback about Hidden Waters" class="experience-feedback-callout" href="feedback.html"><span class="experience-feedback-label" data-en="Feedback" data-pt="Feedback">Feedback</span><span class="experience-feedback-text" data-en="Already explored Hidden Waters? Share your feedback" data-pt="Já explorou Hidden Waters? Partilhe o seu feedback">Already explored Hidden Waters? Share your feedback</span><span aria-hidden="true" class="experience-feedback-arrow">↗</span></a><a aria-label="Download Hidden Waters on itch.io" class="experience-download" href="https://sofiapereira-arch.itch.io/hidden-waters" rel="noopener noreferrer" target="_blank"><span data-en="Download Experience" data-pt="Descarregar Experiência">Download Experience</span><span aria-hidden="true">↓</span></a></div></div>
 <div aria-label="Play Hidden Waters Experience video" class="experience-image experience-video-preview" role="button" tabindex="0"><img alt="" class="experience-video-thumbnail" decoding="async" loading="lazy" src="https://i.ytimg.com/vi/BtS3GKPRUNY/maxresdefault.jpg"/><span aria-hidden="true" class="experience-video-play">▶</span></div>
 </div>
 </section>
