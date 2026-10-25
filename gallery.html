@@ -1,66 +1,165 @@
 <!DOCTYPE html>
 
 <html lang="en">
+
 <head>
+
 <meta charset="utf-8"/>
-<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
-<meta content="Visual gallery for the Hidden Waters thesis project." name="description"/>
 
-<link href="assets/images/favicon.png" rel="icon" type="image/png"/>
-<link href="assets/images/favicon.ico" rel="icon" sizes="any"/>
-<link href="assets/images/apple-touch-icon.png" rel="apple-touch-icon"/>
+<meta
+    content="width=device-width, initial-scale=1.0"
+    name="viewport"
+/>
 
-<title>Gallery · Hidden Waters</title>
+<meta
+    content="Visual gallery for the Hidden Waters thesis project."
+    name="description"
+/>
 
-<link href="https://fonts.googleapis.com" rel="preconnect"/>
-<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link
+    href="assets/images/favicon.png"
+    rel="icon"
+    type="image/png"
+/>
+
+<link
+    href="assets/images/favicon.ico"
+    rel="icon"
+    sizes="any"
+/>
+
+<link
+    href="assets/images/apple-touch-icon.png"
+    rel="apple-touch-icon"
+/>
+
+<title>
+    Gallery · Hidden Waters
+</title>
+
+<link
+    href="https://fonts.googleapis.com"
+    rel="preconnect"
+/>
+
+<link
+    crossorigin=""
+    href="https://fonts.gstatic.com"
+    rel="preconnect"
+/>
 
 <link
     href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:wght@300;400;500;600&display=swap"
     rel="stylesheet"
 />
 
+
 <style>
 
+
+/* =========================================================
+   FONTS
+   ========================================================= */
+
 @font-face{
+
     font-family:"Steelfish";
-    src:url("assets/fonts/steelfish-rg.otf") format("opentype");
+
+    src:
+        url(
+            "assets/fonts/steelfish-rg.otf"
+        )
+        format(
+            "opentype"
+        );
+
     font-style:normal;
+
     font-weight:400;
+
     font-display:swap;
+
 }
+
 
 @font-face{
+
     font-family:"Steelfish";
-    src:url("assets/fonts/steelfish-rg-it.otf") format("opentype");
+
+    src:
+        url(
+            "assets/fonts/steelfish-rg-it.otf"
+        )
+        format(
+            "opentype"
+        );
+
     font-style:italic;
+
     font-weight:400;
+
     font-display:swap;
+
 }
 
+
+
+/* =========================================================
+   VARIABLES
+   ========================================================= */
 
 :root{
+
     --background:#050505;
+
     --text:#f2f2f2;
+
     --muted:#a6a6a6;
 
+
     --blue:#739da6;
+
     --blue-light:#8fb3ba;
 
-    --line:rgba(255,255,255,.11);
 
-    --header-background:rgba(5,5,5,.78);
+    --line:
+        rgba(
+            255,
+            255,
+            255,
+            .11
+        );
+
+
+    --header-background:
+        rgba(
+            5,
+            5,
+            5,
+            .78
+        );
+
 
     --content-width:1100px;
+
     --content-gutter:128px;
+
 
     --header-height:76px;
 
+
     --gallery-gap:24px;
 
+
     --radius:24px;
+
 }
 
+
+
+/* =========================================================
+   GLOBAL
+   ========================================================= */
 
 *{
     box-sizing:border-box;
@@ -68,53 +167,80 @@
 
 
 html{
+
     scroll-behavior:smooth;
+
     scroll-padding-top:110px;
+
 }
 
 
 body{
+
     margin:0;
 
     overflow-x:hidden;
 
+
     color:var(--text);
+
     background:var(--background);
 
-    font-family:"Inter",Arial,sans-serif;
+
+    font-family:
+        "Inter",
+        Arial,
+        sans-serif;
+
 
     line-height:1.65;
+
 }
 
 
 a{
+
     color:inherit;
 
     text-decoration:none;
+
 }
 
 
 button{
+
     font:inherit;
+
 }
 
 
 img,
 video{
+
     display:block;
 
     width:100%;
+
 }
 
 
 .content-width{
-    width:min(
-        var(--content-width),
-        calc(100% - var(--content-gutter))
-    );
+
+    width:
+        min(
+            var(--content-width),
+            calc(
+                100%
+                -
+                var(--content-gutter)
+            )
+        );
+
 
     margin-inline:auto;
+
 }
+
 
 
 /* =========================================================
@@ -122,148 +248,251 @@ video{
    ========================================================= */
 
 .site-header{
+
     position:fixed;
 
     z-index:1000;
 
-    inset:0 0 auto;
 
-    height:var(--header-height);
+    inset:
+        0
+        0
+        auto;
 
-    background:var(--header-background);
+
+    height:
+        var(--header-height);
+
+
+    background:
+        var(--header-background);
+
 
     border-bottom:
-        1px solid
+        1px
+        solid
         var(--line);
+
 
     backdrop-filter:
         blur(18px)
         saturate(150%);
 
+
     -webkit-backdrop-filter:
         blur(18px)
         saturate(150%);
+
 }
 
 
 .header-content{
+
     position:relative;
+
 
     display:flex;
 
     justify-content:center;
+
     align-items:center;
 
+
     height:100%;
+
 }
 
 
 .main-nav{
+
     display:flex;
 
     align-items:center;
 
+
     gap:30px;
+
 
     font-family:
         "Bebas Neue",
         sans-serif;
 
+
     font-size:1.28rem;
+
 
     letter-spacing:.12em;
 
+
     line-height:1;
+
 }
 
 
-.main-nav > a:not(.header-logo-link){
+.main-nav
+> a:not(.header-logo-link){
+
     position:relative;
 
+
     transition:
-        color .22s ease,
-        transform .22s ease;
+        color
+            .22s
+            ease,
+
+        transform
+            .22s
+            ease;
+
 }
 
 
-.main-nav > a:not(.header-logo-link)::after{
+.main-nav
+> a:not(.header-logo-link)::after{
+
     content:"";
+
 
     position:absolute;
 
+
     right:0;
+
     bottom:-7px;
+
     left:0;
+
 
     height:1px;
 
-    background:var(--blue-light);
 
-    transform:scaleX(0);
+    background:
+        var(--blue-light);
+
+
+    transform:
+        scaleX(0);
+
 
     transform-origin:right;
 
+
     transition:
-        transform .24s ease;
+        transform
+            .24s
+            ease;
+
 }
 
 
-.main-nav > a:hover,
-.main-nav > a:focus-visible{
-    color:var(--blue-light);
+.main-nav
+> a:hover,
+
+.main-nav
+> a:focus-visible{
+
+    color:
+        var(--blue-light);
+
 }
 
 
-.main-nav > a:not(.header-logo-link):hover,
-.main-nav > a:not(.header-logo-link):focus-visible{
-    transform:translateY(-1px);
+.main-nav
+> a:not(.header-logo-link):hover,
+
+.main-nav
+> a:not(.header-logo-link):focus-visible{
+
+    transform:
+        translateY(-1px);
+
 }
 
 
-.main-nav > a:not(.header-logo-link):hover::after,
-.main-nav > a:not(.header-logo-link):focus-visible::after,
-.main-nav > a[aria-current="page"]::after{
-    transform:scaleX(1);
+.main-nav
+> a:not(.header-logo-link):hover::after,
+
+.main-nav
+> a:not(.header-logo-link):focus-visible::after,
+
+.main-nav
+> a[aria-current="page"]::after{
+
+    transform:
+        scaleX(1);
+
 
     transform-origin:left;
+
 }
 
 
+
+/* LOGO */
+
 .header-logo-link{
+
     display:flex;
 
+
     justify-content:center;
+
     align-items:center;
 
+
     width:42px;
+
     height:52px;
 
-    flex:0 0 42px;
+
+    flex:
+        0
+        0
+        42px;
+
 
     opacity:.94;
 
+
     transition:
-        opacity .22s ease,
-        transform .26s ease;
+        opacity
+            .22s
+            ease,
+
+        transform
+            .26s
+            ease;
+
 }
 
 
 .header-logo-link:hover,
+
 .header-logo-link:focus-visible{
+
     opacity:1;
 
-    transform:scale(1.07);
+
+    transform:
+        scale(1.07);
+
 }
 
 
 .header-logo-image{
+
     width:auto;
+
     height:40px;
+
 
     max-width:38px;
 
+
     object-fit:contain;
+
 }
+
 
 
 /* =========================================================
@@ -271,16 +500,23 @@ video{
    ========================================================= */
 
 .language-switch{
+
     position:absolute;
 
+
     top:50%;
+
     right:0;
+
 
     display:flex;
 
+
     gap:3px;
 
+
     padding:4px;
+
 
     background:
         rgba(
@@ -290,8 +526,10 @@ video{
             .045
         );
 
+
     border:
-        1px solid
+        1px
+        solid
         rgba(
             255,
             255,
@@ -299,55 +537,215 @@ video{
             .12
         );
 
+
     border-radius:999px;
+
 
     transform:
         translateY(-50%);
+
 }
 
 
 .language-button{
+
     min-width:36px;
+
 
     padding:
         6px
         9px;
 
+
     color:#8f8f8f;
+
 
     background:transparent;
 
+
     border:0;
+
 
     border-radius:999px;
 
+
     cursor:pointer;
+
 
     font-family:
         "Bebas Neue",
         sans-serif;
 
+
     font-size:.9rem;
 
+
     letter-spacing:.08em;
+
 }
 
 
 .language-button.is-active{
+
     color:#050505;
 
-    background:var(--blue-light);
+
+    background:
+        var(--blue-light);
+
 }
 
 
 .language-button:hover:not(.is-active){
+
     color:#fff;
+
 }
 
+
+
+/* =========================================================
+   FEEDBACK HEADER LINK
+   ========================================================= */
+
+.header-feedback-link{
+
+    position:absolute;
+
+
+    z-index:3;
+
+
+    top:50%;
+
+    left:0;
+
+
+    display:inline-flex;
+
+    align-items:center;
+
+
+    color:#b7b7b7;
+
+
+    font-family:
+        "Bebas Neue",
+        sans-serif;
+
+
+    font-size:1.05rem;
+
+
+    letter-spacing:.11em;
+
+
+    line-height:1;
+
+
+    text-transform:uppercase;
+
+
+    transform:
+        translateY(-50%);
+
+
+    transition:
+        color
+            .22s
+            ease,
+
+        transform
+            .22s
+            ease;
+
+}
+
+
+.header-feedback-link::after{
+
+    content:"";
+
+
+    position:absolute;
+
+
+    right:0;
+
+    bottom:-7px;
+
+    left:0;
+
+
+    height:1px;
+
+
+    background:
+        var(--blue-light);
+
+
+    transform:
+        scaleX(0);
+
+
+    transform-origin:right;
+
+
+    transition:
+        transform
+            .24s
+            ease;
+
+}
+
+
+.header-feedback-link:hover,
+
+.header-feedback-link:focus-visible{
+
+    color:
+        var(--blue-light);
+
+
+    transform:
+        translateY(
+            calc(
+                -50%
+                -
+                1px
+            )
+        );
+
+}
+
+
+.header-feedback-link:hover::after,
+
+.header-feedback-link:focus-visible::after,
+
+.header-feedback-link[aria-current="page"]::after{
+
+    transform:
+        scaleX(1);
+
+
+    transform-origin:left;
+
+}
+
+
+
+/* =========================================================
+   MAIN
+   ========================================================= */
 
 main{
-    padding-top:var(--header-height);
+
+    padding-top:
+        var(--header-height);
+
 }
+
 
 
 /* =========================================================
@@ -355,29 +753,38 @@ main{
    ========================================================= */
 
 .gallery-hero{
+
     padding:
+
         clamp(
             55px,
             7vh,
             95px
         )
+
         0
+
         clamp(
             90px,
             11vh,
             135px
         );
+
 }
 
 
 .gallery-title{
+
     margin:0;
 
+
     color:#eee;
+
 
     font-family:
         "Bebas Neue",
         sans-serif;
+
 
     font-size:
         clamp(
@@ -386,28 +793,40 @@ main{
             11rem
         );
 
+
     font-weight:400;
+
 
     letter-spacing:.01em;
 
+
     line-height:.8;
+
 }
 
 
 .gallery-introduction{
+
     max-width:690px;
+
 
     margin:
         42px
         0
         0;
 
-    color:var(--muted);
+
+    color:
+        var(--muted);
+
 
     font-size:.98rem;
 
+
     line-height:1.78;
+
 }
+
 
 
 /* =========================================================
@@ -415,16 +834,19 @@ main{
    ========================================================= */
 
 .gallery-sections{
+
     padding-bottom:
         clamp(
             110px,
             14vh,
             180px
         );
+
 }
 
 
 .gallery-section{
+
     margin-bottom:
         clamp(
             120px,
@@ -432,17 +854,28 @@ main{
             195px
         );
 
+
     scroll-margin-top:110px;
+
 }
 
 
 .gallery-section:last-child{
+
     margin-bottom:0;
+
 }
 
 
+
+/* =========================================================
+   SECTION HEADER
+   ========================================================= */
+
 .gallery-section-header{
+
     display:grid;
+
 
     grid-template-columns:
         auto
@@ -451,86 +884,132 @@ main{
             1fr
         );
 
+
     align-items:end;
+
 
     gap:30px;
 
+
     margin-bottom:34px;
+
 }
 
 
 .gallery-section-heading{
+
     display:flex;
+
 
     flex-direction:column;
 
+
     align-items:flex-start;
 
+
     gap:10px;
+
 }
+
 
 
 /* SECTION 1 ↗ */
 
 .gallery-section-number{
+
     display:inline-flex;
+
 
     align-items:baseline;
 
+
     gap:7px;
+
 
     width:fit-content;
 
-    color:var(--blue-light);
+
+    color:
+        var(--blue-light);
+
 
     font-family:
         "Steelfish",
         "Arial Narrow",
         sans-serif;
 
+
     font-size:.95rem;
+
 
     letter-spacing:.075em;
 
+
     line-height:1;
+
 
     text-transform:uppercase;
 
+
     opacity:.92;
 
+
     transition:
-        color .22s ease,
-        transform .22s ease;
+        color
+            .22s
+            ease,
+
+        transform
+            .22s
+            ease;
+
 }
 
 
-.gallery-section-number .arrow{
+.gallery-section-number
+.arrow{
+
     font-size:.72em;
 
+
     opacity:.8;
+
 }
 
 
 .gallery-section-number:hover,
+
 .gallery-section-number:focus-visible{
+
     color:#fff;
+
 
     transform:
         translateY(-1px);
+
 }
 
 
-/* SECTION TITLE */
+
+/* WHITE SECTION TITLE */
 
 .gallery-section-title{
+
     margin:0;
 
+
     color:#eeeeee;
+
 
     font-family:
         "Steelfish",
         "Arial Narrow",
         sans-serif;
+
+
+    /*
+       same size as the old Gallery title
+    */
 
     font-size:
         clamp(
@@ -539,60 +1018,81 @@ main{
             2rem
         );
 
+
     font-weight:400;
+
 
     letter-spacing:.045em;
 
+
     line-height:1;
 
+
     text-transform:uppercase;
+
 }
 
 
 .gallery-section-line{
+
     height:1px;
+
 
     background:
         linear-gradient(
+
             to right,
+
             rgba(
                 143,
                 179,
                 186,
                 .5
             ),
+
             rgba(
                 143,
                 179,
                 186,
                 .035
             )
+
         );
+
 }
 
 
+
 /* =========================================================
-   DYNAMIC ARTBOOK
+   MAIN GALLERY LAYOUT
    ========================================================= */
 
 .gallery-layout{
+
     width:100%;
+
 }
 
 
 .gallery-layout--single{
+
     display:block;
+
 }
 
 
 .gallery-layout--single
 .gallery-card{
+
     width:100%;
+
 }
 
 
 .gallery-layout--pair{
+
     display:grid;
+
 
     grid-template-columns:
         repeat(
@@ -603,33 +1103,46 @@ main{
             )
         );
 
+
     align-items:start;
 
-    gap:var(--gallery-gap);
+
+    gap:
+        var(--gallery-gap);
+
 }
 
 
 .gallery-layout--masonry{
+
     column-count:2;
+
 
     column-gap:
         var(--gallery-gap);
+
 }
 
 
 .gallery-layout--masonry
 .gallery-card{
+
     display:inline-block;
 
+
     width:100%;
+
 
     margin:
         0
         0
         var(--gallery-gap);
 
+
     break-inside:avoid;
+
 }
+
 
 
 /* =========================================================
@@ -637,27 +1150,40 @@ main{
    ========================================================= */
 
 .gallery-card{
+
     position:relative;
+
 
     padding:0;
 
+
     overflow:hidden;
+
 
     color:#fff;
 
+
     background:#18292d;
+
 
     border:0;
 
-    border-radius:var(--radius);
+
+    border-radius:
+        var(--radius);
+
 
     cursor:zoom-in;
 
+
     text-align:left;
+
 
     isolation:isolate;
 
+
     transition:
+
         transform
             .42s
             cubic-bezier(
@@ -666,22 +1192,30 @@ main{
                 .36,
                 1
             ),
+
         box-shadow
             .42s
             ease;
+
 }
 
 
 .gallery-card img{
+
     width:100%;
+
 
     height:auto;
 
+
     border-radius:inherit;
+
 
     object-fit:contain;
 
+
     transition:
+
         transform
             .7s
             cubic-bezier(
@@ -690,24 +1224,33 @@ main{
                 .36,
                 1
             ),
+
         filter
             .48s
             ease;
+
 }
 
 
 .gallery-card::after{
+
     content:"";
+
 
     position:absolute;
 
+
     z-index:1;
+
 
     inset:0;
 
+
     background:
         linear-gradient(
+
             to top,
+
             rgba(
                 0,
                 0,
@@ -726,26 +1269,35 @@ main{
 
             transparent
             68%
+
         );
+
 
     opacity:0;
 
+
     pointer-events:none;
+
 
     transition:
         opacity
-        .33s
-        ease;
+            .33s
+            ease;
+
 }
 
 
 .gallery-card:hover,
+
 .gallery-card:focus-visible{
+
     z-index:20;
+
 
     transform:
         translateY(-4px)
         scale(1.012);
+
 
     box-shadow:
         0
@@ -757,42 +1309,63 @@ main{
             0,
             .46
         );
+
 }
 
 
 .gallery-card:hover::after,
+
 .gallery-card:focus-visible::after{
+
     opacity:1;
+
 }
 
 
 .gallery-card:hover img,
+
 .gallery-card:focus-visible img{
+
     filter:
         blur(2.5px)
         brightness(.58)
         saturate(.88);
 
+
     transform:
         scale(1.025);
+
 }
 
 
+
+/* =========================================================
+   CARD TITLES
+   ========================================================= */
+
 .gallery-card-title{
+
     position:absolute;
+
 
     z-index:4;
 
+
     right:24px;
+
     bottom:20px;
+
     left:24px;
 
+
     color:#fff;
+
 
     font-family:
         "Steelfish",
         "Arial Narrow",
         sans-serif;
+
 
     font-size:
         clamp(
@@ -801,26 +1374,36 @@ main{
             1.5rem
         );
 
+
     letter-spacing:.045em;
+
 
     line-height:1;
 
+
     text-transform:uppercase;
 
+
     opacity:0;
+
 
     transform:
         translateY(10px);
 
+
     pointer-events:none;
 
+
     transition:
+
         opacity
             .3s
             ease,
+
         transform
             .3s
             ease;
+
 }
 
 
@@ -829,11 +1412,15 @@ main{
 
 .gallery-card:focus-visible
 .gallery-card-title{
+
     opacity:1;
+
 
     transform:
         translateY(0);
+
 }
+
 
 
 /* =========================================================
@@ -841,50 +1428,266 @@ main{
    ========================================================= */
 
 .water-ripple-video{
+
     position:absolute;
+
 
     z-index:2;
 
+
     inset:-3%;
 
+
     width:106%;
+
     height:106%;
+
 
     object-fit:cover;
 
+
     border-radius:inherit;
+
 
     opacity:0;
 
+
     mix-blend-mode:screen;
+
 
     filter:
         blur(1.4px)
         brightness(.78)
         contrast(.82);
 
+
     pointer-events:none;
+
 
     transform:
         scale(1.07);
 
+
     transition:
+
         opacity
             .48s
             ease,
+
         transform
             .85s
             ease;
+
 }
 
 
 .gallery-card.is-water-ripple
 .water-ripple-video{
+
     opacity:.16;
+
 
     transform:
         scale(1.09);
+
 }
+
+
+
+/* =========================================================
+   INTERACTION SYSTEMS GROUPS
+   ========================================================= */
+
+/*
+   IMPORTANT:
+
+   Groups are now FULL WIDTH rows:
+
+   OBJECTS
+   images...
+
+   NOTES
+   images...
+
+   PHOTOS
+   images...
+
+   This avoids the huge empty vertical spaces caused
+   by 9 / 10 / 24 items in separate vertical columns.
+*/
+
+.interaction-groups{
+
+    display:block;
+
+
+    width:100%;
+
+
+    margin-top:
+        clamp(
+            38px,
+            4.5vw,
+            58px
+        );
+
+
+    padding-top:
+        clamp(
+            30px,
+            3.5vw,
+            44px
+        );
+
+
+    border-top:
+        1px
+        solid
+        rgba(
+            255,
+            255,
+            255,
+            .08
+        );
+
+}
+
+
+
+/* EACH GROUP = FULL WIDTH ROW */
+
+.interaction-group{
+
+    width:100%;
+
+
+    margin-bottom:
+        clamp(
+            56px,
+            7vw,
+            82px
+        );
+
+}
+
+
+.interaction-group:last-child{
+
+    margin-bottom:0;
+
+}
+
+
+
+/* OBJECTS / NOTES / PHOTOS */
+
+.interaction-group-title{
+
+    margin:
+        0
+        0
+        18px;
+
+
+    color:
+        var(--blue-light);
+
+
+    font-family:
+        "Steelfish",
+        "Arial Narrow",
+        sans-serif;
+
+
+    font-size:1.2rem;
+
+
+    font-weight:400;
+
+
+    letter-spacing:.07em;
+
+
+    line-height:1;
+
+
+    text-transform:uppercase;
+
+}
+
+
+
+/* =========================================================
+   SMALL MASONRY GRID
+   ========================================================= */
+
+.interaction-group-grid{
+
+    width:100%;
+
+
+    /*
+       Smaller than main Gallery.
+       Main gallery = 2 columns.
+       These groups = 4 columns.
+    */
+
+    column-count:4;
+
+
+    column-gap:14px;
+
+}
+
+
+.interaction-group
+.gallery-card{
+
+    display:inline-block;
+
+
+    width:100%;
+
+
+    margin:
+        0
+        0
+        14px;
+
+
+    break-inside:avoid;
+
+
+    vertical-align:top;
+
+
+    border-radius:18px;
+
+}
+
+
+.interaction-group
+.gallery-card-title{
+
+    right:14px;
+
+    bottom:12px;
+
+    left:14px;
+
+
+    font-size:
+        clamp(
+            .86rem,
+            .95vw,
+            1.05rem
+        );
+
+
+    line-height:1.05;
+
+}
+
 
 
 /* =========================================================
@@ -892,17 +1695,24 @@ main{
    ========================================================= */
 
 .lightbox{
+
     position:fixed;
+
 
     z-index:2200;
 
+
     inset:0;
+
 
     display:grid;
 
+
     place-items:center;
 
+
     padding:38px;
+
 
     background:
         rgba(
@@ -912,35 +1722,48 @@ main{
             .92
         );
 
+
     opacity:0;
 
+
     visibility:hidden;
+
 
     backdrop-filter:
         blur(18px);
 
+
     -webkit-backdrop-filter:
         blur(18px);
 
+
     transition:
+
         opacity
             .28s
             ease,
+
         visibility
             .28s
             ease;
+
 }
 
 
 .lightbox.is-open{
+
     opacity:1;
 
+
     visibility:visible;
+
 }
 
 
 .lightbox-dialog{
+
     position:relative;
+
 
     width:
         min(
@@ -948,17 +1771,22 @@ main{
             94vw
         );
 
+
     height:
         min(
             88vh,
             900px
         );
 
+
     overflow:hidden;
+
 
     background:#0a0a0a;
 
+
     border-radius:26px;
+
 
     box-shadow:
         0
@@ -970,52 +1798,75 @@ main{
             0,
             .76
         );
+
 }
 
 
 .lightbox-media{
+
     display:flex;
 
+
     justify-content:center;
+
     align-items:center;
 
+
     width:100%;
+
     height:100%;
 
+
     padding:24px;
+
 }
 
 
 .lightbox-media img{
+
     width:auto;
+
 
     max-width:100%;
 
+
     height:auto;
+
 
     max-height:100%;
 
+
     object-fit:contain;
 
+
     border-radius:12px;
+
 }
 
 
 .lightbox-caption{
+
     position:absolute;
+
 
     z-index:4;
 
+
     right:30px;
+
     bottom:25px;
+
     left:30px;
 
+
     color:#fff;
+
 
     font-family:
         "Steelfish",
         "Arial Narrow",
         sans-serif;
+
 
     font-size:
         clamp(
@@ -1024,33 +1875,49 @@ main{
             1.6rem
         );
 
+
     letter-spacing:.045em;
+
 
     text-transform:uppercase;
 
+
     pointer-events:none;
+
 }
 
 
 .lightbox-close{
+
     position:absolute;
+
 
     z-index:6;
 
+
     top:18px;
+
     right:18px;
+
 
     display:flex;
 
+
     justify-content:center;
+
     align-items:center;
 
+
     width:46px;
+
     height:46px;
+
 
     padding:0;
 
+
     color:#fff;
+
 
     background:
         rgba(
@@ -1060,8 +1927,10 @@ main{
             .68
         );
 
+
     border:
-        1px solid
+        1px
+        solid
         rgba(
             255,
             255,
@@ -1069,16 +1938,22 @@ main{
             .28
         );
 
+
     border-radius:50%;
+
 
     cursor:pointer;
 
+
     font-size:1.3rem;
+
 }
 
 
 .lightbox-close:hover,
+
 .lightbox-close:focus-visible{
+
     background:
         rgba(
             115,
@@ -1087,9 +1962,12 @@ main{
             .62
         );
 
+
     transform:
         scale(1.06);
+
 }
+
 
 
 /* =========================================================
@@ -1097,53 +1975,75 @@ main{
    ========================================================= */
 
 .site-footer{
+
     padding:
         35px
         0
         45px;
 
+
     border-top:
-        1px solid
+        1px
+        solid
         var(--line);
+
 }
 
 
 .footer-content{
+
     display:flex;
+
 
     justify-content:
         space-between;
 
+
     align-items:center;
+
 
     gap:24px;
 
+
     color:#818181;
+
 
     font-size:.75rem;
 
+
     letter-spacing:.04em;
+
 }
 
 
 .footer-institution{
+
     display:flex;
+
 
     align-items:center;
 
+
     gap:18px;
+
 }
 
 
 .footer-ist-logo{
+
     width:auto;
+
 
     height:27px;
 
+
     opacity:.78;
 
+
     object-fit:contain;
+
 }
+
 
 
 /* =========================================================
@@ -1153,344 +2053,269 @@ main{
 @media(max-width:900px){
 
     :root{
+
         --content-gutter:36px;
+
         --gallery-gap:18px;
+
         --radius:20px;
+
+    }
+
+
+    /*
+       Interaction mini-grid:
+       4 → 3
+    */
+
+    .interaction-group-grid{
+
+        column-count:3;
+
     }
 
 }
+
 
 
 @media(max-width:700px){
 
     .gallery-layout--pair{
+
         grid-template-columns:1fr;
+
     }
 
 
     .gallery-layout--masonry{
+
         column-count:1;
+
     }
 
 
     .gallery-section-header{
+
         grid-template-columns:1fr;
 
+
         gap:14px;
+
     }
 
 
     .gallery-card-title{
+
         opacity:1;
 
+
         transform:none;
+
     }
 
 
     .gallery-card::after{
+
         opacity:.38;
+
     }
 
 }
+
+
+
+@media(max-width:650px){
+
+    /*
+       Interaction mini-grid:
+       3 → 2
+    */
+
+    .interaction-group-grid{
+
+        column-count:2;
+
+    }
+
+}
+
 
 
 @media(max-width:520px){
 
     :root{
+
         --header-height:68px;
+
     }
 
 
     .main-nav{
+
         gap:13px;
 
+
         font-size:.94rem;
+
     }
 
 
     .header-logo-link{
+
         width:32px;
+
         height:42px;
 
+
         flex-basis:32px;
+
     }
 
 
     .header-logo-image{
+
         height:31px;
 
+
         max-width:30px;
-    }
 
-
-    .language-switch{
-        right:-4px;
-
-        transform:
-            translate(
-                35%,
-                -50%
-            )
-            scale(.86);
-    }
-
-
-    .language-button{
-        min-width:31px;
-
-        padding:
-            5px
-            6px;
-
-        font-size:.8rem;
     }
 
 
     .footer-content{
+
         flex-direction:column;
 
+
         align-items:flex-start;
+
     }
 
 
     .lightbox{
+
         padding:14px;
+
     }
 
 
     .lightbox-dialog{
+
         width:100%;
+
 
         height:82vh;
 
+
         border-radius:19px;
+
+    }
+
+
+    .gallery-section-heading{
+
+        gap:8px;
+
+    }
+
+
+    .gallery-section-number{
+
+        font-size:.82rem;
+
     }
 
 }
+
+
+
+@media(max-width:420px){
+
+    /*
+       Interaction mini-grid:
+       2 → 1
+    */
+
+    .interaction-group-grid{
+
+        column-count:1;
+
+    }
+
+}
+
 
 
 @media(hover:none){
 
     .water-ripple-video{
+
         display:none;
+
     }
 
 }
+
 
 
 @media(prefers-reduced-motion:reduce){
 
     *,
+
     *::before,
+
     *::after{
-        scroll-behavior:auto !important;
 
-        animation-duration:.01ms !important;
+        scroll-behavior:
+            auto
+            !important;
 
-        animation-iteration-count:1 !important;
 
-        transition-duration:.01ms !important;
+        animation-duration:
+            .01ms
+            !important;
+
+
+        animation-iteration-count:
+            1
+            !important;
+
+
+        transition-duration:
+            .01ms
+            !important;
+
     }
 
 
     .water-ripple-video{
+
         display:none;
+
     }
 
 }
 
-
-/* =========================================================
-   HEADER — FEEDBACK
-   ========================================================= */
-
-.header-content{
-    position:relative;
-}
-
-
-.header-feedback-link{
-    position:absolute;
-
-    top:50%;
-    left:0;
-
-    z-index:3;
-
-    display:inline-flex;
-
-    align-items:center;
-
-    color:#b7b7b7;
-
-    font-family:
-        "Bebas Neue",
-        sans-serif;
-
-    font-size:1.05rem;
-
-    letter-spacing:.11em;
-
-    line-height:1;
-
-    text-transform:uppercase;
-
-    transform:
-        translateY(-50%);
-
-    transition:
-        color
-            220ms
-            ease,
-        transform
-            220ms
-            ease;
-}
-
-
-.header-feedback-link::after{
-    content:"";
-
-    position:absolute;
-
-    right:0;
-    bottom:-7px;
-    left:0;
-
-    height:1px;
-
-    background:
-        var(
-            --blue-light,
-            #8fb3ba
-        );
-
-    transform:
-        scaleX(0);
-
-    transform-origin:right;
-
-    transition:
-        transform
-        240ms
-        ease;
-}
-
-
-.header-feedback-link:hover,
-.header-feedback-link:focus-visible{
-    color:
-        var(
-            --blue-light,
-            #8fb3ba
-        );
-
-    transform:
-        translateY(
-            calc(
-                -50%
-                -
-                1px
-            )
-        );
-}
-
-
-.header-feedback-link:hover::after,
-.header-feedback-link:focus-visible::after,
-.header-feedback-link[aria-current="page"]::after{
-    transform:
-        scaleX(1);
-
-    transform-origin:left;
-}
-
-
-@media(max-width:650px){
-
-    .header-feedback-link{
-        left:4px;
-
-        font-size:.86rem;
-
-        transform:
-            translate(
-                -28%,
-                -50%
-            )
-            scale(.88);
-    }
-
-
-    .header-feedback-link:hover,
-    .header-feedback-link:focus-visible{
-        transform:
-            translate(
-                -28%,
-                calc(
-                    -50%
-                    -
-                    1px
-                )
-            )
-            scale(.88);
-    }
-
-}
 
 
 /* =========================================================
    UNIFIED HEADER
    ========================================================= */
 
-.site-header{
-    position:fixed !important;
-
-    z-index:1000 !important;
-
-    inset:
-        0
-        0
-        auto !important;
-
-    height:76px !important;
-
-    background:
-        rgba(
-            5,
-            5,
-            5,
-            .78
-        ) !important;
-
-    border-bottom:
-        1px solid
-        rgba(
-            255,
-            255,
-            255,
-            .11
-        ) !important;
-
-    backdrop-filter:
-        blur(18px)
-        saturate(150%) !important;
-
-    -webkit-backdrop-filter:
-        blur(18px)
-        saturate(150%) !important;
-}
-
-
 .site-header
 .header-content{
+
     position:relative !important;
+
 
     display:flex !important;
 
+
     align-items:center !important;
 
+
     justify-content:center !important;
+
 
     width:
         min(
@@ -1500,317 +2325,164 @@ main{
                 -
                 128px
             )
-        ) !important;
+        )
+        !important;
+
 
     max-width:none !important;
 
+
     height:100% !important;
+
 
     margin-inline:auto !important;
 
+
     padding:0 !important;
+
 }
 
 
 .site-header
-.main-nav,
+.main-nav{
 
-.site-header
-.simple-main-nav{
     display:flex !important;
+
 
     align-items:center !important;
 
+
     gap:30px !important;
+
 
     margin:0 !important;
 
+
     padding:0 !important;
+
 
     font-family:
         "Bebas Neue",
-        sans-serif !important;
+        sans-serif
+        !important;
+
 
     font-size:1.28rem !important;
 
+
     letter-spacing:.12em !important;
 
+
     line-height:1 !important;
-}
 
-
-.site-header
-.main-nav
-> a:not(.header-logo-link){
-    position:relative !important;
-
-    color:inherit;
-
-    transition:
-        color
-            .22s
-            ease,
-        transform
-            .22s
-            ease !important;
-}
-
-
-.site-header
-.main-nav
-> a:not(.header-logo-link)::after{
-    content:"" !important;
-
-    position:absolute !important;
-
-    right:0 !important;
-    bottom:-7px !important;
-    left:0 !important;
-
-    height:1px !important;
-
-    background:#8fb3ba !important;
-
-    transform:
-        scaleX(0) !important;
-
-    transform-origin:right !important;
-
-    transition:
-        transform
-        .24s
-        ease !important;
-}
-
-
-.site-header
-.main-nav
-> a:not(.header-logo-link):hover,
-
-.site-header
-.main-nav
-> a:not(.header-logo-link):focus-visible{
-    color:#8fb3ba !important;
-
-    transform:
-        translateY(-1px) !important;
-}
-
-
-.site-header
-.main-nav
-> a:not(.header-logo-link):hover::after,
-
-.site-header
-.main-nav
-> a:not(.header-logo-link):focus-visible::after,
-
-.site-header
-.main-nav
-> a[aria-current="page"]:not(.header-logo-link)::after{
-    transform:
-        scaleX(1) !important;
-
-    transform-origin:left !important;
 }
 
 
 .site-header
 .header-logo-link::after{
+
     content:none !important;
 
+
     display:none !important;
+
 }
 
 
 .site-header
 .header-logo-link{
+
     display:flex !important;
+
 
     align-items:center !important;
 
+
     justify-content:center !important;
+
 
     width:42px !important;
 
+
     height:52px !important;
+
 
     flex:
         0
         0
-        42px !important;
+        42px
+        !important;
+
 
     margin:0 !important;
 
+
     padding:0 !important;
 
-    opacity:.94 !important;
-
-    transition:
-        opacity
-            .22s
-            ease,
-        transform
-            .26s
-            ease !important;
-}
-
-
-.site-header
-.header-logo-link:hover,
-
-.site-header
-.header-logo-link:focus-visible{
-    opacity:1 !important;
-
-    transform:
-        translateY(-1px) !important;
 }
 
 
 .site-header
 .header-logo-image{
+
     display:block !important;
 
+
     width:auto !important;
+
 
     height:40px !important;
 
+
     max-width:38px !important;
 
+
     object-fit:contain !important;
+
 }
 
 
-.site-header
-.header-feedback-link{
-    position:absolute !important;
 
-    z-index:3 !important;
-
-    top:50% !important;
-
-    left:0 !important;
-
-    display:inline-flex !important;
-
-    align-items:center !important;
-
-    margin:0 !important;
-
-    color:#b7b7b7 !important;
-
-    font-family:
-        "Bebas Neue",
-        sans-serif !important;
-
-    font-size:1.05rem !important;
-
-    letter-spacing:.11em !important;
-
-    line-height:1 !important;
-
-    text-transform:uppercase !important;
-
-    transform:
-        translateY(-50%) !important;
-
-    transition:
-        color
-            .22s
-            ease,
-        transform
-            .22s
-            ease !important;
-}
-
-
-.site-header
-.header-feedback-link::after{
-    content:"" !important;
-
-    position:absolute !important;
-
-    right:0 !important;
-
-    bottom:-7px !important;
-
-    left:0 !important;
-
-    height:1px !important;
-
-    background:#8fb3ba !important;
-
-    transform:
-        scaleX(0) !important;
-
-    transform-origin:right !important;
-
-    transition:
-        transform
-        .24s
-        ease !important;
-}
-
-
-.site-header
-.header-feedback-link:hover,
-
-.site-header
-.header-feedback-link:focus-visible{
-    color:#8fb3ba !important;
-
-    transform:
-        translateY(
-            calc(
-                -50%
-                -
-                1px
-            )
-        ) !important;
-}
-
-
-.site-header
-.header-feedback-link:hover::after,
-
-.site-header
-.header-feedback-link:focus-visible::after,
-
-.site-header
-.header-feedback-link[aria-current="page"]::after{
-    transform:
-        scaleX(1) !important;
-
-    transform-origin:left !important;
-}
-
+/* LANGUAGE */
 
 .site-header
 .language-switch{
+
+    box-sizing:border-box !important;
+
+
     position:absolute !important;
+
 
     top:50% !important;
 
+
     right:0 !important;
+
 
     display:flex !important;
 
-    gap:2px !important;
 
     align-items:center !important;
 
+
     width:auto !important;
+
 
     height:38px !important;
 
+
     min-height:38px !important;
+
 
     max-height:38px !important;
 
-    margin:0 !important;
+
+    gap:2px !important;
+
 
     padding:3px !important;
+
 
     background:
         rgba(
@@ -1818,503 +2490,425 @@ main{
             255,
             255,
             .045
-        ) !important;
+        )
+        !important;
+
 
     border:
-        1px solid
+        1px
+        solid
         rgba(
             255,
             255,
             255,
             .12
-        ) !important;
+        )
+        !important;
+
 
     border-radius:999px !important;
 
-    line-height:1 !important;
 
     transform:
-        translateY(-50%) !important;
+        translateY(-50%)
+        !important;
+
 }
 
 
 .site-header
 .language-button{
+
     box-sizing:border-box !important;
+
 
     display:flex !important;
 
+
     align-items:center !important;
+
 
     justify-content:center !important;
 
+
     width:32px !important;
+
 
     min-width:32px !important;
 
+
     height:30px !important;
+
 
     min-height:30px !important;
 
+
     max-height:30px !important;
+
 
     margin:0 !important;
 
+
     padding:0 !important;
 
-    color:#8f8f8f !important;
-
-    background:transparent !important;
-
-    border:0 !important;
 
     border-radius:999px !important;
 
-    cursor:pointer !important;
-
-    font-family:
-        "Bebas Neue",
-        sans-serif !important;
 
     font-size:.86rem !important;
 
-    letter-spacing:.08em !important;
 
     line-height:1 !important;
+
 }
 
 
 .site-header
 .language-button.is-active{
+
     color:#050505 !important;
 
+
     background:#8fb3ba !important;
+
 }
 
 
-.site-header
-.language-button:hover:not(.is-active),
+
+/* FEEDBACK */
 
 .site-header
-.language-button:focus-visible:not(.is-active){
-    color:#fff !important;
+.header-feedback-link{
+
+    position:absolute !important;
+
+
+    z-index:3 !important;
+
+
+    top:50% !important;
+
+
+    left:0 !important;
+
+
+    margin:0 !important;
+
+
+    transform:
+        translateY(-50%)
+        !important;
+
 }
+
 
 
 @media(max-width:900px){
 
     .site-header
     .header-content{
+
         width:
             calc(
                 100%
                 -
                 36px
-            ) !important;
+            )
+            !important;
+
     }
 
 }
 
 
+
 @media(max-width:520px){
 
     .site-header{
+
         height:68px !important;
+
     }
 
 
     .site-header
-    .main-nav,
+    .main-nav{
 
-    .site-header
-    .simple-main-nav{
         gap:13px !important;
 
+
         font-size:.94rem !important;
+
     }
 
 
     .site-header
     .header-logo-link{
+
         width:32px !important;
+
 
         height:42px !important;
 
+
         flex-basis:32px !important;
+
     }
 
 
     .site-header
     .header-logo-image{
+
         height:31px !important;
 
+
         max-width:30px !important;
+
     }
 
 
     .site-header
     .language-switch{
+
         right:-4px !important;
 
-        width:auto !important;
 
         height:34px !important;
 
+
         min-height:34px !important;
+
 
         max-height:34px !important;
 
-        padding:3px !important;
 
         transform:
             translate(
                 35%,
                 -50%
             )
-            scale(.86) !important;
+            scale(.86)
+            !important;
+
     }
 
 
     .site-header
     .language-button{
+
         width:28px !important;
+
 
         min-width:28px !important;
 
+
         height:26px !important;
+
 
         min-height:26px !important;
 
+
         max-height:26px !important;
 
+
         font-size:.78rem !important;
+
     }
 
 
     .site-header
     .header-feedback-link{
+
         left:4px !important;
 
+
         font-size:.86rem !important;
+
 
         transform:
             translate(
                 -28%,
                 -50%
             )
-            scale(.88) !important;
-    }
+            scale(.88)
+            !important;
 
-
-    .site-header
-    .header-feedback-link:hover,
-
-    .site-header
-    .header-feedback-link:focus-visible{
-        transform:
-            translate(
-                -28%,
-                calc(
-                    -50%
-                    -
-                    1px
-                )
-            )
-            scale(.88) !important;
     }
 
 }
 
-
-/* =========================================================
-   INTERACTION SYSTEMS
-   OBJECTS / NOTES / PHOTOS
-   ========================================================= */
-
-.interaction-groups{
-    display:grid;
-
-    grid-template-columns:
-        repeat(
-            3,
-            minmax(
-                0,
-                1fr
-            )
-        );
-
-    align-items:start;
-
-    gap:var(--gallery-gap);
-
-    margin-top:
-        clamp(
-            38px,
-            4.5vw,
-            58px
-        );
-
-    padding-top:
-        clamp(
-            30px,
-            3.5vw,
-            44px
-        );
-
-    border-top:
-        1px solid
-        rgba(
-            255,
-            255,
-            255,
-            .08
-        );
-}
-
-
-.interaction-group{
-    min-width:0;
-}
-
-
-.interaction-group-title{
-    margin:
-        0
-        0
-        16px;
-
-    color:var(--blue-light);
-
-    font-family:
-        "Steelfish",
-        "Arial Narrow",
-        sans-serif;
-
-    font-size:1.2rem;
-
-    font-weight:400;
-
-    letter-spacing:.07em;
-
-    line-height:1;
-
-    text-transform:uppercase;
-}
-
-
-.interaction-group-grid{
-    display:flex;
-
-    flex-direction:column;
-
-    gap:14px;
-}
-
-
-.interaction-group
-.gallery-card{
-    display:block;
-
-    width:100%;
-
-    margin:0;
-
-    border-radius:18px;
-}
-
-
-.interaction-group
-.gallery-card-title{
-    right:15px;
-
-    bottom:13px;
-
-    left:15px;
-
-    font-size:
-        clamp(
-            .88rem,
-            1vw,
-            1.08rem
-        );
-
-    line-height:1.05;
-}
-
-
-@media(max-width:800px){
-
-    .interaction-groups{
-        grid-template-columns:1fr;
-
-        gap:40px;
-    }
-
-
-    .interaction-group-grid{
-        display:grid;
-
-        grid-template-columns:
-            repeat(
-                2,
-                minmax(
-                    0,
-                    1fr
-                )
-            );
-    }
-
-}
-
-
-@media(max-width:520px){
-
-    .gallery-section-heading{
-        gap:8px;
-    }
-
-
-    .gallery-section-number{
-        font-size:.82rem;
-    }
-
-
-    .interaction-group-grid{
-        grid-template-columns:1fr;
-    }
-
-}
 
 </style>
+
 </head>
+
 
 
 <body id="top">
 
 
+
+<!-- =======================================================
+     HEADER
+     ======================================================= -->
+
 <header class="site-header">
 
-    <div class="content-width header-content">
 
-        <a
-            class="header-feedback-link"
-            href="feedback.html"
-        >
-            <span
-                data-en="Feedback"
-                data-pt="Feedback"
-            >
-                Feedback
-            </span>
-        </a>
+<div class="content-width header-content">
 
 
-        <nav
-            class="main-nav"
-            aria-label="Main navigation"
-        >
+<a
+    class="header-feedback-link"
+    href="feedback.html"
+>
 
-            <a
-                href="gallery.html"
-                aria-current="page"
-            >
-                <span
-                    data-en="Gallery"
-                    data-pt="Galeria"
-                >
-                    Gallery
-                </span>
-            </a>
+<span
+    data-en="Feedback"
+    data-pt="Feedback"
+>
+    Feedback
+</span>
+
+</a>
 
 
-            <a
-                class="header-logo-link"
-                href="index.html"
-                aria-label="Hidden Waters"
-            >
-                <img
-                    class="header-logo-image"
-                    src="assets/images/hidden-waters-logo-white.png"
-                    alt=""
-                />
-            </a>
+
+<nav
+    aria-label="Main navigation"
+    class="main-nav"
+>
 
 
-            <a href="process.html">
-                <span
-                    data-en="Process"
-                    data-pt="Processo"
-                >
-                    Process
-                </span>
-            </a>
+<a
+    aria-current="page"
+    href="gallery.html"
+>
 
-        </nav>
+<span
+    data-en="Gallery"
+    data-pt="Galeria"
+>
+    Gallery
+</span>
 
-
-        <div
-            class="language-switch"
-            role="group"
-            aria-label="Language"
-        >
-
-            <button
-                class="language-button"
-                data-language="pt"
-                aria-pressed="false"
-                type="button"
-            >
-                PT
-            </button>
+</a>
 
 
-            <button
-                class="language-button is-active"
-                data-language="en"
-                aria-pressed="true"
-                type="button"
-            >
-                EN
-            </button>
 
-        </div>
+<a
+    aria-label="Hidden Waters"
+    class="header-logo-link"
+    href="index.html"
+>
 
-    </div>
+<img
+    alt=""
+    class="header-logo-image"
+    src="assets/images/hidden-waters-logo-white.png"
+/>
+
+</a>
+
+
+
+<a href="process.html">
+
+<span
+    data-en="Process"
+    data-pt="Processo"
+>
+    Process
+</span>
+
+</a>
+
+
+</nav>
+
+
+
+<div
+    aria-label="Language"
+    class="language-switch"
+    role="group"
+>
+
+
+<button
+    aria-pressed="false"
+    class="language-button"
+    data-language="pt"
+    type="button"
+>
+    PT
+</button>
+
+
+<button
+    aria-pressed="true"
+    class="language-button is-active"
+    data-language="en"
+    type="button"
+>
+    EN
+</button>
+
+
+</div>
+
+
+</div>
+
 
 </header>
 
 
+
+<!-- =======================================================
+     MAIN
+     ======================================================= -->
+
 <main>
+
 
 
 <section class="gallery-hero">
 
-    <div class="content-width">
 
-        <h1
-            class="gallery-title"
-            data-en="Gallery"
-            data-pt="Galeria"
-        >
-            Gallery
-        </h1>
+<div class="content-width">
 
 
-        <p
-            class="gallery-introduction"
+<h1
+    class="gallery-title"
+    data-en="Gallery"
+    data-pt="Galeria"
+>
+    Gallery
+</h1>
 
-            data-en="A visual record of the development of the interactive experience, organised according to the same structure used in the written dissertation."
 
-            data-pt="Um registo visual do desenvolvimento da experiência interativa, organizado segundo a mesma estrutura utilizada na dissertação escrita."
-        >
-            A visual record of the development of the interactive
-            experience, organised according to the same structure
-            used in the written dissertation.
-        </p>
 
-    </div>
+<p
+    class="gallery-introduction"
+
+    data-en="A visual record of the development of the interactive experience, organised according to the same structure used in the written dissertation."
+
+    data-pt="Um registo visual do desenvolvimento da experiência interativa, organizado segundo a mesma estrutura utilizada na dissertação escrita."
+>
+
+A visual record of the development of the interactive
+experience, organised according to the same structure
+used in the written dissertation.
+
+</p>
+
+
+</div>
+
 
 </section>
+
 
 
 <div
@@ -2323,625 +2917,747 @@ main{
 ></div>
 
 
+
 </main>
 
 
+
+<!-- =======================================================
+     FOOTER
+     ======================================================= -->
+
 <footer class="site-footer">
 
-    <div class="content-width footer-content">
 
-        <span>
-            Hidden Waters
-        </span>
+<div class="content-width footer-content">
 
 
-        <div class="footer-institution">
-
-            <span
-                data-en="Thesis companion website · 2026"
-                data-pt="Site complementar da tese · 2026"
-            >
-                Thesis companion website · 2026
-            </span>
+<span>
+    Hidden Waters
+</span>
 
 
-            <img
-                class="footer-ist-logo"
-                src="assets/images/ist-logo-white.png"
-                alt="Instituto Superior Técnico"
-            />
 
-        </div>
+<div class="footer-institution">
 
-    </div>
+
+<span
+    data-en="Thesis companion website · 2026"
+    data-pt="Site complementar da tese · 2026"
+>
+    Thesis companion website · 2026
+</span>
+
+
+
+<img
+    alt="Instituto Superior Técnico"
+    class="footer-ist-logo"
+    src="assets/images/ist-logo-white.png"
+/>
+
+
+</div>
+
+
+</div>
+
 
 </footer>
 
 
+
+<!-- =======================================================
+     LIGHTBOX
+     ======================================================= -->
+
 <div
-    class="lightbox"
-    role="dialog"
+    aria-hidden="true"
     aria-label="Expanded gallery image"
     aria-modal="true"
-    aria-hidden="true"
+    class="lightbox"
+    role="dialog"
 >
 
-    <div class="lightbox-dialog">
+
+<div class="lightbox-dialog">
 
 
-        <button
-            class="lightbox-close"
-            type="button"
-            aria-label="Close image"
-        >
-            ×
-        </button>
+<button
+    aria-label="Close image"
+    class="lightbox-close"
+    type="button"
+>
+    ×
+</button>
 
 
-        <div class="lightbox-media"></div>
+<div class="lightbox-media"></div>
 
 
-        <div class="lightbox-caption"></div>
+<div class="lightbox-caption"></div>
 
-
-    </div>
 
 </div>
+
+
+</div>
+
 
 
 <script>
 
 
 /* =========================================================
-   MAIN GALLERY SECTIONS
+   MAIN SECTIONS
    ========================================================= */
 
 const SECTIONS = [
 
-    {
-        id:"virtual-environment",
 
-        en:"Virtual Environment Construction",
+{
+    id:"virtual-environment",
 
-        pt:"Construção do ambiente virtual",
+    en:"Virtual Environment Construction",
 
-        images:[
-            "4.1.jpg"
-        ]
-    },
+    pt:"Construção do ambiente virtual",
 
-
-    {
-        id:"characters-exploration",
-
-        en:"Characters and Exploration Framework",
-
-        pt:"Personagens e base para exploração",
-
-        images:[
-            "4.2_1.jpg",
-            "4.2_2.jpg",
-            "4.2_3.jpg"
-        ]
-    },
+    images:[
+        "4.1.jpg"
+    ]
+},
 
 
-    {
-        id:"menus-interface",
 
-        en:"Menus and Interface",
+{
+    id:"characters-exploration",
 
-        pt:"Menus e interface",
+    en:"Characters and Exploration Framework",
 
-        images:[
-            "4.3_1.jpg",
-            "4.3_2.jpg"
-        ]
-    },
+    pt:"Personagens e base para exploração",
 
-
-    {
-        id:"interaction-systems",
-
-        en:"Interaction Systems",
-
-        pt:"Sistemas de interação",
-
-        images:[
-            "4.4_1.jpg",
-            "4.4_2.jpg",
-            "4.4_3.jpg",
-            "4.4_4.jpg",
-            "4.4_5.jpg",
-            "4.4_6.jpg",
-            "4.4_7.jpg"
-        ]
-    },
+    images:[
+        "4.2_1.jpg",
+        "4.2_2.jpg",
+        "4.2_3.jpg"
+    ]
+},
 
 
-    {
-        id:"xray-system",
 
-        en:"X-Ray System",
+{
+    id:"menus-interface",
 
-        pt:"Sistema X-Ray",
+    en:"Menus and Interface",
 
-        images:[
-            "4.5_1.jpg",
-            "4.5_2.jpg"
-        ]
-    },
+    pt:"Menus e interface",
 
-
-    {
-        id:"maps-archive",
-
-        en:"Maps and Archive",
-
-        pt:"Mapas e arquivo",
-
-        images:[
-            "4.6_1.jpg",
-            "4.6_2.jpg",
-            "4.6_3.jpg",
-            "4.6_4.jpg"
-        ]
-    },
+    images:[
+        "4.3_1.jpg",
+        "4.3_2.jpg"
+    ]
+},
 
 
-    {
-        id:"clock-temporal-system",
 
-        en:"Clock and Temporal System",
+{
+    id:"interaction-systems",
 
-        pt:"Relógio e sistema temporal",
+    en:"Interaction Systems",
 
-        images:[
-            "4.7_1.jpg",
-            "4.7_2.jpg",
-            "4.7_3.jpg",
-            "4.7_4.jpg"
-        ]
-    },
+    pt:"Sistemas de interação",
 
+    images:[
 
-    {
-        id:"atmosphere-weather",
+        "4.4_1.jpg",
 
-        en:"Atmosphere and Weather System",
+        "4.4_2.jpg",
 
-        pt:"Atmosfera e sistema climático",
+        "4.4_3.jpg",
 
-        images:[
-            "4.8_1.jpg",
-            "4.8_2.jpg",
-            "4.8_3.jpg",
-            "4.8_4.jpg"
-        ]
-    },
+        "4.4_4.jpg",
+
+        "4.4_5.jpg",
+
+        "4.4_6.jpg",
+
+        "4.4_7.jpg"
+
+    ]
+},
 
 
-    {
-        id:"historical-system",
 
-        en:"Historical System",
+{
+    id:"xray-system",
 
-        pt:"Sistema Histórico",
+    en:"X-Ray System",
 
-        images:[
-            "4.9_1.jpg",
-            "4.9_2.jpg"
-        ]
-    },
+    pt:"Sistema X-Ray",
 
-
-    {
-        id:"sound-immersion",
-
-        en:"Sound and Immersion",
-
-        pt:"Som e imersão",
-
-        images:[
-            "4.10_1.jpg",
-            "4.10_2.jpg"
-        ]
-    },
+    images:[
+        "4.5_1.jpg",
+        "4.5_2.jpg"
+    ]
+},
 
 
-    {
-        id:"narrative-cutscene",
 
-        en:"Narrative and Cutscene",
+{
+    id:"maps-archive",
 
-        pt:"Narrativa e Cutscene",
+    en:"Maps and Archive",
 
-        images:[
-            "4.11_1.jpg",
-            "4.11_2.jpg"
-        ]
-    },
+    pt:"Mapas e arquivo",
 
-
-    {
-        id:"experience-modes",
-
-        en:"Experience Modes",
-
-        pt:"Modos da experiência",
-
-        images:[
-            "4.12.jpg"
-        ]
-    },
+    images:[
+        "4.6_1.jpg",
+        "4.6_2.jpg",
+        "4.6_3.jpg",
+        "4.6_4.jpg"
+    ]
+},
 
 
-    {
-        id:"optimization-preparation",
 
-        en:"Optimization and Preparation for Use",
+{
+    id:"clock-temporal-system",
 
-        pt:"Otimização e preparação para utilização",
+    en:"Clock and Temporal System",
 
-        images:[
-            "4.13_1.jpg",
-            "4.13_2.jpg"
-        ]
-    }
+    pt:"Relógio e sistema temporal",
+
+    images:[
+        "4.7_1.jpg",
+        "4.7_2.jpg",
+        "4.7_3.jpg",
+        "4.7_4.jpg"
+    ]
+},
+
+
+
+{
+    id:"atmosphere-weather",
+
+    en:"Atmosphere and Weather System",
+
+    pt:"Atmosfera e sistema climático",
+
+    images:[
+        "4.8_1.jpg",
+        "4.8_2.jpg",
+        "4.8_3.jpg",
+        "4.8_4.jpg"
+    ]
+},
+
+
+
+{
+    id:"historical-system",
+
+    en:"Historical System",
+
+    pt:"Sistema Histórico",
+
+    images:[
+        "4.9_1.jpg",
+        "4.9_2.jpg"
+    ]
+},
+
+
+
+{
+    id:"sound-immersion",
+
+    en:"Sound and Immersion",
+
+    pt:"Som e imersão",
+
+    images:[
+        "4.10_1.jpg",
+        "4.10_2.jpg"
+    ]
+},
+
+
+
+{
+    id:"narrative-cutscene",
+
+    en:"Narrative and Cutscene",
+
+    pt:"Narrativa e Cutscene",
+
+    images:[
+        "4.11_1.jpg",
+        "4.11_2.jpg"
+    ]
+},
+
+
+
+{
+    id:"experience-modes",
+
+    en:"Experience Modes",
+
+    pt:"Modos da experiência",
+
+    images:[
+        "4.12.jpg"
+    ]
+},
+
+
+
+{
+    id:"optimization-preparation",
+
+    en:"Optimization and Preparation for Use",
+
+    pt:"Otimização e preparação para utilização",
+
+    images:[
+        "4.13_1.jpg",
+        "4.13_2.jpg"
+    ]
+}
+
 
 ];
 
 
 
 /* =========================================================
-   INTERACTION SYSTEMS — GROUPED IMAGE SETS
+   INTERACTION SYSTEMS
    ========================================================= */
 
 const INTERACTION_GROUPS = [
 
 
-    /* =====================================================
-       OBJECTS
-       ===================================================== */
 
-    {
-        key:"objects",
+/* =========================================================
+   OBJECTS
+   ========================================================= */
 
-        en:"Objects",
+{
 
-        pt:"Objetos",
+key:"objects",
 
-        images:[
+en:"Objects",
 
-            {
-                file:"1O_Distribution Box.png",
-                title:"Distribution Box"
-            },
+pt:"Objetos",
 
 
-            {
-                file:"2O_Gutter R11.png",
-                title:"Gutter R11"
-            },
+images:[
 
 
-            {
-                file:"3O_Gutter R14.png",
-                title:"Gutter R14"
-            },
+{
+    file:"1O_Distribution Box.png",
 
+    title:"Distribution Box"
+},
 
-            {
-                file:"4O_Basin.png",
-                title:"Basin"
-            },
 
+{
+    file:"2O_Gutter R11.png",
 
-            {
-                file:"5O_Gutter CA.png",
-                title:"Gutter CA"
-            },
+    title:"Gutter R11"
+},
 
 
-            {
-                file:"6O_Water spout.png",
-                title:"Water spout"
-            },
+{
+    file:"3O_Gutter R14.png",
 
+    title:"Gutter R14"
+},
 
-            {
-                file:"7O_Gutter CF.png",
-                title:"Gutter CF"
-            },
 
+{
+    file:"4O_Basin.png",
 
-            {
-                file:"8O_Gutter Latrinas.png",
-                title:"Gutter Latrinas"
-            },
+    title:"Basin"
+},
 
 
-            {
-                file:"9O_Inside Sink.png",
-                title:"Inside Sink"
-            }
+{
+    file:"5O_Gutter CA.png",
 
-        ]
+    title:"Gutter CA"
+},
 
-    },
 
+{
+    file:"6O_Water spout.png",
 
+    title:"Water spout"
+},
 
-    /* =====================================================
-       NOTES
-       ===================================================== */
 
-    {
-        key:"notes",
+{
+    file:"7O_Gutter CF.png",
 
-        en:"Notes",
+    title:"Gutter CF"
+},
 
-        pt:"Notas",
 
-        images:[
+{
+    file:"8O_Gutter Latrinas.png",
 
-            {
-                file:"1N_Paper Boat.jpg",
-                title:"Paper Boat"
-            },
+    title:"Gutter Latrinas"
+},
 
 
-            {
-                file:"2N_Gutter RW.jpg",
-                title:"Gutter RW"
-            },
+{
+    file:"9O_Inside Sink.png",
 
+    title:"Inside Sink"
+}
 
-            {
-                file:"3N_Gallery.jpg",
-                title:"Gallery"
-            },
 
+]
 
-            {
-                file:"4N_Casa dos Alguidares.jpg",
-                title:"Casa dos Alguidares"
-            },
+},
 
 
-            {
-                file:"5N_Fountain.jpg",
-                title:"Fountain"
-            },
 
+/* =========================================================
+   NOTES
+   ========================================================= */
 
-            {
-                file:"6N_Casa de Frescos.jpg",
-                title:"Casa de Frescos"
-            },
+{
 
+key:"notes",
 
-            {
-                file:"7N_Pit.jpg",
-                title:"Pit"
-            },
+en:"Notes",
 
+pt:"Notas",
 
-            {
-                file:"8N_Mine.jpg",
-                title:"Mine"
-            },
 
+images:[
 
-            {
-                file:"9N_Outside Sink.jpg",
-                title:"Outside Sink"
-            },
 
+{
+    file:"1N_Paper Boat.jpg",
 
-            {
-                file:"10N_Latrinas.jpg",
-                title:"Latrinas"
-            }
+    title:"Paper Boat"
+},
 
-        ]
 
-    },
+{
+    file:"2N_Gutter RW.jpg",
 
+    title:"Gutter RW"
+},
 
 
-    /* =====================================================
-       PHOTOS
-       ===================================================== */
+{
+    file:"3N_Gallery.jpg",
 
-    {
-        key:"photos",
+    title:"Gallery"
+},
 
-        en:"Photos",
 
-        pt:"Fotos",
+{
+    file:"4N_Casa dos Alguidares.jpg",
 
-        images:[
+    title:"Casa dos Alguidares"
+},
 
-            {
-                file:"1F_Gutter RW.jpg",
-                title:"Gutter RW"
-            },
 
+{
+    file:"5N_Fountain.jpg",
 
-            {
-                file:"2F_Path.jpg",
-                title:"Path"
-            },
+    title:"Fountain"
+},
 
 
-            {
-                file:"3F_Gallery.jpg",
-                title:"Gallery"
-            },
+{
+    file:"6N_Casa de Frescos.jpg",
 
+    title:"Casa de Frescos"
+},
 
-            {
-                file:"4F_Convent — Northeast Side.jpg",
-                title:"Convent — Northeast Side"
-            },
 
+{
+    file:"7N_Pit.jpg",
 
-            {
-                file:"5F_Fountain.jpg",
-                title:"Fountain"
-            },
+    title:"Pit"
+},
 
 
-            {
-                file:"6F_Gutter CA.jpg",
-                title:"Gutter CA"
-            },
+{
+    file:"8N_Mine.jpg",
 
+    title:"Mine"
+},
 
-            {
-                file:"7F_Casa de Frescos - outside.jpg",
-                title:"Casa de Frescos - outside"
-            },
 
+{
+    file:"9N_Outside Sink.jpg",
 
-            {
-                file:"8F_Pit.jpg",
-                title:"Pit"
-            },
+    title:"Outside Sink"
+},
 
 
-            {
-                file:"9F_Casa de Frescos - inside.jpg",
-                title:"Casa de Frescos - inside"
-            },
+{
+    file:"10N_Latrinas.jpg",
 
+    title:"Latrinas"
+}
 
-            {
-                file:"10F_Retaining wall - Casa de Frescos.jpg",
-                title:"Retaining wall - Casa de Frescos"
-            },
 
+]
 
-            {
-                file:"11F_View of Quinta de São Paulo.jpg",
-                title:"View of Quinta de São Paulo"
-            },
+},
 
 
-            {
-                file:"12F_Convent — Southwest Side.jpg",
-                title:"Convent — Southwest Side"
-            },
 
+/* =========================================================
+   PHOTOS
+   ========================================================= */
 
-            {
-                file:"13F_Outside Sink.jpg",
-                title:"Outside Sink"
-            },
+{
 
+key:"photos",
 
-            {
-                file:"14F_Mine.jpg",
-                title:"Mine"
-            },
+en:"Photos",
 
+pt:"Fotos",
 
-            {
-                file:"15F_Inside the Convent I.jpg",
-                title:"Inside the Convent I"
-            },
 
+images:[
 
-            {
-                file:"16F_Inside the Convent II.jpg",
-                title:"Inside the Convent II"
-            },
 
+{
+    file:"1F_Gutter RW.jpg",
 
-            {
-                file:"17F_Inside the Convent III.jpg",
-                title:"Inside the Convent III"
-            },
+    title:"Gutter RW"
+},
 
 
-            {
-                file:"18F_Inside Sink.jpg",
-                title:"Inside Sink"
-            },
+{
+    file:"2F_Path.jpg",
 
+    title:"Path"
+},
 
-            {
-                file:"19F_Inside the Convent IV.jpg",
-                title:"Inside the Convent IV"
-            },
 
+{
+    file:"3F_Gallery.jpg",
 
-            {
-                file:"20F_Inside the Convent V.jpg",
-                title:"Inside the Convent V"
-            },
+    title:"Gallery"
+},
 
 
-            {
-                file:"21F_Latrinas I.jpg",
-                title:"Latrinas I"
-            },
+{
+    file:"4F_Convent — Northeast Side.jpg",
 
+    title:"Convent — Northeast Side"
+},
 
-            {
-                file:"22F_Latrinas II.jpg",
-                title:"Latrinas II"
-            },
 
+{
+    file:"5F_Fountain.jpg",
 
-            {
-                file:"23F_Latrinas III.jpg",
-                title:"Latrinas III"
-            },
+    title:"Fountain"
+},
 
 
-            {
-                file:"24F_Convent Detail.jpg",
-                title:"Convent Detail"
-            }
+{
+    file:"6F_Gutter CA.jpg",
 
-        ]
+    title:"Gutter CA"
+},
 
-    }
+
+{
+    file:"7F_Casa de Frescos - outside.jpg",
+
+    title:"Casa de Frescos - outside"
+},
+
+
+{
+    file:"8F_Pit.jpg",
+
+    title:"Pit"
+},
+
+
+{
+    file:"9F_Casa de Frescos - inside.jpg",
+
+    title:"Casa de Frescos - inside"
+},
+
+
+{
+    file:"10F_Retaining wall - Casa de Frescos.jpg",
+
+    title:"Retaining wall - Casa de Frescos"
+},
+
+
+{
+    file:"11F_View of Quinta de São Paulo.jpg",
+
+    title:"View of Quinta de São Paulo"
+},
+
+
+/*
+   IMPORTANT:
+   this uses EN DASH:
+   –
+*/
+
+{
+    file:"12F_Convent – Southwest Side.jpg",
+
+    title:"Convent — Southwest Side"
+},
+
+
+{
+    file:"13F_Outside Sink.jpg",
+
+    title:"Outside Sink"
+},
+
+
+{
+    file:"14F_Mine.jpg",
+
+    title:"Mine"
+},
+
+
+{
+    file:"15F_Inside the Convent I.jpg",
+
+    title:"Inside the Convent I"
+},
+
+
+{
+    file:"16F_Inside the Convent II.jpg",
+
+    title:"Inside the Convent II"
+},
+
+
+{
+    file:"17F_Inside the Convent III.jpg",
+
+    title:"Inside the Convent III"
+},
+
+
+{
+    file:"18F_Inside Sink.jpg",
+
+    title:"Inside Sink"
+},
+
+
+{
+    file:"19F_Inside the Convent IV.jpg",
+
+    title:"Inside the Convent IV"
+},
+
+
+{
+    file:"20F_Inside the Convent V.jpg",
+
+    title:"Inside the Convent V"
+},
+
+
+{
+    file:"21F_Latrinas I.jpg",
+
+    title:"Latrinas I"
+},
+
+
+{
+    file:"22F_Latrinas II.jpg",
+
+    title:"Latrinas II"
+},
+
+
+{
+    file:"23F_Latrinas III.jpg",
+
+    title:"Latrinas III"
+},
+
+
+{
+    file:"24F_Convent Detail.jpg",
+
+    title:"Convent Detail"
+}
+
+
+]
+
+}
+
 
 ];
 
 
 
-let currentLanguage = "en";
+/* =========================================================
+   STATE
+   ========================================================= */
+
+let currentLanguage =
+    "en";
+
 
 
 const gallery =
+
     document.querySelector(
         "#gallerySections"
     );
 
 
+
 const lightbox =
+
     document.querySelector(
         ".lightbox"
     );
 
 
+
 const lightboxMedia =
+
     document.querySelector(
         ".lightbox-media"
     );
 
 
+
 const lightboxCaption =
+
     document.querySelector(
         ".lightbox-caption"
     );
 
 
+
 const lightboxClose =
+
     document.querySelector(
         ".lightbox-close"
     );
@@ -2953,6 +3669,7 @@ const lightboxClose =
    ========================================================= */
 
 const waterVideo =
+
     document.createElement(
         "video"
     );
@@ -2963,6 +3680,7 @@ waterVideo.className =
 
 
 waterVideo.src =
+
     "assets/media/water-ripple-overlay.mp4";
 
 
@@ -2987,9 +3705,13 @@ waterVideo.preload =
 
 
 waterVideo.setAttribute(
+
     "aria-hidden",
+
     "true"
+
 );
+
 
 
 let activeWaterCard =
@@ -3006,22 +3728,28 @@ let lastFocusedCard =
 
 
 /* =========================================================
-   NORMAL GALLERY LAYOUT
+   MAIN IMAGE LAYOUT
    ========================================================= */
 
-function layoutClass(count){
+function layoutClass(
+    count
+){
 
     if(
         count === 1
     ){
+
         return "gallery-layout--single";
+
     }
 
 
     if(
         count === 2
     ){
+
         return "gallery-layout--pair";
+
     }
 
 
@@ -3032,130 +3760,167 @@ function layoutClass(count){
 
 
 /* =========================================================
-   INTERACTION SYSTEMS GROUPS
+   INTERACTION GROUP HTML
    ========================================================= */
 
 function interactionGroupsMarkup(){
 
     return `
 
-        <div class="interaction-groups">
+
+        <div
+            class="
+                interaction-groups
+            "
+        >
 
 
-            ${INTERACTION_GROUPS.map(
-                group => {
+            ${
+
+                INTERACTION_GROUPS
+                    .map(
+
+                        group => {
 
 
-                    const groupTitle =
-                        currentLanguage === "pt"
-                            ? group.pt
-                            : group.en;
+                            const groupTitle =
+
+                                currentLanguage ===
+                                "pt"
+
+                                    ? group.pt
+
+                                    : group.en;
 
 
 
-                    const cards =
-                        group.images.map(
-                            item => `
+                            const cards =
+
+                                group.images
+                                    .map(
+
+                                        item => `
 
 
-                                <button
+                                            <button
+
+                                                class="
+                                                    gallery-card
+                                                    interaction-group-card
+                                                "
+
+                                                type="button"
+
+
+                                                data-title-en="${item.title}"
+
+                                                data-title-pt="${item.title}"
+                                            >
+
+
+                                                <img
+
+                                                    src="assets/images/gallery/${item.file}"
+
+
+                                                    alt="${item.title}"
+
+
+                                                    loading="lazy"
+
+
+                                                    decoding="async"
+                                                >
+
+
+
+                                                <span
+
+                                                    class="
+                                                        gallery-card-title
+                                                    "
+
+
+                                                    data-en="${item.title}"
+
+
+                                                    data-pt="${item.title}"
+                                                >
+
+                                                    ${item.title}
+
+                                                </span>
+
+
+                                            </button>
+
+
+                                        `
+
+                                    )
+                                    .join("");
+
+
+
+                            return `
+
+
+                                <section
+
                                     class="
-                                        gallery-card
-                                        interaction-group-card
+                                        interaction-group
+                                        interaction-group--${group.key}
                                     "
-
-                                    type="button"
-
-                                    data-title-en="${item.title}"
-
-                                    data-title-pt="${item.title}"
                                 >
 
 
-                                    <img
-                                        src="assets/images/gallery/${item.file}"
+                                    <h3
 
-                                        alt="${item.title}"
-
-                                        loading="lazy"
-
-                                        decoding="async"
-                                    >
-
-
-                                    <span
                                         class="
-                                            gallery-card-title
+                                            interaction-group-title
                                         "
 
-                                        data-en="${item.title}"
 
-                                        data-pt="${item.title}"
+                                        data-en="${group.en}"
+
+
+                                        data-pt="${group.pt}"
                                     >
 
-                                        ${item.title}
+                                        ${groupTitle}
 
-                                    </span>
-
-
-                                </button>
-
-
-                            `
-                        )
-                        .join("");
+                                    </h3>
 
 
 
-                    return `
+                                    <div
+
+                                        class="
+                                            interaction-group-grid
+                                        "
+                                    >
+
+                                        ${cards}
+
+                                    </div>
 
 
-                        <div
-                            class="
-                                interaction-group
-                                interaction-group--${group.key}
-                            "
-                        >
+                                </section>
 
 
-                            <h3
-                                class="
-                                    interaction-group-title
-                                "
-
-                                data-en="${group.en}"
-
-                                data-pt="${group.pt}"
-                            >
-
-                                ${groupTitle}
-
-                            </h3>
+                            `;
 
 
+                        }
 
-                            <div
-                                class="
-                                    interaction-group-grid
-                                "
-                            >
+                    )
+                    .join("")
 
-                                ${cards}
-
-                            </div>
-
-
-                        </div>
-
-
-                    `;
-
-
-                }
-            ).join("")}
+            }
 
 
         </div>
+
 
     `;
 
@@ -3169,265 +3934,318 @@ function interactionGroupsMarkup(){
 
 function renderGallery(){
 
+
     gallery.innerHTML =
 
-        SECTIONS.map(
-            (
-                section,
-                sectionIndex
-            ) => {
+
+        SECTIONS
+            .map(
+
+                (
+                    section,
+                    sectionIndex
+                ) => {
 
 
 
-                /* -----------------------------------------
-                   NORMAL SECTION IMAGES
-                   ----------------------------------------- */
+                    /* =====================================
+                       NORMAL SECTION IMAGES
+                       ===================================== */
 
-                const cards =
-
-                    section.images.map(
-                        (
-                            file,
-                            index
-                        ) => {
+                    const cards =
 
 
-                            const number =
-                                index + 1;
+                        section.images
+                            .map(
+
+                                (
+                                    file,
+                                    index
+                                ) => {
 
 
-                            const titleEn =
-                                `${section.en} — Image ${number}`;
+                                    const number =
 
-
-                            const titlePt =
-                                `${section.pt} — Imagem ${number}`;
+                                        index + 1;
 
 
 
-                            return `
+                                    const titleEn =
 
-
-                                <button
-                                    class="
-                                        gallery-card
-                                    "
-
-                                    type="button"
-
-                                    data-title-en="${titleEn}"
-
-                                    data-title-pt="${titlePt}"
-                                >
-
-
-                                    <img
-                                        src="assets/images/gallery/${file}"
-
-                                        alt="${titleEn}"
-
-                                        loading="lazy"
-
-                                        decoding="async"
-                                    >
-
-
-                                    <span
-                                        class="
-                                            gallery-card-title
-                                        "
-
-                                        data-en="${titleEn}"
-
-                                        data-pt="${titlePt}"
-                                    >
-
-                                        ${
-                                            currentLanguage === "pt"
-                                                ? titlePt
-                                                : titleEn
-                                        }
-
-                                    </span>
-
-
-                                </button>
-
-
-                            `;
-
-
-                        }
-                    )
-                    .join("");
+                                        `${section.en} — Image ${number}`;
 
 
 
-                /* -----------------------------------------
-                   SECTION TITLE
-                   ----------------------------------------- */
+                                    const titlePt =
 
-                const title =
-
-                    currentLanguage === "pt"
-                        ? section.pt
-                        : section.en;
+                                        `${section.pt} — Imagem ${number}`;
 
 
 
-                const sectionWord =
-
-                    currentLanguage === "pt"
-                        ? "SECÇÃO"
-                        : "SECTION";
+                                    return `
 
 
+                                        <button
 
-                /* -----------------------------------------
-                   GROUPED CONTENT
-                   ----------------------------------------- */
-
-                const groupedContent =
-
-                    section.id ===
-                    "interaction-systems"
-
-                        ? interactionGroupsMarkup()
-
-                        : "";
+                                            class="
+                                                gallery-card
+                                            "
 
 
-
-                /* -----------------------------------------
-                   SECTION HTML
-                   ----------------------------------------- */
-
-                return `
+                                            type="button"
 
 
-                    <section
-                        class="
-                            gallery-section
-                        "
+                                            data-title-en="${titleEn}"
 
-                        id="${section.id}"
-                    >
+
+                                            data-title-pt="${titlePt}"
+                                        >
+
+
+                                            <img
+
+                                                src="assets/images/gallery/${file}"
+
+
+                                                alt="${titleEn}"
+
+
+                                                loading="lazy"
+
+
+                                                decoding="async"
+                                            >
 
 
 
-                        <header
+                                            <span
+
+                                                class="
+                                                    gallery-card-title
+                                                "
+
+
+                                                data-en="${titleEn}"
+
+
+                                                data-pt="${titlePt}"
+                                            >
+
+                                                ${
+                                                    currentLanguage ===
+                                                    "pt"
+
+                                                        ? titlePt
+
+                                                        : titleEn
+                                                }
+
+                                            </span>
+
+
+                                        </button>
+
+
+                                    `;
+
+
+                                }
+
+                            )
+                            .join("");
+
+
+
+                    /* =====================================
+                       TITLE
+                       ===================================== */
+
+                    const title =
+
+
+                        currentLanguage ===
+                        "pt"
+
+                            ? section.pt
+
+                            : section.en;
+
+
+
+                    const sectionWord =
+
+
+                        currentLanguage ===
+                        "pt"
+
+                            ? "SECÇÃO"
+
+                            : "SECTION";
+
+
+
+                    /* =====================================
+                       SPECIAL INTERACTION CONTENT
+                       ===================================== */
+
+                    const groupedContent =
+
+
+                        section.id ===
+                        "interaction-systems"
+
+                            ? interactionGroupsMarkup()
+
+                            : "";
+
+
+
+                    /* =====================================
+                       SECTION
+                       ===================================== */
+
+                    return `
+
+
+                        <section
+
                             class="
-                                gallery-section-header
+                                gallery-section
                             "
+
+
+                            id="${section.id}"
                         >
 
 
 
-                            <div
+                            <header
+
                                 class="
-                                    gallery-section-heading
+                                    gallery-section-header
                                 "
                             >
 
 
 
-                                <a
+                                <div
+
                                     class="
-                                        gallery-section-number
-                                    "
-
-                                    href="#${section.id}"
-
-                                    aria-label="
-                                        ${sectionWord}
-                                        ${sectionIndex + 1}:
-                                        ${title}
+                                        gallery-section-heading
                                     "
                                 >
 
 
-                                    <span>
 
-                                        ${sectionWord}
-                                        ${sectionIndex + 1}
+                                    <a
 
-                                    </span>
-
-
-
-                                    <span
                                         class="
-                                            arrow
+                                            gallery-section-number
                                         "
 
-                                        aria-hidden="true"
+
+                                        href="#${section.id}"
+
+
+                                        aria-label="
+                                            ${sectionWord}
+                                            ${sectionIndex + 1}:
+                                            ${title}
+                                        "
                                     >
 
-                                        ↗
 
-                                    </span>
+                                        <span>
+
+                                            ${sectionWord}
+                                            ${sectionIndex + 1}
+
+                                        </span>
 
 
-                                </a>
+
+                                        <span
+
+                                            class="
+                                                arrow
+                                            "
+
+
+                                            aria-hidden="true"
+                                        >
+
+                                            ↗
+
+                                        </span>
+
+
+                                    </a>
 
 
 
-                                <h2
+                                    <h2
+
+                                        class="
+                                            gallery-section-title
+                                        "
+                                    >
+
+                                        ${title}
+
+                                    </h2>
+
+
+                                </div>
+
+
+
+                                <span
+
                                     class="
-                                        gallery-section-title
+                                        gallery-section-line
                                     "
-                                >
 
-                                    ${title}
 
-                                </h2>
+                                    aria-hidden="true"
+                                ></span>
 
+
+                            </header>
+
+
+
+                            <div
+
+                                class="
+                                    gallery-layout
+                                    ${
+                                        layoutClass(
+                                            section.images.length
+                                        )
+                                    }
+                                "
+                            >
+
+                                ${cards}
 
                             </div>
 
 
 
-                            <span
-                                class="
-                                    gallery-section-line
-                                "
-
-                                aria-hidden="true"
-                            ></span>
-
-
-                        </header>
+                            ${groupedContent}
 
 
 
-                        <div
-                            class="
-                                gallery-layout
-                                ${layoutClass(
-                                    section.images.length
-                                )}
-                            "
-                        >
-
-                            ${cards}
-
-                        </div>
+                        </section>
 
 
-
-                        ${groupedContent}
-
+                    `;
 
 
-                    </section>
+                }
 
-
-                `;
-
-
-            }
-        )
-        .join("");
+            )
+            .join("");
 
 }
 
@@ -3439,31 +4257,45 @@ function renderGallery(){
 
 function updateStaticLanguage(){
 
+
     document.documentElement.lang =
+
         currentLanguage;
 
 
+
     document
+
         .querySelectorAll(
             "[data-en][data-pt]"
         )
+
         .forEach(
+
             element => {
 
+
                 element.textContent =
+
                     element.dataset[
                         currentLanguage
                     ];
 
+
             }
+
         );
 
 
+
     document
+
         .querySelectorAll(
             ".language-button"
         )
+
         .forEach(
+
             button => {
 
 
@@ -3475,28 +4307,37 @@ function updateStaticLanguage(){
 
 
                 button.classList.toggle(
+
                     "is-active",
+
                     active
+
                 );
 
 
 
                 button.setAttribute(
+
                     "aria-pressed",
+
                     active
                         ? "true"
                         : "false"
+
                 );
 
 
             }
+
         );
 
 }
 
 
 
-function setLanguage(language){
+function setLanguage(
+    language
+){
 
     currentLanguage =
         language;
@@ -3512,10 +4353,13 @@ function setLanguage(language){
 
 
 document
+
     .querySelectorAll(
         ".language-button"
     )
+
     .forEach(
+
         button => {
 
 
@@ -3524,6 +4368,7 @@ document
                 "click",
 
                 () =>
+
                     setLanguage(
                         button.dataset.language
                     )
@@ -3532,6 +4377,7 @@ document
 
 
         }
+
     );
 
 
@@ -3557,7 +4403,9 @@ gallery.addEventListener(
         if(
             !card
         ){
+
             return;
+
         }
 
 
@@ -3572,7 +4420,9 @@ gallery.addEventListener(
         if(
             !source
         ){
+
             return;
+
         }
 
 
@@ -3584,7 +4434,9 @@ gallery.addEventListener(
 
         const title =
 
-            currentLanguage === "pt"
+
+            currentLanguage ===
+            "pt"
 
                 ? card.dataset.titlePt
 
@@ -3654,6 +4506,7 @@ gallery.addEventListener(
 
 
 function closeLightbox(){
+
 
     lightbox.classList.remove(
         "is-open"
@@ -3771,7 +4624,9 @@ gallery.addEventListener(
         if(
             !card
         ){
+
             return;
+
         }
 
 
@@ -3878,7 +4733,9 @@ gallery.addEventListener(
         if(
             !card
         ){
+
             return;
+
         }
 
 
@@ -3941,6 +4798,7 @@ gallery.addEventListener(
 
                         waterVideo.remove();
 
+
                         activeWaterCard =
                             null;
 
@@ -3966,6 +4824,7 @@ gallery.addEventListener(
 
 renderGallery();
 
+
 updateStaticLanguage();
 
 
@@ -3973,4 +4832,5 @@ updateStaticLanguage();
 
 
 </body>
+
 </html>
