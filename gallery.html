@@ -1,126 +1,106 @@
 <!DOCTYPE html>
-
 <html lang="en">
 
 <head>
 
-<meta charset="utf-8"/>
+<meta charset="utf-8">
 
 <meta
-    content="width=device-width, initial-scale=1.0"
     name="viewport"
-/>
+    content="width=device-width, initial-scale=1.0"
+>
 
 <meta
-    content="Visual gallery for the Hidden Waters thesis project."
     name="description"
-/>
+    content="Visual gallery for the Hidden Waters thesis project."
+>
 
 <link
-    href="assets/images/favicon.png"
     rel="icon"
     type="image/png"
-/>
+    href="assets/images/favicon.png"
+>
 
 <link
-    href="assets/images/favicon.ico"
     rel="icon"
     sizes="any"
-/>
+    href="assets/images/favicon.ico"
+>
 
 <link
-    href="assets/images/apple-touch-icon.png"
     rel="apple-touch-icon"
-/>
+    href="assets/images/apple-touch-icon.png"
+>
 
-<title>
-    Gallery · Hidden Waters
-</title>
+<title>Gallery · Hidden Waters</title>
+
 
 <link
+    rel="preconnect"
     href="https://fonts.googleapis.com"
-    rel="preconnect"
-/>
+>
 
 <link
-    crossorigin=""
-    href="https://fonts.gstatic.com"
     rel="preconnect"
-/>
+    href="https://fonts.gstatic.com"
+    crossorigin
+>
 
 <link
     href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:wght@300;400;500;600&display=swap"
     rel="stylesheet"
-/>
+>
 
 
 <style>
-
 
 /* =========================================================
    FONTS
    ========================================================= */
 
-@font-face{
+@font-face {
 
-    font-family:"Steelfish";
+    font-family: "Steelfish";
 
     src:
-        url(
-            "assets/fonts/steelfish-rg.otf"
-        )
-        format(
-            "opentype"
-        );
+        url("assets/fonts/steelfish-rg.otf")
+        format("opentype");
 
-    font-style:normal;
-
-    font-weight:400;
-
-    font-display:swap;
-
+    font-style: normal;
+    font-weight: 400;
+    font-display: swap;
 }
 
 
-@font-face{
+@font-face {
 
-    font-family:"Steelfish";
+    font-family: "Steelfish";
 
     src:
-        url(
-            "assets/fonts/steelfish-rg-it.otf"
-        )
-        format(
-            "opentype"
-        );
+        url("assets/fonts/steelfish-rg-it.otf")
+        format("opentype");
 
-    font-style:italic;
-
-    font-weight:400;
-
-    font-display:swap;
-
+    font-style: italic;
+    font-weight: 400;
+    font-display: swap;
 }
-
 
 
 /* =========================================================
    VARIABLES
    ========================================================= */
 
-:root{
+:root {
 
-    --background:#050505;
+    --background: #050505;
 
-    --text:#f2f2f2;
+    --text: #f2f2f2;
 
-    --muted:#a6a6a6;
+    --muted: #a6a6a6;
 
+    --blue: #739da6;
 
-    --blue:#739da6;
-
-    --blue-light:#8fb3ba;
-
+    --blue-light: #8fb3ba;
 
     --line:
         rgba(
@@ -130,7 +110,6 @@
             .11
         );
 
-
     --header-background:
         rgba(
             5,
@@ -139,92 +118,78 @@
             .78
         );
 
+    --content-width: 1100px;
 
-    --content-width:1100px;
+    --content-gutter: 128px;
 
-    --content-gutter:128px;
+    --header-height: 76px;
 
+    --gallery-gap: 24px;
 
-    --header-height:76px;
-
-
-    --gallery-gap:24px;
-
-
-    --radius:24px;
-
+    --radius: 24px;
 }
-
 
 
 /* =========================================================
    GLOBAL
    ========================================================= */
 
-*{
-    box-sizing:border-box;
+* {
+    box-sizing: border-box;
 }
 
 
-html{
+html {
 
-    scroll-behavior:smooth;
+    scroll-behavior: smooth;
 
-    scroll-padding-top:110px;
-
+    scroll-padding-top: 110px;
 }
 
 
-body{
+body {
 
-    margin:0;
+    margin: 0;
 
-    overflow-x:hidden;
+    overflow-x: hidden;
 
+    color: var(--text);
 
-    color:var(--text);
-
-    background:var(--background);
-
+    background: var(--background);
 
     font-family:
         "Inter",
         Arial,
         sans-serif;
 
-
-    line-height:1.65;
-
+    line-height: 1.65;
 }
 
 
-a{
+a {
 
-    color:inherit;
+    color: inherit;
 
-    text-decoration:none;
-
+    text-decoration: none;
 }
 
 
-button{
+button {
 
-    font:inherit;
-
+    font: inherit;
 }
 
 
 img,
-video{
+video {
 
-    display:block;
+    display: block;
 
-    width:100%;
-
+    width: 100%;
 }
 
 
-.content-width{
+.content-width {
 
     width:
         min(
@@ -236,164 +201,122 @@ video{
             )
         );
 
-
-    margin-inline:auto;
-
+    margin-inline: auto;
 }
-
 
 
 /* =========================================================
    HEADER
    ========================================================= */
 
-.site-header{
+.site-header {
 
-    position:fixed;
+    position: fixed;
 
-    z-index:1000;
-
+    z-index: 1000;
 
     inset:
         0
         0
         auto;
 
-
-    height:
-        var(--header-height);
-
+    height: var(--header-height);
 
     background:
         var(--header-background);
 
-
     border-bottom:
-        1px
-        solid
+        1px solid
         var(--line);
-
 
     backdrop-filter:
         blur(18px)
         saturate(150%);
 
-
     -webkit-backdrop-filter:
         blur(18px)
         saturate(150%);
-
 }
 
 
-.header-content{
+.header-content {
 
-    position:relative;
+    position: relative;
 
+    display: flex;
 
-    display:flex;
+    justify-content: center;
 
-    justify-content:center;
+    align-items: center;
 
-    align-items:center;
-
-
-    height:100%;
-
+    height: 100%;
 }
 
 
-.main-nav{
+/* =========================================================
+   CENTRAL NAV
+   ========================================================= */
 
-    display:flex;
+.main-nav {
 
-    align-items:center;
+    display: flex;
 
+    align-items: center;
 
-    gap:30px;
+    gap: 30px;
 
+    margin: 0;
+
+    padding: 0;
 
     font-family:
         "Bebas Neue",
         sans-serif;
 
+    font-size: 1.28rem;
 
-    font-size:1.28rem;
+    letter-spacing: .12em;
 
-
-    letter-spacing:.12em;
-
-
-    line-height:1;
-
+    line-height: 1;
 }
 
 
 .main-nav
-> a:not(.header-logo-link){
+> a:not(.header-logo-link) {
 
-    position:relative;
-
+    position: relative;
 
     transition:
-        color
-            .22s
-            ease,
-
-        transform
-            .22s
-            ease;
-
+        color .22s ease,
+        transform .22s ease;
 }
 
 
 .main-nav
-> a:not(.header-logo-link)::after{
+> a:not(.header-logo-link)::after {
 
-    content:"";
+    content: "";
 
+    position: absolute;
 
-    position:absolute;
+    right: 0;
+    bottom: -7px;
+    left: 0;
 
-
-    right:0;
-
-    bottom:-7px;
-
-    left:0;
-
-
-    height:1px;
-
+    height: 1px;
 
     background:
         var(--blue-light);
 
-
     transform:
         scaleX(0);
 
-
-    transform-origin:right;
-
+    transform-origin: right;
 
     transition:
         transform
-            .24s
-            ease;
-
-}
-
-
-.main-nav
-> a:hover,
-
-.main-nav
-> a:focus-visible{
-
-    color:
-        var(--blue-light);
-
+        .24s
+        ease;
 }
 
 
@@ -401,11 +324,13 @@ video{
 > a:not(.header-logo-link):hover,
 
 .main-nav
-> a:not(.header-logo-link):focus-visible{
+> a:not(.header-logo-link):focus-visible {
+
+    color:
+        var(--blue-light);
 
     transform:
         translateY(-1px);
-
 }
 
 
@@ -416,296 +341,149 @@ video{
 > a:not(.header-logo-link):focus-visible::after,
 
 .main-nav
-> a[aria-current="page"]::after{
+> a[aria-current="page"]:not(.header-logo-link)::after {
 
     transform:
         scaleX(1);
 
-
-    transform-origin:left;
-
+    transform-origin: left;
 }
 
 
+/* =========================================================
+   LOGO
+   ========================================================= */
 
-/* LOGO */
+.header-logo-link {
 
-.header-logo-link{
+    display: flex;
 
-    display:flex;
+    align-items: center;
 
+    justify-content: center;
 
-    justify-content:center;
+    width: 42px;
 
-    align-items:center;
-
-
-    width:42px;
-
-    height:52px;
-
+    height: 52px;
 
     flex:
         0
         0
         42px;
 
-
-    opacity:.94;
-
+    opacity: .94;
 
     transition:
-        opacity
-            .22s
-            ease,
+        opacity .22s ease,
+        transform .26s ease;
+}
 
-        transform
-            .26s
-            ease;
 
+.header-logo-link::after {
+
+    content: none !important;
 }
 
 
 .header-logo-link:hover,
 
-.header-logo-link:focus-visible{
+.header-logo-link:focus-visible {
 
-    opacity:1;
-
+    opacity: 1;
 
     transform:
-        scale(1.07);
-
+        translateY(-1px);
 }
 
 
-.header-logo-image{
+.header-logo-image {
 
-    width:auto;
+    display: block;
 
-    height:40px;
+    width: auto;
 
+    height: 40px;
 
-    max-width:38px;
+    max-width: 38px;
 
-
-    object-fit:contain;
-
+    object-fit: contain;
 }
-
 
 
 /* =========================================================
-   PT / EN
+   FEEDBACK
    ========================================================= */
 
-.language-switch{
+.header-feedback-link {
 
-    position:absolute;
+    position: absolute;
 
+    z-index: 3;
 
-    top:50%;
+    top: 50%;
 
-    right:0;
+    left: 0;
 
+    display: inline-flex;
 
-    display:flex;
+    align-items: center;
 
-
-    gap:3px;
-
-
-    padding:4px;
-
-
-    background:
-        rgba(
-            255,
-            255,
-            255,
-            .045
-        );
-
-
-    border:
-        1px
-        solid
-        rgba(
-            255,
-            255,
-            255,
-            .12
-        );
-
-
-    border-radius:999px;
-
-
-    transform:
-        translateY(-50%);
-
-}
-
-
-.language-button{
-
-    min-width:36px;
-
-
-    padding:
-        6px
-        9px;
-
-
-    color:#8f8f8f;
-
-
-    background:transparent;
-
-
-    border:0;
-
-
-    border-radius:999px;
-
-
-    cursor:pointer;
-
+    color: #b7b7b7;
 
     font-family:
         "Bebas Neue",
         sans-serif;
 
+    font-size: 1.05rem;
 
-    font-size:.9rem;
+    letter-spacing: .11em;
 
+    line-height: 1;
 
-    letter-spacing:.08em;
-
-}
-
-
-.language-button.is-active{
-
-    color:#050505;
-
-
-    background:
-        var(--blue-light);
-
-}
-
-
-.language-button:hover:not(.is-active){
-
-    color:#fff;
-
-}
-
-
-
-/* =========================================================
-   FEEDBACK HEADER LINK
-   ========================================================= */
-
-.header-feedback-link{
-
-    position:absolute;
-
-
-    z-index:3;
-
-
-    top:50%;
-
-    left:0;
-
-
-    display:inline-flex;
-
-    align-items:center;
-
-
-    color:#b7b7b7;
-
-
-    font-family:
-        "Bebas Neue",
-        sans-serif;
-
-
-    font-size:1.05rem;
-
-
-    letter-spacing:.11em;
-
-
-    line-height:1;
-
-
-    text-transform:uppercase;
-
+    text-transform: uppercase;
 
     transform:
         translateY(-50%);
-
 
     transition:
-        color
-            .22s
-            ease,
-
-        transform
-            .22s
-            ease;
-
+        color .22s ease,
+        transform .22s ease;
 }
 
 
-.header-feedback-link::after{
+.header-feedback-link::after {
 
-    content:"";
+    content: "";
 
+    position: absolute;
 
-    position:absolute;
+    right: 0;
+    bottom: -7px;
+    left: 0;
 
-
-    right:0;
-
-    bottom:-7px;
-
-    left:0;
-
-
-    height:1px;
-
+    height: 1px;
 
     background:
         var(--blue-light);
-
 
     transform:
         scaleX(0);
 
-
-    transform-origin:right;
-
+    transform-origin: right;
 
     transition:
         transform
-            .24s
-            ease;
-
+        .24s
+        ease;
 }
 
 
 .header-feedback-link:hover,
 
-.header-feedback-link:focus-visible{
+.header-feedback-link:focus-visible {
 
     color:
         var(--blue-light);
-
 
     transform:
         translateY(
@@ -715,44 +493,137 @@ video{
                 1px
             )
         );
-
 }
 
 
 .header-feedback-link:hover::after,
 
-.header-feedback-link:focus-visible::after,
-
-.header-feedback-link[aria-current="page"]::after{
+.header-feedback-link:focus-visible::after {
 
     transform:
         scaleX(1);
 
-
-    transform-origin:left;
-
+    transform-origin: left;
 }
 
+
+/* =========================================================
+   PT / EN
+   ========================================================= */
+
+.language-switch {
+
+    position: absolute;
+
+    top: 50%;
+
+    right: 0;
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 2px;
+
+    width: auto;
+
+    height: 38px;
+
+    padding: 3px;
+
+    background:
+        rgba(
+            255,
+            255,
+            255,
+            .045
+        );
+
+    border:
+        1px solid
+        rgba(
+            255,
+            255,
+            255,
+            .12
+        );
+
+    border-radius: 999px;
+
+    transform:
+        translateY(-50%);
+}
+
+
+.language-button {
+
+    display: flex;
+
+    justify-content: center;
+
+    align-items: center;
+
+    width: 32px;
+
+    min-width: 32px;
+
+    height: 30px;
+
+    padding: 0;
+
+    color: #8f8f8f;
+
+    background: transparent;
+
+    border: 0;
+
+    border-radius: 999px;
+
+    cursor: pointer;
+
+    font-family:
+        "Bebas Neue",
+        sans-serif;
+
+    font-size: .86rem;
+
+    letter-spacing: .08em;
+
+    line-height: 1;
+}
+
+
+.language-button.is-active {
+
+    color: #050505;
+
+    background:
+        var(--blue-light);
+}
+
+
+.language-button:hover:not(.is-active) {
+
+    color: #fff;
+}
 
 
 /* =========================================================
    MAIN
    ========================================================= */
 
-main{
+main {
 
     padding-top:
         var(--header-height);
-
 }
-
 
 
 /* =========================================================
    HERO
    ========================================================= */
 
-.gallery-hero{
+.gallery-hero {
 
     padding:
 
@@ -769,22 +640,18 @@ main{
             11vh,
             135px
         );
-
 }
 
 
-.gallery-title{
+.gallery-title {
 
-    margin:0;
+    margin: 0;
 
-
-    color:#eee;
-
+    color: #eee;
 
     font-family:
         "Bebas Neue",
         sans-serif;
-
 
     font-size:
         clamp(
@@ -793,47 +660,37 @@ main{
             11rem
         );
 
+    font-weight: 400;
 
-    font-weight:400;
+    letter-spacing: .01em;
 
-
-    letter-spacing:.01em;
-
-
-    line-height:.8;
-
+    line-height: .8;
 }
 
 
-.gallery-introduction{
+.gallery-introduction {
 
-    max-width:690px;
-
+    max-width: 690px;
 
     margin:
         42px
         0
         0;
 
-
     color:
         var(--muted);
 
+    font-size: .98rem;
 
-    font-size:.98rem;
-
-
-    line-height:1.78;
-
+    line-height: 1.78;
 }
-
 
 
 /* =========================================================
    SECTIONS
    ========================================================= */
 
-.gallery-sections{
+.gallery-sections {
 
     padding-bottom:
         clamp(
@@ -841,11 +698,10 @@ main{
             14vh,
             180px
         );
-
 }
 
 
-.gallery-section{
+.gallery-section {
 
     margin-bottom:
         clamp(
@@ -854,28 +710,23 @@ main{
             195px
         );
 
-
-    scroll-margin-top:110px;
-
+    scroll-margin-top: 110px;
 }
 
 
-.gallery-section:last-child{
+.gallery-section:last-child {
 
-    margin-bottom:0;
-
+    margin-bottom: 0;
 }
-
 
 
 /* =========================================================
    SECTION HEADER
    ========================================================= */
 
-.gallery-section-header{
+.gallery-section-header {
 
-    display:grid;
-
+    display: grid;
 
     grid-template-columns:
         auto
@@ -884,132 +735,94 @@ main{
             1fr
         );
 
+    align-items: end;
 
-    align-items:end;
+    gap: 30px;
 
-
-    gap:30px;
-
-
-    margin-bottom:34px;
-
+    margin-bottom: 34px;
 }
 
 
-.gallery-section-heading{
+.gallery-section-heading {
 
-    display:flex;
+    display: flex;
 
+    flex-direction: column;
 
-    flex-direction:column;
+    align-items: flex-start;
 
-
-    align-items:flex-start;
-
-
-    gap:10px;
-
+    gap: 10px;
 }
-
 
 
 /* SECTION 1 ↗ */
 
-.gallery-section-number{
+.gallery-section-number {
 
-    display:inline-flex;
+    display: inline-flex;
 
+    align-items: baseline;
 
-    align-items:baseline;
+    gap: 7px;
 
-
-    gap:7px;
-
-
-    width:fit-content;
-
+    width: fit-content;
 
     color:
         var(--blue-light);
-
 
     font-family:
         "Steelfish",
         "Arial Narrow",
         sans-serif;
 
+    font-size: .95rem;
 
-    font-size:.95rem;
+    letter-spacing: .075em;
 
+    line-height: 1;
 
-    letter-spacing:.075em;
+    text-transform: uppercase;
 
-
-    line-height:1;
-
-
-    text-transform:uppercase;
-
-
-    opacity:.92;
-
+    opacity: .92;
 
     transition:
-        color
-            .22s
-            ease,
-
-        transform
-            .22s
-            ease;
-
+        color .22s ease,
+        transform .22s ease;
 }
 
 
 .gallery-section-number
-.arrow{
+.arrow {
 
-    font-size:.72em;
+    font-size: .72em;
 
-
-    opacity:.8;
-
+    opacity: .8;
 }
 
 
 .gallery-section-number:hover,
 
-.gallery-section-number:focus-visible{
+.gallery-section-number:focus-visible {
 
-    color:#fff;
-
+    color: #fff;
 
     transform:
         translateY(-1px);
-
 }
 
 
+/* WHITE TITLE */
 
-/* WHITE SECTION TITLE */
+.gallery-section-title {
 
-.gallery-section-title{
+    margin: 0;
 
-    margin:0;
-
-
-    color:#eeeeee;
-
+    color: #eeeeee;
 
     font-family:
         "Steelfish",
         "Arial Narrow",
         sans-serif;
-
-
-    /*
-       same size as the old Gallery title
-    */
 
     font-size:
         clamp(
@@ -1018,25 +831,19 @@ main{
             2rem
         );
 
+    font-weight: 400;
 
-    font-weight:400;
+    letter-spacing: .045em;
 
+    line-height: 1;
 
-    letter-spacing:.045em;
-
-
-    line-height:1;
-
-
-    text-transform:uppercase;
-
+    text-transform: uppercase;
 }
 
 
-.gallery-section-line{
+.gallery-section-line {
 
-    height:1px;
-
+    height: 1px;
 
     background:
         linear-gradient(
@@ -1058,41 +865,35 @@ main{
             )
 
         );
-
 }
-
 
 
 /* =========================================================
-   MAIN GALLERY LAYOUT
+   MAIN GALLERY
    ========================================================= */
 
-.gallery-layout{
+.gallery-layout {
 
-    width:100%;
-
+    width: 100%;
 }
 
 
-.gallery-layout--single{
+.gallery-layout--single {
 
-    display:block;
-
+    display: block;
 }
 
 
 .gallery-layout--single
-.gallery-card{
+.gallery-card {
 
-    width:100%;
-
+    width: 100%;
 }
 
 
-.gallery-layout--pair{
+.gallery-layout--pair {
 
-    display:grid;
-
+    display: grid;
 
     grid-template-columns:
         repeat(
@@ -1103,84 +904,64 @@ main{
             )
         );
 
-
-    align-items:start;
-
+    align-items: start;
 
     gap:
         var(--gallery-gap);
-
 }
 
 
-.gallery-layout--masonry{
+.gallery-layout--masonry {
 
-    column-count:2;
-
+    column-count: 2;
 
     column-gap:
         var(--gallery-gap);
-
 }
 
 
 .gallery-layout--masonry
-.gallery-card{
+.gallery-card {
 
-    display:inline-block;
+    display: inline-block;
 
-
-    width:100%;
-
+    width: 100%;
 
     margin:
         0
         0
         var(--gallery-gap);
 
-
-    break-inside:avoid;
-
+    break-inside: avoid;
 }
-
 
 
 /* =========================================================
    CARDS
    ========================================================= */
 
-.gallery-card{
+.gallery-card {
 
-    position:relative;
+    position: relative;
 
+    padding: 0;
 
-    padding:0;
+    overflow: hidden;
 
+    color: #fff;
 
-    overflow:hidden;
+    background: #18292d;
 
-
-    color:#fff;
-
-
-    background:#18292d;
-
-
-    border:0;
-
+    border: 0;
 
     border-radius:
         var(--radius);
 
+    cursor: zoom-in;
 
-    cursor:zoom-in;
+    text-align: left;
 
-
-    text-align:left;
-
-
-    isolation:isolate;
-
+    isolation: isolate;
 
     transition:
 
@@ -1196,23 +977,18 @@ main{
         box-shadow
             .42s
             ease;
-
 }
 
 
-.gallery-card img{
+.gallery-card img {
 
-    width:100%;
+    width: 100%;
 
+    height: auto;
 
-    height:auto;
+    border-radius: inherit;
 
-
-    border-radius:inherit;
-
-
-    object-fit:contain;
-
+    object-fit: contain;
 
     transition:
 
@@ -1228,23 +1004,18 @@ main{
         filter
             .48s
             ease;
-
 }
 
 
-.gallery-card::after{
+.gallery-card::after {
 
-    content:"";
+    content: "";
 
+    position: absolute;
 
-    position:absolute;
+    z-index: 1;
 
-
-    z-index:1;
-
-
-    inset:0;
-
+    inset: 0;
 
     background:
         linear-gradient(
@@ -1272,32 +1043,26 @@ main{
 
         );
 
+    opacity: 0;
 
-    opacity:0;
-
-
-    pointer-events:none;
-
+    pointer-events: none;
 
     transition:
         opacity
-            .33s
-            ease;
-
+        .33s
+        ease;
 }
 
 
 .gallery-card:hover,
 
-.gallery-card:focus-visible{
+.gallery-card:focus-visible {
 
-    z-index:20;
-
+    z-index: 20;
 
     transform:
         translateY(-4px)
         scale(1.012);
-
 
     box-shadow:
         0
@@ -1309,63 +1074,53 @@ main{
             0,
             .46
         );
-
 }
 
 
 .gallery-card:hover::after,
 
-.gallery-card:focus-visible::after{
+.gallery-card:focus-visible::after {
 
-    opacity:1;
-
+    opacity: 1;
 }
 
 
 .gallery-card:hover img,
 
-.gallery-card:focus-visible img{
+.gallery-card:focus-visible img {
 
     filter:
         blur(2.5px)
         brightness(.58)
         saturate(.88);
 
-
     transform:
         scale(1.025);
-
 }
 
 
-
 /* =========================================================
-   CARD TITLES
+   TITLES
    ========================================================= */
 
-.gallery-card-title{
+.gallery-card-title {
 
-    position:absolute;
+    position: absolute;
 
+    z-index: 4;
 
-    z-index:4;
+    right: 24px;
 
+    bottom: 20px;
 
-    right:24px;
+    left: 24px;
 
-    bottom:20px;
-
-    left:24px;
-
-
-    color:#fff;
-
+    color: #fff;
 
     font-family:
         "Steelfish",
         "Arial Narrow",
         sans-serif;
-
 
     font-size:
         clamp(
@@ -1374,25 +1129,18 @@ main{
             1.5rem
         );
 
+    letter-spacing: .045em;
 
-    letter-spacing:.045em;
+    line-height: 1;
 
+    text-transform: uppercase;
 
-    line-height:1;
-
-
-    text-transform:uppercase;
-
-
-    opacity:0;
-
+    opacity: 0;
 
     transform:
         translateY(10px);
 
-
-    pointer-events:none;
-
+    pointer-events: none;
 
     transition:
 
@@ -1403,7 +1151,6 @@ main{
         transform
             .3s
             ease;
-
 }
 
 
@@ -1411,118 +1158,74 @@ main{
 .gallery-card-title,
 
 .gallery-card:focus-visible
-.gallery-card-title{
+.gallery-card-title {
 
-    opacity:1;
-
+    opacity: 1;
 
     transform:
         translateY(0);
-
 }
 
 
-
 /* =========================================================
-   WATER HOVER
+   WATER
    ========================================================= */
 
-.water-ripple-video{
+.water-ripple-video {
 
-    position:absolute;
+    position: absolute;
 
+    z-index: 2;
 
-    z-index:2;
+    inset: -3%;
 
+    width: 106%;
 
-    inset:-3%;
+    height: 106%;
 
+    object-fit: cover;
 
-    width:106%;
+    border-radius: inherit;
 
-    height:106%;
+    opacity: 0;
 
-
-    object-fit:cover;
-
-
-    border-radius:inherit;
-
-
-    opacity:0;
-
-
-    mix-blend-mode:screen;
-
+    mix-blend-mode: screen;
 
     filter:
         blur(1.4px)
         brightness(.78)
         contrast(.82);
 
-
-    pointer-events:none;
-
+    pointer-events: none;
 
     transform:
         scale(1.07);
 
-
     transition:
-
-        opacity
-            .48s
-            ease,
-
-        transform
-            .85s
-            ease;
-
+        opacity .48s ease,
+        transform .85s ease;
 }
 
 
 .gallery-card.is-water-ripple
-.water-ripple-video{
+.water-ripple-video {
 
-    opacity:.16;
-
+    opacity: .16;
 
     transform:
         scale(1.09);
-
 }
 
 
-
 /* =========================================================
-   INTERACTION SYSTEMS GROUPS
+   INTERACTION SYSTEMS
    ========================================================= */
 
-/*
-   IMPORTANT:
+.interaction-groups {
 
-   Groups are now FULL WIDTH rows:
+    display: block;
 
-   OBJECTS
-   images...
-
-   NOTES
-   images...
-
-   PHOTOS
-   images...
-
-   This avoids the huge empty vertical spaces caused
-   by 9 / 10 / 24 items in separate vertical columns.
-*/
-
-.interaction-groups{
-
-    display:block;
-
-
-    width:100%;
-
+    width: 100%;
 
     margin-top:
         clamp(
@@ -1531,7 +1234,6 @@ main{
             58px
         );
 
-
     padding-top:
         clamp(
             30px,
@@ -1539,27 +1241,20 @@ main{
             44px
         );
 
-
     border-top:
-        1px
-        solid
+        1px solid
         rgba(
             255,
             255,
             255,
             .08
         );
-
 }
 
 
+.interaction-group {
 
-/* EACH GROUP = FULL WIDTH ROW */
-
-.interaction-group{
-
-    width:100%;
-
+    width: 100%;
 
     margin-bottom:
         clamp(
@@ -1567,114 +1262,125 @@ main{
             7vw,
             82px
         );
-
 }
 
 
-.interaction-group:last-child{
+.interaction-group:last-child {
 
-    margin-bottom:0;
-
+    margin-bottom: 0;
 }
-
 
 
 /* OBJECTS / NOTES / PHOTOS */
 
-.interaction-group-title{
+.interaction-group-title {
 
     margin:
         0
         0
         18px;
 
-
     color:
         var(--blue-light);
-
 
     font-family:
         "Steelfish",
         "Arial Narrow",
         sans-serif;
 
+    font-size: 1.2rem;
 
-    font-size:1.2rem;
+    font-weight: 400;
 
+    letter-spacing: .07em;
 
-    font-weight:400;
+    line-height: 1;
 
-
-    letter-spacing:.07em;
-
-
-    line-height:1;
-
-
-    text-transform:uppercase;
-
+    text-transform: uppercase;
 }
 
 
-
 /* =========================================================
-   SMALL MASONRY GRID
+   NOTES + PHOTOS
+   4 COLUNAS
    ========================================================= */
 
-.interaction-group-grid{
+.interaction-group-grid {
 
-    width:100%;
+    width: 100%;
 
+    column-count: 4;
 
-    /*
-       Smaller than main Gallery.
-       Main gallery = 2 columns.
-       These groups = 4 columns.
-    */
-
-    column-count:4;
-
-
-    column-gap:14px;
-
+    column-gap: 14px;
 }
 
 
 .interaction-group
-.gallery-card{
+.gallery-card {
 
-    display:inline-block;
+    display: inline-block;
 
-
-    width:100%;
-
+    width: 100%;
 
     margin:
         0
         0
         14px;
 
+    break-inside: avoid;
 
-    break-inside:avoid;
+    vertical-align: top;
 
-
-    vertical-align:top;
-
-
-    border-radius:18px;
-
+    border-radius: 18px;
 }
 
 
+/* =========================================================
+   OBJECTS
+   9 IMAGENS = 3 × 3
+   ========================================================= */
+
+.interaction-group--objects
+.interaction-group-grid {
+
+    display: grid;
+
+    grid-template-columns:
+        repeat(
+            3,
+            minmax(
+                0,
+                1fr
+            )
+        );
+
+    gap: 14px;
+
+    column-count: initial;
+}
+
+
+.interaction-group--objects
+.gallery-card {
+
+    display: block;
+
+    width: 100%;
+
+    margin: 0;
+}
+
+
+/* titles smaller */
+
 .interaction-group
-.gallery-card-title{
+.gallery-card-title {
 
-    right:14px;
+    right: 14px;
 
-    bottom:12px;
+    bottom: 12px;
 
-    left:14px;
-
+    left: 14px;
 
     font-size:
         clamp(
@@ -1683,36 +1389,27 @@ main{
             1.05rem
         );
 
-
-    line-height:1.05;
-
+    line-height: 1.05;
 }
-
 
 
 /* =========================================================
    LIGHTBOX
    ========================================================= */
 
-.lightbox{
+.lightbox {
 
-    position:fixed;
+    position: fixed;
 
+    z-index: 2200;
 
-    z-index:2200;
+    inset: 0;
 
+    display: grid;
 
-    inset:0;
+    place-items: center;
 
-
-    display:grid;
-
-
-    place-items:center;
-
-
-    padding:38px;
-
+    padding: 38px;
 
     background:
         rgba(
@@ -1722,48 +1419,33 @@ main{
             .92
         );
 
+    opacity: 0;
 
-    opacity:0;
-
-
-    visibility:hidden;
-
+    visibility: hidden;
 
     backdrop-filter:
         blur(18px);
 
-
     -webkit-backdrop-filter:
         blur(18px);
 
-
     transition:
-
-        opacity
-            .28s
-            ease,
-
-        visibility
-            .28s
-            ease;
-
+        opacity .28s ease,
+        visibility .28s ease;
 }
 
 
-.lightbox.is-open{
+.lightbox.is-open {
 
-    opacity:1;
+    opacity: 1;
 
-
-    visibility:visible;
-
+    visibility: visible;
 }
 
 
-.lightbox-dialog{
+.lightbox-dialog {
 
-    position:relative;
-
+    position: relative;
 
     width:
         min(
@@ -1771,22 +1453,17 @@ main{
             94vw
         );
 
-
     height:
         min(
             88vh,
             900px
         );
 
+    overflow: hidden;
 
-    overflow:hidden;
+    background: #0a0a0a;
 
-
-    background:#0a0a0a;
-
-
-    border-radius:26px;
-
+    border-radius: 26px;
 
     box-shadow:
         0
@@ -1798,75 +1475,59 @@ main{
             0,
             .76
         );
-
 }
 
 
-.lightbox-media{
+.lightbox-media {
 
-    display:flex;
+    display: flex;
 
+    justify-content: center;
 
-    justify-content:center;
+    align-items: center;
 
-    align-items:center;
+    width: 100%;
 
+    height: 100%;
 
-    width:100%;
-
-    height:100%;
-
-
-    padding:24px;
-
+    padding: 24px;
 }
 
 
-.lightbox-media img{
+.lightbox-media img {
 
-    width:auto;
+    width: auto;
 
+    max-width: 100%;
 
-    max-width:100%;
+    height: auto;
 
+    max-height: 100%;
 
-    height:auto;
+    object-fit: contain;
 
-
-    max-height:100%;
-
-
-    object-fit:contain;
-
-
-    border-radius:12px;
-
+    border-radius: 12px;
 }
 
 
-.lightbox-caption{
+.lightbox-caption {
 
-    position:absolute;
+    position: absolute;
 
+    z-index: 4;
 
-    z-index:4;
+    right: 30px;
 
+    bottom: 25px;
 
-    right:30px;
+    left: 30px;
 
-    bottom:25px;
-
-    left:30px;
-
-
-    color:#fff;
-
+    color: #fff;
 
     font-family:
         "Steelfish",
         "Arial Narrow",
         sans-serif;
-
 
     font-size:
         clamp(
@@ -1875,49 +1536,37 @@ main{
             1.6rem
         );
 
+    letter-spacing: .045em;
 
-    letter-spacing:.045em;
+    text-transform: uppercase;
 
-
-    text-transform:uppercase;
-
-
-    pointer-events:none;
-
+    pointer-events: none;
 }
 
 
-.lightbox-close{
+.lightbox-close {
 
-    position:absolute;
+    position: absolute;
 
+    z-index: 6;
 
-    z-index:6;
+    top: 18px;
 
+    right: 18px;
 
-    top:18px;
+    display: flex;
 
-    right:18px;
+    justify-content: center;
 
+    align-items: center;
 
-    display:flex;
+    width: 46px;
 
+    height: 46px;
 
-    justify-content:center;
+    padding: 0;
 
-    align-items:center;
-
-
-    width:46px;
-
-    height:46px;
-
-
-    padding:0;
-
-
-    color:#fff;
-
+    color: #fff;
 
     background:
         rgba(
@@ -1927,10 +1576,8 @@ main{
             .68
         );
 
-
     border:
-        1px
-        solid
+        1px solid
         rgba(
             255,
             255,
@@ -1938,21 +1585,17 @@ main{
             .28
         );
 
+    border-radius: 50%;
 
-    border-radius:50%;
+    cursor: pointer;
 
-
-    cursor:pointer;
-
-
-    font-size:1.3rem;
-
+    font-size: 1.3rem;
 }
 
 
 .lightbox-close:hover,
 
-.lightbox-close:focus-visible{
+.lightbox-close:focus-visible {
 
     background:
         rgba(
@@ -1962,779 +1605,299 @@ main{
             .62
         );
 
-
     transform:
         scale(1.06);
-
 }
-
 
 
 /* =========================================================
    FOOTER
    ========================================================= */
 
-.site-footer{
+.site-footer {
 
     padding:
         35px
         0
         45px;
 
-
     border-top:
-        1px
-        solid
+        1px solid
         var(--line);
-
 }
 
 
-.footer-content{
+.footer-content {
 
-    display:flex;
-
+    display: flex;
 
     justify-content:
         space-between;
 
+    align-items: center;
 
-    align-items:center;
+    gap: 24px;
 
+    color: #818181;
 
-    gap:24px;
+    font-size: .75rem;
 
-
-    color:#818181;
-
-
-    font-size:.75rem;
-
-
-    letter-spacing:.04em;
-
+    letter-spacing: .04em;
 }
 
 
-.footer-institution{
+.footer-institution {
 
-    display:flex;
+    display: flex;
 
+    align-items: center;
 
-    align-items:center;
-
-
-    gap:18px;
-
+    gap: 18px;
 }
 
 
-.footer-ist-logo{
+.footer-ist-logo {
 
-    width:auto;
+    width: auto;
 
+    height: 27px;
 
-    height:27px;
+    opacity: .78;
 
-
-    opacity:.78;
-
-
-    object-fit:contain;
-
+    object-fit: contain;
 }
-
 
 
 /* =========================================================
    RESPONSIVE
    ========================================================= */
 
-@media(max-width:900px){
+@media (max-width: 900px) {
 
-    :root{
+    :root {
 
-        --content-gutter:36px;
+        --content-gutter: 36px;
 
-        --gallery-gap:18px;
-
-        --radius:20px;
-
+        --gallery-gap: 18px;
     }
 
 
-    /*
-       Interaction mini-grid:
-       4 → 3
-    */
+    .interaction-group-grid {
 
-    .interaction-group-grid{
-
-        column-count:3;
-
+        column-count: 3;
     }
 
+
+    .interaction-group--objects
+    .interaction-group-grid {
+
+        display: grid;
+
+        grid-template-columns:
+            repeat(
+                3,
+                minmax(
+                    0,
+                    1fr
+                )
+            );
+
+        gap: 14px;
+    }
 }
 
 
+@media (max-width: 700px) {
 
-@media(max-width:700px){
+    .gallery-layout--pair {
 
-    .gallery-layout--pair{
-
-        grid-template-columns:1fr;
-
+        grid-template-columns: 1fr;
     }
 
 
-    .gallery-layout--masonry{
+    .gallery-layout--masonry {
 
-        column-count:1;
-
+        column-count: 1;
     }
 
 
-    .gallery-section-header{
+    .gallery-section-header {
 
-        grid-template-columns:1fr;
+        grid-template-columns: 1fr;
 
-
-        gap:14px;
-
+        gap: 14px;
     }
 
 
-    .gallery-card-title{
+    .gallery-card-title {
 
-        opacity:1;
+        opacity: 1;
 
-
-        transform:none;
-
+        transform: none;
     }
 
 
-    .gallery-card::after{
+    .gallery-card::after {
 
-        opacity:.38;
-
+        opacity: .38;
     }
-
 }
 
 
+@media (max-width: 650px) {
 
-@media(max-width:650px){
+    .interaction-group-grid {
 
-    /*
-       Interaction mini-grid:
-       3 → 2
-    */
-
-    .interaction-group-grid{
-
-        column-count:2;
-
+        column-count: 2;
     }
 
+
+    .interaction-group--objects
+    .interaction-group-grid {
+
+        grid-template-columns:
+            repeat(
+                2,
+                minmax(
+                    0,
+                    1fr
+                )
+            );
+    }
 }
 
 
+@media (max-width: 520px) {
 
-@media(max-width:520px){
+    :root {
 
-    :root{
-
-        --header-height:68px;
-
+        --header-height: 68px;
     }
 
 
-    .main-nav{
+    .main-nav {
 
-        gap:13px;
+        gap: 13px;
 
-
-        font-size:.94rem;
-
+        font-size: .94rem;
     }
 
 
-    .header-logo-link{
+    .header-logo-link {
 
-        width:32px;
+        width: 32px;
 
-        height:42px;
+        height: 42px;
 
-
-        flex-basis:32px;
-
+        flex-basis: 32px;
     }
 
 
-    .header-logo-image{
+    .header-logo-image {
 
-        height:31px;
+        height: 31px;
 
-
-        max-width:30px;
-
+        max-width: 30px;
     }
 
 
-    .footer-content{
+    .language-switch {
 
-        flex-direction:column;
+        right: -4px;
 
+        width: auto;
 
-        align-items:flex-start;
-
-    }
-
-
-    .lightbox{
-
-        padding:14px;
-
-    }
-
-
-    .lightbox-dialog{
-
-        width:100%;
-
-
-        height:82vh;
-
-
-        border-radius:19px;
-
-    }
-
-
-    .gallery-section-heading{
-
-        gap:8px;
-
-    }
-
-
-    .gallery-section-number{
-
-        font-size:.82rem;
-
-    }
-
-}
-
-
-
-@media(max-width:420px){
-
-    /*
-       Interaction mini-grid:
-       2 → 1
-    */
-
-    .interaction-group-grid{
-
-        column-count:1;
-
-    }
-
-}
-
-
-
-@media(hover:none){
-
-    .water-ripple-video{
-
-        display:none;
-
-    }
-
-}
-
-
-
-@media(prefers-reduced-motion:reduce){
-
-    *,
-
-    *::before,
-
-    *::after{
-
-        scroll-behavior:
-            auto
-            !important;
-
-
-        animation-duration:
-            .01ms
-            !important;
-
-
-        animation-iteration-count:
-            1
-            !important;
-
-
-        transition-duration:
-            .01ms
-            !important;
-
-    }
-
-
-    .water-ripple-video{
-
-        display:none;
-
-    }
-
-}
-
-
-
-/* =========================================================
-   UNIFIED HEADER
-   ========================================================= */
-
-.site-header
-.header-content{
-
-    position:relative !important;
-
-
-    display:flex !important;
-
-
-    align-items:center !important;
-
-
-    justify-content:center !important;
-
-
-    width:
-        min(
-            1100px,
-            calc(
-                100%
-                -
-                128px
-            )
-        )
-        !important;
-
-
-    max-width:none !important;
-
-
-    height:100% !important;
-
-
-    margin-inline:auto !important;
-
-
-    padding:0 !important;
-
-}
-
-
-.site-header
-.main-nav{
-
-    display:flex !important;
-
-
-    align-items:center !important;
-
-
-    gap:30px !important;
-
-
-    margin:0 !important;
-
-
-    padding:0 !important;
-
-
-    font-family:
-        "Bebas Neue",
-        sans-serif
-        !important;
-
-
-    font-size:1.28rem !important;
-
-
-    letter-spacing:.12em !important;
-
-
-    line-height:1 !important;
-
-}
-
-
-.site-header
-.header-logo-link::after{
-
-    content:none !important;
-
-
-    display:none !important;
-
-}
-
-
-.site-header
-.header-logo-link{
-
-    display:flex !important;
-
-
-    align-items:center !important;
-
-
-    justify-content:center !important;
-
-
-    width:42px !important;
-
-
-    height:52px !important;
-
-
-    flex:
-        0
-        0
-        42px
-        !important;
-
-
-    margin:0 !important;
-
-
-    padding:0 !important;
-
-}
-
-
-.site-header
-.header-logo-image{
-
-    display:block !important;
-
-
-    width:auto !important;
-
-
-    height:40px !important;
-
-
-    max-width:38px !important;
-
-
-    object-fit:contain !important;
-
-}
-
-
-
-/* LANGUAGE */
-
-.site-header
-.language-switch{
-
-    box-sizing:border-box !important;
-
-
-    position:absolute !important;
-
-
-    top:50% !important;
-
-
-    right:0 !important;
-
-
-    display:flex !important;
-
-
-    align-items:center !important;
-
-
-    width:auto !important;
-
-
-    height:38px !important;
-
-
-    min-height:38px !important;
-
-
-    max-height:38px !important;
-
-
-    gap:2px !important;
-
-
-    padding:3px !important;
-
-
-    background:
-        rgba(
-            255,
-            255,
-            255,
-            .045
-        )
-        !important;
-
-
-    border:
-        1px
-        solid
-        rgba(
-            255,
-            255,
-            255,
-            .12
-        )
-        !important;
-
-
-    border-radius:999px !important;
-
-
-    transform:
-        translateY(-50%)
-        !important;
-
-}
-
-
-.site-header
-.language-button{
-
-    box-sizing:border-box !important;
-
-
-    display:flex !important;
-
-
-    align-items:center !important;
-
-
-    justify-content:center !important;
-
-
-    width:32px !important;
-
-
-    min-width:32px !important;
-
-
-    height:30px !important;
-
-
-    min-height:30px !important;
-
-
-    max-height:30px !important;
-
-
-    margin:0 !important;
-
-
-    padding:0 !important;
-
-
-    border-radius:999px !important;
-
-
-    font-size:.86rem !important;
-
-
-    line-height:1 !important;
-
-}
-
-
-.site-header
-.language-button.is-active{
-
-    color:#050505 !important;
-
-
-    background:#8fb3ba !important;
-
-}
-
-
-
-/* FEEDBACK */
-
-.site-header
-.header-feedback-link{
-
-    position:absolute !important;
-
-
-    z-index:3 !important;
-
-
-    top:50% !important;
-
-
-    left:0 !important;
-
-
-    margin:0 !important;
-
-
-    transform:
-        translateY(-50%)
-        !important;
-
-}
-
-
-
-@media(max-width:900px){
-
-    .site-header
-    .header-content{
-
-        width:
-            calc(
-                100%
-                -
-                36px
-            )
-            !important;
-
-    }
-
-}
-
-
-
-@media(max-width:520px){
-
-    .site-header{
-
-        height:68px !important;
-
-    }
-
-
-    .site-header
-    .main-nav{
-
-        gap:13px !important;
-
-
-        font-size:.94rem !important;
-
-    }
-
-
-    .site-header
-    .header-logo-link{
-
-        width:32px !important;
-
-
-        height:42px !important;
-
-
-        flex-basis:32px !important;
-
-    }
-
-
-    .site-header
-    .header-logo-image{
-
-        height:31px !important;
-
-
-        max-width:30px !important;
-
-    }
-
-
-    .site-header
-    .language-switch{
-
-        right:-4px !important;
-
-
-        height:34px !important;
-
-
-        min-height:34px !important;
-
-
-        max-height:34px !important;
-
+        height: 34px;
 
         transform:
             translate(
                 35%,
                 -50%
             )
-            scale(.86)
-            !important;
-
+            scale(.86);
     }
 
 
-    .site-header
-    .language-button{
+    .language-button {
 
-        width:28px !important;
+        width: 28px;
 
+        min-width: 28px;
 
-        min-width:28px !important;
+        height: 26px;
 
-
-        height:26px !important;
-
-
-        min-height:26px !important;
-
-
-        max-height:26px !important;
-
-
-        font-size:.78rem !important;
-
+        font-size: .78rem;
     }
 
 
-    .site-header
-    .header-feedback-link{
+    .header-feedback-link {
 
-        left:4px !important;
+        left: 4px;
 
-
-        font-size:.86rem !important;
-
+        font-size: .86rem;
 
         transform:
             translate(
                 -28%,
                 -50%
             )
-            scale(.88)
-            !important;
-
+            scale(.88);
     }
 
+
+    .footer-content {
+
+        flex-direction: column;
+
+        align-items: flex-start;
+    }
+
+
+    .lightbox {
+
+        padding: 14px;
+    }
+
+
+    .lightbox-dialog {
+
+        width: 100%;
+
+        height: 82vh;
+
+        border-radius: 19px;
+    }
+
+
+    .gallery-section-number {
+
+        font-size: .82rem;
+    }
+}
+
+
+@media (max-width: 420px) {
+
+    .interaction-group-grid {
+
+        column-count: 1;
+    }
+
+
+    .interaction-group--objects
+    .interaction-group-grid {
+
+        grid-template-columns: 1fr;
+    }
+}
+
+
+@media (hover: none) {
+
+    .water-ripple-video {
+
+        display: none;
+    }
 }
 
 
@@ -2743,9 +1906,7 @@ main{
 </head>
 
 
-
 <body id="top">
-
 
 
 <!-- =======================================================
@@ -2753,7 +1914,6 @@ main{
      ======================================================= -->
 
 <header class="site-header">
-
 
 <div class="content-width header-content">
 
@@ -2773,16 +1933,15 @@ main{
 </a>
 
 
-
 <nav
-    aria-label="Main navigation"
     class="main-nav"
+    aria-label="Main navigation"
 >
 
 
 <a
-    aria-current="page"
     href="gallery.html"
+    aria-current="page"
 >
 
 <span
@@ -2795,21 +1954,19 @@ main{
 </a>
 
 
-
 <a
-    aria-label="Hidden Waters"
     class="header-logo-link"
     href="index.html"
+    aria-label="Hidden Waters"
 >
 
 <img
-    alt=""
     class="header-logo-image"
     src="assets/images/hidden-waters-logo-white.png"
-/>
+    alt=""
+>
 
 </a>
-
 
 
 <a href="process.html">
@@ -2827,18 +1984,16 @@ main{
 </nav>
 
 
-
 <div
-    aria-label="Language"
     class="language-switch"
     role="group"
+    aria-label="Language"
 >
 
-
 <button
-    aria-pressed="false"
     class="language-button"
     data-language="pt"
+    aria-pressed="false"
     type="button"
 >
     PT
@@ -2846,23 +2001,20 @@ main{
 
 
 <button
-    aria-pressed="true"
     class="language-button is-active"
     data-language="en"
+    aria-pressed="true"
     type="button"
 >
     EN
 </button>
 
-
 </div>
 
 
 </div>
-
 
 </header>
-
 
 
 <!-- =======================================================
@@ -2872,9 +2024,7 @@ main{
 <main>
 
 
-
 <section class="gallery-hero">
-
 
 <div class="content-width">
 
@@ -2886,7 +2036,6 @@ main{
 >
     Gallery
 </h1>
-
 
 
 <p
@@ -2906,9 +2055,7 @@ used in the written dissertation.
 
 </div>
 
-
 </section>
-
 
 
 <div
@@ -2917,9 +2064,7 @@ used in the written dissertation.
 ></div>
 
 
-
 </main>
-
 
 
 <!-- =======================================================
@@ -2927,7 +2072,6 @@ used in the written dissertation.
      ======================================================= -->
 
 <footer class="site-footer">
-
 
 <div class="content-width footer-content">
 
@@ -2937,7 +2081,6 @@ used in the written dissertation.
 </span>
 
 
-
 <div class="footer-institution">
 
 
@@ -2945,26 +2088,25 @@ used in the written dissertation.
     data-en="Thesis companion website · 2026"
     data-pt="Site complementar da tese · 2026"
 >
-    Thesis companion website · 2026
+
+Thesis companion website · 2026
+
 </span>
 
 
-
 <img
-    alt="Instituto Superior Técnico"
     class="footer-ist-logo"
     src="assets/images/ist-logo-white.png"
-/>
+    alt="Instituto Superior Técnico"
+>
 
 
 </div>
 
 
 </div>
-
 
 </footer>
-
 
 
 <!-- =======================================================
@@ -2972,21 +2114,20 @@ used in the written dissertation.
      ======================================================= -->
 
 <div
-    aria-hidden="true"
-    aria-label="Expanded gallery image"
-    aria-modal="true"
     class="lightbox"
     role="dialog"
+    aria-label="Expanded gallery image"
+    aria-modal="true"
+    aria-hidden="true"
 >
-
 
 <div class="lightbox-dialog">
 
 
 <button
-    aria-label="Close image"
     class="lightbox-close"
     type="button"
+    aria-label="Close image"
 >
     ×
 </button>
@@ -3000,619 +2141,747 @@ used in the written dissertation.
 
 </div>
 
-
 </div>
-
 
 
 <script>
 
-
 /* =========================================================
-   MAIN SECTIONS
+   MAIN GALLERY
    ========================================================= */
 
 const SECTIONS = [
 
+    {
+        id: "virtual-environment",
 
-{
-    id:"virtual-environment",
+        en:
+            "Virtual Environment Construction",
 
-    en:"Virtual Environment Construction",
+        pt:
+            "Construção do ambiente virtual",
 
-    pt:"Construção do ambiente virtual",
+        images: [
+            "4.1.jpg"
+        ]
+    },
 
-    images:[
-        "4.1.jpg"
-    ]
-},
 
+    {
+        id:
+            "characters-exploration",
 
+        en:
+            "Characters and Exploration Framework",
 
-{
-    id:"characters-exploration",
+        pt:
+            "Personagens e base para exploração",
 
-    en:"Characters and Exploration Framework",
+        images: [
 
-    pt:"Personagens e base para exploração",
+            "4.2_1.jpg",
 
-    images:[
-        "4.2_1.jpg",
-        "4.2_2.jpg",
-        "4.2_3.jpg"
-    ]
-},
+            "4.2_2.jpg",
 
+            "4.2_3.jpg"
 
+        ]
+    },
 
-{
-    id:"menus-interface",
 
-    en:"Menus and Interface",
+    {
+        id:
+            "menus-interface",
 
-    pt:"Menus e interface",
+        en:
+            "Menus and Interface",
 
-    images:[
-        "4.3_1.jpg",
-        "4.3_2.jpg"
-    ]
-},
+        pt:
+            "Menus e interface",
 
+        images: [
 
+            "4.3_1.jpg",
 
-{
-    id:"interaction-systems",
+            "4.3_2.jpg"
 
-    en:"Interaction Systems",
+        ]
+    },
 
-    pt:"Sistemas de interação",
 
-    images:[
+    {
+        id:
+            "interaction-systems",
 
-        "4.4_1.jpg",
+        en:
+            "Interaction Systems",
 
-        "4.4_2.jpg",
+        pt:
+            "Sistemas de interação",
 
-        "4.4_3.jpg",
+        images: [
 
-        "4.4_4.jpg",
+            "4.4_1.jpg",
 
-        "4.4_5.jpg",
+            "4.4_2.jpg",
 
-        "4.4_6.jpg",
+            "4.4_3.jpg",
 
-        "4.4_7.jpg"
+            "4.4_4.jpg",
 
-    ]
-},
+            "4.4_5.jpg",
 
+            "4.4_6.jpg",
 
+            "4.4_7.jpg"
 
-{
-    id:"xray-system",
+        ]
+    },
 
-    en:"X-Ray System",
 
-    pt:"Sistema X-Ray",
+    {
+        id:
+            "xray-system",
 
-    images:[
-        "4.5_1.jpg",
-        "4.5_2.jpg"
-    ]
-},
+        en:
+            "X-Ray System",
 
+        pt:
+            "Sistema X-Ray",
 
+        images: [
 
-{
-    id:"maps-archive",
+            "4.5_1.jpg",
 
-    en:"Maps and Archive",
+            "4.5_2.jpg"
 
-    pt:"Mapas e arquivo",
+        ]
+    },
 
-    images:[
-        "4.6_1.jpg",
-        "4.6_2.jpg",
-        "4.6_3.jpg",
-        "4.6_4.jpg"
-    ]
-},
 
+    {
+        id:
+            "maps-archive",
 
+        en:
+            "Maps and Archive",
 
-{
-    id:"clock-temporal-system",
+        pt:
+            "Mapas e arquivo",
 
-    en:"Clock and Temporal System",
+        images: [
 
-    pt:"Relógio e sistema temporal",
+            "4.6_1.jpg",
 
-    images:[
-        "4.7_1.jpg",
-        "4.7_2.jpg",
-        "4.7_3.jpg",
-        "4.7_4.jpg"
-    ]
-},
+            "4.6_2.jpg",
 
+            "4.6_3.jpg",
 
+            "4.6_4.jpg"
 
-{
-    id:"atmosphere-weather",
+        ]
+    },
 
-    en:"Atmosphere and Weather System",
 
-    pt:"Atmosfera e sistema climático",
+    {
+        id:
+            "clock-temporal-system",
 
-    images:[
-        "4.8_1.jpg",
-        "4.8_2.jpg",
-        "4.8_3.jpg",
-        "4.8_4.jpg"
-    ]
-},
+        en:
+            "Clock and Temporal System",
 
+        pt:
+            "Relógio e sistema temporal",
 
+        images: [
 
-{
-    id:"historical-system",
+            "4.7_1.jpg",
 
-    en:"Historical System",
+            "4.7_2.jpg",
 
-    pt:"Sistema Histórico",
+            "4.7_3.jpg",
 
-    images:[
-        "4.9_1.jpg",
-        "4.9_2.jpg"
-    ]
-},
+            "4.7_4.jpg"
 
+        ]
+    },
 
 
-{
-    id:"sound-immersion",
+    {
+        id:
+            "atmosphere-weather",
 
-    en:"Sound and Immersion",
+        en:
+            "Atmosphere and Weather System",
 
-    pt:"Som e imersão",
+        pt:
+            "Atmosfera e sistema climático",
 
-    images:[
-        "4.10_1.jpg",
-        "4.10_2.jpg"
-    ]
-},
+        images: [
 
+            "4.8_1.jpg",
 
+            "4.8_2.jpg",
 
-{
-    id:"narrative-cutscene",
+            "4.8_3.jpg",
 
-    en:"Narrative and Cutscene",
+            "4.8_4.jpg"
 
-    pt:"Narrativa e Cutscene",
+        ]
+    },
 
-    images:[
-        "4.11_1.jpg",
-        "4.11_2.jpg"
-    ]
-},
 
+    {
+        id:
+            "historical-system",
 
+        en:
+            "Historical System",
 
-{
-    id:"experience-modes",
+        pt:
+            "Sistema Histórico",
 
-    en:"Experience Modes",
+        images: [
 
-    pt:"Modos da experiência",
+            "4.9_1.jpg",
 
-    images:[
-        "4.12.jpg"
-    ]
-},
+            "4.9_2.jpg"
 
+        ]
+    },
 
 
-{
-    id:"optimization-preparation",
+    {
+        id:
+            "sound-immersion",
 
-    en:"Optimization and Preparation for Use",
+        en:
+            "Sound and Immersion",
 
-    pt:"Otimização e preparação para utilização",
+        pt:
+            "Som e imersão",
 
-    images:[
-        "4.13_1.jpg",
-        "4.13_2.jpg"
-    ]
-}
+        images: [
 
+            "4.10_1.jpg",
+
+            "4.10_2.jpg"
+
+        ]
+    },
+
+
+    {
+        id:
+            "narrative-cutscene",
+
+        en:
+            "Narrative and Cutscene",
+
+        pt:
+            "Narrativa e Cutscene",
+
+        images: [
+
+            "4.11_1.jpg",
+
+            "4.11_2.jpg"
+
+        ]
+    },
+
+
+    {
+        id:
+            "experience-modes",
+
+        en:
+            "Experience Modes",
+
+        pt:
+            "Modos da experiência",
+
+        images: [
+
+            "4.12.jpg"
+
+        ]
+    },
+
+
+    {
+        id:
+            "optimization-preparation",
+
+        en:
+            "Optimization and Preparation for Use",
+
+        pt:
+            "Otimização e preparação para utilização",
+
+        images: [
+
+            "4.13_1.jpg",
+
+            "4.13_2.jpg"
+
+        ]
+    }
 
 ];
 
 
-
 /* =========================================================
-   INTERACTION SYSTEMS
+   INTERACTION GROUPS
    ========================================================= */
 
 const INTERACTION_GROUPS = [
 
 
-
-/* =========================================================
-   OBJECTS
-   ========================================================= */
+/* OBJECTS */
 
 {
 
-key:"objects",
+key:
+    "objects",
 
-en:"Objects",
+en:
+    "Objects",
 
-pt:"Objetos",
+pt:
+    "Objetos",
 
+images: [
 
-images:[
+    {
+        file:
+            "1O_Distribution Box.png",
 
-
-{
-    file:"1O_Distribution Box.png",
-
-    title:"Distribution Box"
-},
-
-
-{
-    file:"2O_Gutter R11.png",
-
-    title:"Gutter R11"
-},
+        title:
+            "Distribution Box"
+    },
 
 
-{
-    file:"3O_Gutter R14.png",
+    {
+        file:
+            "2O_Gutter R11.png",
 
-    title:"Gutter R14"
-},
-
-
-{
-    file:"4O_Basin.png",
-
-    title:"Basin"
-},
+        title:
+            "Gutter R11"
+    },
 
 
-{
-    file:"5O_Gutter CA.png",
+    {
+        file:
+            "3O_Gutter R14.png",
 
-    title:"Gutter CA"
-},
-
-
-{
-    file:"6O_Water spout.png",
-
-    title:"Water spout"
-},
+        title:
+            "Gutter R14"
+    },
 
 
-{
-    file:"7O_Gutter CF.png",
+    {
+        file:
+            "4O_Basin.png",
 
-    title:"Gutter CF"
-},
-
-
-{
-    file:"8O_Gutter Latrinas.png",
-
-    title:"Gutter Latrinas"
-},
+        title:
+            "Basin"
+    },
 
 
-{
-    file:"9O_Inside Sink.png",
+    {
+        file:
+            "5O_Gutter CA.png",
 
-    title:"Inside Sink"
-}
+        title:
+            "Gutter CA"
+    },
 
+
+    {
+        file:
+            "6O_Water spout.png",
+
+        title:
+            "Water spout"
+    },
+
+
+    {
+        file:
+            "7O_Gutter CF.png",
+
+        title:
+            "Gutter CF"
+    },
+
+
+    {
+        file:
+            "8O_Gutter Latrinas.png",
+
+        title:
+            "Gutter Latrinas"
+    },
+
+
+    {
+        file:
+            "9O_Inside Sink.png",
+
+        title:
+            "Inside Sink"
+    }
 
 ]
 
 },
 
 
-
-/* =========================================================
-   NOTES
-   ========================================================= */
+/* NOTES */
 
 {
 
-key:"notes",
+key:
+    "notes",
 
-en:"Notes",
+en:
+    "Notes",
 
-pt:"Notas",
+pt:
+    "Notas",
 
+images: [
 
-images:[
+    {
+        file:
+            "1N_Paper Boat.jpg",
 
-
-{
-    file:"1N_Paper Boat.jpg",
-
-    title:"Paper Boat"
-},
-
-
-{
-    file:"2N_Gutter RW.jpg",
-
-    title:"Gutter RW"
-},
+        title:
+            "Paper Boat"
+    },
 
 
-{
-    file:"3N_Gallery.jpg",
+    {
+        file:
+            "2N_Gutter RW.jpg",
 
-    title:"Gallery"
-},
-
-
-{
-    file:"4N_Casa dos Alguidares.jpg",
-
-    title:"Casa dos Alguidares"
-},
+        title:
+            "Gutter RW"
+    },
 
 
-{
-    file:"5N_Fountain.jpg",
+    {
+        file:
+            "3N_Gallery.jpg",
 
-    title:"Fountain"
-},
-
-
-{
-    file:"6N_Casa de Frescos.jpg",
-
-    title:"Casa de Frescos"
-},
+        title:
+            "Gallery"
+    },
 
 
-{
-    file:"7N_Pit.jpg",
+    {
+        file:
+            "4N_Casa dos Alguidares.jpg",
 
-    title:"Pit"
-},
-
-
-{
-    file:"8N_Mine.jpg",
-
-    title:"Mine"
-},
+        title:
+            "Casa dos Alguidares"
+    },
 
 
-{
-    file:"9N_Outside Sink.jpg",
+    {
+        file:
+            "5N_Fountain.jpg",
 
-    title:"Outside Sink"
-},
+        title:
+            "Fountain"
+    },
 
 
-{
-    file:"10N_Latrinas.jpg",
+    {
+        file:
+            "6N_Casa de Frescos.jpg",
 
-    title:"Latrinas"
-}
+        title:
+            "Casa de Frescos"
+    },
 
+
+    {
+        file:
+            "7N_Pit.jpg",
+
+        title:
+            "Pit"
+    },
+
+
+    {
+        file:
+            "8N_Mine.jpg",
+
+        title:
+            "Mine"
+    },
+
+
+    {
+        file:
+            "9N_Outside Sink.jpg",
+
+        title:
+            "Outside Sink"
+    },
+
+
+    {
+        file:
+            "10N_Latrinas.jpg",
+
+        title:
+            "Latrinas"
+    }
 
 ]
 
 },
 
 
-
-/* =========================================================
-   PHOTOS
-   ========================================================= */
+/* PHOTOS */
 
 {
 
-key:"photos",
+key:
+    "photos",
 
-en:"Photos",
+en:
+    "Photos",
 
-pt:"Fotos",
+pt:
+    "Fotos",
 
+images: [
 
-images:[
+    {
+        file:
+            "1F_Gutter RW.jpg",
 
+        title:
+            "Gutter RW"
+    },
 
-{
-    file:"1F_Gutter RW.jpg",
 
-    title:"Gutter RW"
-},
+    {
+        file:
+            "2F_Path.jpg",
 
+        title:
+            "Path"
+    },
 
-{
-    file:"2F_Path.jpg",
 
-    title:"Path"
-},
+    {
+        file:
+            "3F_Gallery.jpg",
 
+        title:
+            "Gallery"
+    },
 
-{
-    file:"3F_Gallery.jpg",
 
-    title:"Gallery"
-},
+    {
+        file:
+            "4F_Convent — Northeast Side.jpg",
 
+        title:
+            "Convent — Northeast Side"
+    },
 
-{
-    file:"4F_Convent — Northeast Side.jpg",
 
-    title:"Convent — Northeast Side"
-},
+    {
+        file:
+            "5F_Fountain.jpg",
 
+        title:
+            "Fountain"
+    },
 
-{
-    file:"5F_Fountain.jpg",
 
-    title:"Fountain"
-},
+    {
+        file:
+            "6F_Gutter CA.jpg",
 
+        title:
+            "Gutter CA"
+    },
 
-{
-    file:"6F_Gutter CA.jpg",
 
-    title:"Gutter CA"
-},
+    {
+        file:
+            "7F_Casa de Frescos - outside.jpg",
 
+        title:
+            "Casa de Frescos - outside"
+    },
 
-{
-    file:"7F_Casa de Frescos - outside.jpg",
 
-    title:"Casa de Frescos - outside"
-},
+    {
+        file:
+            "8F_Pit.jpg",
 
+        title:
+            "Pit"
+    },
 
-{
-    file:"8F_Pit.jpg",
 
-    title:"Pit"
-},
+    {
+        file:
+            "9F_Casa de Frescos - inside.jpg",
 
+        title:
+            "Casa de Frescos - inside"
+    },
 
-{
-    file:"9F_Casa de Frescos - inside.jpg",
 
-    title:"Casa de Frescos - inside"
-},
+    {
+        file:
+            "10F_Retaining wall - Casa de Frescos.jpg",
 
+        title:
+            "Retaining wall - Casa de Frescos"
+    },
 
-{
-    file:"10F_Retaining wall - Casa de Frescos.jpg",
 
-    title:"Retaining wall - Casa de Frescos"
-},
+    {
+        file:
+            "11F_View of Quinta de São Paulo.jpg",
 
+        title:
+            "View of Quinta de São Paulo"
+    },
 
-{
-    file:"11F_View of Quinta de São Paulo.jpg",
 
-    title:"View of Quinta de São Paulo"
-},
+    {
+        file:
+            "12F_Convent – Southwest Side.jpg",
 
+        title:
+            "Convent — Southwest Side"
+    },
 
-/*
-   IMPORTANT:
-   this uses EN DASH:
-   –
-*/
 
-{
-    file:"12F_Convent – Southwest Side.jpg",
+    {
+        file:
+            "13F_Outside Sink.jpg",
 
-    title:"Convent — Southwest Side"
-},
+        title:
+            "Outside Sink"
+    },
 
 
-{
-    file:"13F_Outside Sink.jpg",
+    {
+        file:
+            "14F_Mine.jpg",
 
-    title:"Outside Sink"
-},
+        title:
+            "Mine"
+    },
 
 
-{
-    file:"14F_Mine.jpg",
+    {
+        file:
+            "15F_Inside the Convent I.jpg",
 
-    title:"Mine"
-},
+        title:
+            "Inside the Convent I"
+    },
 
 
-{
-    file:"15F_Inside the Convent I.jpg",
+    {
+        file:
+            "16F_Inside the Convent II.jpg",
 
-    title:"Inside the Convent I"
-},
+        title:
+            "Inside the Convent II"
+    },
 
 
-{
-    file:"16F_Inside the Convent II.jpg",
+    {
+        file:
+            "17F_Inside the Convent III.jpg",
 
-    title:"Inside the Convent II"
-},
+        title:
+            "Inside the Convent III"
+    },
 
 
-{
-    file:"17F_Inside the Convent III.jpg",
+    {
+        file:
+            "18F_Inside Sink.jpg",
 
-    title:"Inside the Convent III"
-},
+        title:
+            "Inside Sink"
+    },
 
 
-{
-    file:"18F_Inside Sink.jpg",
+    {
+        file:
+            "19F_Inside the Convent IV.jpg",
 
-    title:"Inside Sink"
-},
+        title:
+            "Inside the Convent IV"
+    },
 
 
-{
-    file:"19F_Inside the Convent IV.jpg",
+    {
+        file:
+            "20F_Inside the Convent V.jpg",
 
-    title:"Inside the Convent IV"
-},
+        title:
+            "Inside the Convent V"
+    },
 
 
-{
-    file:"20F_Inside the Convent V.jpg",
+    {
+        file:
+            "21F_Latrinas I.jpg",
 
-    title:"Inside the Convent V"
-},
+        title:
+            "Latrinas I"
+    },
 
 
-{
-    file:"21F_Latrinas I.jpg",
+    {
+        file:
+            "22F_Latrinas II.jpg",
 
-    title:"Latrinas I"
-},
+        title:
+            "Latrinas II"
+    },
 
 
-{
-    file:"22F_Latrinas II.jpg",
+    {
+        file:
+            "23F_Latrinas III.jpg",
 
-    title:"Latrinas II"
-},
+        title:
+            "Latrinas III"
+    },
 
 
-{
-    file:"23F_Latrinas III.jpg",
+    {
+        file:
+            "24F_Convent Detail.jpg",
 
-    title:"Latrinas III"
-},
-
-
-{
-    file:"24F_Convent Detail.jpg",
-
-    title:"Convent Detail"
-}
-
+        title:
+            "Convent Detail"
+    }
 
 ]
 
 }
-
 
 ];
-
 
 
 /* =========================================================
@@ -3623,13 +2892,11 @@ let currentLanguage =
     "en";
 
 
-
 const gallery =
 
     document.querySelector(
         "#gallerySections"
     );
-
 
 
 const lightbox =
@@ -3639,13 +2906,11 @@ const lightbox =
     );
 
 
-
 const lightboxMedia =
 
     document.querySelector(
         ".lightbox-media"
     );
-
 
 
 const lightboxCaption =
@@ -3655,7 +2920,6 @@ const lightboxCaption =
     );
 
 
-
 const lightboxClose =
 
     document.querySelector(
@@ -3663,9 +2927,8 @@ const lightboxClose =
     );
 
 
-
 /* =========================================================
-   WATER VIDEO
+   WATER
    ========================================================= */
 
 const waterVideo =
@@ -3705,13 +2968,9 @@ waterVideo.preload =
 
 
 waterVideo.setAttribute(
-
     "aria-hidden",
-
     "true"
-
 );
-
 
 
 let activeWaterCard =
@@ -3726,47 +2985,47 @@ let lastFocusedCard =
     null;
 
 
-
 /* =========================================================
-   MAIN IMAGE LAYOUT
+   NORMAL LAYOUT
    ========================================================= */
 
 function layoutClass(
     count
-){
+) {
 
-    if(
+    if (
         count === 1
-    ){
+    ) {
 
-        return "gallery-layout--single";
+        return
+            "gallery-layout--single";
 
     }
 
 
-    if(
+    if (
         count === 2
-    ){
+    ) {
 
-        return "gallery-layout--pair";
+        return
+            "gallery-layout--pair";
 
     }
 
 
-    return "gallery-layout--masonry";
+    return
+        "gallery-layout--masonry";
 
 }
 
 
-
 /* =========================================================
-   INTERACTION GROUP HTML
+   INTERACTION GROUPS HTML
    ========================================================= */
 
-function interactionGroupsMarkup(){
+function interactionGroupsMarkup() {
 
     return `
-
 
         <div
             class="
@@ -3774,10 +3033,10 @@ function interactionGroupsMarkup(){
             "
         >
 
-
             ${
 
                 INTERACTION_GROUPS
+
                     .map(
 
                         group => {
@@ -3793,14 +3052,13 @@ function interactionGroupsMarkup(){
                                     : group.en;
 
 
-
                             const cards =
 
                                 group.images
+
                                     .map(
 
                                         item => `
-
 
                                             <button
 
@@ -3811,27 +3069,21 @@ function interactionGroupsMarkup(){
 
                                                 type="button"
 
-
                                                 data-title-en="${item.title}"
 
                                                 data-title-pt="${item.title}"
                                             >
 
-
                                                 <img
 
                                                     src="assets/images/gallery/${item.file}"
 
-
                                                     alt="${item.title}"
-
 
                                                     loading="lazy"
 
-
                                                     decoding="async"
                                                 >
-
 
 
                                                 <span
@@ -3840,9 +3092,7 @@ function interactionGroupsMarkup(){
                                                         gallery-card-title
                                                     "
 
-
                                                     data-en="${item.title}"
-
 
                                                     data-pt="${item.title}"
                                                 >
@@ -3854,16 +3104,14 @@ function interactionGroupsMarkup(){
 
                                             </button>
 
-
                                         `
 
                                     )
+
                                     .join("");
 
 
-
                             return `
-
 
                                 <section
 
@@ -3873,16 +3121,13 @@ function interactionGroupsMarkup(){
                                     "
                                 >
 
-
                                     <h3
 
                                         class="
                                             interaction-group-title
                                         "
 
-
                                         data-en="${group.en}"
-
 
                                         data-pt="${group.pt}"
                                     >
@@ -3890,7 +3135,6 @@ function interactionGroupsMarkup(){
                                         ${groupTitle}
 
                                     </h3>
-
 
 
                                     <div
@@ -3907,38 +3151,35 @@ function interactionGroupsMarkup(){
 
                                 </section>
 
-
                             `;
-
 
                         }
 
                     )
+
                     .join("")
 
             }
 
-
         </div>
-
 
     `;
 
 }
 
 
-
 /* =========================================================
-   RENDER GALLERY
+   RENDER
    ========================================================= */
 
-function renderGallery(){
+function renderGallery() {
 
 
     gallery.innerHTML =
 
 
         SECTIONS
+
             .map(
 
                 (
@@ -3947,15 +3188,11 @@ function renderGallery(){
                 ) => {
 
 
-
-                    /* =====================================
-                       NORMAL SECTION IMAGES
-                       ===================================== */
-
                     const cards =
 
 
                         section.images
+
                             .map(
 
                                 (
@@ -3969,11 +3206,9 @@ function renderGallery(){
                                         index + 1;
 
 
-
                                     const titleEn =
 
                                         `${section.en} — Image ${number}`;
-
 
 
                                     const titlePt =
@@ -3981,9 +3216,7 @@ function renderGallery(){
                                         `${section.pt} — Imagem ${number}`;
 
 
-
                                     return `
-
 
                                         <button
 
@@ -3991,31 +3224,23 @@ function renderGallery(){
                                                 gallery-card
                                             "
 
-
                                             type="button"
-
 
                                             data-title-en="${titleEn}"
 
-
                                             data-title-pt="${titlePt}"
                                         >
-
 
                                             <img
 
                                                 src="assets/images/gallery/${file}"
 
-
                                                 alt="${titleEn}"
-
 
                                                 loading="lazy"
 
-
                                                 decoding="async"
                                             >
-
 
 
                                             <span
@@ -4024,9 +3249,7 @@ function renderGallery(){
                                                     gallery-card-title
                                                 "
 
-
                                                 data-en="${titleEn}"
-
 
                                                 data-pt="${titlePt}"
                                             >
@@ -4045,23 +3268,16 @@ function renderGallery(){
 
                                         </button>
 
-
                                     `;
-
 
                                 }
 
                             )
+
                             .join("");
 
 
-
-                    /* =====================================
-                       TITLE
-                       ===================================== */
-
                     const title =
-
 
                         currentLanguage ===
                         "pt"
@@ -4071,9 +3287,7 @@ function renderGallery(){
                             : section.en;
 
 
-
                     const sectionWord =
-
 
                         currentLanguage ===
                         "pt"
@@ -4083,13 +3297,7 @@ function renderGallery(){
                             : "SECTION";
 
 
-
-                    /* =====================================
-                       SPECIAL INTERACTION CONTENT
-                       ===================================== */
-
                     const groupedContent =
-
 
                         section.id ===
                         "interaction-systems"
@@ -4099,13 +3307,7 @@ function renderGallery(){
                             : "";
 
 
-
-                    /* =====================================
-                       SECTION
-                       ===================================== */
-
                     return `
-
 
                         <section
 
@@ -4113,10 +3315,8 @@ function renderGallery(){
                                 gallery-section
                             "
 
-
                             id="${section.id}"
                         >
-
 
 
                             <header
@@ -4127,7 +3327,6 @@ function renderGallery(){
                             >
 
 
-
                                 <div
 
                                     class="
@@ -4136,24 +3335,14 @@ function renderGallery(){
                                 >
 
 
-
                                     <a
 
                                         class="
                                             gallery-section-number
                                         "
 
-
                                         href="#${section.id}"
-
-
-                                        aria-label="
-                                            ${sectionWord}
-                                            ${sectionIndex + 1}:
-                                            ${title}
-                                        "
                                     >
-
 
                                         <span>
 
@@ -4163,24 +3352,14 @@ function renderGallery(){
                                         </span>
 
 
-
                                         <span
-
-                                            class="
-                                                arrow
-                                            "
-
-
+                                            class="arrow"
                                             aria-hidden="true"
                                         >
-
                                             ↗
-
                                         </span>
 
-
                                     </a>
-
 
 
                                     <h2
@@ -4198,20 +3377,17 @@ function renderGallery(){
                                 </div>
 
 
-
                                 <span
 
                                     class="
                                         gallery-section-line
                                     "
 
-
                                     aria-hidden="true"
                                 ></span>
 
 
                             </header>
-
 
 
                             <div
@@ -4231,37 +3407,31 @@ function renderGallery(){
                             </div>
 
 
-
                             ${groupedContent}
-
 
 
                         </section>
 
-
                     `;
-
 
                 }
 
             )
+
             .join("");
 
 }
-
 
 
 /* =========================================================
    LANGUAGE
    ========================================================= */
 
-function updateStaticLanguage(){
-
+function updateStaticLanguage() {
 
     document.documentElement.lang =
 
         currentLanguage;
-
 
 
     document
@@ -4274,18 +3444,15 @@ function updateStaticLanguage(){
 
             element => {
 
-
                 element.textContent =
 
                     element.dataset[
                         currentLanguage
                     ];
 
-
             }
 
         );
-
 
 
     document
@@ -4305,7 +3472,6 @@ function updateStaticLanguage(){
                     currentLanguage;
 
 
-
                 button.classList.toggle(
 
                     "is-active",
@@ -4313,7 +3479,6 @@ function updateStaticLanguage(){
                     active
 
                 );
-
 
 
                 button.setAttribute(
@@ -4326,7 +3491,6 @@ function updateStaticLanguage(){
 
                 );
 
-
             }
 
         );
@@ -4334,10 +3498,9 @@ function updateStaticLanguage(){
 }
 
 
-
 function setLanguage(
     language
-){
+) {
 
     currentLanguage =
         language;
@@ -4349,7 +3512,6 @@ function setLanguage(
     updateStaticLanguage();
 
 }
-
 
 
 document
@@ -4375,11 +3537,9 @@ document
 
             );
 
-
         }
 
     );
-
 
 
 /* =========================================================
@@ -4400,14 +3560,13 @@ gallery.addEventListener(
             );
 
 
-        if(
+        if (
             !card
-        ){
+        ) {
 
             return;
 
         }
-
 
 
         const source =
@@ -4417,23 +3576,20 @@ gallery.addEventListener(
             );
 
 
-        if(
+        if (
             !source
-        ){
+        ) {
 
             return;
 
         }
 
 
-
         lastFocusedCard =
             card;
 
 
-
         const title =
-
 
             currentLanguage ===
             "pt"
@@ -4443,10 +3599,8 @@ gallery.addEventListener(
                 : card.dataset.titleEn;
 
 
-
         lightboxMedia.innerHTML =
             "";
-
 
 
         const image =
@@ -4456,15 +3610,12 @@ gallery.addEventListener(
             );
 
 
-
         image.src =
             source.src;
 
 
-
         image.alt =
             source.alt;
-
 
 
         lightboxMedia.appendChild(
@@ -4472,16 +3623,13 @@ gallery.addEventListener(
         );
 
 
-
         lightboxCaption.textContent =
             title;
-
 
 
         lightbox.classList.add(
             "is-open"
         );
-
 
 
         lightbox.setAttribute(
@@ -4490,23 +3638,18 @@ gallery.addEventListener(
         );
 
 
-
         document.body.style.overflow =
             "hidden";
 
 
-
         lightboxClose.focus();
-
 
     }
 
 );
 
 
-
-function closeLightbox(){
-
+function closeLightbox() {
 
     lightbox.classList.remove(
         "is-open"
@@ -4527,16 +3670,15 @@ function closeLightbox(){
         "";
 
 
-    if(
+    if (
         lastFocusedCard
-    ){
+    ) {
 
         lastFocusedCard.focus();
 
     }
 
 }
-
 
 
 lightboxClose.addEventListener(
@@ -4548,7 +3690,6 @@ lightboxClose.addEventListener(
 );
 
 
-
 lightbox.addEventListener(
 
     "click",
@@ -4556,20 +3697,18 @@ lightbox.addEventListener(
     event => {
 
 
-        if(
+        if (
             event.target ===
             lightbox
-        ){
+        ) {
 
             closeLightbox();
 
         }
 
-
     }
 
 );
-
 
 
 document.addEventListener(
@@ -4579,7 +3718,7 @@ document.addEventListener(
     event => {
 
 
-        if(
+        if (
 
             event.key ===
             "Escape"
@@ -4590,17 +3729,15 @@ document.addEventListener(
                 "is-open"
             )
 
-        ){
+        ) {
 
             closeLightbox();
 
         }
 
-
     }
 
 );
-
 
 
 /* =========================================================
@@ -4621,17 +3758,16 @@ gallery.addEventListener(
             );
 
 
-        if(
+        if (
             !card
-        ){
+        ) {
 
             return;
 
         }
 
 
-
-        if(
+        if (
 
             event.relatedTarget
 
@@ -4641,12 +3777,11 @@ gallery.addEventListener(
                 event.relatedTarget
             )
 
-        ){
+        ) {
 
             return;
 
         }
-
 
 
         clearTimeout(
@@ -4654,8 +3789,7 @@ gallery.addEventListener(
         );
 
 
-
-        if(
+        if (
 
             activeWaterCard
 
@@ -4664,7 +3798,7 @@ gallery.addEventListener(
             activeWaterCard !==
             card
 
-        ){
+        ) {
 
             activeWaterCard
                 .classList
@@ -4675,10 +3809,8 @@ gallery.addEventListener(
         }
 
 
-
         activeWaterCard =
             card;
-
 
 
         card.appendChild(
@@ -4686,11 +3818,9 @@ gallery.addEventListener(
         );
 
 
-
         card.classList.add(
             "is-water-ripple"
         );
-
 
 
         const attempt =
@@ -4698,10 +3828,9 @@ gallery.addEventListener(
             waterVideo.play();
 
 
-
-        if(
+        if (
             attempt?.catch
-        ){
+        ) {
 
             attempt.catch(
                 () => {}
@@ -4709,11 +3838,9 @@ gallery.addEventListener(
 
         }
 
-
     }
 
 );
-
 
 
 gallery.addEventListener(
@@ -4730,17 +3857,16 @@ gallery.addEventListener(
             );
 
 
-        if(
+        if (
             !card
-        ){
+        ) {
 
             return;
 
         }
 
 
-
-        if(
+        if (
 
             event.relatedTarget
 
@@ -4750,31 +3876,28 @@ gallery.addEventListener(
                 event.relatedTarget
             )
 
-        ){
+        ) {
 
             return;
 
         }
 
 
-
-        if(
+        if (
 
             activeWaterCard !==
             card
 
-        ){
+        ) {
 
             return;
 
         }
-
 
 
         card.classList.remove(
             "is-water-ripple"
         );
-
 
 
         waterTimer =
@@ -4784,7 +3907,7 @@ gallery.addEventListener(
                 () => {
 
 
-                    if(
+                    if (
 
                         activeWaterCard ===
                         card
@@ -4794,7 +3917,7 @@ gallery.addEventListener(
                         waterVideo.parentElement ===
                         card
 
-                    ){
+                    ) {
 
                         waterVideo.remove();
 
@@ -4804,18 +3927,15 @@ gallery.addEventListener(
 
                     }
 
-
                 },
 
                 480
 
             );
 
-
     }
 
 );
-
 
 
 /* =========================================================
@@ -4824,13 +3944,10 @@ gallery.addEventListener(
 
 renderGallery();
 
-
 updateStaticLanguage();
-
 
 </script>
 
 
 </body>
-
 </html>
