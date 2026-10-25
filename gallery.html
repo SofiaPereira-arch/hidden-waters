@@ -34,7 +34,6 @@
 
 <title>Gallery · Hidden Waters</title>
 
-
 <link
     rel="preconnect"
     href="https://fonts.googleapis.com"
@@ -67,7 +66,9 @@
         format("opentype");
 
     font-style: normal;
+
     font-weight: 400;
+
     font-display: swap;
 }
 
@@ -81,7 +82,9 @@
         format("opentype");
 
     font-style: italic;
+
     font-weight: 400;
+
     font-display: swap;
 }
 
@@ -135,6 +138,7 @@
    ========================================================= */
 
 * {
+
     box-sizing: border-box;
 }
 
@@ -155,7 +159,8 @@ body {
 
     color: var(--text);
 
-    background: var(--background);
+    background:
+        var(--background);
 
     font-family:
         "Inter",
@@ -220,13 +225,15 @@ video {
         0
         auto;
 
-    height: var(--header-height);
+    height:
+        var(--header-height);
 
     background:
         var(--header-background);
 
     border-bottom:
-        1px solid
+        1px
+        solid
         var(--line);
 
     backdrop-filter:
@@ -254,7 +261,7 @@ video {
 
 
 /* =========================================================
-   CENTRAL NAV
+   NAV
    ========================================================= */
 
 .main-nav {
@@ -300,7 +307,9 @@ video {
     position: absolute;
 
     right: 0;
+
     bottom: -7px;
+
     left: 0;
 
     height: 1px;
@@ -411,7 +420,7 @@ video {
 
 
 /* =========================================================
-   FEEDBACK
+   FEEDBACK LINK
    ========================================================= */
 
 .header-feedback-link {
@@ -458,7 +467,9 @@ video {
     position: absolute;
 
     right: 0;
+
     bottom: -7px;
+
     left: 0;
 
     height: 1px;
@@ -508,7 +519,7 @@ video {
 
 
 /* =========================================================
-   PT / EN
+   LANGUAGE
    ========================================================= */
 
 .language-switch {
@@ -525,8 +536,6 @@ video {
 
     gap: 2px;
 
-    width: auto;
-
     height: 38px;
 
     padding: 3px;
@@ -540,7 +549,8 @@ video {
         );
 
     border:
-        1px solid
+        1px
+        solid
         rgba(
             255,
             255,
@@ -710,7 +720,8 @@ main {
             195px
         );
 
-    scroll-margin-top: 110px;
+    scroll-margin-top:
+        110px;
 }
 
 
@@ -754,8 +765,6 @@ main {
     gap: 10px;
 }
 
-
-/* SECTION 1 ↗ */
 
 .gallery-section-number {
 
@@ -810,8 +819,6 @@ main {
         translateY(-1px);
 }
 
-
-/* WHITE TITLE */
 
 .gallery-section-title {
 
@@ -878,6 +885,8 @@ main {
 }
 
 
+/* 1 IMAGE */
+
 .gallery-layout--single {
 
     display: block;
@@ -890,6 +899,8 @@ main {
     width: 100%;
 }
 
+
+/* 2 IMAGES */
 
 .gallery-layout--pair {
 
@@ -910,6 +921,8 @@ main {
         var(--gallery-gap);
 }
 
+
+/* 3+ IMAGES */
 
 .gallery-layout--masonry {
 
@@ -1100,7 +1113,7 @@ main {
 
 
 /* =========================================================
-   TITLES
+   CARD TITLES
    ========================================================= */
 
 .gallery-card-title {
@@ -1218,7 +1231,7 @@ main {
 
 
 /* =========================================================
-   INTERACTION SYSTEMS
+   INTERACTION GROUPS
    ========================================================= */
 
 .interaction-groups {
@@ -1242,7 +1255,8 @@ main {
         );
 
     border-top:
-        1px solid
+        1px
+        solid
         rgba(
             255,
             255,
@@ -1270,8 +1284,6 @@ main {
     margin-bottom: 0;
 }
 
-
-/* OBJECTS / NOTES / PHOTOS */
 
 .interaction-group-title {
 
@@ -1302,7 +1314,6 @@ main {
 
 /* =========================================================
    NOTES + PHOTOS
-   4 COLUNAS
    ========================================================= */
 
 .interaction-group-grid {
@@ -1337,7 +1348,7 @@ main {
 
 /* =========================================================
    OBJECTS
-   9 IMAGENS = 3 × 3
+   9 = 3 × 3
    ========================================================= */
 
 .interaction-group--objects
@@ -1370,8 +1381,6 @@ main {
     margin: 0;
 }
 
-
-/* titles smaller */
 
 .interaction-group
 .gallery-card-title {
@@ -1478,7 +1487,21 @@ main {
 }
 
 
+/*
+Reserva espaço inferior para a legenda.
+*/
+
 .lightbox-media {
+
+    position: absolute;
+
+    top: 22px;
+
+    right: 22px;
+
+    bottom: 78px;
+
+    left: 22px;
 
     display: flex;
 
@@ -1486,15 +1509,13 @@ main {
 
     align-items: center;
 
-    width: 100%;
-
-    height: 100%;
-
-    padding: 24px;
+    padding: 0;
 }
 
 
 .lightbox-media img {
+
+    display: block;
 
     width: auto;
 
@@ -1510,17 +1531,24 @@ main {
 }
 
 
+/*
+A posição é calculada pelo JavaScript
+conforme a imagem real.
+*/
+
 .lightbox-caption {
 
     position: absolute;
 
     z-index: 4;
 
-    right: 30px;
+    left: 0;
 
-    bottom: 25px;
+    top: 0;
 
-    left: 30px;
+    width: auto;
+
+    margin: 0;
 
     color: #fff;
 
@@ -1538,9 +1566,24 @@ main {
 
     letter-spacing: .045em;
 
+    line-height: 1.1;
+
     text-transform: uppercase;
 
+    white-space: normal;
+
     pointer-events: none;
+
+    opacity: 0;
+
+    transition:
+        opacity .18s ease;
+}
+
+
+.lightbox-caption.is-positioned {
+
+    opacity: 1;
 }
 
 
@@ -1577,7 +1620,8 @@ main {
         );
 
     border:
-        1px solid
+        1px
+        solid
         rgba(
             255,
             255,
@@ -1622,7 +1666,8 @@ main {
         45px;
 
     border-top:
-        1px solid
+        1px
+        solid
         var(--line);
 }
 
@@ -1691,8 +1736,6 @@ main {
     .interaction-group--objects
     .interaction-group-grid {
 
-        display: grid;
-
         grid-template-columns:
             repeat(
                 3,
@@ -1701,8 +1744,6 @@ main {
                     1fr
                 )
             );
-
-        gap: 14px;
     }
 }
 
@@ -1805,8 +1846,6 @@ main {
 
         right: -4px;
 
-        width: auto;
-
         height: 34px;
 
         transform:
@@ -1869,6 +1908,18 @@ main {
     }
 
 
+    .lightbox-media {
+
+        top: 16px;
+
+        right: 16px;
+
+        bottom: 70px;
+
+        left: 16px;
+    }
+
+
     .gallery-section-number {
 
         font-size: .82rem;
@@ -1899,7 +1950,6 @@ main {
         display: none;
     }
 }
-
 
 </style>
 
@@ -2986,41 +3036,32 @@ let lastFocusedCard =
 
 
 /* =========================================================
-   NORMAL LAYOUT
+   NORMAL GALLERY LAYOUT
+
+   IMPORTANT:
+   return must stay on the SAME LINE.
    ========================================================= */
 
-function layoutClass(
-    count
-) {
+function layoutClass(count) {
 
-    if (
-        count === 1
-    ) {
+    if (count === 1) {
 
-        return
-            "gallery-layout--single";
-
+        return "gallery-layout--single";
     }
 
 
-    if (
-        count === 2
-    ) {
+    if (count === 2) {
 
-        return
-            "gallery-layout--pair";
-
+        return "gallery-layout--pair";
     }
 
 
-    return
-        "gallery-layout--masonry";
-
+    return "gallery-layout--masonry";
 }
 
 
 /* =========================================================
-   INTERACTION GROUPS HTML
+   INTERACTION GROUPS
    ========================================================= */
 
 function interactionGroupsMarkup() {
@@ -3164,7 +3205,6 @@ function interactionGroupsMarkup() {
         </div>
 
     `;
-
 }
 
 
@@ -3546,6 +3586,97 @@ document
    LIGHTBOX
    ========================================================= */
 
+
+/*
+A legenda é posicionada relativamente
+à imagem REAL, e não ao lightbox.
+
+Assim começa sempre exatamente onde
+começa o canto esquerdo da imagem.
+*/
+
+function positionLightboxCaption() {
+
+    const image =
+
+        lightboxMedia.querySelector(
+            "img"
+        );
+
+
+    const dialog =
+
+        lightbox.querySelector(
+            ".lightbox-dialog"
+        );
+
+
+    if (
+        !image ||
+        !dialog
+    ) {
+
+        return;
+    }
+
+
+    const imageRect =
+
+        image.getBoundingClientRect();
+
+
+    const dialogRect =
+
+        dialog.getBoundingClientRect();
+
+
+    if (
+        imageRect.width <= 0 ||
+        imageRect.height <= 0
+    ) {
+
+        return;
+    }
+
+
+    const left =
+
+        imageRect.left -
+        dialogRect.left;
+
+
+    const top =
+
+        imageRect.bottom -
+        dialogRect.top +
+        12;
+
+
+    lightboxCaption.style.left =
+
+        `${left}px`;
+
+
+    lightboxCaption.style.top =
+
+        `${top}px`;
+
+
+    lightboxCaption.style.width =
+
+        `${imageRect.width}px`;
+
+
+    lightboxCaption.classList.add(
+        "is-positioned"
+    );
+}
+
+
+/* =========================================================
+   OPEN LIGHTBOX
+   ========================================================= */
+
 gallery.addEventListener(
 
     "click",
@@ -3565,7 +3696,6 @@ gallery.addEventListener(
         ) {
 
             return;
-
         }
 
 
@@ -3581,7 +3711,6 @@ gallery.addEventListener(
         ) {
 
             return;
-
         }
 
 
@@ -3603,6 +3732,16 @@ gallery.addEventListener(
             "";
 
 
+        lightboxCaption.classList.remove(
+            "is-positioned"
+        );
+
+
+        lightboxCaption.removeAttribute(
+            "style"
+        );
+
+
         const image =
 
             document.createElement(
@@ -3610,12 +3749,43 @@ gallery.addEventListener(
             );
 
 
-        image.src =
-            source.src;
-
-
         image.alt =
             source.alt;
+
+
+        image.addEventListener(
+
+            "load",
+
+            () => {
+
+
+                requestAnimationFrame(
+
+                    () => {
+
+
+                        requestAnimationFrame(
+
+                            positionLightboxCaption
+
+                        );
+
+                    }
+
+                );
+
+            },
+
+            {
+                once: true
+            }
+
+        );
+
+
+        image.src =
+            source.src;
 
 
         lightboxMedia.appendChild(
@@ -3642,6 +3812,22 @@ gallery.addEventListener(
             "hidden";
 
 
+        requestAnimationFrame(
+
+            () => {
+
+
+                requestAnimationFrame(
+
+                    positionLightboxCaption
+
+                );
+
+            }
+
+        );
+
+
         lightboxClose.focus();
 
     }
@@ -3649,7 +3835,12 @@ gallery.addEventListener(
 );
 
 
+/* =========================================================
+   CLOSE LIGHTBOX
+   ========================================================= */
+
 function closeLightbox() {
+
 
     lightbox.classList.remove(
         "is-open"
@@ -3670,14 +3861,26 @@ function closeLightbox() {
         "";
 
 
+    lightboxCaption.textContent =
+        "";
+
+
+    lightboxCaption.classList.remove(
+        "is-positioned"
+    );
+
+
+    lightboxCaption.removeAttribute(
+        "style"
+    );
+
+
     if (
         lastFocusedCard
     ) {
 
         lastFocusedCard.focus();
-
     }
-
 }
 
 
@@ -3703,7 +3906,6 @@ lightbox.addEventListener(
         ) {
 
             closeLightbox();
-
         }
 
     }
@@ -3732,7 +3934,35 @@ document.addEventListener(
         ) {
 
             closeLightbox();
+        }
 
+    }
+
+);
+
+
+/* =========================================================
+   REPOSITION CAPTION ON RESIZE
+   ========================================================= */
+
+window.addEventListener(
+
+    "resize",
+
+    () => {
+
+
+        if (
+
+            lightbox.classList.contains(
+                "is-open"
+            )
+
+        ) {
+
+            requestAnimationFrame(
+                positionLightboxCaption
+            );
         }
 
     }
@@ -3763,7 +3993,6 @@ gallery.addEventListener(
         ) {
 
             return;
-
         }
 
 
@@ -3780,7 +4009,6 @@ gallery.addEventListener(
         ) {
 
             return;
-
         }
 
 
@@ -3805,7 +4033,6 @@ gallery.addEventListener(
                 .remove(
                     "is-water-ripple"
                 );
-
         }
 
 
@@ -3835,7 +4062,6 @@ gallery.addEventListener(
             attempt.catch(
                 () => {}
             );
-
         }
 
     }
@@ -3862,7 +4088,6 @@ gallery.addEventListener(
         ) {
 
             return;
-
         }
 
 
@@ -3879,7 +4104,6 @@ gallery.addEventListener(
         ) {
 
             return;
-
         }
 
 
@@ -3891,7 +4115,6 @@ gallery.addEventListener(
         ) {
 
             return;
-
         }
 
 
@@ -3924,7 +4147,6 @@ gallery.addEventListener(
 
                         activeWaterCard =
                             null;
-
                     }
 
                 },
