@@ -5,14 +5,23 @@
 <meta charset="utf-8"/>
 <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
 <meta content="Visual gallery for the Hidden Waters thesis project." name="description"/>
+
 <link href="assets/images/favicon.png" rel="icon" type="image/png"/>
 <link href="assets/images/favicon.ico" rel="icon" sizes="any"/>
 <link href="assets/images/apple-touch-icon.png" rel="apple-touch-icon"/>
+
 <title>Gallery · Hidden Waters</title>
+
 <link href="https://fonts.googleapis.com" rel="preconnect"/>
 <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
-<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&amp;family=Inter:wght@300;400;500;600&amp;display=swap" rel="stylesheet"/>
+
+<link
+    href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:wght@300;400;500;600&display=swap"
+    rel="stylesheet"
+/>
+
 <style>
+
 @font-face{
     font-family:"Steelfish";
     src:url("assets/fonts/steelfish-rg.otf") format("opentype");
@@ -29,1522 +38,3939 @@
     font-display:swap;
 }
 
+
 :root{
     --background:#050505;
     --text:#f2f2f2;
     --muted:#a6a6a6;
+
     --blue:#739da6;
     --blue-light:#8fb3ba;
+
     --line:rgba(255,255,255,.11);
+
     --header-background:rgba(5,5,5,.78);
+
     --content-width:1100px;
     --content-gutter:128px;
+
     --header-height:76px;
+
     --gallery-gap:24px;
+
     --radius:24px;
 }
 
-*{box-sizing:border-box}
+
+*{
+    box-sizing:border-box;
+}
+
 
 html{
     scroll-behavior:smooth;
     scroll-padding-top:110px;
 }
 
+
 body{
     margin:0;
+
     overflow-x:hidden;
+
     color:var(--text);
     background:var(--background);
+
     font-family:"Inter",Arial,sans-serif;
+
     line-height:1.65;
 }
 
+
 a{
     color:inherit;
+
     text-decoration:none;
 }
 
-button{font:inherit}
 
-img,video{
+button{
+    font:inherit;
+}
+
+
+img,
+video{
     display:block;
+
     width:100%;
 }
 
+
 .content-width{
-    width:min(var(--content-width),calc(100% - var(--content-gutter)));
+    width:min(
+        var(--content-width),
+        calc(100% - var(--content-gutter))
+    );
+
     margin-inline:auto;
 }
 
-/* HEADER */
+
+/* =========================================================
+   HEADER
+   ========================================================= */
 
 .site-header{
     position:fixed;
+
     z-index:1000;
+
     inset:0 0 auto;
+
     height:var(--header-height);
+
     background:var(--header-background);
-    border-bottom:1px solid var(--line);
-    backdrop-filter:blur(18px) saturate(150%);
-    -webkit-backdrop-filter:blur(18px) saturate(150%);
+
+    border-bottom:
+        1px solid
+        var(--line);
+
+    backdrop-filter:
+        blur(18px)
+        saturate(150%);
+
+    -webkit-backdrop-filter:
+        blur(18px)
+        saturate(150%);
 }
+
 
 .header-content{
     position:relative;
+
     display:flex;
+
     justify-content:center;
     align-items:center;
+
     height:100%;
 }
 
+
 .main-nav{
     display:flex;
+
     align-items:center;
+
     gap:30px;
-    font-family:"Bebas Neue",sans-serif;
+
+    font-family:
+        "Bebas Neue",
+        sans-serif;
+
     font-size:1.28rem;
+
     letter-spacing:.12em;
+
     line-height:1;
 }
 
-.main-nav>a:not(.header-logo-link){
+
+.main-nav > a:not(.header-logo-link){
     position:relative;
-    transition:color .22s ease,transform .22s ease;
+
+    transition:
+        color .22s ease,
+        transform .22s ease;
 }
 
-.main-nav>a:not(.header-logo-link)::after{
+
+.main-nav > a:not(.header-logo-link)::after{
     content:"";
+
     position:absolute;
+
     right:0;
     bottom:-7px;
     left:0;
+
     height:1px;
+
     background:var(--blue-light);
+
     transform:scaleX(0);
+
     transform-origin:right;
-    transition:transform .24s ease;
+
+    transition:
+        transform .24s ease;
 }
 
-.main-nav>a:hover,
-.main-nav>a:focus-visible{
+
+.main-nav > a:hover,
+.main-nav > a:focus-visible{
     color:var(--blue-light);
 }
 
-.main-nav>a:not(.header-logo-link):hover,
-.main-nav>a:not(.header-logo-link):focus-visible{
+
+.main-nav > a:not(.header-logo-link):hover,
+.main-nav > a:not(.header-logo-link):focus-visible{
     transform:translateY(-1px);
 }
 
-.main-nav>a:not(.header-logo-link):hover::after,
-.main-nav>a:not(.header-logo-link):focus-visible::after,
-.main-nav>a[aria-current="page"]::after{
+
+.main-nav > a:not(.header-logo-link):hover::after,
+.main-nav > a:not(.header-logo-link):focus-visible::after,
+.main-nav > a[aria-current="page"]::after{
     transform:scaleX(1);
+
     transform-origin:left;
 }
 
+
 .header-logo-link{
     display:flex;
+
     justify-content:center;
     align-items:center;
+
     width:42px;
     height:52px;
+
     flex:0 0 42px;
+
     opacity:.94;
-    transition:opacity .22s ease,transform .26s ease;
+
+    transition:
+        opacity .22s ease,
+        transform .26s ease;
 }
+
 
 .header-logo-link:hover,
 .header-logo-link:focus-visible{
     opacity:1;
+
     transform:scale(1.07);
 }
+
 
 .header-logo-image{
     width:auto;
     height:40px;
+
     max-width:38px;
+
     object-fit:contain;
 }
 
-/* PT / EN */
+
+/* =========================================================
+   PT / EN
+   ========================================================= */
 
 .language-switch{
     position:absolute;
+
     top:50%;
     right:0;
+
     display:flex;
+
     gap:3px;
+
     padding:4px;
-    background:rgba(255,255,255,.045);
-    border:1px solid rgba(255,255,255,.12);
+
+    background:
+        rgba(
+            255,
+            255,
+            255,
+            .045
+        );
+
+    border:
+        1px solid
+        rgba(
+            255,
+            255,
+            255,
+            .12
+        );
+
     border-radius:999px;
-    transform:translateY(-50%);
+
+    transform:
+        translateY(-50%);
 }
+
 
 .language-button{
     min-width:36px;
-    padding:6px 9px;
+
+    padding:
+        6px
+        9px;
+
     color:#8f8f8f;
+
     background:transparent;
+
     border:0;
+
     border-radius:999px;
+
     cursor:pointer;
-    font-family:"Bebas Neue",sans-serif;
+
+    font-family:
+        "Bebas Neue",
+        sans-serif;
+
     font-size:.9rem;
+
     letter-spacing:.08em;
 }
 
+
 .language-button.is-active{
     color:#050505;
+
     background:var(--blue-light);
 }
 
-.language-button:hover:not(.is-active){color:#fff}
 
-main{padding-top:var(--header-height)}
+.language-button:hover:not(.is-active){
+    color:#fff;
+}
 
-/* HERO */
+
+main{
+    padding-top:var(--header-height);
+}
+
+
+/* =========================================================
+   HERO
+   ========================================================= */
 
 .gallery-hero{
-    padding:clamp(55px,7vh,95px) 0 clamp(90px,11vh,135px);
+    padding:
+        clamp(
+            55px,
+            7vh,
+            95px
+        )
+        0
+        clamp(
+            90px,
+            11vh,
+            135px
+        );
 }
+
 
 .gallery-title{
     margin:0;
+
     color:#eee;
-    font-family:"Bebas Neue",sans-serif;
-    font-size:clamp(5rem,11vw,11rem);
+
+    font-family:
+        "Bebas Neue",
+        sans-serif;
+
+    font-size:
+        clamp(
+            5rem,
+            11vw,
+            11rem
+        );
+
     font-weight:400;
+
     letter-spacing:.01em;
+
     line-height:.8;
 }
 
+
 .gallery-introduction{
     max-width:690px;
-    margin:42px 0 0;
+
+    margin:
+        42px
+        0
+        0;
+
     color:var(--muted);
+
     font-size:.98rem;
+
     line-height:1.78;
 }
 
-/* SECTIONS */
+
+/* =========================================================
+   SECTIONS
+   ========================================================= */
 
 .gallery-sections{
-    padding-bottom:clamp(110px,14vh,180px);
+    padding-bottom:
+        clamp(
+            110px,
+            14vh,
+            180px
+        );
 }
 
+
 .gallery-section{
-    margin-bottom:clamp(120px,16vh,195px);
+    margin-bottom:
+        clamp(
+            120px,
+            16vh,
+            195px
+        );
+
     scroll-margin-top:110px;
 }
 
-.gallery-section:last-child{margin-bottom:0}
+
+.gallery-section:last-child{
+    margin-bottom:0;
+}
+
 
 .gallery-section-header{
     display:grid;
-    grid-template-columns:auto minmax(80px,1fr);
-    align-items:center;
+
+    grid-template-columns:
+        auto
+        minmax(
+            80px,
+            1fr
+        );
+
+    align-items:end;
+
     gap:30px;
+
     margin-bottom:34px;
 }
 
-.gallery-section-link{
-    display:inline-flex;
-    align-items:baseline;
-    gap:8px;
-    width:fit-content;
-    color:var(--blue-light);
-    font-family:"Steelfish","Arial Narrow",sans-serif;
-    font-size:clamp(1.55rem,2.2vw,2rem);
-    letter-spacing:.045em;
-    line-height:1;
-    text-transform:uppercase;
-    transition:color .22s ease,transform .22s ease;
+
+.gallery-section-heading{
+    display:flex;
+
+    flex-direction:column;
+
+    align-items:flex-start;
+
+    gap:10px;
 }
 
-.gallery-section-link .arrow{
+
+/* SECTION 1 ↗ */
+
+.gallery-section-number{
+    display:inline-flex;
+
+    align-items:baseline;
+
+    gap:7px;
+
+    width:fit-content;
+
+    color:var(--blue-light);
+
+    font-family:
+        "Steelfish",
+        "Arial Narrow",
+        sans-serif;
+
+    font-size:.95rem;
+
+    letter-spacing:.075em;
+
+    line-height:1;
+
+    text-transform:uppercase;
+
+    opacity:.92;
+
+    transition:
+        color .22s ease,
+        transform .22s ease;
+}
+
+
+.gallery-section-number .arrow{
     font-size:.72em;
+
     opacity:.8;
 }
 
-.gallery-section-link:hover,
-.gallery-section-link:focus-visible{
+
+.gallery-section-number:hover,
+.gallery-section-number:focus-visible{
     color:#fff;
-    transform:translateY(-1px);
+
+    transform:
+        translateY(-1px);
 }
+
+
+/* SECTION TITLE */
+
+.gallery-section-title{
+    margin:0;
+
+    color:#eeeeee;
+
+    font-family:
+        "Steelfish",
+        "Arial Narrow",
+        sans-serif;
+
+    font-size:
+        clamp(
+            1.55rem,
+            2.2vw,
+            2rem
+        );
+
+    font-weight:400;
+
+    letter-spacing:.045em;
+
+    line-height:1;
+
+    text-transform:uppercase;
+}
+
 
 .gallery-section-line{
     height:1px;
-    background:linear-gradient(
-        to right,
-        rgba(143,179,186,.5),
-        rgba(143,179,186,.035)
-    );
+
+    background:
+        linear-gradient(
+            to right,
+            rgba(
+                143,
+                179,
+                186,
+                .5
+            ),
+            rgba(
+                143,
+                179,
+                186,
+                .035
+            )
+        );
 }
 
-/* DYNAMIC ARTBOOK */
 
-.gallery-layout{width:100%}
+/* =========================================================
+   DYNAMIC ARTBOOK
+   ========================================================= */
+
+.gallery-layout{
+    width:100%;
+}
+
 
 .gallery-layout--single{
     display:block;
 }
 
-.gallery-layout--single .gallery-card{
+
+.gallery-layout--single
+.gallery-card{
     width:100%;
 }
+
 
 .gallery-layout--pair{
     display:grid;
-    grid-template-columns:repeat(2,minmax(0,1fr));
+
+    grid-template-columns:
+        repeat(
+            2,
+            minmax(
+                0,
+                1fr
+            )
+        );
+
     align-items:start;
+
     gap:var(--gallery-gap);
 }
 
+
 .gallery-layout--masonry{
     column-count:2;
-    column-gap:var(--gallery-gap);
+
+    column-gap:
+        var(--gallery-gap);
 }
 
-.gallery-layout--masonry .gallery-card{
+
+.gallery-layout--masonry
+.gallery-card{
     display:inline-block;
+
     width:100%;
-    margin:0 0 var(--gallery-gap);
+
+    margin:
+        0
+        0
+        var(--gallery-gap);
+
     break-inside:avoid;
 }
 
-/* CARDS */
+
+/* =========================================================
+   CARDS
+   ========================================================= */
 
 .gallery-card{
     position:relative;
+
     padding:0;
+
     overflow:hidden;
+
     color:#fff;
+
     background:#18292d;
+
     border:0;
+
     border-radius:var(--radius);
+
     cursor:zoom-in;
+
     text-align:left;
+
     isolation:isolate;
+
     transition:
-        transform .42s cubic-bezier(.22,1,.36,1),
-        box-shadow .42s ease;
+        transform
+            .42s
+            cubic-bezier(
+                .22,
+                1,
+                .36,
+                1
+            ),
+        box-shadow
+            .42s
+            ease;
 }
+
 
 .gallery-card img{
     width:100%;
+
     height:auto;
+
     border-radius:inherit;
+
     object-fit:contain;
+
     transition:
-        transform .7s cubic-bezier(.22,1,.36,1),
-        filter .48s ease;
+        transform
+            .7s
+            cubic-bezier(
+                .22,
+                1,
+                .36,
+                1
+            ),
+        filter
+            .48s
+            ease;
 }
+
 
 .gallery-card::after{
     content:"";
+
     position:absolute;
+
     z-index:1;
+
     inset:0;
-    background:linear-gradient(
-        to top,
-        rgba(0,0,0,.54) 0%,
-        rgba(0,0,0,.08) 40%,
-        transparent 68%
-    );
+
+    background:
+        linear-gradient(
+            to top,
+            rgba(
+                0,
+                0,
+                0,
+                .54
+            )
+            0%,
+
+            rgba(
+                0,
+                0,
+                0,
+                .08
+            )
+            40%,
+
+            transparent
+            68%
+        );
+
     opacity:0;
+
     pointer-events:none;
-    transition:opacity .33s ease;
+
+    transition:
+        opacity
+        .33s
+        ease;
 }
+
 
 .gallery-card:hover,
 .gallery-card:focus-visible{
     z-index:20;
-    transform:translateY(-4px) scale(1.012);
-    box-shadow:0 25px 65px rgba(0,0,0,.46);
+
+    transform:
+        translateY(-4px)
+        scale(1.012);
+
+    box-shadow:
+        0
+        25px
+        65px
+        rgba(
+            0,
+            0,
+            0,
+            .46
+        );
 }
+
 
 .gallery-card:hover::after,
 .gallery-card:focus-visible::after{
     opacity:1;
 }
 
+
 .gallery-card:hover img,
 .gallery-card:focus-visible img{
-    filter:blur(2.5px) brightness(.58) saturate(.88);
-    transform:scale(1.025);
+    filter:
+        blur(2.5px)
+        brightness(.58)
+        saturate(.88);
+
+    transform:
+        scale(1.025);
 }
+
 
 .gallery-card-title{
     position:absolute;
+
     z-index:4;
+
     right:24px;
     bottom:20px;
     left:24px;
+
     color:#fff;
-    font-family:"Steelfish","Arial Narrow",sans-serif;
-    font-size:clamp(1.15rem,1.35vw,1.5rem);
+
+    font-family:
+        "Steelfish",
+        "Arial Narrow",
+        sans-serif;
+
+    font-size:
+        clamp(
+            1.15rem,
+            1.35vw,
+            1.5rem
+        );
+
     letter-spacing:.045em;
+
     line-height:1;
+
     text-transform:uppercase;
+
     opacity:0;
-    transform:translateY(10px);
+
+    transform:
+        translateY(10px);
+
     pointer-events:none;
-    transition:opacity .3s ease,transform .3s ease;
+
+    transition:
+        opacity
+            .3s
+            ease,
+        transform
+            .3s
+            ease;
 }
 
-.gallery-card:hover .gallery-card-title,
-.gallery-card:focus-visible .gallery-card-title{
+
+.gallery-card:hover
+.gallery-card-title,
+
+.gallery-card:focus-visible
+.gallery-card-title{
     opacity:1;
-    transform:translateY(0);
+
+    transform:
+        translateY(0);
 }
 
-/* WATER HOVER */
+
+/* =========================================================
+   WATER HOVER
+   ========================================================= */
 
 .water-ripple-video{
     position:absolute;
+
     z-index:2;
+
     inset:-3%;
+
     width:106%;
     height:106%;
+
     object-fit:cover;
+
     border-radius:inherit;
+
     opacity:0;
+
     mix-blend-mode:screen;
-    filter:blur(1.4px) brightness(.78) contrast(.82);
+
+    filter:
+        blur(1.4px)
+        brightness(.78)
+        contrast(.82);
+
     pointer-events:none;
-    transform:scale(1.07);
-    transition:opacity .48s ease,transform .85s ease;
+
+    transform:
+        scale(1.07);
+
+    transition:
+        opacity
+            .48s
+            ease,
+        transform
+            .85s
+            ease;
 }
 
-.gallery-card.is-water-ripple .water-ripple-video{
+
+.gallery-card.is-water-ripple
+.water-ripple-video{
     opacity:.16;
-    transform:scale(1.09);
+
+    transform:
+        scale(1.09);
 }
 
-/* LIGHTBOX */
+
+/* =========================================================
+   LIGHTBOX
+   ========================================================= */
 
 .lightbox{
     position:fixed;
+
     z-index:2200;
+
     inset:0;
+
     display:grid;
+
     place-items:center;
+
     padding:38px;
-    background:rgba(0,0,0,.92);
+
+    background:
+        rgba(
+            0,
+            0,
+            0,
+            .92
+        );
+
     opacity:0;
+
     visibility:hidden;
-    backdrop-filter:blur(18px);
-    -webkit-backdrop-filter:blur(18px);
-    transition:opacity .28s ease,visibility .28s ease;
+
+    backdrop-filter:
+        blur(18px);
+
+    -webkit-backdrop-filter:
+        blur(18px);
+
+    transition:
+        opacity
+            .28s
+            ease,
+        visibility
+            .28s
+            ease;
 }
+
 
 .lightbox.is-open{
     opacity:1;
+
     visibility:visible;
 }
 
+
 .lightbox-dialog{
     position:relative;
-    width:min(1280px,94vw);
-    height:min(88vh,900px);
+
+    width:
+        min(
+            1280px,
+            94vw
+        );
+
+    height:
+        min(
+            88vh,
+            900px
+        );
+
     overflow:hidden;
+
     background:#0a0a0a;
+
     border-radius:26px;
-    box-shadow:0 34px 110px rgba(0,0,0,.76);
+
+    box-shadow:
+        0
+        34px
+        110px
+        rgba(
+            0,
+            0,
+            0,
+            .76
+        );
 }
+
 
 .lightbox-media{
     display:flex;
+
     justify-content:center;
     align-items:center;
+
     width:100%;
     height:100%;
+
     padding:24px;
 }
 
+
 .lightbox-media img{
     width:auto;
+
     max-width:100%;
+
     height:auto;
+
     max-height:100%;
+
     object-fit:contain;
+
     border-radius:12px;
 }
 
+
 .lightbox-caption{
     position:absolute;
+
     z-index:4;
+
     right:30px;
     bottom:25px;
     left:30px;
+
     color:#fff;
-    font-family:"Steelfish","Arial Narrow",sans-serif;
-    font-size:clamp(1.25rem,1.8vw,1.6rem);
+
+    font-family:
+        "Steelfish",
+        "Arial Narrow",
+        sans-serif;
+
+    font-size:
+        clamp(
+            1.25rem,
+            1.8vw,
+            1.6rem
+        );
+
     letter-spacing:.045em;
+
     text-transform:uppercase;
+
     pointer-events:none;
 }
 
+
 .lightbox-close{
     position:absolute;
+
     z-index:6;
+
     top:18px;
     right:18px;
+
     display:flex;
+
     justify-content:center;
     align-items:center;
+
     width:46px;
     height:46px;
+
     padding:0;
+
     color:#fff;
-    background:rgba(5,5,5,.68);
-    border:1px solid rgba(255,255,255,.28);
+
+    background:
+        rgba(
+            5,
+            5,
+            5,
+            .68
+        );
+
+    border:
+        1px solid
+        rgba(
+            255,
+            255,
+            255,
+            .28
+        );
+
     border-radius:50%;
+
     cursor:pointer;
+
     font-size:1.3rem;
 }
 
+
 .lightbox-close:hover,
 .lightbox-close:focus-visible{
-    background:rgba(115,157,166,.62);
-    transform:scale(1.06);
+    background:
+        rgba(
+            115,
+            157,
+            166,
+            .62
+        );
+
+    transform:
+        scale(1.06);
 }
 
-/* FOOTER */
+
+/* =========================================================
+   FOOTER
+   ========================================================= */
 
 .site-footer{
-    padding:35px 0 45px;
-    border-top:1px solid var(--line);
+    padding:
+        35px
+        0
+        45px;
+
+    border-top:
+        1px solid
+        var(--line);
 }
+
 
 .footer-content{
     display:flex;
-    justify-content:space-between;
+
+    justify-content:
+        space-between;
+
     align-items:center;
+
     gap:24px;
+
     color:#818181;
+
     font-size:.75rem;
+
     letter-spacing:.04em;
 }
 
+
 .footer-institution{
     display:flex;
+
     align-items:center;
+
     gap:18px;
 }
 
+
 .footer-ist-logo{
     width:auto;
+
     height:27px;
+
     opacity:.78;
+
     object-fit:contain;
 }
 
-/* RESPONSIVE */
+
+/* =========================================================
+   RESPONSIVE
+   ========================================================= */
 
 @media(max-width:900px){
+
     :root{
         --content-gutter:36px;
         --gallery-gap:18px;
         --radius:20px;
     }
+
 }
 
+
 @media(max-width:700px){
+
     .gallery-layout--pair{
         grid-template-columns:1fr;
     }
+
 
     .gallery-layout--masonry{
         column-count:1;
     }
 
+
     .gallery-section-header{
         grid-template-columns:1fr;
+
         gap:14px;
     }
 
+
     .gallery-card-title{
         opacity:1;
+
         transform:none;
     }
+
 
     .gallery-card::after{
         opacity:.38;
     }
+
 }
 
+
 @media(max-width:520px){
+
     :root{
         --header-height:68px;
     }
 
+
     .main-nav{
         gap:13px;
+
         font-size:.94rem;
     }
+
 
     .header-logo-link{
         width:32px;
         height:42px;
+
         flex-basis:32px;
     }
 
+
     .header-logo-image{
         height:31px;
+
         max-width:30px;
     }
 
+
     .language-switch{
         right:-4px;
-        transform:translate(35%,-50%) scale(.86);
+
+        transform:
+            translate(
+                35%,
+                -50%
+            )
+            scale(.86);
     }
+
 
     .language-button{
         min-width:31px;
-        padding:5px 6px;
+
+        padding:
+            5px
+            6px;
+
         font-size:.8rem;
     }
 
+
     .footer-content{
         flex-direction:column;
+
         align-items:flex-start;
     }
+
 
     .lightbox{
         padding:14px;
     }
 
+
     .lightbox-dialog{
         width:100%;
+
         height:82vh;
+
         border-radius:19px;
     }
+
 }
 
+
 @media(hover:none){
+
     .water-ripple-video{
         display:none;
     }
+
 }
 
+
 @media(prefers-reduced-motion:reduce){
+
     *,
     *::before,
     *::after{
-        scroll-behavior:auto!important;
-        animation-duration:.01ms!important;
-        animation-iteration-count:1!important;
-        transition-duration:.01ms!important;
+        scroll-behavior:auto !important;
+
+        animation-duration:.01ms !important;
+
+        animation-iteration-count:1 !important;
+
+        transition-duration:.01ms !important;
     }
+
 
     .water-ripple-video{
         display:none;
     }
-}
 
-.header-content { position: relative; }
+}
 
 
 /* =========================================================
-   HEADER — FEEDBACK LINK (mirrored with PT/EN)
+   HEADER — FEEDBACK
    ========================================================= */
 
-.header-feedback-link {
-    position: absolute;
-    top: 50%;
-    left: 0;
-    z-index: 3;
+.header-content{
+    position:relative;
+}
 
-    display: inline-flex;
-    align-items: center;
 
-    color: #b7b7b7;
+.header-feedback-link{
+    position:absolute;
 
-    font-family: "Bebas Neue", sans-serif;
-    font-size: 1.05rem;
-    letter-spacing: 0.11em;
-    line-height: 1;
-    text-transform: uppercase;
+    top:50%;
+    left:0;
 
-    transform: translateY(-50%);
+    z-index:3;
+
+    display:inline-flex;
+
+    align-items:center;
+
+    color:#b7b7b7;
+
+    font-family:
+        "Bebas Neue",
+        sans-serif;
+
+    font-size:1.05rem;
+
+    letter-spacing:.11em;
+
+    line-height:1;
+
+    text-transform:uppercase;
+
+    transform:
+        translateY(-50%);
 
     transition:
-        color 220ms ease,
-        transform 220ms ease;
+        color
+            220ms
+            ease,
+        transform
+            220ms
+            ease;
 }
 
-.header-feedback-link::after {
-    content: "";
 
-    position: absolute;
-    right: 0;
-    bottom: -7px;
-    left: 0;
+.header-feedback-link::after{
+    content:"";
 
-    height: 1px;
+    position:absolute;
 
-    background: var(--blue-light, #8fb3ba);
+    right:0;
+    bottom:-7px;
+    left:0;
 
-    transform: scaleX(0);
-    transform-origin: right;
+    height:1px;
 
-    transition: transform 240ms ease;
+    background:
+        var(
+            --blue-light,
+            #8fb3ba
+        );
+
+    transform:
+        scaleX(0);
+
+    transform-origin:right;
+
+    transition:
+        transform
+        240ms
+        ease;
 }
+
 
 .header-feedback-link:hover,
-.header-feedback-link:focus-visible {
-    color: var(--blue-light, #8fb3ba);
-    transform: translateY(calc(-50% - 1px));
+.header-feedback-link:focus-visible{
+    color:
+        var(
+            --blue-light,
+            #8fb3ba
+        );
+
+    transform:
+        translateY(
+            calc(
+                -50%
+                -
+                1px
+            )
+        );
 }
+
 
 .header-feedback-link:hover::after,
 .header-feedback-link:focus-visible::after,
-.header-feedback-link[aria-current="page"]::after {
-    transform: scaleX(1);
-    transform-origin: left;
+.header-feedback-link[aria-current="page"]::after{
+    transform:
+        scaleX(1);
+
+    transform-origin:left;
 }
 
-@media (max-width: 650px) {
-    .header-feedback-link {
-        left: 4px;
-        font-size: 0.86rem;
-        transform: translate(-28%, -50%) scale(.88);
+
+@media(max-width:650px){
+
+    .header-feedback-link{
+        left:4px;
+
+        font-size:.86rem;
+
+        transform:
+            translate(
+                -28%,
+                -50%
+            )
+            scale(.88);
     }
+
 
     .header-feedback-link:hover,
-    .header-feedback-link:focus-visible {
-        transform: translate(-28%, calc(-50% - 1px)) scale(.88);
+    .header-feedback-link:focus-visible{
+        transform:
+            translate(
+                -28%,
+                calc(
+                    -50%
+                    -
+                    1px
+                )
+            )
+            scale(.88);
     }
+
 }
 
 
 /* =========================================================
-   UNIFIED HEADER — EXACT GALLERY SPACING
+   UNIFIED HEADER
    ========================================================= */
 
-.site-header {
-    position: fixed !important;
-    z-index: 1000 !important;
-    inset: 0 0 auto !important;
+.site-header{
+    position:fixed !important;
 
-    height: 76px !important;
+    z-index:1000 !important;
 
-    background: rgba(5, 5, 5, .78) !important;
-    border-bottom: 1px solid rgba(255,255,255,.11) !important;
+    inset:
+        0
+        0
+        auto !important;
 
-    backdrop-filter: blur(18px) saturate(150%) !important;
-    -webkit-backdrop-filter: blur(18px) saturate(150%) !important;
+    height:76px !important;
+
+    background:
+        rgba(
+            5,
+            5,
+            5,
+            .78
+        ) !important;
+
+    border-bottom:
+        1px solid
+        rgba(
+            255,
+            255,
+            255,
+            .11
+        ) !important;
+
+    backdrop-filter:
+        blur(18px)
+        saturate(150%) !important;
+
+    -webkit-backdrop-filter:
+        blur(18px)
+        saturate(150%) !important;
 }
 
-/* Same 1100 px content width + 128 px desktop gutter as Gallery */
-.site-header .header-content {
-    position: relative !important;
 
-    display: flex !important;
-    align-items: center !important;
-    justify-content: center !important;
+.site-header
+.header-content{
+    position:relative !important;
 
-    width: min(1100px, calc(100% - 128px)) !important;
-    max-width: none !important;
-    height: 100% !important;
+    display:flex !important;
 
-    margin-inline: auto !important;
-    padding: 0 !important;
+    align-items:center !important;
+
+    justify-content:center !important;
+
+    width:
+        min(
+            1100px,
+            calc(
+                100%
+                -
+                128px
+            )
+        ) !important;
+
+    max-width:none !important;
+
+    height:100% !important;
+
+    margin-inline:auto !important;
+
+    padding:0 !important;
 }
 
-/* Central navigation — identical to Gallery */
-.site-header .main-nav,
-.site-header .simple-main-nav {
-    display: flex !important;
-    align-items: center !important;
 
-    gap: 30px !important;
+.site-header
+.main-nav,
 
-    margin: 0 !important;
-    padding: 0 !important;
+.site-header
+.simple-main-nav{
+    display:flex !important;
 
-    font-family: "Bebas Neue", sans-serif !important;
-    font-size: 1.28rem !important;
-    letter-spacing: .12em !important;
-    line-height: 1 !important;
+    align-items:center !important;
+
+    gap:30px !important;
+
+    margin:0 !important;
+
+    padding:0 !important;
+
+    font-family:
+        "Bebas Neue",
+        sans-serif !important;
+
+    font-size:1.28rem !important;
+
+    letter-spacing:.12em !important;
+
+    line-height:1 !important;
 }
 
-/* Normal nav links */
-.site-header .main-nav > a:not(.header-logo-link) {
-    position: relative !important;
 
-    color: inherit;
+.site-header
+.main-nav
+> a:not(.header-logo-link){
+    position:relative !important;
+
+    color:inherit;
 
     transition:
-        color .22s ease,
-        transform .22s ease !important;
+        color
+            .22s
+            ease,
+        transform
+            .22s
+            ease !important;
 }
 
-.site-header .main-nav > a:not(.header-logo-link)::after {
-    content: "" !important;
 
-    position: absolute !important;
-    right: 0 !important;
-    bottom: -7px !important;
-    left: 0 !important;
+.site-header
+.main-nav
+> a:not(.header-logo-link)::after{
+    content:"" !important;
 
-    height: 1px !important;
+    position:absolute !important;
 
-    background: #8fb3ba !important;
+    right:0 !important;
+    bottom:-7px !important;
+    left:0 !important;
 
-    transform: scaleX(0) !important;
-    transform-origin: right !important;
+    height:1px !important;
 
-    transition: transform .24s ease !important;
-}
+    background:#8fb3ba !important;
 
-.site-header .main-nav > a:not(.header-logo-link):hover,
-.site-header .main-nav > a:not(.header-logo-link):focus-visible {
-    color: #8fb3ba !important;
+    transform:
+        scaleX(0) !important;
 
-    transform: translateY(-1px) !important;
-}
-
-.site-header .main-nav > a:not(.header-logo-link):hover::after,
-.site-header .main-nav > a:not(.header-logo-link):focus-visible::after,
-.site-header .main-nav > a[aria-current="page"]:not(.header-logo-link)::after {
-    transform: scaleX(1) !important;
-    transform-origin: left !important;
-}
-
-/* Prevent older Index rules from drawing a line below the HW logo */
-.site-header .header-logo-link::after {
-    content: none !important;
-    display: none !important;
-}
-
-/* HW logo — exact Gallery dimensions */
-.site-header .header-logo-link {
-    display: flex !important;
-    align-items: center !important;
-    justify-content: center !important;
-
-    width: 42px !important;
-    height: 52px !important;
-    flex: 0 0 42px !important;
-
-    margin: 0 !important;
-    padding: 0 !important;
-
-    opacity: .94 !important;
+    transform-origin:right !important;
 
     transition:
-        opacity .22s ease,
-        transform .26s ease !important;
+        transform
+        .24s
+        ease !important;
 }
 
-.site-header .header-logo-link:hover,
-.site-header .header-logo-link:focus-visible {
-    opacity: 1 !important;
-    transform: translateY(-1px) !important;
+
+.site-header
+.main-nav
+> a:not(.header-logo-link):hover,
+
+.site-header
+.main-nav
+> a:not(.header-logo-link):focus-visible{
+    color:#8fb3ba !important;
+
+    transform:
+        translateY(-1px) !important;
 }
 
-.site-header .header-logo-image {
-    display: block !important;
 
-    width: auto !important;
-    height: 40px !important;
-    max-width: 38px !important;
+.site-header
+.main-nav
+> a:not(.header-logo-link):hover::after,
 
-    object-fit: contain !important;
+.site-header
+.main-nav
+> a:not(.header-logo-link):focus-visible::after,
+
+.site-header
+.main-nav
+> a[aria-current="page"]:not(.header-logo-link)::after{
+    transform:
+        scaleX(1) !important;
+
+    transform-origin:left !important;
 }
 
-/* Feedback — left edge of same Gallery content width */
-.site-header .header-feedback-link {
-    position: absolute !important;
-    z-index: 3 !important;
 
-    top: 50% !important;
-    left: 0 !important;
+.site-header
+.header-logo-link::after{
+    content:none !important;
 
-    display: inline-flex !important;
-    align-items: center !important;
+    display:none !important;
+}
 
-    margin: 0 !important;
 
-    color: #b7b7b7 !important;
+.site-header
+.header-logo-link{
+    display:flex !important;
 
-    font-family: "Bebas Neue", sans-serif !important;
-    font-size: 1.05rem !important;
-    letter-spacing: .11em !important;
-    line-height: 1 !important;
-    text-transform: uppercase !important;
+    align-items:center !important;
 
-    transform: translateY(-50%) !important;
+    justify-content:center !important;
+
+    width:42px !important;
+
+    height:52px !important;
+
+    flex:
+        0
+        0
+        42px !important;
+
+    margin:0 !important;
+
+    padding:0 !important;
+
+    opacity:.94 !important;
 
     transition:
-        color .22s ease,
-        transform .22s ease !important;
+        opacity
+            .22s
+            ease,
+        transform
+            .26s
+            ease !important;
 }
 
-.site-header .header-feedback-link::after {
-    content: "" !important;
 
-    position: absolute !important;
-    right: 0 !important;
-    bottom: -7px !important;
-    left: 0 !important;
+.site-header
+.header-logo-link:hover,
 
-    height: 1px !important;
+.site-header
+.header-logo-link:focus-visible{
+    opacity:1 !important;
 
-    background: #8fb3ba !important;
-
-    transform: scaleX(0) !important;
-    transform-origin: right !important;
-
-    transition: transform .24s ease !important;
+    transform:
+        translateY(-1px) !important;
 }
 
-.site-header .header-feedback-link:hover,
-.site-header .header-feedback-link:focus-visible {
-    color: #8fb3ba !important;
 
-    transform: translateY(calc(-50% - 1px)) !important;
+.site-header
+.header-logo-image{
+    display:block !important;
+
+    width:auto !important;
+
+    height:40px !important;
+
+    max-width:38px !important;
+
+    object-fit:contain !important;
 }
 
-.site-header .header-feedback-link:hover::after,
-.site-header .header-feedback-link:focus-visible::after,
-.site-header .header-feedback-link[aria-current="page"]::after {
-    transform: scaleX(1) !important;
-    transform-origin: left !important;
+
+.site-header
+.header-feedback-link{
+    position:absolute !important;
+
+    z-index:3 !important;
+
+    top:50% !important;
+
+    left:0 !important;
+
+    display:inline-flex !important;
+
+    align-items:center !important;
+
+    margin:0 !important;
+
+    color:#b7b7b7 !important;
+
+    font-family:
+        "Bebas Neue",
+        sans-serif !important;
+
+    font-size:1.05rem !important;
+
+    letter-spacing:.11em !important;
+
+    line-height:1 !important;
+
+    text-transform:uppercase !important;
+
+    transform:
+        translateY(-50%) !important;
+
+    transition:
+        color
+            .22s
+            ease,
+        transform
+            .22s
+            ease !important;
 }
 
-/* PT / EN — right edge of same Gallery content width */
-.site-header .language-switch {
-    position: absolute !important;
 
-    top: 50% !important;
-    right: 0 !important;
+.site-header
+.header-feedback-link::after{
+    content:"" !important;
 
-    display: flex !important;
-    gap: 3px !important;
+    position:absolute !important;
 
-    margin: 0 !important;
-    padding: 4px !important;
+    right:0 !important;
 
-    background: rgba(255,255,255,.045) !important;
+    bottom:-7px !important;
 
-    border: 1px solid rgba(255,255,255,.12) !important;
-    border-radius: 999px !important;
+    left:0 !important;
 
-    transform: translateY(-50%) !important;
+    height:1px !important;
+
+    background:#8fb3ba !important;
+
+    transform:
+        scaleX(0) !important;
+
+    transform-origin:right !important;
+
+    transition:
+        transform
+        .24s
+        ease !important;
 }
 
-.site-header .language-button {
-    min-width: 36px !important;
 
-    padding: 6px 9px !important;
+.site-header
+.header-feedback-link:hover,
 
-    color: #8f8f8f !important;
-    background: transparent !important;
+.site-header
+.header-feedback-link:focus-visible{
+    color:#8fb3ba !important;
 
-    border: 0 !important;
-    border-radius: 999px !important;
-
-    cursor: pointer !important;
-
-    font-family: "Bebas Neue", sans-serif !important;
-    font-size: .9rem !important;
-    letter-spacing: .08em !important;
+    transform:
+        translateY(
+            calc(
+                -50%
+                -
+                1px
+            )
+        ) !important;
 }
 
-.site-header .language-button.is-active {
-    color: #050505 !important;
-    background: #8fb3ba !important;
+
+.site-header
+.header-feedback-link:hover::after,
+
+.site-header
+.header-feedback-link:focus-visible::after,
+
+.site-header
+.header-feedback-link[aria-current="page"]::after{
+    transform:
+        scaleX(1) !important;
+
+    transform-origin:left !important;
 }
 
-.site-header .language-button:hover:not(.is-active),
-.site-header .language-button:focus-visible:not(.is-active) {
-    color: #fff !important;
+
+.site-header
+.language-switch{
+    position:absolute !important;
+
+    top:50% !important;
+
+    right:0 !important;
+
+    display:flex !important;
+
+    gap:2px !important;
+
+    align-items:center !important;
+
+    width:auto !important;
+
+    height:38px !important;
+
+    min-height:38px !important;
+
+    max-height:38px !important;
+
+    margin:0 !important;
+
+    padding:3px !important;
+
+    background:
+        rgba(
+            255,
+            255,
+            255,
+            .045
+        ) !important;
+
+    border:
+        1px solid
+        rgba(
+            255,
+            255,
+            255,
+            .12
+        ) !important;
+
+    border-radius:999px !important;
+
+    line-height:1 !important;
+
+    transform:
+        translateY(-50%) !important;
 }
 
-/* Gallery uses a much smaller gutter below 900px */
-@media (max-width: 900px) {
-    .site-header .header-content {
-        width: calc(100% - 36px) !important;
+
+.site-header
+.language-button{
+    box-sizing:border-box !important;
+
+    display:flex !important;
+
+    align-items:center !important;
+
+    justify-content:center !important;
+
+    width:32px !important;
+
+    min-width:32px !important;
+
+    height:30px !important;
+
+    min-height:30px !important;
+
+    max-height:30px !important;
+
+    margin:0 !important;
+
+    padding:0 !important;
+
+    color:#8f8f8f !important;
+
+    background:transparent !important;
+
+    border:0 !important;
+
+    border-radius:999px !important;
+
+    cursor:pointer !important;
+
+    font-family:
+        "Bebas Neue",
+        sans-serif !important;
+
+    font-size:.86rem !important;
+
+    letter-spacing:.08em !important;
+
+    line-height:1 !important;
+}
+
+
+.site-header
+.language-button.is-active{
+    color:#050505 !important;
+
+    background:#8fb3ba !important;
+}
+
+
+.site-header
+.language-button:hover:not(.is-active),
+
+.site-header
+.language-button:focus-visible:not(.is-active){
+    color:#fff !important;
+}
+
+
+@media(max-width:900px){
+
+    .site-header
+    .header-content{
+        width:
+            calc(
+                100%
+                -
+                36px
+            ) !important;
     }
+
 }
 
-/* Same mobile header behaviour as Gallery */
-@media (max-width: 520px) {
-    .site-header {
-        height: 68px !important;
+
+@media(max-width:520px){
+
+    .site-header{
+        height:68px !important;
     }
 
-    .site-header .main-nav,
-    .site-header .simple-main-nav {
-        gap: 13px !important;
 
-        font-size: .94rem !important;
+    .site-header
+    .main-nav,
+
+    .site-header
+    .simple-main-nav{
+        gap:13px !important;
+
+        font-size:.94rem !important;
     }
 
-    .site-header .header-logo-link {
-        width: 32px !important;
-        height: 42px !important;
-        flex-basis: 32px !important;
+
+    .site-header
+    .header-logo-link{
+        width:32px !important;
+
+        height:42px !important;
+
+        flex-basis:32px !important;
     }
 
-    .site-header .header-logo-image {
-        height: 31px !important;
-        max-width: 30px !important;
+
+    .site-header
+    .header-logo-image{
+        height:31px !important;
+
+        max-width:30px !important;
     }
 
-    .site-header .language-switch {
-        right: -4px !important;
+
+    .site-header
+    .language-switch{
+        right:-4px !important;
+
+        width:auto !important;
+
+        height:34px !important;
+
+        min-height:34px !important;
+
+        max-height:34px !important;
+
+        padding:3px !important;
 
         transform:
-            translate(35%, -50%)
+            translate(
+                35%,
+                -50%
+            )
             scale(.86) !important;
     }
 
-    .site-header .language-button {
-        min-width: 31px !important;
 
-        padding: 5px 6px !important;
+    .site-header
+    .language-button{
+        width:28px !important;
 
-        font-size: .8rem !important;
+        min-width:28px !important;
+
+        height:26px !important;
+
+        min-height:26px !important;
+
+        max-height:26px !important;
+
+        font-size:.78rem !important;
     }
 
-    .site-header .header-feedback-link {
-        left: 4px !important;
 
-        font-size: .86rem !important;
+    .site-header
+    .header-feedback-link{
+        left:4px !important;
+
+        font-size:.86rem !important;
 
         transform:
-            translate(-28%, -50%)
+            translate(
+                -28%,
+                -50%
+            )
             scale(.88) !important;
     }
 
-    .site-header .header-feedback-link:hover,
-    .site-header .header-feedback-link:focus-visible {
+
+    .site-header
+    .header-feedback-link:hover,
+
+    .site-header
+    .header-feedback-link:focus-visible{
         transform:
-            translate(-28%, calc(-50% - 1px))
+            translate(
+                -28%,
+                calc(
+                    -50%
+                    -
+                    1px
+                )
+            )
             scale(.88) !important;
     }
+
 }
 
 
 /* =========================================================
-   FINAL HEADER FIX — IDENTICAL LANGUAGE SWITCH ON ALL PAGES
+   INTERACTION SYSTEMS
+   OBJECTS / NOTES / PHOTOS
    ========================================================= */
 
-.site-header .language-switch {
-    box-sizing: border-box !important;
+.interaction-groups{
+    display:grid;
 
-    width: auto !important;
-    height: 38px !important;
-    min-height: 38px !important;
-    max-height: 38px !important;
+    grid-template-columns:
+        repeat(
+            3,
+            minmax(
+                0,
+                1fr
+            )
+        );
 
-    padding: 3px !important;
-    gap: 2px !important;
+    align-items:start;
 
-    align-items: center !important;
+    gap:var(--gallery-gap);
 
-    border-radius: 999px !important;
+    margin-top:
+        clamp(
+            38px,
+            4.5vw,
+            58px
+        );
 
-    line-height: 1 !important;
+    padding-top:
+        clamp(
+            30px,
+            3.5vw,
+            44px
+        );
+
+    border-top:
+        1px solid
+        rgba(
+            255,
+            255,
+            255,
+            .08
+        );
 }
 
-.site-header .language-button {
-    box-sizing: border-box !important;
 
-    display: flex !important;
-    align-items: center !important;
-    justify-content: center !important;
-
-    width: 32px !important;
-    min-width: 32px !important;
-    height: 30px !important;
-    min-height: 30px !important;
-    max-height: 30px !important;
-
-    margin: 0 !important;
-    padding: 0 !important;
-
-    border-radius: 999px !important;
-
-    font-size: .86rem !important;
-    line-height: 1 !important;
+.interaction-group{
+    min-width:0;
 }
 
-@media (max-width: 520px) {
-    .site-header .language-switch {
-        width: auto !important;
-        height: 34px !important;
-        min-height: 34px !important;
-        max-height: 34px !important;
 
-        padding: 3px !important;
+.interaction-group-title{
+    margin:
+        0
+        0
+        16px;
 
-        transform:
-            translate(35%, -50%)
-            scale(.86) !important;
+    color:var(--blue-light);
+
+    font-family:
+        "Steelfish",
+        "Arial Narrow",
+        sans-serif;
+
+    font-size:1.2rem;
+
+    font-weight:400;
+
+    letter-spacing:.07em;
+
+    line-height:1;
+
+    text-transform:uppercase;
+}
+
+
+.interaction-group-grid{
+    display:flex;
+
+    flex-direction:column;
+
+    gap:14px;
+}
+
+
+.interaction-group
+.gallery-card{
+    display:block;
+
+    width:100%;
+
+    margin:0;
+
+    border-radius:18px;
+}
+
+
+.interaction-group
+.gallery-card-title{
+    right:15px;
+
+    bottom:13px;
+
+    left:15px;
+
+    font-size:
+        clamp(
+            .88rem,
+            1vw,
+            1.08rem
+        );
+
+    line-height:1.05;
+}
+
+
+@media(max-width:800px){
+
+    .interaction-groups{
+        grid-template-columns:1fr;
+
+        gap:40px;
     }
 
-    .site-header .language-button {
-        width: 28px !important;
-        min-width: 28px !important;
-        height: 26px !important;
-        min-height: 26px !important;
-        max-height: 26px !important;
 
-        font-size: .78rem !important;
+    .interaction-group-grid{
+        display:grid;
+
+        grid-template-columns:
+            repeat(
+                2,
+                minmax(
+                    0,
+                    1fr
+                )
+            );
     }
+
 }
+
+
+@media(max-width:520px){
+
+    .gallery-section-heading{
+        gap:8px;
+    }
+
+
+    .gallery-section-number{
+        font-size:.82rem;
+    }
+
+
+    .interaction-group-grid{
+        grid-template-columns:1fr;
+    }
+
+}
+
 </style>
 </head>
+
+
 <body id="top">
+
+
 <header class="site-header">
-<div class="content-width header-content header-content">
-<a class="header-feedback-link" href="feedback.html"><span data-en="Feedback" data-pt="Feedback">Feedback</span></a><nav aria-label="Main navigation" class="main-nav">
-<a aria-current="page" href="gallery.html">
-<span data-en="Gallery" data-pt="Galeria">Gallery</span>
-</a>
-<a aria-label="Hidden Waters" class="header-logo-link" href="index.html">
-<img alt="" class="header-logo-image" src="assets/images/hidden-waters-logo-white.png"/>
-</a>
-<a href="process.html">
-<span data-en="Process" data-pt="Processo">Process</span>
-</a>
-</nav>
-<div aria-label="Language" class="language-switch" role="group">
-<button aria-pressed="false" class="language-button" data-language="pt" type="button">
+
+    <div class="content-width header-content">
+
+        <a
+            class="header-feedback-link"
+            href="feedback.html"
+        >
+            <span
+                data-en="Feedback"
+                data-pt="Feedback"
+            >
+                Feedback
+            </span>
+        </a>
+
+
+        <nav
+            class="main-nav"
+            aria-label="Main navigation"
+        >
+
+            <a
+                href="gallery.html"
+                aria-current="page"
+            >
+                <span
+                    data-en="Gallery"
+                    data-pt="Galeria"
+                >
+                    Gallery
+                </span>
+            </a>
+
+
+            <a
+                class="header-logo-link"
+                href="index.html"
+                aria-label="Hidden Waters"
+            >
+                <img
+                    class="header-logo-image"
+                    src="assets/images/hidden-waters-logo-white.png"
+                    alt=""
+                />
+            </a>
+
+
+            <a href="process.html">
+                <span
+                    data-en="Process"
+                    data-pt="Processo"
+                >
+                    Process
+                </span>
+            </a>
+
+        </nav>
+
+
+        <div
+            class="language-switch"
+            role="group"
+            aria-label="Language"
+        >
+
+            <button
+                class="language-button"
+                data-language="pt"
+                aria-pressed="false"
+                type="button"
+            >
                 PT
             </button>
-<button aria-pressed="true" class="language-button is-active" data-language="en" type="button">
+
+
+            <button
+                class="language-button is-active"
+                data-language="en"
+                aria-pressed="true"
+                type="button"
+            >
                 EN
             </button>
-</div>
-</div>
+
+        </div>
+
+    </div>
+
 </header>
+
+
 <main>
+
+
 <section class="gallery-hero">
-<div class="content-width">
-<h1 class="gallery-title" data-en="Gallery" data-pt="Galeria">
-                Gallery
-            </h1>
-<p class="gallery-introduction" data-en="A visual record of the development of the interactive experience, organised according to the same structure used in the written dissertation." data-pt="Um registo visual do desenvolvimento da experiência interativa, organizado segundo a mesma estrutura utilizada na dissertação escrita.">
-                A visual record of the development of the interactive
-                experience, organised according to the same structure
-                used in the written dissertation.
-            </p>
-</div>
+
+    <div class="content-width">
+
+        <h1
+            class="gallery-title"
+            data-en="Gallery"
+            data-pt="Galeria"
+        >
+            Gallery
+        </h1>
+
+
+        <p
+            class="gallery-introduction"
+
+            data-en="A visual record of the development of the interactive experience, organised according to the same structure used in the written dissertation."
+
+            data-pt="Um registo visual do desenvolvimento da experiência interativa, organizado segundo a mesma estrutura utilizada na dissertação escrita."
+        >
+            A visual record of the development of the interactive
+            experience, organised according to the same structure
+            used in the written dissertation.
+        </p>
+
+    </div>
+
 </section>
-<div class="content-width gallery-sections" id="gallerySections"></div>
+
+
+<div
+    class="content-width gallery-sections"
+    id="gallerySections"
+></div>
+
+
 </main>
+
+
 <footer class="site-footer">
-<div class="content-width footer-content">
-<span>Hidden Waters</span>
-<div class="footer-institution">
-<span data-en="Thesis companion website · 2026" data-pt="Site complementar da tese · 2026">
+
+    <div class="content-width footer-content">
+
+        <span>
+            Hidden Waters
+        </span>
+
+
+        <div class="footer-institution">
+
+            <span
+                data-en="Thesis companion website · 2026"
+                data-pt="Site complementar da tese · 2026"
+            >
                 Thesis companion website · 2026
             </span>
-<img alt="Instituto Superior Técnico" class="footer-ist-logo" src="assets/images/ist-logo-white.png"/>
-</div>
-</div>
+
+
+            <img
+                class="footer-ist-logo"
+                src="assets/images/ist-logo-white.png"
+                alt="Instituto Superior Técnico"
+            />
+
+        </div>
+
+    </div>
+
 </footer>
-<div aria-hidden="true" aria-label="Expanded gallery image" aria-modal="true" class="lightbox" role="dialog">
-<div class="lightbox-dialog">
-<button aria-label="Close image" class="lightbox-close" type="button">
+
+
+<div
+    class="lightbox"
+    role="dialog"
+    aria-label="Expanded gallery image"
+    aria-modal="true"
+    aria-hidden="true"
+>
+
+    <div class="lightbox-dialog">
+
+
+        <button
+            class="lightbox-close"
+            type="button"
+            aria-label="Close image"
+        >
             ×
         </button>
-<div class="lightbox-media"></div>
-<div class="lightbox-caption"></div>
+
+
+        <div class="lightbox-media"></div>
+
+
+        <div class="lightbox-caption"></div>
+
+
+    </div>
+
 </div>
-</div>
+
+
 <script>
+
+
+/* =========================================================
+   MAIN GALLERY SECTIONS
+   ========================================================= */
+
 const SECTIONS = [
+
     {
         id:"virtual-environment",
+
         en:"Virtual Environment Construction",
+
         pt:"Construção do ambiente virtual",
-        images:["4.1.jpg"]
-    },
-    {
-        id:"characters-exploration",
-        en:"Characters and Exploration Framework",
-        pt:"Personagens e base para exploração",
-        images:["4.2_1.jpg","4.2_2.jpg","4.2_3.jpg"]
-    },
-    {
-        id:"menus-interface",
-        en:"Menus and Interface",
-        pt:"Menus e interface",
-        images:["4.3_1.jpg","4.3_2.jpg"]
-    },
-    {
-        id:"interaction-systems",
-        en:"Interaction Systems",
-        pt:"Sistemas de interação",
+
         images:[
-            "4.4_1.jpg","4.4_2.jpg","4.4_3.jpg","4.4_4.jpg",
-            "4.4_5.jpg","4.4_6.jpg","4.4_7.jpg"
+            "4.1.jpg"
         ]
     },
+
+
+    {
+        id:"characters-exploration",
+
+        en:"Characters and Exploration Framework",
+
+        pt:"Personagens e base para exploração",
+
+        images:[
+            "4.2_1.jpg",
+            "4.2_2.jpg",
+            "4.2_3.jpg"
+        ]
+    },
+
+
+    {
+        id:"menus-interface",
+
+        en:"Menus and Interface",
+
+        pt:"Menus e interface",
+
+        images:[
+            "4.3_1.jpg",
+            "4.3_2.jpg"
+        ]
+    },
+
+
+    {
+        id:"interaction-systems",
+
+        en:"Interaction Systems",
+
+        pt:"Sistemas de interação",
+
+        images:[
+            "4.4_1.jpg",
+            "4.4_2.jpg",
+            "4.4_3.jpg",
+            "4.4_4.jpg",
+            "4.4_5.jpg",
+            "4.4_6.jpg",
+            "4.4_7.jpg"
+        ]
+    },
+
+
     {
         id:"xray-system",
+
         en:"X-Ray System",
+
         pt:"Sistema X-Ray",
-        images:["4.5_1.jpg","4.5_2.jpg"]
+
+        images:[
+            "4.5_1.jpg",
+            "4.5_2.jpg"
+        ]
     },
+
+
     {
         id:"maps-archive",
+
         en:"Maps and Archive",
+
         pt:"Mapas e arquivo",
-        images:["4.6_1.jpg","4.6_2.jpg","4.6_3.jpg","4.6_4.jpg"]
+
+        images:[
+            "4.6_1.jpg",
+            "4.6_2.jpg",
+            "4.6_3.jpg",
+            "4.6_4.jpg"
+        ]
     },
+
+
     {
         id:"clock-temporal-system",
+
         en:"Clock and Temporal System",
+
         pt:"Relógio e sistema temporal",
-        images:["4.7_1.jpg","4.7_2.jpg","4.7_3.jpg","4.7_4.jpg"]
+
+        images:[
+            "4.7_1.jpg",
+            "4.7_2.jpg",
+            "4.7_3.jpg",
+            "4.7_4.jpg"
+        ]
     },
+
+
     {
         id:"atmosphere-weather",
+
         en:"Atmosphere and Weather System",
+
         pt:"Atmosfera e sistema climático",
-        images:["4.8_1.jpg","4.8_2.jpg","4.8_3.jpg","4.8_4.jpg"]
+
+        images:[
+            "4.8_1.jpg",
+            "4.8_2.jpg",
+            "4.8_3.jpg",
+            "4.8_4.jpg"
+        ]
     },
+
+
     {
         id:"historical-system",
+
         en:"Historical System",
+
         pt:"Sistema Histórico",
-        images:["4.9_1.jpg","4.9_2.jpg"]
+
+        images:[
+            "4.9_1.jpg",
+            "4.9_2.jpg"
+        ]
     },
+
+
     {
         id:"sound-immersion",
+
         en:"Sound and Immersion",
+
         pt:"Som e imersão",
-        images:["4.10_1.jpg","4.10_2.jpg"]
+
+        images:[
+            "4.10_1.jpg",
+            "4.10_2.jpg"
+        ]
     },
+
+
     {
         id:"narrative-cutscene",
+
         en:"Narrative and Cutscene",
+
         pt:"Narrativa e Cutscene",
-        images:["4.11_1.jpg","4.11_2.jpg"]
+
+        images:[
+            "4.11_1.jpg",
+            "4.11_2.jpg"
+        ]
     },
+
+
     {
         id:"experience-modes",
+
         en:"Experience Modes",
+
         pt:"Modos da experiência",
-        images:["4.12.jpg"]
+
+        images:[
+            "4.12.jpg"
+        ]
     },
+
+
     {
         id:"optimization-preparation",
+
         en:"Optimization and Preparation for Use",
+
         pt:"Otimização e preparação para utilização",
-        images:["4.13_1.jpg","4.13_2.jpg"]
+
+        images:[
+            "4.13_1.jpg",
+            "4.13_2.jpg"
+        ]
     }
+
 ];
+
+
+
+/* =========================================================
+   INTERACTION SYSTEMS — GROUPED IMAGE SETS
+   ========================================================= */
+
+const INTERACTION_GROUPS = [
+
+
+    /* =====================================================
+       OBJECTS
+       ===================================================== */
+
+    {
+        key:"objects",
+
+        en:"Objects",
+
+        pt:"Objetos",
+
+        images:[
+
+            {
+                file:"1O_Distribution Box.png",
+                title:"Distribution Box"
+            },
+
+
+            {
+                file:"2O_Gutter R11.png",
+                title:"Gutter R11"
+            },
+
+
+            {
+                file:"3O_Gutter R14.png",
+                title:"Gutter R14"
+            },
+
+
+            {
+                file:"4O_Basin.png",
+                title:"Basin"
+            },
+
+
+            {
+                file:"5O_Gutter CA.png",
+                title:"Gutter CA"
+            },
+
+
+            {
+                file:"6O_Water spout.png",
+                title:"Water spout"
+            },
+
+
+            {
+                file:"7O_Gutter CF.png",
+                title:"Gutter CF"
+            },
+
+
+            {
+                file:"8O_Gutter Latrinas.png",
+                title:"Gutter Latrinas"
+            },
+
+
+            {
+                file:"9O_Inside Sink.png",
+                title:"Inside Sink"
+            }
+
+        ]
+
+    },
+
+
+
+    /* =====================================================
+       NOTES
+       ===================================================== */
+
+    {
+        key:"notes",
+
+        en:"Notes",
+
+        pt:"Notas",
+
+        images:[
+
+            {
+                file:"1N_Paper Boat.jpg",
+                title:"Paper Boat"
+            },
+
+
+            {
+                file:"2N_Gutter RW.jpg",
+                title:"Gutter RW"
+            },
+
+
+            {
+                file:"3N_Gallery.jpg",
+                title:"Gallery"
+            },
+
+
+            {
+                file:"4N_Casa dos Alguidares.jpg",
+                title:"Casa dos Alguidares"
+            },
+
+
+            {
+                file:"5N_Fountain.jpg",
+                title:"Fountain"
+            },
+
+
+            {
+                file:"6N_Casa de Frescos.jpg",
+                title:"Casa de Frescos"
+            },
+
+
+            {
+                file:"7N_Pit.jpg",
+                title:"Pit"
+            },
+
+
+            {
+                file:"8N_Mine.jpg",
+                title:"Mine"
+            },
+
+
+            {
+                file:"9N_Outside Sink.jpg",
+                title:"Outside Sink"
+            },
+
+
+            {
+                file:"10N_Latrinas.jpg",
+                title:"Latrinas"
+            }
+
+        ]
+
+    },
+
+
+
+    /* =====================================================
+       PHOTOS
+       ===================================================== */
+
+    {
+        key:"photos",
+
+        en:"Photos",
+
+        pt:"Fotos",
+
+        images:[
+
+            {
+                file:"1F_Gutter RW.jpg",
+                title:"Gutter RW"
+            },
+
+
+            {
+                file:"2F_Path.jpg",
+                title:"Path"
+            },
+
+
+            {
+                file:"3F_Gallery.jpg",
+                title:"Gallery"
+            },
+
+
+            {
+                file:"4F_Convent — Northeast Side.jpg",
+                title:"Convent — Northeast Side"
+            },
+
+
+            {
+                file:"5F_Fountain.jpg",
+                title:"Fountain"
+            },
+
+
+            {
+                file:"6F_Gutter CA.jpg",
+                title:"Gutter CA"
+            },
+
+
+            {
+                file:"7F_Casa de Frescos - outside.jpg",
+                title:"Casa de Frescos - outside"
+            },
+
+
+            {
+                file:"8F_Pit.jpg",
+                title:"Pit"
+            },
+
+
+            {
+                file:"9F_Casa de Frescos - inside.jpg",
+                title:"Casa de Frescos - inside"
+            },
+
+
+            {
+                file:"10F_Retaining wall - Casa de Frescos.jpg",
+                title:"Retaining wall - Casa de Frescos"
+            },
+
+
+            {
+                file:"11F_View of Quinta de São Paulo.jpg",
+                title:"View of Quinta de São Paulo"
+            },
+
+
+            {
+                file:"12F_Convent — Southwest Side.jpg",
+                title:"Convent — Southwest Side"
+            },
+
+
+            {
+                file:"13F_Outside Sink.jpg",
+                title:"Outside Sink"
+            },
+
+
+            {
+                file:"14F_Mine.jpg",
+                title:"Mine"
+            },
+
+
+            {
+                file:"15F_Inside the Convent I.jpg",
+                title:"Inside the Convent I"
+            },
+
+
+            {
+                file:"16F_Inside the Convent II.jpg",
+                title:"Inside the Convent II"
+            },
+
+
+            {
+                file:"17F_Inside the Convent III.jpg",
+                title:"Inside the Convent III"
+            },
+
+
+            {
+                file:"18F_Inside Sink.jpg",
+                title:"Inside Sink"
+            },
+
+
+            {
+                file:"19F_Inside the Convent IV.jpg",
+                title:"Inside the Convent IV"
+            },
+
+
+            {
+                file:"20F_Inside the Convent V.jpg",
+                title:"Inside the Convent V"
+            },
+
+
+            {
+                file:"21F_Latrinas I.jpg",
+                title:"Latrinas I"
+            },
+
+
+            {
+                file:"22F_Latrinas II.jpg",
+                title:"Latrinas II"
+            },
+
+
+            {
+                file:"23F_Latrinas III.jpg",
+                title:"Latrinas III"
+            },
+
+
+            {
+                file:"24F_Convent Detail.jpg",
+                title:"Convent Detail"
+            }
+
+        ]
+
+    }
+
+];
+
+
 
 let currentLanguage = "en";
 
-const gallery = document.querySelector("#gallerySections");
-const lightbox = document.querySelector(".lightbox");
-const lightboxMedia = document.querySelector(".lightbox-media");
-const lightboxCaption = document.querySelector(".lightbox-caption");
-const lightboxClose = document.querySelector(".lightbox-close");
 
-const waterVideo = document.createElement("video");
-waterVideo.className = "water-ripple-video";
-waterVideo.src = "assets/media/water-ripple-overlay.mp4";
-waterVideo.muted = true;
-waterVideo.loop = true;
-waterVideo.autoplay = true;
-waterVideo.playsInline = true;
-waterVideo.preload = "auto";
-waterVideo.setAttribute("aria-hidden","true");
+const gallery =
+    document.querySelector(
+        "#gallerySections"
+    );
 
-let activeWaterCard = null;
-let waterTimer = null;
-let lastFocusedCard = null;
+
+const lightbox =
+    document.querySelector(
+        ".lightbox"
+    );
+
+
+const lightboxMedia =
+    document.querySelector(
+        ".lightbox-media"
+    );
+
+
+const lightboxCaption =
+    document.querySelector(
+        ".lightbox-caption"
+    );
+
+
+const lightboxClose =
+    document.querySelector(
+        ".lightbox-close"
+    );
+
+
+
+/* =========================================================
+   WATER VIDEO
+   ========================================================= */
+
+const waterVideo =
+    document.createElement(
+        "video"
+    );
+
+
+waterVideo.className =
+    "water-ripple-video";
+
+
+waterVideo.src =
+    "assets/media/water-ripple-overlay.mp4";
+
+
+waterVideo.muted =
+    true;
+
+
+waterVideo.loop =
+    true;
+
+
+waterVideo.autoplay =
+    true;
+
+
+waterVideo.playsInline =
+    true;
+
+
+waterVideo.preload =
+    "auto";
+
+
+waterVideo.setAttribute(
+    "aria-hidden",
+    "true"
+);
+
+
+let activeWaterCard =
+    null;
+
+
+let waterTimer =
+    null;
+
+
+let lastFocusedCard =
+    null;
+
+
+
+/* =========================================================
+   NORMAL GALLERY LAYOUT
+   ========================================================= */
 
 function layoutClass(count){
-    if(count === 1) return "gallery-layout--single";
-    if(count === 2) return "gallery-layout--pair";
+
+    if(
+        count === 1
+    ){
+        return "gallery-layout--single";
+    }
+
+
+    if(
+        count === 2
+    ){
+        return "gallery-layout--pair";
+    }
+
+
     return "gallery-layout--masonry";
+
 }
+
+
+
+/* =========================================================
+   INTERACTION SYSTEMS GROUPS
+   ========================================================= */
+
+function interactionGroupsMarkup(){
+
+    return `
+
+        <div class="interaction-groups">
+
+
+            ${INTERACTION_GROUPS.map(
+                group => {
+
+
+                    const groupTitle =
+                        currentLanguage === "pt"
+                            ? group.pt
+                            : group.en;
+
+
+
+                    const cards =
+                        group.images.map(
+                            item => `
+
+
+                                <button
+                                    class="
+                                        gallery-card
+                                        interaction-group-card
+                                    "
+
+                                    type="button"
+
+                                    data-title-en="${item.title}"
+
+                                    data-title-pt="${item.title}"
+                                >
+
+
+                                    <img
+                                        src="assets/images/gallery/${item.file}"
+
+                                        alt="${item.title}"
+
+                                        loading="lazy"
+
+                                        decoding="async"
+                                    >
+
+
+                                    <span
+                                        class="
+                                            gallery-card-title
+                                        "
+
+                                        data-en="${item.title}"
+
+                                        data-pt="${item.title}"
+                                    >
+
+                                        ${item.title}
+
+                                    </span>
+
+
+                                </button>
+
+
+                            `
+                        )
+                        .join("");
+
+
+
+                    return `
+
+
+                        <div
+                            class="
+                                interaction-group
+                                interaction-group--${group.key}
+                            "
+                        >
+
+
+                            <h3
+                                class="
+                                    interaction-group-title
+                                "
+
+                                data-en="${group.en}"
+
+                                data-pt="${group.pt}"
+                            >
+
+                                ${groupTitle}
+
+                            </h3>
+
+
+
+                            <div
+                                class="
+                                    interaction-group-grid
+                                "
+                            >
+
+                                ${cards}
+
+                            </div>
+
+
+                        </div>
+
+
+                    `;
+
+
+                }
+            ).join("")}
+
+
+        </div>
+
+    `;
+
+}
+
+
+
+/* =========================================================
+   RENDER GALLERY
+   ========================================================= */
 
 function renderGallery(){
-    gallery.innerHTML = SECTIONS.map(section => {
-        const cards = section.images.map((file,index) => {
-            const number = index + 1;
-            const titleEn = `${section.en} — Image ${number}`;
-            const titlePt = `${section.pt} — Imagem ${number}`;
 
-            return `
-                <button
-                    class="gallery-card"
-                    type="button"
-                    data-title-en="${titleEn}"
-                    data-title-pt="${titlePt}"
-                >
-                    <img
-                        src="assets/images/gallery/${file}"
-                        alt="${titleEn}"
-                        loading="lazy"
-                        decoding="async"
+    gallery.innerHTML =
+
+        SECTIONS.map(
+            (
+                section,
+                sectionIndex
+            ) => {
+
+
+
+                /* -----------------------------------------
+                   NORMAL SECTION IMAGES
+                   ----------------------------------------- */
+
+                const cards =
+
+                    section.images.map(
+                        (
+                            file,
+                            index
+                        ) => {
+
+
+                            const number =
+                                index + 1;
+
+
+                            const titleEn =
+                                `${section.en} — Image ${number}`;
+
+
+                            const titlePt =
+                                `${section.pt} — Imagem ${number}`;
+
+
+
+                            return `
+
+
+                                <button
+                                    class="
+                                        gallery-card
+                                    "
+
+                                    type="button"
+
+                                    data-title-en="${titleEn}"
+
+                                    data-title-pt="${titlePt}"
+                                >
+
+
+                                    <img
+                                        src="assets/images/gallery/${file}"
+
+                                        alt="${titleEn}"
+
+                                        loading="lazy"
+
+                                        decoding="async"
+                                    >
+
+
+                                    <span
+                                        class="
+                                            gallery-card-title
+                                        "
+
+                                        data-en="${titleEn}"
+
+                                        data-pt="${titlePt}"
+                                    >
+
+                                        ${
+                                            currentLanguage === "pt"
+                                                ? titlePt
+                                                : titleEn
+                                        }
+
+                                    </span>
+
+
+                                </button>
+
+
+                            `;
+
+
+                        }
+                    )
+                    .join("");
+
+
+
+                /* -----------------------------------------
+                   SECTION TITLE
+                   ----------------------------------------- */
+
+                const title =
+
+                    currentLanguage === "pt"
+                        ? section.pt
+                        : section.en;
+
+
+
+                const sectionWord =
+
+                    currentLanguage === "pt"
+                        ? "SECÇÃO"
+                        : "SECTION";
+
+
+
+                /* -----------------------------------------
+                   GROUPED CONTENT
+                   ----------------------------------------- */
+
+                const groupedContent =
+
+                    section.id ===
+                    "interaction-systems"
+
+                        ? interactionGroupsMarkup()
+
+                        : "";
+
+
+
+                /* -----------------------------------------
+                   SECTION HTML
+                   ----------------------------------------- */
+
+                return `
+
+
+                    <section
+                        class="
+                            gallery-section
+                        "
+
+                        id="${section.id}"
                     >
 
-                    <span
-                        class="gallery-card-title"
-                        data-en="${titleEn}"
-                        data-pt="${titlePt}"
-                    >
-                        ${currentLanguage === "pt" ? titlePt : titleEn}
-                    </span>
-                </button>
-            `;
-        }).join("");
 
-        const title =
-            currentLanguage === "pt"
-                ? section.pt
-                : section.en;
 
-        return `
-            <section
-                class="gallery-section"
-                id="${section.id}"
-            >
-                <header class="gallery-section-header">
+                        <header
+                            class="
+                                gallery-section-header
+                            "
+                        >
 
-                    <a
-                        class="gallery-section-link"
-                        href="#${section.id}"
-                    >
-                        <span>${title}</span>
-                        <span class="arrow" aria-hidden="true">↗</span>
-                    </a>
 
-                    <span
-                        class="gallery-section-line"
-                        aria-hidden="true"
-                    ></span>
 
-                </header>
+                            <div
+                                class="
+                                    gallery-section-heading
+                                "
+                            >
 
-                <div
-                    class="gallery-layout ${layoutClass(section.images.length)}"
-                >
-                    ${cards}
-                </div>
-            </section>
-        `;
-    }).join("");
+
+
+                                <a
+                                    class="
+                                        gallery-section-number
+                                    "
+
+                                    href="#${section.id}"
+
+                                    aria-label="
+                                        ${sectionWord}
+                                        ${sectionIndex + 1}:
+                                        ${title}
+                                    "
+                                >
+
+
+                                    <span>
+
+                                        ${sectionWord}
+                                        ${sectionIndex + 1}
+
+                                    </span>
+
+
+
+                                    <span
+                                        class="
+                                            arrow
+                                        "
+
+                                        aria-hidden="true"
+                                    >
+
+                                        ↗
+
+                                    </span>
+
+
+                                </a>
+
+
+
+                                <h2
+                                    class="
+                                        gallery-section-title
+                                    "
+                                >
+
+                                    ${title}
+
+                                </h2>
+
+
+                            </div>
+
+
+
+                            <span
+                                class="
+                                    gallery-section-line
+                                "
+
+                                aria-hidden="true"
+                            ></span>
+
+
+                        </header>
+
+
+
+                        <div
+                            class="
+                                gallery-layout
+                                ${layoutClass(
+                                    section.images.length
+                                )}
+                            "
+                        >
+
+                            ${cards}
+
+                        </div>
+
+
+
+                        ${groupedContent}
+
+
+
+                    </section>
+
+
+                `;
+
+
+            }
+        )
+        .join("");
+
 }
+
+
+
+/* =========================================================
+   LANGUAGE
+   ========================================================= */
 
 function updateStaticLanguage(){
-    document.documentElement.lang = currentLanguage;
+
+    document.documentElement.lang =
+        currentLanguage;
+
 
     document
-        .querySelectorAll("[data-en][data-pt]")
-        .forEach(element => {
-            element.textContent =
-                element.dataset[currentLanguage];
-        });
+        .querySelectorAll(
+            "[data-en][data-pt]"
+        )
+        .forEach(
+            element => {
+
+                element.textContent =
+                    element.dataset[
+                        currentLanguage
+                    ];
+
+            }
+        );
+
 
     document
-        .querySelectorAll(".language-button")
-        .forEach(button => {
-            const active =
-                button.dataset.language ===
-                currentLanguage;
+        .querySelectorAll(
+            ".language-button"
+        )
+        .forEach(
+            button => {
 
-            button.classList.toggle(
-                "is-active",
-                active
-            );
 
-            button.setAttribute(
-                "aria-pressed",
-                active ? "true" : "false"
-            );
-        });
+                const active =
+
+                    button.dataset.language ===
+                    currentLanguage;
+
+
+
+                button.classList.toggle(
+                    "is-active",
+                    active
+                );
+
+
+
+                button.setAttribute(
+                    "aria-pressed",
+                    active
+                        ? "true"
+                        : "false"
+                );
+
+
+            }
+        );
+
 }
+
+
 
 function setLanguage(language){
-    currentLanguage = language;
-    updateStaticLanguage();
+
+    currentLanguage =
+        language;
+
+
     renderGallery();
+
+
+    updateStaticLanguage();
+
 }
+
+
 
 document
-    .querySelectorAll(".language-button")
-    .forEach(button => {
-        button.addEventListener(
-            "click",
-            () => setLanguage(
-                button.dataset.language
-            )
-        );
-    });
+    .querySelectorAll(
+        ".language-button"
+    )
+    .forEach(
+        button => {
 
-/* LIGHTBOX — event delegation */
 
-gallery.addEventListener("click",event => {
-    const card =
-        event.target.closest(".gallery-card");
+            button.addEventListener(
 
-    if(!card) return;
+                "click",
 
-    const source =
-        card.querySelector("img");
+                () =>
+                    setLanguage(
+                        button.dataset.language
+                    )
 
-    if(!source) return;
+            );
 
-    lastFocusedCard = card;
 
-    const title =
-        currentLanguage === "pt"
-            ? card.dataset.titlePt
-            : card.dataset.titleEn;
-
-    lightboxMedia.innerHTML = "";
-
-    const image =
-        document.createElement("img");
-
-    image.src = source.src;
-    image.alt = source.alt;
-
-    lightboxMedia.appendChild(image);
-    lightboxCaption.textContent = title;
-
-    lightbox.classList.add("is-open");
-    lightbox.setAttribute("aria-hidden","false");
-
-    document.body.style.overflow = "hidden";
-    lightboxClose.focus();
-});
-
-function closeLightbox(){
-    lightbox.classList.remove("is-open");
-    lightbox.setAttribute("aria-hidden","true");
-
-    document.body.style.overflow = "";
-    lightboxMedia.innerHTML = "";
-
-    if(lastFocusedCard){
-        lastFocusedCard.focus();
-    }
-}
-
-lightboxClose.addEventListener(
-    "click",
-    closeLightbox
-);
-
-lightbox.addEventListener(
-    "click",
-    event => {
-        if(event.target === lightbox){
-            closeLightbox();
         }
-    }
-);
+    );
 
-document.addEventListener(
-    "keydown",
-    event => {
-        if(
-            event.key === "Escape" &&
-            lightbox.classList.contains("is-open")
-        ){
-            closeLightbox();
-        }
-    }
-);
 
-/* WATER HOVER — event delegation */
+
+/* =========================================================
+   LIGHTBOX
+   ========================================================= */
 
 gallery.addEventListener(
-    "pointerover",
-    event => {
-        const card =
-            event.target.closest(".gallery-card");
 
-        if(!card) return;
+    "click",
+
+    event => {
+
+
+        const card =
+
+            event.target.closest(
+                ".gallery-card"
+            );
+
 
         if(
-            event.relatedTarget &&
-            card.contains(event.relatedTarget)
+            !card
         ){
             return;
         }
 
-        clearTimeout(waterTimer);
+
+
+        const source =
+
+            card.querySelector(
+                "img"
+            );
+
 
         if(
-            activeWaterCard &&
-            activeWaterCard !== card
+            !source
         ){
-            activeWaterCard.classList.remove(
-                "is-water-ripple"
-            );
+            return;
         }
 
-        activeWaterCard = card;
 
-        card.appendChild(waterVideo);
+
+        lastFocusedCard =
+            card;
+
+
+
+        const title =
+
+            currentLanguage === "pt"
+
+                ? card.dataset.titlePt
+
+                : card.dataset.titleEn;
+
+
+
+        lightboxMedia.innerHTML =
+            "";
+
+
+
+        const image =
+
+            document.createElement(
+                "img"
+            );
+
+
+
+        image.src =
+            source.src;
+
+
+
+        image.alt =
+            source.alt;
+
+
+
+        lightboxMedia.appendChild(
+            image
+        );
+
+
+
+        lightboxCaption.textContent =
+            title;
+
+
+
+        lightbox.classList.add(
+            "is-open"
+        );
+
+
+
+        lightbox.setAttribute(
+            "aria-hidden",
+            "false"
+        );
+
+
+
+        document.body.style.overflow =
+            "hidden";
+
+
+
+        lightboxClose.focus();
+
+
+    }
+
+);
+
+
+
+function closeLightbox(){
+
+    lightbox.classList.remove(
+        "is-open"
+    );
+
+
+    lightbox.setAttribute(
+        "aria-hidden",
+        "true"
+    );
+
+
+    document.body.style.overflow =
+        "";
+
+
+    lightboxMedia.innerHTML =
+        "";
+
+
+    if(
+        lastFocusedCard
+    ){
+
+        lastFocusedCard.focus();
+
+    }
+
+}
+
+
+
+lightboxClose.addEventListener(
+
+    "click",
+
+    closeLightbox
+
+);
+
+
+
+lightbox.addEventListener(
+
+    "click",
+
+    event => {
+
+
+        if(
+            event.target ===
+            lightbox
+        ){
+
+            closeLightbox();
+
+        }
+
+
+    }
+
+);
+
+
+
+document.addEventListener(
+
+    "keydown",
+
+    event => {
+
+
+        if(
+
+            event.key ===
+            "Escape"
+
+            &&
+
+            lightbox.classList.contains(
+                "is-open"
+            )
+
+        ){
+
+            closeLightbox();
+
+        }
+
+
+    }
+
+);
+
+
+
+/* =========================================================
+   WATER HOVER
+   ========================================================= */
+
+gallery.addEventListener(
+
+    "pointerover",
+
+    event => {
+
+
+        const card =
+
+            event.target.closest(
+                ".gallery-card"
+            );
+
+
+        if(
+            !card
+        ){
+            return;
+        }
+
+
+
+        if(
+
+            event.relatedTarget
+
+            &&
+
+            card.contains(
+                event.relatedTarget
+            )
+
+        ){
+
+            return;
+
+        }
+
+
+
+        clearTimeout(
+            waterTimer
+        );
+
+
+
+        if(
+
+            activeWaterCard
+
+            &&
+
+            activeWaterCard !==
+            card
+
+        ){
+
+            activeWaterCard
+                .classList
+                .remove(
+                    "is-water-ripple"
+                );
+
+        }
+
+
+
+        activeWaterCard =
+            card;
+
+
+
+        card.appendChild(
+            waterVideo
+        );
+
+
+
         card.classList.add(
             "is-water-ripple"
         );
 
-        const attempt = waterVideo.play();
 
-        if(attempt?.catch){
-            attempt.catch(() => {});
-        }
-    }
-);
 
-gallery.addEventListener(
-    "pointerout",
-    event => {
-        const card =
-            event.target.closest(".gallery-card");
+        const attempt =
 
-        if(!card) return;
+            waterVideo.play();
+
+
 
         if(
-            event.relatedTarget &&
-            card.contains(event.relatedTarget)
+            attempt?.catch
+        ){
+
+            attempt.catch(
+                () => {}
+            );
+
+        }
+
+
+    }
+
+);
+
+
+
+gallery.addEventListener(
+
+    "pointerout",
+
+    event => {
+
+
+        const card =
+
+            event.target.closest(
+                ".gallery-card"
+            );
+
+
+        if(
+            !card
         ){
             return;
         }
 
-        if(activeWaterCard !== card){
+
+
+        if(
+
+            event.relatedTarget
+
+            &&
+
+            card.contains(
+                event.relatedTarget
+            )
+
+        ){
+
             return;
+
         }
+
+
+
+        if(
+
+            activeWaterCard !==
+            card
+
+        ){
+
+            return;
+
+        }
+
+
 
         card.classList.remove(
             "is-water-ripple"
         );
 
-        waterTimer = setTimeout(() => {
-            if(
-                activeWaterCard === card &&
-                waterVideo.parentElement === card
-            ){
-                waterVideo.remove();
-                activeWaterCard = null;
-            }
-        },480);
+
+
+        waterTimer =
+
+            setTimeout(
+
+                () => {
+
+
+                    if(
+
+                        activeWaterCard ===
+                        card
+
+                        &&
+
+                        waterVideo.parentElement ===
+                        card
+
+                    ){
+
+                        waterVideo.remove();
+
+                        activeWaterCard =
+                            null;
+
+                    }
+
+
+                },
+
+                480
+
+            );
+
+
     }
+
 );
 
-updateStaticLanguage();
+
+
+/* =========================================================
+   START
+   ========================================================= */
+
 renderGallery();
+
+updateStaticLanguage();
+
+
 </script>
+
+
 </body>
 </html>
