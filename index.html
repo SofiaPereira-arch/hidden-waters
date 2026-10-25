@@ -3372,138 +3372,1299 @@
             </span><img alt="Instituto Superior Técnico" class="footer-ist-logo" src="assets/images/ist-logo-white.png"/></div></div>
 </footer>
 <script>
-        (() => {
-            const viewport = document.querySelector(".visualizer-viewport");
-            const track = document.querySelector(".visualizer-track");
-            const originalGroup = document.querySelector(".visualizer-group");
+(async () => {
 
-            if (!viewport || !track || !originalGroup) {
-                return;
-            }
+    const viewport =
+        document.querySelector(
+            ".visualizer-viewport"
+        );
 
-            const SPEED = 38;
-            const reducedMotion = window.matchMedia(
-                "(prefers-reduced-motion: reduce)"
-            );
+    const track =
+        document.querySelector(
+            ".visualizer-track"
+        );
 
-            const duplicateGroup = originalGroup.cloneNode(true);
-            duplicateGroup.setAttribute("aria-hidden", "true");
+    const originalGroup =
+        document.querySelector(
+            ".visualizer-group"
+        );
 
-            duplicateGroup
-                .querySelectorAll("a, button, video")
-                .forEach((element) => {
-                    element.setAttribute("tabindex", "-1");
-                });
 
-            track.appendChild(duplicateGroup);
+    if (
+        !viewport ||
+        !track ||
+        !originalGroup
+    ) {
+        return;
+    }
 
-            let distance = 0;
-            let previousTime = performance.now();
-            let loopWidth = 0;
 
-            function setMediaRatio(media) {
-                const item = media.closest(".visualizer-item");
 
-                if (!item) {
-                    return;
-                }
+    /* =====================================================
+       GALERIA AUTOMÁTICA
+       =====================================================
 
-                const width =
-                    media.naturalWidth ||
-                    media.videoWidth;
+       Vai buscar automaticamente todas as imagens existentes em:
 
-                const height =
-                    media.naturalHeight ||
-                    media.videoHeight;
+       assets/images/gallery/
 
-                if (width && height) {
-                    item.style.setProperty(
-                        "--item-ratio",
-                        `${width} / ${height}`
-                    );
-                }
-            }
+       através da API pública do GitHub.
 
-            track.querySelectorAll("img").forEach((image) => {
-                if (image.complete) {
-                    setMediaRatio(image);
-                } else {
-                    image.addEventListener(
-                        "load",
-                        () => setMediaRatio(image),
-                        { once: true }
-                    );
-                }
-            });
+       Depois escolhe 10 imagens aleatórias.
 
-            track.querySelectorAll("video").forEach((video) => {
-                if (video.readyState >= 1) {
-                    setMediaRatio(video);
-                } else {
-                    video.addEventListener(
-                        "loadedmetadata",
-                        () => setMediaRatio(video),
-                        { once: true }
-                    );
-                }
-            });
+       Quando adicionares novas imagens à pasta da Gallery,
+       não precisas de voltar a alterar este código.
+       ===================================================== */
 
-            function measureLoop() {
-                const trackStyles = window.getComputedStyle(track);
-                const gap = Number.parseFloat(trackStyles.columnGap) || 0;
 
-                loopWidth =
-                    originalGroup.getBoundingClientRect().width +
-                    gap;
+    const GITHUB_GALLERY_API =
 
-                if (loopWidth > 0) {
-                    distance %= loopWidth;
-                }
-            }
+        "https://api.github.com/repos/SofiaPereira-arch/hidden-waters/contents/assets/images/gallery";
 
-            function animate(currentTime) {
-                const elapsed = Math.min(
-                    (currentTime - previousTime) / 1000,
-                    0.1
+
+    const GALLERY_CACHE_KEY =
+
+        "hidden-waters-gallery-files-v1";
+
+
+    const GALLERY_CACHE_TTL =
+
+        60 * 60 * 1000;
+
+
+    const RANDOM_IMAGE_COUNT =
+
+        10;
+
+
+
+    /* =====================================================
+       CACHE
+       ===================================================== */
+
+    function readGalleryCache() {
+
+        try {
+
+            const raw =
+                window.localStorage.getItem(
+                    GALLERY_CACHE_KEY
                 );
 
-                previousTime = currentTime;
 
-                if (
-                    !document.hidden &&
-                    !reducedMotion.matches &&
-                    loopWidth > 0
-                ) {
-                    distance += SPEED * elapsed;
+            if (!raw) {
 
-                    if (distance >= loopWidth) {
-                        distance -= loopWidth;
-                    }
+                return null;
 
-                    track.style.transform =
-                        `translate3d(${-distance}px, 0, 0)`;
-                }
-
-                window.requestAnimationFrame(animate);
             }
 
-            const resizeObserver = new ResizeObserver(measureLoop);
-            resizeObserver.observe(originalGroup);
-            resizeObserver.observe(viewport);
 
-            reducedMotion.addEventListener("change", () => {
-                if (reducedMotion.matches) {
-                    track.style.transform = "none";
+            const parsed =
+                JSON.parse(raw);
+
+
+            if (
+                !parsed ||
+                !Array.isArray(
+                    parsed.files
+                ) ||
+                !parsed.savedAt
+            ) {
+
+                return null;
+
+            }
+
+
+            return parsed;
+
+
+        } catch (error) {
+
+            return null;
+
+        }
+
+    }
+
+
+
+    function writeGalleryCache(
+        files
+    ) {
+
+        try {
+
+            window.localStorage.setItem(
+
+                GALLERY_CACHE_KEY,
+
+                JSON.stringify({
+
+                    savedAt:
+                        Date.now(),
+
+                    files:
+                        files
+
+                })
+
+            );
+
+
+        } catch (error) {
+
+            /*
+            Se o browser bloquear localStorage,
+            o site continua a funcionar normalmente.
+            */
+
+        }
+
+    }
+
+
+
+    /* =====================================================
+       OBTER IMAGENS DA PASTA GALLERY
+       ===================================================== */
+
+    async function getGalleryFiles() {
+
+
+        const cached =
+            readGalleryCache();
+
+
+        const cacheIsFresh =
+
+            cached &&
+
+            (
+                Date.now() -
+                cached.savedAt
+            )
+
+            <
+
+            GALLERY_CACHE_TTL;
+
+
+
+        /*
+        Se a lista tiver menos de uma hora,
+        reutilizamos a lista já guardada.
+        */
+
+        if (
+            cacheIsFresh
+        ) {
+
+            return cached.files;
+
+        }
+
+
+
+        try {
+
+
+            const response =
+
+                await fetch(
+
+                    GITHUB_GALLERY_API,
+
+                    {
+
+                        headers: {
+
+                            "Accept":
+                                "application/vnd.github+json"
+
+                        }
+
+                    }
+
+                );
+
+
+
+            if (
+                !response.ok
+            ) {
+
+                throw new Error(
+                    `GitHub API returned ${response.status}`
+                );
+
+            }
+
+
+
+            const data =
+
+                await response.json();
+
+
+
+            if (
+                !Array.isArray(
+                    data
+                )
+            ) {
+
+                throw new Error(
+                    "Unexpected GitHub API response."
+                );
+
+            }
+
+
+
+            /*
+            Só aceita ficheiros de imagem.
+            .gitkeep e outros ficheiros são ignorados.
+            */
+
+            const files =
+
+                data
+
+                    .filter(
+                        item => {
+
+                            return (
+
+                                item &&
+
+                                item.type ===
+                                "file"
+
+                                &&
+
+                                /\.(jpe?g|png|webp)$/i.test(
+
+                                    item.name ||
+                                    ""
+
+                                )
+
+                            );
+
+                        }
+                    )
+
+
+                    .map(
+                        item => ({
+
+                            name:
+                                item.name,
+
+                            path:
+                                item.path
+
+                        })
+                    );
+
+
+
+            if (
+                files.length
+            ) {
+
+                writeGalleryCache(
+                    files
+                );
+
+            }
+
+
+            return files;
+
+
+
+        } catch (error) {
+
+
+            /*
+            Se a API não estiver disponível,
+            tenta usar uma cache antiga.
+
+            Se nem isso existir,
+            ficam os placeholders originais.
+            */
+
+            return (
+                cached?.files ||
+                []
+            );
+
+        }
+
+    }
+
+
+
+    /* =====================================================
+       BARALHAR
+       ===================================================== */
+
+    function shuffleFiles(
+        files
+    ) {
+
+
+        const shuffled =
+
+            [
+                ...files
+            ];
+
+
+
+        for (
+
+            let index =
+                shuffled.length - 1;
+
+            index > 0;
+
+            index -= 1
+
+        ) {
+
+
+            const randomIndex =
+
+                Math.floor(
+
+                    Math.random() *
+
+                    (
+                        index + 1
+                    )
+
+                );
+
+
+
+            [
+
+                shuffled[index],
+
+                shuffled[randomIndex]
+
+            ] = [
+
+                shuffled[randomIndex],
+
+                shuffled[index]
+
+            ];
+
+        }
+
+
+
+        return shuffled;
+
+    }
+
+
+
+    /* =====================================================
+       TÍTULO AUTOMÁTICO
+       ===================================================== */
+
+    function galleryTitleFromFilename(
+        filename
+    ) {
+
+
+        const base =
+
+            filename
+
+                .replace(
+                    /\.[^.]+$/,
+                    ""
+                )
+
+                .trim();
+
+
+
+        /*
+        Imagens originais:
+
+        4.1.jpg
+        4.2_1.jpg
+        4.4_3.jpg
+        etc.
+        */
+
+        const originalMatch =
+
+            base.match(
+
+                /^4\.(\d+)(?:_(\d+))?$/
+
+            );
+
+
+
+        if (
+            originalMatch
+        ) {
+
+
+            const sectionNumber =
+
+                Number(
+                    originalMatch[1]
+                );
+
+
+            const imageNumber =
+
+                originalMatch[2];
+
+
+
+            const sectionTitles = {
+
+                1:
+                    "Virtual Environment Construction",
+
+                2:
+                    "Characters and Exploration Framework",
+
+                3:
+                    "Menus and Interface",
+
+                4:
+                    "Interaction Systems",
+
+                5:
+                    "X-Ray System",
+
+                6:
+                    "Maps and Archive",
+
+                7:
+                    "Clock and Temporal System",
+
+                8:
+                    "Atmosphere and Weather System",
+
+                9:
+                    "Historical System",
+
+                10:
+                    "Sound and Immersion",
+
+                11:
+                    "Narrative and Cutscene",
+
+                12:
+                    "Experience Modes",
+
+                13:
+                    "Optimization and Preparation for Use"
+
+            };
+
+
+
+            const sectionTitle =
+
+                sectionTitles[
+                    sectionNumber
+                ]
+
+                ||
+
+                "Hidden Waters";
+
+
+
+            if (
+                imageNumber
+            ) {
+
+                return (
+
+                    `${sectionTitle} — ${imageNumber}`
+
+                );
+
+            }
+
+
+
+            return sectionTitle;
+
+        }
+
+
+
+        /*
+        Novas imagens:
+
+        1O_Distribution Box.png
+        4N_Casa dos Alguidares.jpg
+        12F_Convent – Southwest Side.jpg
+        */
+
+
+        const cleaned =
+
+            base
+
+                .replace(
+
+                    /^\d+[ONF]_/i,
+
+                    ""
+
+                )
+
+                .replace(
+
+                    /^\d+_/,
+
+                    ""
+
+                )
+
+                .replace(
+
+                    /_/g,
+
+                    " "
+
+                )
+
+                .trim();
+
+
+
+        return (
+
+            cleaned ||
+
+            "Hidden Waters"
+
+        );
+
+    }
+
+
+
+    /* =====================================================
+       PATH SEGURO
+       ===================================================== */
+
+    function galleryImagePath(
+        path
+    ) {
+
+
+        return path
+
+            .split("/")
+
+            .map(
+
+                part =>
+
+                    encodeURIComponent(
+                        part
+                    )
+
+            )
+
+            .join("/");
+
+    }
+
+
+
+    /* =====================================================
+       CRIAR IMAGEM
+       ===================================================== */
+
+    function buildGalleryItem(
+        file
+    ) {
+
+
+        const item =
+
+            document.createElement(
+                "div"
+            );
+
+
+        item.className =
+
+            "visualizer-item";
+
+
+
+        const image =
+
+            document.createElement(
+                "img"
+            );
+
+
+        image.className =
+
+            "visualizer-media";
+
+
+        image.src =
+
+            galleryImagePath(
+                file.path
+            );
+
+
+        image.alt =
+
+            galleryTitleFromFilename(
+                file.name
+            );
+
+
+        image.loading =
+
+            "eager";
+
+
+        image.decoding =
+
+            "async";
+
+
+
+        const title =
+
+            document.createElement(
+                "span"
+            );
+
+
+        title.className =
+
+            "visualizer-title";
+
+
+        title.textContent =
+
+            galleryTitleFromFilename(
+                file.name
+            );
+
+
+
+        item.append(
+
+            image,
+
+            title
+
+        );
+
+
+        return item;
+
+    }
+
+
+
+    /* =====================================================
+       ESCOLHER 10 IMAGENS
+       ===================================================== */
+
+    async function populateRandomGalleryImages() {
+
+
+        const galleryFiles =
+
+            await getGalleryFiles();
+
+
+
+        /*
+        Se a API falhar e não houver cache,
+        não apagamos os placeholders atuais.
+        */
+
+        if (
+            !galleryFiles.length
+        ) {
+
+            return;
+
+        }
+
+
+
+        const selectedFiles =
+
+            shuffleFiles(
+                galleryFiles
+            )
+
+            .slice(
+
+                0,
+
+                Math.min(
+
+                    RANDOM_IMAGE_COUNT,
+
+                    galleryFiles.length
+
+                )
+
+            );
+
+
+
+        if (
+            !selectedFiles.length
+        ) {
+
+            return;
+
+        }
+
+
+
+        /*
+        Agora que já temos imagens reais,
+        removemos os placeholders.
+        */
+
+        originalGroup.innerHTML =
+
+            "";
+
+
+
+        selectedFiles.forEach(
+
+            file => {
+
+
+                originalGroup.appendChild(
+
+                    buildGalleryItem(
+                        file
+                    )
+
+                );
+
+
+            }
+
+        );
+
+    }
+
+
+
+    /*
+    Espera pela seleção das imagens antes de
+    começar a animação contínua.
+    */
+
+    await populateRandomGalleryImages();
+
+
+
+    /* =====================================================
+       MOVIMENTO CONTÍNUO
+       ===================================================== */
+
+
+    const SPEED =
+
+        38;
+
+
+
+    const reducedMotion =
+
+        window.matchMedia(
+
+            "(prefers-reduced-motion: reduce)"
+
+        );
+
+
+
+    /*
+    Duplicamos exatamente as 10 imagens escolhidas
+    para criar o loop infinito.
+    */
+
+    const duplicateGroup =
+
+        originalGroup.cloneNode(
+            true
+        );
+
+
+    duplicateGroup.setAttribute(
+
+        "aria-hidden",
+
+        "true"
+
+    );
+
+
+
+    duplicateGroup
+
+        .querySelectorAll(
+
+            "a, button, video"
+
+        )
+
+        .forEach(
+
+            element => {
+
+
+                element.setAttribute(
+
+                    "tabindex",
+
+                    "-1"
+
+                );
+
+
+            }
+
+        );
+
+
+
+    track.appendChild(
+
+        duplicateGroup
+
+    );
+
+
+
+    let distance =
+
+        0;
+
+
+    let previousTime =
+
+        performance.now();
+
+
+    let loopWidth =
+
+        0;
+
+
+
+    /* =====================================================
+       PROPORÇÃO ORIGINAL DA IMAGEM
+       ===================================================== */
+
+    function setMediaRatio(
+        media
+    ) {
+
+
+        const item =
+
+            media.closest(
+
+                ".visualizer-item"
+
+            );
+
+
+        if (
+            !item
+        ) {
+
+            return;
+
+        }
+
+
+
+        const width =
+
+            media.naturalWidth ||
+
+            media.videoWidth;
+
+
+
+        const height =
+
+            media.naturalHeight ||
+
+            media.videoHeight;
+
+
+
+        if (
+            width &&
+            height
+        ) {
+
+
+            item.style.setProperty(
+
+                "--item-ratio",
+
+                `${width} / ${height}`
+
+            );
+
+        }
+
+    }
+
+
+
+    track
+
+        .querySelectorAll(
+            "img"
+        )
+
+        .forEach(
+
+            image => {
+
+
+                if (
+                    image.complete
+                ) {
+
+
+                    setMediaRatio(
+                        image
+                    );
+
+
                 } else {
-                    previousTime = performance.now();
-                    measureLoop();
-                }
-            });
 
-            measureLoop();
-            window.requestAnimationFrame(animate);
-        })();
-    </script>
+
+                    image.addEventListener(
+
+                        "load",
+
+                        () =>
+
+                            setMediaRatio(
+                                image
+                            ),
+
+                        {
+                            once:
+                                true
+                        }
+
+                    );
+
+                }
+
+            }
+
+        );
+
+
+
+    track
+
+        .querySelectorAll(
+            "video"
+        )
+
+        .forEach(
+
+            video => {
+
+
+                if (
+                    video.readyState >=
+                    1
+                ) {
+
+
+                    setMediaRatio(
+                        video
+                    );
+
+
+                } else {
+
+
+                    video.addEventListener(
+
+                        "loadedmetadata",
+
+                        () =>
+
+                            setMediaRatio(
+                                video
+                            ),
+
+                        {
+                            once:
+                                true
+                        }
+
+                    );
+
+                }
+
+            }
+
+        );
+
+
+
+    /* =====================================================
+       MEDIR LOOP
+       ===================================================== */
+
+    function measureLoop() {
+
+
+        const trackStyles =
+
+            window.getComputedStyle(
+                track
+            );
+
+
+
+        const gap =
+
+            Number.parseFloat(
+
+                trackStyles.columnGap
+
+            )
+
+            ||
+
+            0;
+
+
+
+        loopWidth =
+
+            originalGroup
+
+                .getBoundingClientRect()
+
+                .width
+
+            +
+
+            gap;
+
+
+
+        if (
+            loopWidth > 0
+        ) {
+
+
+            distance %=
+
+                loopWidth;
+
+        }
+
+    }
+
+
+
+    /* =====================================================
+       ANIMAÇÃO
+       ===================================================== */
+
+    function animate(
+        currentTime
+    ) {
+
+
+        const elapsed =
+
+            Math.min(
+
+                (
+                    currentTime -
+                    previousTime
+                )
+
+                /
+
+                1000,
+
+                0.1
+
+            );
+
+
+
+        previousTime =
+
+            currentTime;
+
+
+
+        if (
+
+            !document.hidden &&
+
+            !reducedMotion.matches &&
+
+            loopWidth > 0
+
+        ) {
+
+
+            distance +=
+
+                SPEED *
+
+                elapsed;
+
+
+
+            if (
+                distance >=
+                loopWidth
+            ) {
+
+
+                distance -=
+
+                    loopWidth;
+
+            }
+
+
+
+            track.style.transform =
+
+                `translate3d(${-distance}px, 0, 0)`;
+
+        }
+
+
+
+        window.requestAnimationFrame(
+
+            animate
+
+        );
+
+    }
+
+
+
+    /* =====================================================
+       RESPONSIVE
+       ===================================================== */
+
+    const resizeObserver =
+
+        new ResizeObserver(
+
+            measureLoop
+
+        );
+
+
+    resizeObserver.observe(
+
+        originalGroup
+
+    );
+
+
+    resizeObserver.observe(
+
+        viewport
+
+    );
+
+
+
+    reducedMotion.addEventListener(
+
+        "change",
+
+        () => {
+
+
+            if (
+                reducedMotion.matches
+            ) {
+
+
+                track.style.transform =
+
+                    "none";
+
+
+            } else {
+
+
+                previousTime =
+
+                    performance.now();
+
+
+                measureLoop();
+
+            }
+
+        }
+
+    );
+
+
+
+    measureLoop();
+
+
+
+    window.requestAnimationFrame(
+
+        animate
+
+    );
+
+
+})();
+</script>
 <script>
         (() => {
             const items = [
