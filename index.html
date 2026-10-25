@@ -4666,102 +4666,306 @@
 })();
 </script>
 <script>
-        (() => {
-            const items = [
-                ...document.querySelectorAll(
-                    ".visualizer-item, .experience-image"
-                )
-            ];
+(() => {
 
-            if (!items.length) {
-                return;
-            }
+    /*
+    Usa event delegation porque as imagens da faixa
+    são criadas dinamicamente depois de a página abrir.
+    */
 
-            const waterVideo = document.createElement("video");
+    const waterVideo =
+        document.createElement(
+            "video"
+        );
 
-            waterVideo.className = "water-ripple-video";
-            waterVideo.src = "assets/media/water-ripple-overlay.mp4";
-            waterVideo.muted = true;
-            waterVideo.loop = true;
-            waterVideo.autoplay = true;
-            waterVideo.playsInline = true;
-            waterVideo.preload = "auto";
-            waterVideo.setAttribute("aria-hidden", "true");
-            waterVideo.setAttribute("tabindex", "-1");
 
-            let activeItem = null;
-            let hideTimer = null;
+    waterVideo.className =
+        "water-ripple-video";
 
-            function activate(item) {
-                window.clearTimeout(hideTimer);
 
-                if (activeItem && activeItem !== item) {
-                    activeItem.classList.remove(
-                        "is-water-ripple"
-                    );
-                }
+    waterVideo.src =
+        "assets/media/water-ripple-overlay.mp4";
 
-                activeItem = item;
-                activeItem.appendChild(waterVideo);
-                activeItem.classList.add(
+
+    waterVideo.muted =
+        true;
+
+
+    waterVideo.loop =
+        true;
+
+
+    waterVideo.autoplay =
+        true;
+
+
+    waterVideo.playsInline =
+        true;
+
+
+    waterVideo.preload =
+        "auto";
+
+
+    waterVideo.setAttribute(
+        "aria-hidden",
+        "true"
+    );
+
+
+    waterVideo.setAttribute(
+        "tabindex",
+        "-1"
+    );
+
+
+    let activeItem =
+        null;
+
+
+    let hideTimer =
+        null;
+
+
+
+    function getInteractiveItem(
+        target
+    ) {
+
+        if (
+            !target ||
+            typeof target.closest !== "function"
+        ) {
+            return null;
+        }
+
+
+        return target.closest(
+            ".visualizer-item, .experience-image"
+        );
+
+    }
+
+
+
+    function activate(
+        item
+    ) {
+
+        window.clearTimeout(
+            hideTimer
+        );
+
+
+        if (
+            activeItem &&
+            activeItem !== item
+        ) {
+
+            activeItem
+                .classList
+                .remove(
                     "is-water-ripple"
                 );
 
-                const playAttempt = waterVideo.play();
+        }
 
-                if (
-                    playAttempt &&
-                    typeof playAttempt.catch === "function"
-                ) {
-                    playAttempt.catch(() => {
-                        // O vídeo é silencioso; normalmente o browser permite.
-                    });
-                }
-            }
 
-            function deactivate(item) {
-                if (activeItem !== item) {
-                    return;
-                }
+        activeItem =
+            item;
 
-                item.classList.remove(
-                    "is-water-ripple"
-                );
 
-                hideTimer = window.setTimeout(() => {
+        activeItem.appendChild(
+            waterVideo
+        );
+
+
+        activeItem.classList.add(
+            "is-water-ripple"
+        );
+
+
+        const playAttempt =
+            waterVideo.play();
+
+
+        if (
+            playAttempt &&
+            typeof playAttempt.catch === "function"
+        ) {
+
+            playAttempt.catch(
+                () => {}
+            );
+
+        }
+
+    }
+
+
+
+    function deactivate(
+        item
+    ) {
+
+        if (
+            activeItem !== item
+        ) {
+            return;
+        }
+
+
+        item.classList.remove(
+            "is-water-ripple"
+        );
+
+
+        hideTimer =
+            window.setTimeout(
+                () => {
+
                     if (
                         activeItem === item &&
                         waterVideo.parentElement === item
                     ) {
+
                         waterVideo.remove();
-                        activeItem = null;
+
+                        activeItem =
+                            null;
+
                     }
-                }, 380);
+
+                },
+                380
+            );
+
+    }
+
+
+
+    document.addEventListener(
+        "pointerover",
+        event => {
+
+            const item =
+                getInteractiveItem(
+                    event.target
+                );
+
+
+            if (
+                !item
+            ) {
+                return;
             }
 
-            items.forEach((item) => {
-                item.addEventListener(
-                    "pointerenter",
-                    () => activate(item)
+
+            if (
+                event.relatedTarget &&
+                item.contains(
+                    event.relatedTarget
+                )
+            ) {
+                return;
+            }
+
+
+            activate(
+                item
+            );
+
+        }
+    );
+
+
+
+    document.addEventListener(
+        "pointerout",
+        event => {
+
+            const item =
+                getInteractiveItem(
+                    event.target
                 );
 
-                item.addEventListener(
-                    "pointerleave",
-                    () => deactivate(item)
+
+            if (
+                !item
+            ) {
+                return;
+            }
+
+
+            if (
+                event.relatedTarget &&
+                item.contains(
+                    event.relatedTarget
+                )
+            ) {
+                return;
+            }
+
+
+            deactivate(
+                item
+            );
+
+        }
+    );
+
+
+
+    document.addEventListener(
+        "focusin",
+        event => {
+
+            const item =
+                getInteractiveItem(
+                    event.target
                 );
 
-                item.addEventListener(
-                    "focusin",
-                    () => activate(item)
+
+            if (
+                item
+            ) {
+
+                activate(
+                    item
                 );
 
-                item.addEventListener(
-                    "focusout",
-                    () => deactivate(item)
+            }
+
+        }
+    );
+
+
+
+    document.addEventListener(
+        "focusout",
+        event => {
+
+            const item =
+                getInteractiveItem(
+                    event.target
                 );
-            });
-        })();
-    </script>
+
+
+            if (
+                item
+            ) {
+
+                deactivate(
+                    item
+                );
+
+            }
+
+        }
+    );
+
+})();
+</script>
 <script>
 (() => {
     const buttons = [...document.querySelectorAll(".language-button")];
